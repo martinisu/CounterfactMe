@@ -1,0 +1,27 @@
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Package build artifacts
+*.tar.gz
+*.tgz
+inst/doc
+docs/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# CRAN
+CRAN-SUBMISSION
+cran-comments.md
+
+# roxygen (regenerated files)
+# — keep man/ tracked, but ignore drafts

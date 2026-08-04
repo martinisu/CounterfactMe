@@ -1,0 +1,17 @@
+fylke_code,fylke,index_region_code,index_region
+03,Oslo,001,Oslo med Bærum
+11,Rogaland,008,Agder og Rogaland uten Stavanger
+15,Møre og Romsdal,009,Møre og Romsdal og Vestland uten Bergen
+18,Nordland,011,Nord-Norge
+31,Østfold,006,"Østfold, Buskerud, Vestfold og Telemark"
+32,Akershus,005,Akershus uten Bærum
+33,Buskerud,006,"Østfold, Buskerud, Vestfold og Telemark"
+34,Innlandet,007,Innlandet
+39,Vestfold,006,"Østfold, Buskerud, Vestfold og Telemark"
+40,Telemark,006,"Østfold, Buskerud, Vestfold og Telemark"
+42,Agder,008,Agder og Rogaland uten Stavanger
+46,Vestland,009,Møre og Romsdal og Vestland uten Bergen
+50,Trøndelag,010,Trøndelag uten Trondheim
+55,Troms,011,Nord-Norge
+56,Finnmark,011,Nord-Norge
+0,Hele landet,TOTAL,Hele landet

@@ -1,0 +1,61 @@
+---
+title: "Introduction to CounterfactMe"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to CounterfactMe}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(CounterfactMe)
+```
+
+# What CounterfactMe does
+
+CounterfactMe generates random but plausible counterfactual Norwegian lives
+from open data. Each call to `counterfact_me()` returns a coherent life:
+name, age, education, occupation, income, family, housing, wealth, religion,
+party preference, and a Bourdieu-style class profile.
+
+```{r basic}
+set.seed(1814)
+counterfact_me(lang = "no")
+```
+
+# Conditional sampling
+
+The package draws dimensions in a sociologically meaningful order. Age comes
+first, then immigrant background, then name (drawn from origin region),
+education, occupation, income, family structure, housing, wealth, identity
+markers, and finally the Bourdieu profile.
+
+# Selective dimensions
+
+Pass a subset of dimensions if you only want certain fields:
+
+```{r dims}
+counterfact_me(dimensions = c("name", "age", "occupation"))
+```
+
+# Verifying consistency
+
+For batch validation, `verify_consistency()` runs 22 cross-dimensional
+checks across many draws and reports any inconsistencies.
+
+```{r verify, eval=FALSE}
+result <- verify_consistency(N = 1000)
+result$summary
+```
+
+# Data sources
+
+All distributions are derived from open SSB tables. See the README for a
+full list with table IDs.

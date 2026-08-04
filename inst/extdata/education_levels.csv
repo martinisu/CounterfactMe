@@ -1,0 +1,11 @@
+code,level,level_no,population_share
+0,No completed education,Ingen fullført utdanning,0.005
+1,Primary school (1-7 years),Barneskoleutdanning (1.-7. trinn),0.045
+2,Lower secondary (8-10 years),Ungdomsskoleutdanning (8.-10. trinn),0.220
+3,Upper secondary basic,Videregående grunnutdanning,0.130
+4,Upper secondary completed,Videregående avsluttende utdanning,0.190
+5,Post-secondary vocational,Påbygging til videregående utdanning,0.040
+6,Bachelor or equivalent,Universitets- og høgskoleutdanning kort,0.215
+7,Master or equivalent,Universitets- og høgskoleutdanning lang,0.120
+8,PhD or equivalent,Forskerutdanning,0.015
+9,Unspecified,Uoppgitt,0.020

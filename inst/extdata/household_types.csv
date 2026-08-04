@@ -1,0 +1,12 @@
+code,type,type_no,population_share
+1,Living alone,Aleneboende,0.185
+2,Couple without children,Par uten barn,0.200
+3,Couple with children 0-5,Par med barn 0-5 år,0.105
+4,Couple with children 6-17,Par med barn 6-17 år,0.150
+5,Couple with adult children,Par med voksne barn,0.080
+6,Single parent with children 0-17,Enslig mor/far med barn 0-17 år,0.065
+7,Single parent with adult children,Enslig mor/far med voksne barn,0.045
+8,Multi-family household,Flerfamiliehusholdning,0.040
+9,Shared housing,Bofellesskap,0.030
+10,Other,Annen husholdning,0.025
+11,Living with parents,Bor hos foreldre,0.075

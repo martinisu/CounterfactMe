@@ -1,0 +1,8 @@
+code,status,status_no,population_share_18plus
+1,Unmarried,Ugift,0.395
+2,Married,Gift,0.370
+3,Widowed,Enke/enkemann,0.040
+4,Divorced,Skilt,0.105
+5,Separated,Separert,0.015
+6,Registered partner,Registrert partner,0.005
+7,Cohabiting (not married),Samboer,0.070

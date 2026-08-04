@@ -1,0 +1,9 @@
+offence_no,offence_en,base_share,male_mult,under30_mult,age30_50_mult,over67_mult,min_age
+Ingen,None,0.65,0.9,0.7,1.0,1.5,12
+Fartsbot,Speeding ticket,0.22,1.3,1.1,1.2,0.5,18
+Parkeringsbot,Parking fine,0.18,1.1,1.0,1.2,0.5,18
+Promillekjøring (én gang på 90-tallet),Drunk driving (once in the 90s),0.02,1.4,0.0,0.5,3.0,45
+Ungdomstid: arrestert for fyllesyk-festing,Youth: arrested for drunken partying,0.04,1.5,3.0,1.0,0.5,16
+Ungdomstid: tatt for skulk,Youth: caught playing hooky,0.03,1.2,2.5,0.8,0.3,15
+Ungdomstid: snek på trikken,Youth: rode tram without ticket,0.05,1.0,2.5,1.0,0.4,13
+Spilte for høyt på hytta,Played music too loud at the cabin,0.01,1.2,0.4,1.5,1.6,12

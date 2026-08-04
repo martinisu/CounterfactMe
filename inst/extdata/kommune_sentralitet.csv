@@ -1,0 +1,358 @@
+kommune_code,kommune,sentralitet,sentralitet_label_no,sentralitet_label_en
+0301,Oslo,1,Storby,Major city
+1101,Eigersund,4,Tettsted,Town
+1103,Stavanger,2,By,City
+1106,Haugesund,3,Mindre by,Smaller city
+1108,Sandnes,2,By,City
+1111,Sokndal,5,Mindre tettsted,Smaller town
+1112,Lund,5,Mindre tettsted,Smaller town
+1114,Bjerkreim,4,Tettsted,Town
+1119,Hå,4,Tettsted,Town
+1120,Klepp,3,Mindre by,Smaller city
+1121,Time,3,Mindre by,Smaller city
+1122,Gjesdal,3,Mindre by,Smaller city
+1124,Sola,2,By,City
+1127,Randaberg,3,Mindre by,Smaller city
+1130,Strand,3,Mindre by,Smaller city
+1133,Hjelmeland,5,Mindre tettsted,Smaller town
+1134,Suldal,6,Distrikt,Rural
+1135,Sauda,5,Mindre tettsted,Smaller town
+1144,Kvitsøy,6,Distrikt,Rural
+1145,Bokn,5,Mindre tettsted,Smaller town
+1146,Tysvær,4,Tettsted,Town
+1149,Karmøy,4,Tettsted,Town
+1151,Utsira,6,Distrikt,Rural
+1160,Vindafjord,5,Mindre tettsted,Smaller town
+1505,Kristiansund,4,Tettsted,Town
+1506,Molde,4,Tettsted,Town
+1508,Ålesund,3,Mindre by,Smaller city
+1511,Vanylven,6,Distrikt,Rural
+1514,Sande,6,Distrikt,Rural
+1515,Herøy (Møre og Romsdal),5,Mindre tettsted,Smaller town
+1516,Ulstein,4,Tettsted,Town
+1517,Hareid,4,Tettsted,Town
+1520,Ørsta,4,Tettsted,Town
+1525,Stranda,5,Mindre tettsted,Smaller town
+1528,Sykkylven,4,Tettsted,Town
+1531,Sula,4,Tettsted,Town
+1532,Giske,4,Tettsted,Town
+1535,Vestnes,5,Mindre tettsted,Smaller town
+1539,Rauma,5,Mindre tettsted,Smaller town
+1547,Aukra,5,Mindre tettsted,Smaller town
+1554,Averøy,5,Mindre tettsted,Smaller town
+1557,Gjemnes,5,Mindre tettsted,Smaller town
+1560,Tingvoll,5,Mindre tettsted,Smaller town
+1563,Sunndal,5,Mindre tettsted,Smaller town
+1566,Surnadal,5,Mindre tettsted,Smaller town
+1573,Smøla,6,Distrikt,Rural
+1576,Aure,6,Distrikt,Rural
+1577,Volda,4,Tettsted,Town
+1578,Fjord,6,Distrikt,Rural
+1579,Hustadvika,5,Mindre tettsted,Smaller town
+1580,Haram,5,Mindre tettsted,Smaller town
+1804,Bodø,3,Mindre by,Smaller city
+1806,Narvik,4,Tettsted,Town
+1811,Bindal,6,Distrikt,Rural
+1812,Sømna,6,Distrikt,Rural
+1813,Brønnøy,5,Mindre tettsted,Smaller town
+1815,Vega,6,Distrikt,Rural
+1816,Vevelstad,6,Distrikt,Rural
+1818,Herøy (Nordland),6,Distrikt,Rural
+1820,Alstahaug,5,Mindre tettsted,Smaller town
+1822,Leirfjord,6,Distrikt,Rural
+1824,Vefsn,4,Tettsted,Town
+1825,Grane,6,Distrikt,Rural
+1826,Aarborte,6,Distrikt,Rural
+1827,Dønna,6,Distrikt,Rural
+1828,Nesna,6,Distrikt,Rural
+1832,Hemnes,5,Mindre tettsted,Smaller town
+1833,Rana,4,Tettsted,Town
+1834,Lurøy,6,Distrikt,Rural
+1835,Træna,6,Distrikt,Rural
+1836,Rødøy,6,Distrikt,Rural
+1837,Meløy,6,Distrikt,Rural
+1838,Gildeskål,6,Distrikt,Rural
+1839,Beiarn,6,Distrikt,Rural
+1840,Saltdal,5,Mindre tettsted,Smaller town
+1841,Fauske,4,Tettsted,Town
+1845,Sørfold,6,Distrikt,Rural
+1848,Steigen,6,Distrikt,Rural
+1851,Lødingen,6,Distrikt,Rural
+1853,Evenes,6,Distrikt,Rural
+1856,Røst,6,Distrikt,Rural
+1857,Værøy,6,Distrikt,Rural
+1859,Flakstad,6,Distrikt,Rural
+1860,Vestvågøy,5,Mindre tettsted,Smaller town
+1865,Vågan,5,Mindre tettsted,Smaller town
+1866,Hadsel,5,Mindre tettsted,Smaller town
+1867,Bø,6,Distrikt,Rural
+1868,Øksnes,5,Mindre tettsted,Smaller town
+1870,Sortland,4,Tettsted,Town
+1871,Andøy,6,Distrikt,Rural
+1874,Moskenes,6,Distrikt,Rural
+1875,Hábmer,6,Distrikt,Rural
+3101,Halden,3,Mindre by,Smaller city
+3103,Moss,2,By,City
+3105,Sarpsborg,2,By,City
+3107,Fredrikstad,2,By,City
+3110,Hvaler,4,Tettsted,Town
+3112,Råde,3,Mindre by,Smaller city
+3114,Våler (Østfold),3,Mindre by,Smaller city
+3116,Skiptvet,3,Mindre by,Smaller city
+3118,Indre Østfold,3,Mindre by,Smaller city
+3120,Rakkestad,3,Mindre by,Smaller city
+3122,Marker,4,Tettsted,Town
+3124,Aremark,5,Mindre tettsted,Smaller town
+3201,Bærum,1,Storby,Major city
+3203,Asker,2,By,City
+3205,Lillestrøm,1,Storby,Major city
+3207,Nordre Follo,2,By,City
+3209,Ullensaker,2,By,City
+3212,Nesodden,3,Mindre by,Smaller city
+3214,Frogn,2,By,City
+3216,Vestby,2,By,City
+3218,Ås,2,By,City
+3220,Enebakk,3,Mindre by,Smaller city
+3222,Lørenskog,1,Storby,Major city
+3224,Rælingen,1,Storby,Major city
+3226,Aurskog-Høland,3,Mindre by,Smaller city
+3228,Nes,3,Mindre by,Smaller city
+3230,Gjerdrum,2,By,City
+3232,Nittedal,2,By,City
+3234,Lunner,3,Mindre by,Smaller city
+3236,Jevnaker,3,Mindre by,Smaller city
+3238,Nannestad,3,Mindre by,Smaller city
+3240,Eidsvoll,3,Mindre by,Smaller city
+3242,Hurdal,4,Tettsted,Town
+3301,Drammen,2,By,City
+3303,Kongsberg,3,Mindre by,Smaller city
+3305,Ringerike,3,Mindre by,Smaller city
+3310,Hole,3,Mindre by,Smaller city
+3312,Lier,2,By,City
+3314,Øvre Eiker,3,Mindre by,Smaller city
+3316,Modum,3,Mindre by,Smaller city
+3318,Krødsherad,5,Mindre tettsted,Smaller town
+3320,Flå,5,Mindre tettsted,Smaller town
+3322,Nesbyen,5,Mindre tettsted,Smaller town
+3324,Gol,4,Tettsted,Town
+3326,Hemsedal,5,Mindre tettsted,Smaller town
+3328,Ål,5,Mindre tettsted,Smaller town
+3330,Hol,5,Mindre tettsted,Smaller town
+3332,Sigdal,5,Mindre tettsted,Smaller town
+3334,Flesberg,4,Tettsted,Town
+3336,Rollag,5,Mindre tettsted,Smaller town
+3338,Nore og Uvdal,6,Distrikt,Rural
+3401,Kongsvinger,3,Mindre by,Smaller city
+3403,Hamar,2,By,City
+3405,Lillehammer,3,Mindre by,Smaller city
+3407,Gjøvik,3,Mindre by,Smaller city
+3411,Ringsaker,3,Mindre by,Smaller city
+3412,Løten,3,Mindre by,Smaller city
+3413,Stange,3,Mindre by,Smaller city
+3414,Nord-Odal,4,Tettsted,Town
+3415,Sør-Odal,3,Mindre by,Smaller city
+3416,Eidskog,4,Tettsted,Town
+3417,Grue,5,Mindre tettsted,Smaller town
+3418,Åsnes,5,Mindre tettsted,Smaller town
+3419,Våler (Innlandet),5,Mindre tettsted,Smaller town
+3420,Elverum,3,Mindre by,Smaller city
+3421,Trysil,5,Mindre tettsted,Smaller town
+3422,Åmot,5,Mindre tettsted,Smaller town
+3423,Stor-Elvdal,6,Distrikt,Rural
+3424,Rendalen,6,Distrikt,Rural
+3425,Engerdal,6,Distrikt,Rural
+3426,Tolga,5,Mindre tettsted,Smaller town
+3427,Tynset,5,Mindre tettsted,Smaller town
+3428,Alvdal,5,Mindre tettsted,Smaller town
+3429,Folldal,6,Distrikt,Rural
+3430,Os,6,Distrikt,Rural
+3431,Dovre,6,Distrikt,Rural
+3432,Lesja,6,Distrikt,Rural
+3433,Skjåk,6,Distrikt,Rural
+3434,Lom,6,Distrikt,Rural
+3435,Vågå,5,Mindre tettsted,Smaller town
+3436,Nord-Fron,5,Mindre tettsted,Smaller town
+3437,Sel,5,Mindre tettsted,Smaller town
+3438,Sør-Fron,5,Mindre tettsted,Smaller town
+3439,Ringebu,5,Mindre tettsted,Smaller town
+3440,Øyer,4,Tettsted,Town
+3441,Gausdal,4,Tettsted,Town
+3442,Østre Toten,4,Tettsted,Town
+3443,Vestre Toten,3,Mindre by,Smaller city
+3446,Gran,3,Mindre by,Smaller city
+3447,Søndre Land,4,Tettsted,Town
+3448,Nordre Land,4,Tettsted,Town
+3449,Sør-Aurdal,5,Mindre tettsted,Smaller town
+3450,Etnedal,5,Mindre tettsted,Smaller town
+3451,Nord-Aurdal,4,Tettsted,Town
+3452,Vestre Slidre,5,Mindre tettsted,Smaller town
+3453,Øystre Slidre,5,Mindre tettsted,Smaller town
+3454,Vang,6,Distrikt,Rural
+3901,Horten,2,By,City
+3903,Holmestrand,3,Mindre by,Smaller city
+3905,Tønsberg,2,By,City
+3907,Sandefjord,3,Mindre by,Smaller city
+3909,Larvik,3,Mindre by,Smaller city
+3911,Færder,3,Mindre by,Smaller city
+4001,Porsgrunn,3,Mindre by,Smaller city
+4003,Skien,3,Mindre by,Smaller city
+4005,Notodden,4,Tettsted,Town
+4010,Siljan,4,Tettsted,Town
+4012,Bamble,3,Mindre by,Smaller city
+4014,Kragerø,4,Tettsted,Town
+4016,Drangedal,5,Mindre tettsted,Smaller town
+4018,Nome,4,Tettsted,Town
+4020,Midt-Telemark,4,Tettsted,Town
+4022,Seljord,5,Mindre tettsted,Smaller town
+4024,Hjartdal,5,Mindre tettsted,Smaller town
+4026,Tinn,5,Mindre tettsted,Smaller town
+4028,Kviteseid,5,Mindre tettsted,Smaller town
+4030,Nissedal,6,Distrikt,Rural
+4032,Fyresdal,6,Distrikt,Rural
+4034,Tokke,6,Distrikt,Rural
+4036,Vinje,6,Distrikt,Rural
+4201,Risør,4,Tettsted,Town
+4202,Grimstad,3,Mindre by,Smaller city
+4203,Arendal,3,Mindre by,Smaller city
+4204,Kristiansand,3,Mindre by,Smaller city
+4205,Lindesnes,4,Tettsted,Town
+4206,Farsund,4,Tettsted,Town
+4207,Flekkefjord,4,Tettsted,Town
+4211,Gjerstad,5,Mindre tettsted,Smaller town
+4212,Vegårshei,5,Mindre tettsted,Smaller town
+4213,Tvedestrand,4,Tettsted,Town
+4214,Froland,4,Tettsted,Town
+4215,Lillesand,3,Mindre by,Smaller city
+4216,Birkenes,4,Tettsted,Town
+4217,Åmli,5,Mindre tettsted,Smaller town
+4218,Iveland,5,Mindre tettsted,Smaller town
+4219,Evje og Hornnes,4,Tettsted,Town
+4220,Bygland,6,Distrikt,Rural
+4221,Valle,6,Distrikt,Rural
+4222,Bykle,6,Distrikt,Rural
+4223,Vennesla,3,Mindre by,Smaller city
+4224,Åseral,6,Distrikt,Rural
+4225,Lyngdal,4,Tettsted,Town
+4226,Hægebostad,5,Mindre tettsted,Smaller town
+4227,Kvinesdal,5,Mindre tettsted,Smaller town
+4228,Sirdal,5,Mindre tettsted,Smaller town
+4601,Bergen,2,By,City
+4602,Kinn,5,Mindre tettsted,Smaller town
+4611,Etne,5,Mindre tettsted,Smaller town
+4612,Sveio,4,Tettsted,Town
+4613,Bømlo,5,Mindre tettsted,Smaller town
+4614,Stord,4,Tettsted,Town
+4615,Fitjar,5,Mindre tettsted,Smaller town
+4616,Tysnes,5,Mindre tettsted,Smaller town
+4617,Kvinnherad,5,Mindre tettsted,Smaller town
+4618,Ullensvang,5,Mindre tettsted,Smaller town
+4619,Eidfjord,6,Distrikt,Rural
+4620,Ulvik,6,Distrikt,Rural
+4621,Voss,4,Tettsted,Town
+4622,Kvam,4,Tettsted,Town
+4623,Samnanger,4,Tettsted,Town
+4624,Bjørnafjorden,4,Tettsted,Town
+4625,Austevoll,5,Mindre tettsted,Smaller town
+4626,Øygarden,4,Tettsted,Town
+4627,Askøy,3,Mindre by,Smaller city
+4628,Vaksdal,5,Mindre tettsted,Smaller town
+4629,Modalen,6,Distrikt,Rural
+4630,Osterøy,4,Tettsted,Town
+4631,Alver,4,Tettsted,Town
+4632,Austrheim,5,Mindre tettsted,Smaller town
+4633,Fedje,6,Distrikt,Rural
+4634,Masfjorden,6,Distrikt,Rural
+4635,Gulen,6,Distrikt,Rural
+4636,Solund,6,Distrikt,Rural
+4637,Hyllestad,6,Distrikt,Rural
+4638,Høyanger,6,Distrikt,Rural
+4639,Vik,6,Distrikt,Rural
+4640,Sogndal,5,Mindre tettsted,Smaller town
+4641,Aurland,6,Distrikt,Rural
+4642,Lærdal,5,Mindre tettsted,Smaller town
+4643,Årdal,5,Mindre tettsted,Smaller town
+4644,Luster,5,Mindre tettsted,Smaller town
+4645,Askvoll,6,Distrikt,Rural
+4646,Fjaler,6,Distrikt,Rural
+4647,Sunnfjord,5,Mindre tettsted,Smaller town
+4648,Bremanger,6,Distrikt,Rural
+4649,Stad,5,Mindre tettsted,Smaller town
+4650,Gloppen,5,Mindre tettsted,Smaller town
+4651,Stryn,5,Mindre tettsted,Smaller town
+5001,Trondheim,2,By,City
+5006,Steinkjer,4,Tettsted,Town
+5007,Namsos,4,Tettsted,Town
+5014,Frøya,6,Distrikt,Rural
+5020,Osen,6,Distrikt,Rural
+5021,Oppdal,5,Mindre tettsted,Smaller town
+5022,Rennebu,5,Mindre tettsted,Smaller town
+5025,Røros,5,Mindre tettsted,Smaller town
+5026,Holtålen,6,Distrikt,Rural
+5027,Midtre Gauldal,5,Mindre tettsted,Smaller town
+5028,Melhus,3,Mindre by,Smaller city
+5029,Skaun,4,Tettsted,Town
+5031,Malvik,3,Mindre by,Smaller city
+5032,Selbu,5,Mindre tettsted,Smaller town
+5033,Tydal,6,Distrikt,Rural
+5034,Meråker,5,Mindre tettsted,Smaller town
+5035,Stjørdal,3,Mindre by,Smaller city
+5036,Frosta,5,Mindre tettsted,Smaller town
+5037,Levanger,4,Tettsted,Town
+5038,Verdal,4,Tettsted,Town
+5041,Snåase,6,Distrikt,Rural
+5042,Lierne,6,Distrikt,Rural
+5043,Raarvihke,6,Distrikt,Rural
+5044,Namsskogan,6,Distrikt,Rural
+5045,Grong,5,Mindre tettsted,Smaller town
+5046,Høylandet,6,Distrikt,Rural
+5047,Overhalla,5,Mindre tettsted,Smaller town
+5049,Flatanger,6,Distrikt,Rural
+5052,Leka,6,Distrikt,Rural
+5053,Inderøy,4,Tettsted,Town
+5054,Indre Fosen,5,Mindre tettsted,Smaller town
+5055,Heim,5,Mindre tettsted,Smaller town
+5056,Hitra,6,Distrikt,Rural
+5057,Ørland,5,Mindre tettsted,Smaller town
+5058,Åfjord,6,Distrikt,Rural
+5059,Orkland,4,Tettsted,Town
+5060,Nærøysund,5,Mindre tettsted,Smaller town
+5061,Rindal,5,Mindre tettsted,Smaller town
+5501,Tromsø,3,Mindre by,Smaller city
+5503,Harstad,4,Tettsted,Town
+5510,Kvæfjord,5,Mindre tettsted,Smaller town
+5512,Dielddanuorri,6,Distrikt,Rural
+5514,Ibestad,6,Distrikt,Rural
+5516,Gratangen,6,Distrikt,Rural
+5518,Loabák,6,Distrikt,Rural
+5520,Bardu,5,Mindre tettsted,Smaller town
+5522,Salangen,6,Distrikt,Rural
+5524,Målselv,5,Mindre tettsted,Smaller town
+5526,Sørreisa,5,Mindre tettsted,Smaller town
+5528,Dyrøy,6,Distrikt,Rural
+5530,Senja,5,Mindre tettsted,Smaller town
+5532,Balsfjord,6,Distrikt,Rural
+5534,Karlsøy,6,Distrikt,Rural
+5536,Lyngen,6,Distrikt,Rural
+5538,Storfjord,6,Distrikt,Rural
+5540,Gáivuotna,6,Distrikt,Rural
+5542,Skjervøy,6,Distrikt,Rural
+5544,Nordreisa,5,Mindre tettsted,Smaller town
+5546,Kvænangen,6,Distrikt,Rural
+5601,Alta,4,Tettsted,Town
+5603,Hammerfest,4,Tettsted,Town
+5605,Sør-Varanger,5,Mindre tettsted,Smaller town
+5607,Vadsø,5,Mindre tettsted,Smaller town
+5610,Kárásjohka,6,Distrikt,Rural
+5612,Guovdageaidnu,6,Distrikt,Rural
+5614,Loppa,6,Distrikt,Rural
+5616,Hasvik,6,Distrikt,Rural
+5618,Måsøy,6,Distrikt,Rural
+5620,Nordkapp,6,Distrikt,Rural
+5622,Porsanger,6,Distrikt,Rural
+5624,Lebesby,6,Distrikt,Rural
+5626,Gamvik,6,Distrikt,Rural
+5628,Deatnu,6,Distrikt,Rural
+5630,Berlevåg,6,Distrikt,Rural
+5632,Båtsfjord,6,Distrikt,Rural
+5634,Vardø,6,Distrikt,Rural
+5636,Unjárga,6,Distrikt,Rural

@@ -1,0 +1,41 @@
+age_band,level_code,level_no,share_pct
+67 år eller eldre,01,Grunnskolenivå,22.40
+67 år eller eldre,02a,Videregående skolenivå,47.30
+67 år eller eldre,03a,"Universitets- og høgskolenivå, kort",20.20
+67 år eller eldre,04a,"Universitets- og høgskolenivå, lang",7.30
+67 år eller eldre,11,Fagskolenivå,2.80
+16-19 år,01,Grunnskolenivå,86.60
+16-19 år,02a,Videregående skolenivå,13.30
+16-19 år,03a,"Universitets- og høgskolenivå, kort",0.00
+16-19 år,04a,"Universitets- og høgskolenivå, lang",0.00
+16-19 år,11,Fagskolenivå,0.00
+20-24 år,01,Grunnskolenivå,20.70
+20-24 år,02a,Videregående skolenivå,53.40
+20-24 år,03a,"Universitets- og høgskolenivå, kort",23.40
+20-24 år,04a,"Universitets- og høgskolenivå, lang",1.10
+20-24 år,11,Fagskolenivå,1.30
+25-29 år,01,Grunnskolenivå,16.80
+25-29 år,02a,Videregående skolenivå,27.80
+25-29 år,03a,"Universitets- og høgskolenivå, kort",35.40
+25-29 år,04a,"Universitets- og høgskolenivå, lang",16.90
+25-29 år,11,Fagskolenivå,3.10
+30-39 år,01,Grunnskolenivå,17.90
+30-39 år,02a,Videregående skolenivå,25.70
+30-39 år,03a,"Universitets- og høgskolenivå, kort",31.00
+30-39 år,04a,"Universitets- og høgskolenivå, lang",21.50
+30-39 år,11,Fagskolenivå,3.90
+40-49 år,01,Grunnskolenivå,16.60
+40-49 år,02a,Videregående skolenivå,30.60
+40-49 år,03a,"Universitets- og høgskolenivå, kort",30.00
+40-49 år,04a,"Universitets- og høgskolenivå, lang",19.00
+40-49 år,11,Fagskolenivå,3.70
+50-59 år,01,Grunnskolenivå,16.60
+50-59 år,02a,Videregående skolenivå,38.00
+50-59 år,03a,"Universitets- og høgskolenivå, kort",27.80
+50-59 år,04a,"Universitets- og høgskolenivå, lang",12.90
+50-59 år,11,Fagskolenivå,4.60
+60-66 år,01,Grunnskolenivå,23.60
+60-66 år,02a,Videregående skolenivå,38.90
+60-66 år,03a,"Universitets- og høgskolenivå, kort",23.90
+60-66 år,04a,"Universitets- og høgskolenivå, lang",9.30
+60-66 år,11,Fagskolenivå,4.30

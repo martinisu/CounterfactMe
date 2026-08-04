@@ -1,0 +1,97 @@
+# CounterfactMe 0.9.27
+
+## Preview-release
+- Første publiserte versjon (offentlig GitHub-repo).
+- Ny funksjon: `counterfact_me_constrained(givens)` — trekker et liv med
+  bruker-spesifiserte constraints (age, gender, county, occupation, …).
+- Ny funksjon: `counterfact_parallel_lives(givens, vary_dim, n)` — N
+  parallelle liv som varierer én dimensjon.
+- Ny funksjon: `narrate_life(x)` — template-basert biografi på norsk (ingen
+  API, ingen nettverk).
+- Ny funksjon: `narrate_life_llm(x)` + `life_factsheet(x)` +
+  `ollama_available()` — valgfri lokal Ollama-narrasjon.
+- Ny funksjon: `audit_plausibility()` — myk verify_consistency-utvidelse
+  som rapporterer usannsynlige (men mulige) kombinasjoner.
+- Ny funksjon: `find_impossibilities(x)` + rejection-lag i `counterfact_me()`
+  — hard-umulige kombinasjoner filtreres bort før tilbakelevering.
+- Import: `stats::` og `utils::` i NAMESPACE, `Imports:` i DESCRIPTION.
+
+# CounterfactMe 0.7.0
+
+## New features
+
+- **Bourdieu kapitalprofil** dimension (`bourdieu`): tre indekser (økonomisk,
+  kulturell, sosial — 0-100) og klasseposisjon (Etablert overklasse,
+  Kulturell elite, Etablert middelklasse, Tradisjonell arbeiderklasse,
+  Prekariat, m.fl.). Bygger på Bourdieu sin Distinction (1979) og norsk
+  Bourdieu-tradisjon.
+- **Inheritance flow**: når begge foreldre er døde, flyter `parents_capital`
+  som arv til ego (delt med antall søsken). Norge har ikke arveavgift siden
+  2014. Arven legges til `net_wealth_nok` og `financial_assets_nok`, og
+  kan løfte ego inn i høyere `wealth_class`.
+
+## Bug fixes
+
+- `.cond_parents` brukte hardkodet kjønn ved kall til `.parent_occupation`,
+  så samkjønnede foreldrepar fikk feil kjønnsbetinget yrke ("Andrius (M):
+  Hjemmevaerende"). Fikset ved å trekke couple_type FØR yrkene tildeles.
+- `.draw_boligtype` produserte enebolig for 22-åringer. Erstattet med
+  geografi-bevisst aldersjustering: under 25 i Oslo/Akershus = kun blokk,
+  under 25 i distrikt = enebolig mulig (arvet) men dempet sannsynlighet.
+- `.cond_siblings` hadde sign-inversion i alder-delta (Arthur "4 aar yngre"
+  enn Lukas 0 år = umulig). Fikset konvensjon og klipping mot ego_age.
+- `.cond_nus_field` setter `detail_label` til NA når identisk med
+  `field_of_study` (var "Allmenne fag == Allmenne fag" duplikat).
+
+# CounterfactMe 0.6.0
+
+## New features
+
+- **Humoristiske labels** for religion og partistemming (~12 % rate;
+  40 % for STEMTE_IKKE). 60 religion-varianter + 68 parti-varianter.
+
+## Bug fixes
+
+- Søsken og besteforeldre lagt til (`siblings`, `grandparents` dimensjoner).
+- NEET-flag for 16-29-åringer (`neet` dimensjon).
+
+# CounterfactMe 0.5.0
+
+## New features
+
+- **Same-sex couples**: kohort-betinget (~2.5 % for ego født etter 2010).
+- **Mixed couples** (én norsk + én innvandret): 4-12 % avhengig av ego-bg.
+- **Sexual orientation** dimension (~7-12 % LHBT+, kohort-betinget).
+- **Religion** dimension (DnK 53 %, Katolsk, Islam, Humanistforbundet, etc.).
+- **Party preference** dimension med valgdeltakelse (kalibrert mot SSB 2021).
+- **Kommunenivå** boligpriser (urban/rural justering innen fylke).
+
+# CounterfactMe 0.4.0
+
+## New features
+
+- **Innvandrerbakgrunn** dimension: majority/first_gen/second_gen, country,
+  name_region, years_in_norway. Påvirker navn, geografi, inntekt, utdanning.
+- **Historical immigration windows**: Afghanistan-89-åring umulig, etc.
+
+# CounterfactMe 0.3.0
+
+## New features
+
+- **Bolig** dimension: type (enebolig/småhus/blokk), areal, verdi, gjeld,
+  egenkapital, kjøpsår, hytte (fjell/innland/kyst/strandeiendom).
+- **Formue** dimension: nettoformue (D1-D10 + topp 5/1/0.1 %),
+  næringsformue, kapitalinntekt, wealth_class.
+- **Foreldredimensjon v2**: kohortbetinget yrke, fødselsår + dødsår.
+
+# CounterfactMe 0.2.0
+
+## New features
+
+- Conditional sampling: age → education → occupation → income.
+- NUS-fagfelt og studieretning (broad + detailed).
+- Husholdning matcher ego sitt kjønn.
+
+# CounterfactMe 0.1.0
+
+- Første versjon. Independent draws fra SSB-medianer.

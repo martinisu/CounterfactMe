@@ -1,0 +1,5 @@
+level_no,level_en,share,under30_mult,age30_50_mult,age50_67_mult,over67_mult
+"Ikke aktiv",Not active,0.18,0.3,0.6,1.5,3.0
+"Mest scroller",Mostly scrolls,0.45,1.2,1.3,0.9,0.5
+"Poster jevnlig",Posts regularly,0.25,1.5,1.2,0.7,0.3
+"Skapt innhold (vlog/blog)",Creates content,0.12,2.0,1.0,0.4,0.1

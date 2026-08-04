@@ -1,0 +1,1603 @@
+region_code,region,boligtype_code,boligtype,year,index_2015
+001,Oslo med Bærum,00,Alle boligtyper,1992,13.6
+001,Oslo med Bærum,00,Alle boligtyper,1993,14.1
+001,Oslo med Bærum,00,Alle boligtyper,1994,16.9
+001,Oslo med Bærum,00,Alle boligtyper,1995,17.8
+001,Oslo med Bærum,00,Alle boligtyper,1996,20.3
+001,Oslo med Bærum,00,Alle boligtyper,1997,24.0
+001,Oslo med Bærum,00,Alle boligtyper,1998,28.0
+001,Oslo med Bærum,00,Alle boligtyper,1999,32.5
+001,Oslo med Bærum,00,Alle boligtyper,2000,38.9
+001,Oslo med Bærum,00,Alle boligtyper,2001,41.5
+001,Oslo med Bærum,00,Alle boligtyper,2002,44.1
+001,Oslo med Bærum,00,Alle boligtyper,2003,43.6
+001,Oslo med Bærum,00,Alle boligtyper,2004,48.0
+001,Oslo med Bærum,00,Alle boligtyper,2005,52.4
+001,Oslo med Bærum,00,Alle boligtyper,2006,60.4
+001,Oslo med Bærum,00,Alle boligtyper,2007,67.2
+001,Oslo med Bærum,00,Alle boligtyper,2008,64.2
+001,Oslo med Bærum,00,Alle boligtyper,2009,66.3
+001,Oslo med Bærum,00,Alle boligtyper,2010,72.0
+001,Oslo med Bærum,00,Alle boligtyper,2011,79.1
+001,Oslo med Bærum,00,Alle boligtyper,2012,85.5
+001,Oslo med Bærum,00,Alle boligtyper,2013,88.2
+001,Oslo med Bærum,00,Alle boligtyper,2014,90.7
+001,Oslo med Bærum,00,Alle boligtyper,2015,100.0
+001,Oslo med Bærum,00,Alle boligtyper,2016,115.5
+001,Oslo med Bærum,00,Alle boligtyper,2017,124.4
+001,Oslo med Bærum,00,Alle boligtyper,2018,125.5
+001,Oslo med Bærum,00,Alle boligtyper,2019,130.4
+001,Oslo med Bærum,00,Alle boligtyper,2020,137.3
+001,Oslo med Bærum,00,Alle boligtyper,2021,152.1
+001,Oslo med Bærum,00,Alle boligtyper,2022,158.9
+001,Oslo med Bærum,00,Alle boligtyper,2023,157.4
+001,Oslo med Bærum,00,Alle boligtyper,2024,162.9
+001,Oslo med Bærum,00,Alle boligtyper,2025,171.2
+001,Oslo med Bærum,01,Eneboliger,1992,16.9
+001,Oslo med Bærum,01,Eneboliger,1993,18.2
+001,Oslo med Bærum,01,Eneboliger,1994,20.5
+001,Oslo med Bærum,01,Eneboliger,1995,23.5
+001,Oslo med Bærum,01,Eneboliger,1996,25.6
+001,Oslo med Bærum,01,Eneboliger,1997,30.6
+001,Oslo med Bærum,01,Eneboliger,1998,34.2
+001,Oslo med Bærum,01,Eneboliger,1999,38.0
+001,Oslo med Bærum,01,Eneboliger,2000,45.1
+001,Oslo med Bærum,01,Eneboliger,2001,48.3
+001,Oslo med Bærum,01,Eneboliger,2002,48.9
+001,Oslo med Bærum,01,Eneboliger,2003,47.9
+001,Oslo med Bærum,01,Eneboliger,2004,51.8
+001,Oslo med Bærum,01,Eneboliger,2005,55.9
+001,Oslo med Bærum,01,Eneboliger,2006,62.7
+001,Oslo med Bærum,01,Eneboliger,2007,69.8
+001,Oslo med Bærum,01,Eneboliger,2008,68.9
+001,Oslo med Bærum,01,Eneboliger,2009,69.8
+001,Oslo med Bærum,01,Eneboliger,2010,76.4
+001,Oslo med Bærum,01,Eneboliger,2011,83.1
+001,Oslo med Bærum,01,Eneboliger,2012,88.0
+001,Oslo med Bærum,01,Eneboliger,2013,90.6
+001,Oslo med Bærum,01,Eneboliger,2014,93.4
+001,Oslo med Bærum,01,Eneboliger,2015,100.0
+001,Oslo med Bærum,01,Eneboliger,2016,112.8
+001,Oslo med Bærum,01,Eneboliger,2017,122.6
+001,Oslo med Bærum,01,Eneboliger,2018,125.8
+001,Oslo med Bærum,01,Eneboliger,2019,131.7
+001,Oslo med Bærum,01,Eneboliger,2020,138.1
+001,Oslo med Bærum,01,Eneboliger,2021,153.2
+001,Oslo med Bærum,01,Eneboliger,2022,158.0
+001,Oslo med Bærum,01,Eneboliger,2023,153.1
+001,Oslo med Bærum,01,Eneboliger,2024,156.6
+001,Oslo med Bærum,01,Eneboliger,2025,163.5
+001,Oslo med Bærum,02,Småhus,1992,15.0
+001,Oslo med Bærum,02,Småhus,1993,15.1
+001,Oslo med Bærum,02,Småhus,1994,18.7
+001,Oslo med Bærum,02,Småhus,1995,19.6
+001,Oslo med Bærum,02,Småhus,1996,22.3
+001,Oslo med Bærum,02,Småhus,1997,26.0
+001,Oslo med Bærum,02,Småhus,1998,30.0
+001,Oslo med Bærum,02,Småhus,1999,34.2
+001,Oslo med Bærum,02,Småhus,2000,40.1
+001,Oslo med Bærum,02,Småhus,2001,42.4
+001,Oslo med Bærum,02,Småhus,2002,44.8
+001,Oslo med Bærum,02,Småhus,2003,43.8
+001,Oslo med Bærum,02,Småhus,2004,48.1
+001,Oslo med Bærum,02,Småhus,2005,53.5
+001,Oslo med Bærum,02,Småhus,2006,61.0
+001,Oslo med Bærum,02,Småhus,2007,70.0
+001,Oslo med Bærum,02,Småhus,2008,67.9
+001,Oslo med Bærum,02,Småhus,2009,68.1
+001,Oslo med Bærum,02,Småhus,2010,75.7
+001,Oslo med Bærum,02,Småhus,2011,82.2
+001,Oslo med Bærum,02,Småhus,2012,87.8
+001,Oslo med Bærum,02,Småhus,2013,90.2
+001,Oslo med Bærum,02,Småhus,2014,91.9
+001,Oslo med Bærum,02,Småhus,2015,100.0
+001,Oslo med Bærum,02,Småhus,2016,113.9
+001,Oslo med Bærum,02,Småhus,2017,124.3
+001,Oslo med Bærum,02,Småhus,2018,125.5
+001,Oslo med Bærum,02,Småhus,2019,130.1
+001,Oslo med Bærum,02,Småhus,2020,135.0
+001,Oslo med Bærum,02,Småhus,2021,152.2
+001,Oslo med Bærum,02,Småhus,2022,159.0
+001,Oslo med Bærum,02,Småhus,2023,154.5
+001,Oslo med Bærum,02,Småhus,2024,158.7
+001,Oslo med Bærum,02,Småhus,2025,166.5
+001,Oslo med Bærum,03,Blokkleiligheter,1992,12.0
+001,Oslo med Bærum,03,Blokkleiligheter,1993,12.5
+001,Oslo med Bærum,03,Blokkleiligheter,1994,15.1
+001,Oslo med Bærum,03,Blokkleiligheter,1995,15.7
+001,Oslo med Bærum,03,Blokkleiligheter,1996,18.1
+001,Oslo med Bærum,03,Blokkleiligheter,1997,21.8
+001,Oslo med Bærum,03,Blokkleiligheter,1998,25.6
+001,Oslo med Bærum,03,Blokkleiligheter,1999,30.3
+001,Oslo med Bærum,03,Blokkleiligheter,2000,36.3
+001,Oslo med Bærum,03,Blokkleiligheter,2001,39.0
+001,Oslo med Bærum,03,Blokkleiligheter,2002,41.7
+001,Oslo med Bærum,03,Blokkleiligheter,2003,41.7
+001,Oslo med Bærum,03,Blokkleiligheter,2004,46.4
+001,Oslo med Bærum,03,Blokkleiligheter,2005,50.4
+001,Oslo med Bærum,03,Blokkleiligheter,2006,59.1
+001,Oslo med Bærum,03,Blokkleiligheter,2007,64.9
+001,Oslo med Bærum,03,Blokkleiligheter,2008,60.6
+001,Oslo med Bærum,03,Blokkleiligheter,2009,64.1
+001,Oslo med Bærum,03,Blokkleiligheter,2010,68.4
+001,Oslo med Bærum,03,Blokkleiligheter,2011,76.0
+001,Oslo med Bærum,03,Blokkleiligheter,2012,83.5
+001,Oslo med Bærum,03,Blokkleiligheter,2013,86.3
+001,Oslo med Bærum,03,Blokkleiligheter,2014,88.9
+001,Oslo med Bærum,03,Blokkleiligheter,2015,100.0
+001,Oslo med Bærum,03,Blokkleiligheter,2016,117.1
+001,Oslo med Bærum,03,Blokkleiligheter,2017,124.6
+001,Oslo med Bærum,03,Blokkleiligheter,2018,124.8
+001,Oslo med Bærum,03,Blokkleiligheter,2019,129.2
+001,Oslo med Bærum,03,Blokkleiligheter,2020,137.1
+001,Oslo med Bærum,03,Blokkleiligheter,2021,150.6
+001,Oslo med Bærum,03,Blokkleiligheter,2022,158.2
+001,Oslo med Bærum,03,Blokkleiligheter,2023,159.5
+001,Oslo med Bærum,03,Blokkleiligheter,2024,166.1
+001,Oslo med Bærum,03,Blokkleiligheter,2025,175.2
+002,Stavanger,00,Alle boligtyper,1992,0.0
+002,Stavanger,00,Alle boligtyper,1993,0.0
+002,Stavanger,00,Alle boligtyper,1994,0.0
+002,Stavanger,00,Alle boligtyper,1995,0.0
+002,Stavanger,00,Alle boligtyper,1996,0.0
+002,Stavanger,00,Alle boligtyper,1997,0.0
+002,Stavanger,00,Alle boligtyper,1998,0.0
+002,Stavanger,00,Alle boligtyper,1999,0.0
+002,Stavanger,00,Alle boligtyper,2000,0.0
+002,Stavanger,00,Alle boligtyper,2001,0.0
+002,Stavanger,00,Alle boligtyper,2002,0.0
+002,Stavanger,00,Alle boligtyper,2003,0.0
+002,Stavanger,00,Alle boligtyper,2004,0.0
+002,Stavanger,00,Alle boligtyper,2005,50.1
+002,Stavanger,00,Alle boligtyper,2006,62.8
+002,Stavanger,00,Alle boligtyper,2007,75.3
+002,Stavanger,00,Alle boligtyper,2008,75.9
+002,Stavanger,00,Alle boligtyper,2009,76.7
+002,Stavanger,00,Alle boligtyper,2010,87.8
+002,Stavanger,00,Alle boligtyper,2011,96.2
+002,Stavanger,00,Alle boligtyper,2012,103.5
+002,Stavanger,00,Alle boligtyper,2013,106.0
+002,Stavanger,00,Alle boligtyper,2014,104.0
+002,Stavanger,00,Alle boligtyper,2015,100.0
+002,Stavanger,00,Alle boligtyper,2016,94.1
+002,Stavanger,00,Alle boligtyper,2017,98.6
+002,Stavanger,00,Alle boligtyper,2018,97.8
+002,Stavanger,00,Alle boligtyper,2019,97.8
+002,Stavanger,00,Alle boligtyper,2020,101.7
+002,Stavanger,00,Alle boligtyper,2021,110.9
+002,Stavanger,00,Alle boligtyper,2022,116.3
+002,Stavanger,00,Alle boligtyper,2023,118.2
+002,Stavanger,00,Alle boligtyper,2024,124.8
+002,Stavanger,00,Alle boligtyper,2025,144.1
+002,Stavanger,01,Eneboliger,1992,0.0
+002,Stavanger,01,Eneboliger,1993,0.0
+002,Stavanger,01,Eneboliger,1994,0.0
+002,Stavanger,01,Eneboliger,1995,0.0
+002,Stavanger,01,Eneboliger,1996,0.0
+002,Stavanger,01,Eneboliger,1997,0.0
+002,Stavanger,01,Eneboliger,1998,0.0
+002,Stavanger,01,Eneboliger,1999,0.0
+002,Stavanger,01,Eneboliger,2000,0.0
+002,Stavanger,01,Eneboliger,2001,0.0
+002,Stavanger,01,Eneboliger,2002,0.0
+002,Stavanger,01,Eneboliger,2003,0.0
+002,Stavanger,01,Eneboliger,2004,0.0
+002,Stavanger,01,Eneboliger,2005,49.5
+002,Stavanger,01,Eneboliger,2006,62.5
+002,Stavanger,01,Eneboliger,2007,74.5
+002,Stavanger,01,Eneboliger,2008,76.5
+002,Stavanger,01,Eneboliger,2009,76.2
+002,Stavanger,01,Eneboliger,2010,87.8
+002,Stavanger,01,Eneboliger,2011,95.4
+002,Stavanger,01,Eneboliger,2012,102.1
+002,Stavanger,01,Eneboliger,2013,105.0
+002,Stavanger,01,Eneboliger,2014,103.1
+002,Stavanger,01,Eneboliger,2015,100.0
+002,Stavanger,01,Eneboliger,2016,94.2
+002,Stavanger,01,Eneboliger,2017,99.1
+002,Stavanger,01,Eneboliger,2018,97.7
+002,Stavanger,01,Eneboliger,2019,97.9
+002,Stavanger,01,Eneboliger,2020,102.5
+002,Stavanger,01,Eneboliger,2021,113.7
+002,Stavanger,01,Eneboliger,2022,118.4
+002,Stavanger,01,Eneboliger,2023,117.0
+002,Stavanger,01,Eneboliger,2024,121.0
+002,Stavanger,01,Eneboliger,2025,141.6
+002,Stavanger,02,Småhus,1992,0.0
+002,Stavanger,02,Småhus,1993,0.0
+002,Stavanger,02,Småhus,1994,0.0
+002,Stavanger,02,Småhus,1995,0.0
+002,Stavanger,02,Småhus,1996,0.0
+002,Stavanger,02,Småhus,1997,0.0
+002,Stavanger,02,Småhus,1998,0.0
+002,Stavanger,02,Småhus,1999,0.0
+002,Stavanger,02,Småhus,2000,0.0
+002,Stavanger,02,Småhus,2001,0.0
+002,Stavanger,02,Småhus,2002,0.0
+002,Stavanger,02,Småhus,2003,0.0
+002,Stavanger,02,Småhus,2004,0.0
+002,Stavanger,02,Småhus,2005,50.8
+002,Stavanger,02,Småhus,2006,62.9
+002,Stavanger,02,Småhus,2007,76.4
+002,Stavanger,02,Småhus,2008,75.5
+002,Stavanger,02,Småhus,2009,77.4
+002,Stavanger,02,Småhus,2010,88.5
+002,Stavanger,02,Småhus,2011,97.0
+002,Stavanger,02,Småhus,2012,104.4
+002,Stavanger,02,Småhus,2013,106.3
+002,Stavanger,02,Småhus,2014,104.4
+002,Stavanger,02,Småhus,2015,100.0
+002,Stavanger,02,Småhus,2016,93.3
+002,Stavanger,02,Småhus,2017,97.6
+002,Stavanger,02,Småhus,2018,97.4
+002,Stavanger,02,Småhus,2019,97.7
+002,Stavanger,02,Småhus,2020,101.1
+002,Stavanger,02,Småhus,2021,108.7
+002,Stavanger,02,Småhus,2022,114.1
+002,Stavanger,02,Småhus,2023,118.8
+002,Stavanger,02,Småhus,2024,126.6
+002,Stavanger,02,Småhus,2025,144.0
+002,Stavanger,03,Blokkleiligheter,1992,0.0
+002,Stavanger,03,Blokkleiligheter,1993,0.0
+002,Stavanger,03,Blokkleiligheter,1994,0.0
+002,Stavanger,03,Blokkleiligheter,1995,0.0
+002,Stavanger,03,Blokkleiligheter,1996,0.0
+002,Stavanger,03,Blokkleiligheter,1997,0.0
+002,Stavanger,03,Blokkleiligheter,1998,0.0
+002,Stavanger,03,Blokkleiligheter,1999,0.0
+002,Stavanger,03,Blokkleiligheter,2000,0.0
+002,Stavanger,03,Blokkleiligheter,2001,0.0
+002,Stavanger,03,Blokkleiligheter,2002,0.0
+002,Stavanger,03,Blokkleiligheter,2003,0.0
+002,Stavanger,03,Blokkleiligheter,2004,0.0
+002,Stavanger,03,Blokkleiligheter,2005,50.9
+002,Stavanger,03,Blokkleiligheter,2006,63.4
+002,Stavanger,03,Blokkleiligheter,2007,75.5
+002,Stavanger,03,Blokkleiligheter,2008,75.0
+002,Stavanger,03,Blokkleiligheter,2009,77.0
+002,Stavanger,03,Blokkleiligheter,2010,86.7
+002,Stavanger,03,Blokkleiligheter,2011,97.1
+002,Stavanger,03,Blokkleiligheter,2012,105.6
+002,Stavanger,03,Blokkleiligheter,2013,107.6
+002,Stavanger,03,Blokkleiligheter,2014,105.6
+002,Stavanger,03,Blokkleiligheter,2015,100.0
+002,Stavanger,03,Blokkleiligheter,2016,95.4
+002,Stavanger,03,Blokkleiligheter,2017,99.3
+002,Stavanger,03,Blokkleiligheter,2018,99.0
+002,Stavanger,03,Blokkleiligheter,2019,97.8
+002,Stavanger,03,Blokkleiligheter,2020,100.7
+002,Stavanger,03,Blokkleiligheter,2021,107.7
+002,Stavanger,03,Blokkleiligheter,2022,114.3
+002,Stavanger,03,Blokkleiligheter,2023,120.3
+002,Stavanger,03,Blokkleiligheter,2024,131.3
+002,Stavanger,03,Blokkleiligheter,2025,149.9
+003,Bergen,00,Alle boligtyper,1992,0.0
+003,Bergen,00,Alle boligtyper,1993,0.0
+003,Bergen,00,Alle boligtyper,1994,0.0
+003,Bergen,00,Alle boligtyper,1995,0.0
+003,Bergen,00,Alle boligtyper,1996,0.0
+003,Bergen,00,Alle boligtyper,1997,0.0
+003,Bergen,00,Alle boligtyper,1998,0.0
+003,Bergen,00,Alle boligtyper,1999,0.0
+003,Bergen,00,Alle boligtyper,2000,0.0
+003,Bergen,00,Alle boligtyper,2001,0.0
+003,Bergen,00,Alle boligtyper,2002,0.0
+003,Bergen,00,Alle boligtyper,2003,0.0
+003,Bergen,00,Alle boligtyper,2004,0.0
+003,Bergen,00,Alle boligtyper,2005,54.8
+003,Bergen,00,Alle boligtyper,2006,64.4
+003,Bergen,00,Alle boligtyper,2007,70.0
+003,Bergen,00,Alle boligtyper,2008,64.3
+003,Bergen,00,Alle boligtyper,2009,64.8
+003,Bergen,00,Alle boligtyper,2010,72.3
+003,Bergen,00,Alle boligtyper,2011,79.4
+003,Bergen,00,Alle boligtyper,2012,84.5
+003,Bergen,00,Alle boligtyper,2013,89.1
+003,Bergen,00,Alle boligtyper,2014,93.0
+003,Bergen,00,Alle boligtyper,2015,100.0
+003,Bergen,00,Alle boligtyper,2016,100.9
+003,Bergen,00,Alle boligtyper,2017,102.8
+003,Bergen,00,Alle boligtyper,2018,102.9
+003,Bergen,00,Alle boligtyper,2019,105.5
+003,Bergen,00,Alle boligtyper,2020,111.0
+003,Bergen,00,Alle boligtyper,2021,120.4
+003,Bergen,00,Alle boligtyper,2022,126.6
+003,Bergen,00,Alle boligtyper,2023,126.0
+003,Bergen,00,Alle boligtyper,2024,132.7
+003,Bergen,00,Alle boligtyper,2025,147.2
+003,Bergen,01,Eneboliger,1992,0.0
+003,Bergen,01,Eneboliger,1993,0.0
+003,Bergen,01,Eneboliger,1994,0.0
+003,Bergen,01,Eneboliger,1995,0.0
+003,Bergen,01,Eneboliger,1996,0.0
+003,Bergen,01,Eneboliger,1997,0.0
+003,Bergen,01,Eneboliger,1998,0.0
+003,Bergen,01,Eneboliger,1999,0.0
+003,Bergen,01,Eneboliger,2000,0.0
+003,Bergen,01,Eneboliger,2001,0.0
+003,Bergen,01,Eneboliger,2002,0.0
+003,Bergen,01,Eneboliger,2003,0.0
+003,Bergen,01,Eneboliger,2004,0.0
+003,Bergen,01,Eneboliger,2005,54.5
+003,Bergen,01,Eneboliger,2006,64.0
+003,Bergen,01,Eneboliger,2007,71.6
+003,Bergen,01,Eneboliger,2008,65.3
+003,Bergen,01,Eneboliger,2009,65.2
+003,Bergen,01,Eneboliger,2010,72.9
+003,Bergen,01,Eneboliger,2011,80.1
+003,Bergen,01,Eneboliger,2012,85.4
+003,Bergen,01,Eneboliger,2013,87.6
+003,Bergen,01,Eneboliger,2014,93.0
+003,Bergen,01,Eneboliger,2015,100.0
+003,Bergen,01,Eneboliger,2016,100.8
+003,Bergen,01,Eneboliger,2017,101.6
+003,Bergen,01,Eneboliger,2018,101.3
+003,Bergen,01,Eneboliger,2019,105.7
+003,Bergen,01,Eneboliger,2020,112.5
+003,Bergen,01,Eneboliger,2021,120.8
+003,Bergen,01,Eneboliger,2022,127.8
+003,Bergen,01,Eneboliger,2023,127.0
+003,Bergen,01,Eneboliger,2024,131.3
+003,Bergen,01,Eneboliger,2025,143.5
+003,Bergen,02,Småhus,1992,0.0
+003,Bergen,02,Småhus,1993,0.0
+003,Bergen,02,Småhus,1994,0.0
+003,Bergen,02,Småhus,1995,0.0
+003,Bergen,02,Småhus,1996,0.0
+003,Bergen,02,Småhus,1997,0.0
+003,Bergen,02,Småhus,1998,0.0
+003,Bergen,02,Småhus,1999,0.0
+003,Bergen,02,Småhus,2000,0.0
+003,Bergen,02,Småhus,2001,0.0
+003,Bergen,02,Småhus,2002,0.0
+003,Bergen,02,Småhus,2003,0.0
+003,Bergen,02,Småhus,2004,0.0
+003,Bergen,02,Småhus,2005,54.3
+003,Bergen,02,Småhus,2006,63.1
+003,Bergen,02,Småhus,2007,68.6
+003,Bergen,02,Småhus,2008,64.8
+003,Bergen,02,Småhus,2009,64.5
+003,Bergen,02,Småhus,2010,73.2
+003,Bergen,02,Småhus,2011,80.5
+003,Bergen,02,Småhus,2012,84.3
+003,Bergen,02,Småhus,2013,91.0
+003,Bergen,02,Småhus,2014,93.4
+003,Bergen,02,Småhus,2015,100.0
+003,Bergen,02,Småhus,2016,102.2
+003,Bergen,02,Småhus,2017,104.2
+003,Bergen,02,Småhus,2018,105.2
+003,Bergen,02,Småhus,2019,105.6
+003,Bergen,02,Småhus,2020,110.5
+003,Bergen,02,Småhus,2021,121.8
+003,Bergen,02,Småhus,2022,128.4
+003,Bergen,02,Småhus,2023,125.8
+003,Bergen,02,Småhus,2024,132.0
+003,Bergen,02,Småhus,2025,146.7
+003,Bergen,03,Blokkleiligheter,1992,0.0
+003,Bergen,03,Blokkleiligheter,1993,0.0
+003,Bergen,03,Blokkleiligheter,1994,0.0
+003,Bergen,03,Blokkleiligheter,1995,0.0
+003,Bergen,03,Blokkleiligheter,1996,0.0
+003,Bergen,03,Blokkleiligheter,1997,0.0
+003,Bergen,03,Blokkleiligheter,1998,0.0
+003,Bergen,03,Blokkleiligheter,1999,0.0
+003,Bergen,03,Blokkleiligheter,2000,0.0
+003,Bergen,03,Blokkleiligheter,2001,0.0
+003,Bergen,03,Blokkleiligheter,2002,0.0
+003,Bergen,03,Blokkleiligheter,2003,0.0
+003,Bergen,03,Blokkleiligheter,2004,0.0
+003,Bergen,03,Blokkleiligheter,2005,55.7
+003,Bergen,03,Blokkleiligheter,2006,66.1
+003,Bergen,03,Blokkleiligheter,2007,69.5
+003,Bergen,03,Blokkleiligheter,2008,62.9
+003,Bergen,03,Blokkleiligheter,2009,65.0
+003,Bergen,03,Blokkleiligheter,2010,71.4
+003,Bergen,03,Blokkleiligheter,2011,78.2
+003,Bergen,03,Blokkleiligheter,2012,83.8
+003,Bergen,03,Blokkleiligheter,2013,89.5
+003,Bergen,03,Blokkleiligheter,2014,92.8
+003,Bergen,03,Blokkleiligheter,2015,100.0
+003,Bergen,03,Blokkleiligheter,2016,99.9
+003,Bergen,03,Blokkleiligheter,2017,103.0
+003,Bergen,03,Blokkleiligheter,2018,102.6
+003,Bergen,03,Blokkleiligheter,2019,105.0
+003,Bergen,03,Blokkleiligheter,2020,109.7
+003,Bergen,03,Blokkleiligheter,2021,118.6
+003,Bergen,03,Blokkleiligheter,2022,123.7
+003,Bergen,03,Blokkleiligheter,2023,124.6
+003,Bergen,03,Blokkleiligheter,2024,134.2
+003,Bergen,03,Blokkleiligheter,2025,150.8
+004,Trondheim,00,Alle boligtyper,1992,0.0
+004,Trondheim,00,Alle boligtyper,1993,0.0
+004,Trondheim,00,Alle boligtyper,1994,0.0
+004,Trondheim,00,Alle boligtyper,1995,0.0
+004,Trondheim,00,Alle boligtyper,1996,0.0
+004,Trondheim,00,Alle boligtyper,1997,0.0
+004,Trondheim,00,Alle boligtyper,1998,0.0
+004,Trondheim,00,Alle boligtyper,1999,0.0
+004,Trondheim,00,Alle boligtyper,2000,0.0
+004,Trondheim,00,Alle boligtyper,2001,0.0
+004,Trondheim,00,Alle boligtyper,2002,0.0
+004,Trondheim,00,Alle boligtyper,2003,0.0
+004,Trondheim,00,Alle boligtyper,2004,0.0
+004,Trondheim,00,Alle boligtyper,2005,54.5
+004,Trondheim,00,Alle boligtyper,2006,60.7
+004,Trondheim,00,Alle boligtyper,2007,65.0
+004,Trondheim,00,Alle boligtyper,2008,62.9
+004,Trondheim,00,Alle boligtyper,2009,64.3
+004,Trondheim,00,Alle boligtyper,2010,72.0
+004,Trondheim,00,Alle boligtyper,2011,79.9
+004,Trondheim,00,Alle boligtyper,2012,86.6
+004,Trondheim,00,Alle boligtyper,2013,91.7
+004,Trondheim,00,Alle boligtyper,2014,94.6
+004,Trondheim,00,Alle boligtyper,2015,100.0
+004,Trondheim,00,Alle boligtyper,2016,106.9
+004,Trondheim,00,Alle boligtyper,2017,110.5
+004,Trondheim,00,Alle boligtyper,2018,111.0
+004,Trondheim,00,Alle boligtyper,2019,111.4
+004,Trondheim,00,Alle boligtyper,2020,115.5
+004,Trondheim,00,Alle boligtyper,2021,127.9
+004,Trondheim,00,Alle boligtyper,2022,136.3
+004,Trondheim,00,Alle boligtyper,2023,135.2
+004,Trondheim,00,Alle boligtyper,2024,136.8
+004,Trondheim,00,Alle boligtyper,2025,141.3
+004,Trondheim,01,Eneboliger,1992,0.0
+004,Trondheim,01,Eneboliger,1993,0.0
+004,Trondheim,01,Eneboliger,1994,0.0
+004,Trondheim,01,Eneboliger,1995,0.0
+004,Trondheim,01,Eneboliger,1996,0.0
+004,Trondheim,01,Eneboliger,1997,0.0
+004,Trondheim,01,Eneboliger,1998,0.0
+004,Trondheim,01,Eneboliger,1999,0.0
+004,Trondheim,01,Eneboliger,2000,0.0
+004,Trondheim,01,Eneboliger,2001,0.0
+004,Trondheim,01,Eneboliger,2002,0.0
+004,Trondheim,01,Eneboliger,2003,0.0
+004,Trondheim,01,Eneboliger,2004,0.0
+004,Trondheim,01,Eneboliger,2005,52.6
+004,Trondheim,01,Eneboliger,2006,59.5
+004,Trondheim,01,Eneboliger,2007,64.6
+004,Trondheim,01,Eneboliger,2008,64.3
+004,Trondheim,01,Eneboliger,2009,64.1
+004,Trondheim,01,Eneboliger,2010,72.5
+004,Trondheim,01,Eneboliger,2011,80.7
+004,Trondheim,01,Eneboliger,2012,85.8
+004,Trondheim,01,Eneboliger,2013,91.5
+004,Trondheim,01,Eneboliger,2014,95.4
+004,Trondheim,01,Eneboliger,2015,100.0
+004,Trondheim,01,Eneboliger,2016,108.9
+004,Trondheim,01,Eneboliger,2017,111.7
+004,Trondheim,01,Eneboliger,2018,113.2
+004,Trondheim,01,Eneboliger,2019,113.1
+004,Trondheim,01,Eneboliger,2020,117.8
+004,Trondheim,01,Eneboliger,2021,130.4
+004,Trondheim,01,Eneboliger,2022,141.3
+004,Trondheim,01,Eneboliger,2023,138.6
+004,Trondheim,01,Eneboliger,2024,139.6
+004,Trondheim,01,Eneboliger,2025,146.8
+004,Trondheim,02,Småhus,1992,0.0
+004,Trondheim,02,Småhus,1993,0.0
+004,Trondheim,02,Småhus,1994,0.0
+004,Trondheim,02,Småhus,1995,0.0
+004,Trondheim,02,Småhus,1996,0.0
+004,Trondheim,02,Småhus,1997,0.0
+004,Trondheim,02,Småhus,1998,0.0
+004,Trondheim,02,Småhus,1999,0.0
+004,Trondheim,02,Småhus,2000,0.0
+004,Trondheim,02,Småhus,2001,0.0
+004,Trondheim,02,Småhus,2002,0.0
+004,Trondheim,02,Småhus,2003,0.0
+004,Trondheim,02,Småhus,2004,0.0
+004,Trondheim,02,Småhus,2005,55.1
+004,Trondheim,02,Småhus,2006,60.6
+004,Trondheim,02,Småhus,2007,64.4
+004,Trondheim,02,Småhus,2008,62.2
+004,Trondheim,02,Småhus,2009,65.1
+004,Trondheim,02,Småhus,2010,72.7
+004,Trondheim,02,Småhus,2011,79.9
+004,Trondheim,02,Småhus,2012,86.1
+004,Trondheim,02,Småhus,2013,90.4
+004,Trondheim,02,Småhus,2014,93.7
+004,Trondheim,02,Småhus,2015,100.0
+004,Trondheim,02,Småhus,2016,106.3
+004,Trondheim,02,Småhus,2017,110.2
+004,Trondheim,02,Småhus,2018,110.9
+004,Trondheim,02,Småhus,2019,110.8
+004,Trondheim,02,Småhus,2020,115.6
+004,Trondheim,02,Småhus,2021,128.4
+004,Trondheim,02,Småhus,2022,136.5
+004,Trondheim,02,Småhus,2023,135.9
+004,Trondheim,02,Småhus,2024,138.6
+004,Trondheim,02,Småhus,2025,141.5
+004,Trondheim,03,Blokkleiligheter,1992,0.0
+004,Trondheim,03,Blokkleiligheter,1993,0.0
+004,Trondheim,03,Blokkleiligheter,1994,0.0
+004,Trondheim,03,Blokkleiligheter,1995,0.0
+004,Trondheim,03,Blokkleiligheter,1996,0.0
+004,Trondheim,03,Blokkleiligheter,1997,0.0
+004,Trondheim,03,Blokkleiligheter,1998,0.0
+004,Trondheim,03,Blokkleiligheter,1999,0.0
+004,Trondheim,03,Blokkleiligheter,2000,0.0
+004,Trondheim,03,Blokkleiligheter,2001,0.0
+004,Trondheim,03,Blokkleiligheter,2002,0.0
+004,Trondheim,03,Blokkleiligheter,2003,0.0
+004,Trondheim,03,Blokkleiligheter,2004,0.0
+004,Trondheim,03,Blokkleiligheter,2005,56.5
+004,Trondheim,03,Blokkleiligheter,2006,62.5
+004,Trondheim,03,Blokkleiligheter,2007,66.6
+004,Trondheim,03,Blokkleiligheter,2008,62.5
+004,Trondheim,03,Blokkleiligheter,2009,64.2
+004,Trondheim,03,Blokkleiligheter,2010,71.0
+004,Trondheim,03,Blokkleiligheter,2011,79.5
+004,Trondheim,03,Blokkleiligheter,2012,88.3
+004,Trondheim,03,Blokkleiligheter,2013,93.5
+004,Trondheim,03,Blokkleiligheter,2014,94.7
+004,Trondheim,03,Blokkleiligheter,2015,100.0
+004,Trondheim,03,Blokkleiligheter,2016,105.3
+004,Trondheim,03,Blokkleiligheter,2017,109.4
+004,Trondheim,03,Blokkleiligheter,2018,108.6
+004,Trondheim,03,Blokkleiligheter,2019,109.7
+004,Trondheim,03,Blokkleiligheter,2020,112.7
+004,Trondheim,03,Blokkleiligheter,2021,124.1
+004,Trondheim,03,Blokkleiligheter,2022,130.1
+004,Trondheim,03,Blokkleiligheter,2023,130.3
+004,Trondheim,03,Blokkleiligheter,2024,131.6
+004,Trondheim,03,Blokkleiligheter,2025,134.7
+005,Akershus uten Bærum,00,Alle boligtyper,1992,17.6
+005,Akershus uten Bærum,00,Alle boligtyper,1993,17.5
+005,Akershus uten Bærum,00,Alle boligtyper,1994,20.0
+005,Akershus uten Bærum,00,Alle boligtyper,1995,22.0
+005,Akershus uten Bærum,00,Alle boligtyper,1996,25.0
+005,Akershus uten Bærum,00,Alle boligtyper,1997,28.3
+005,Akershus uten Bærum,00,Alle boligtyper,1998,32.0
+005,Akershus uten Bærum,00,Alle boligtyper,1999,36.0
+005,Akershus uten Bærum,00,Alle boligtyper,2000,42.2
+005,Akershus uten Bærum,00,Alle boligtyper,2001,44.0
+005,Akershus uten Bærum,00,Alle boligtyper,2002,45.9
+005,Akershus uten Bærum,00,Alle boligtyper,2003,46.7
+005,Akershus uten Bærum,00,Alle boligtyper,2004,50.7
+005,Akershus uten Bærum,00,Alle boligtyper,2005,54.3
+005,Akershus uten Bærum,00,Alle boligtyper,2006,61.1
+005,Akershus uten Bærum,00,Alle boligtyper,2007,69.4
+005,Akershus uten Bærum,00,Alle boligtyper,2008,68.6
+005,Akershus uten Bærum,00,Alle boligtyper,2009,69.0
+005,Akershus uten Bærum,00,Alle boligtyper,2010,74.0
+005,Akershus uten Bærum,00,Alle boligtyper,2011,79.1
+005,Akershus uten Bærum,00,Alle boligtyper,2012,84.6
+005,Akershus uten Bærum,00,Alle boligtyper,2013,89.5
+005,Akershus uten Bærum,00,Alle boligtyper,2014,91.8
+005,Akershus uten Bærum,00,Alle boligtyper,2015,100.0
+005,Akershus uten Bærum,00,Alle boligtyper,2016,110.5
+005,Akershus uten Bærum,00,Alle boligtyper,2017,121.1
+005,Akershus uten Bærum,00,Alle boligtyper,2018,122.4
+005,Akershus uten Bærum,00,Alle boligtyper,2019,125.5
+005,Akershus uten Bærum,00,Alle boligtyper,2020,130.5
+005,Akershus uten Bærum,00,Alle boligtyper,2021,145.8
+005,Akershus uten Bærum,00,Alle boligtyper,2022,149.8
+005,Akershus uten Bærum,00,Alle boligtyper,2023,147.1
+005,Akershus uten Bærum,00,Alle boligtyper,2024,148.9
+005,Akershus uten Bærum,00,Alle boligtyper,2025,154.6
+005,Akershus uten Bærum,01,Eneboliger,1992,18.6
+005,Akershus uten Bærum,01,Eneboliger,1993,18.4
+005,Akershus uten Bærum,01,Eneboliger,1994,20.3
+005,Akershus uten Bærum,01,Eneboliger,1995,22.6
+005,Akershus uten Bærum,01,Eneboliger,1996,26.1
+005,Akershus uten Bærum,01,Eneboliger,1997,29.6
+005,Akershus uten Bærum,01,Eneboliger,1998,32.9
+005,Akershus uten Bærum,01,Eneboliger,1999,36.6
+005,Akershus uten Bærum,01,Eneboliger,2000,42.8
+005,Akershus uten Bærum,01,Eneboliger,2001,44.4
+005,Akershus uten Bærum,01,Eneboliger,2002,46.7
+005,Akershus uten Bærum,01,Eneboliger,2003,47.2
+005,Akershus uten Bærum,01,Eneboliger,2004,51.4
+005,Akershus uten Bærum,01,Eneboliger,2005,54.7
+005,Akershus uten Bærum,01,Eneboliger,2006,61.5
+005,Akershus uten Bærum,01,Eneboliger,2007,69.6
+005,Akershus uten Bærum,01,Eneboliger,2008,69.3
+005,Akershus uten Bærum,01,Eneboliger,2009,69.8
+005,Akershus uten Bærum,01,Eneboliger,2010,74.7
+005,Akershus uten Bærum,01,Eneboliger,2011,79.2
+005,Akershus uten Bærum,01,Eneboliger,2012,84.3
+005,Akershus uten Bærum,01,Eneboliger,2013,89.5
+005,Akershus uten Bærum,01,Eneboliger,2014,92.1
+005,Akershus uten Bærum,01,Eneboliger,2015,100.0
+005,Akershus uten Bærum,01,Eneboliger,2016,110.3
+005,Akershus uten Bærum,01,Eneboliger,2017,120.3
+005,Akershus uten Bærum,01,Eneboliger,2018,122.2
+005,Akershus uten Bærum,01,Eneboliger,2019,125.3
+005,Akershus uten Bærum,01,Eneboliger,2020,129.6
+005,Akershus uten Bærum,01,Eneboliger,2021,146.9
+005,Akershus uten Bærum,01,Eneboliger,2022,149.1
+005,Akershus uten Bærum,01,Eneboliger,2023,145.3
+005,Akershus uten Bærum,01,Eneboliger,2024,146.0
+005,Akershus uten Bærum,01,Eneboliger,2025,151.9
+005,Akershus uten Bærum,02,Småhus,1992,17.1
+005,Akershus uten Bærum,02,Småhus,1993,17.0
+005,Akershus uten Bærum,02,Småhus,1994,20.0
+005,Akershus uten Bærum,02,Småhus,1995,22.2
+005,Akershus uten Bærum,02,Småhus,1996,24.0
+005,Akershus uten Bærum,02,Småhus,1997,27.5
+005,Akershus uten Bærum,02,Småhus,1998,31.8
+005,Akershus uten Bærum,02,Småhus,1999,35.9
+005,Akershus uten Bærum,02,Småhus,2000,41.8
+005,Akershus uten Bærum,02,Småhus,2001,43.9
+005,Akershus uten Bærum,02,Småhus,2002,45.0
+005,Akershus uten Bærum,02,Småhus,2003,46.0
+005,Akershus uten Bærum,02,Småhus,2004,49.9
+005,Akershus uten Bærum,02,Småhus,2005,54.2
+005,Akershus uten Bærum,02,Småhus,2006,61.4
+005,Akershus uten Bærum,02,Småhus,2007,69.9
+005,Akershus uten Bærum,02,Småhus,2008,68.4
+005,Akershus uten Bærum,02,Småhus,2009,68.7
+005,Akershus uten Bærum,02,Småhus,2010,74.2
+005,Akershus uten Bærum,02,Småhus,2011,80.0
+005,Akershus uten Bærum,02,Småhus,2012,85.9
+005,Akershus uten Bærum,02,Småhus,2013,90.3
+005,Akershus uten Bærum,02,Småhus,2014,91.3
+005,Akershus uten Bærum,02,Småhus,2015,100.0
+005,Akershus uten Bærum,02,Småhus,2016,110.8
+005,Akershus uten Bærum,02,Småhus,2017,122.2
+005,Akershus uten Bærum,02,Småhus,2018,122.4
+005,Akershus uten Bærum,02,Småhus,2019,125.2
+005,Akershus uten Bærum,02,Småhus,2020,132.4
+005,Akershus uten Bærum,02,Småhus,2021,145.4
+005,Akershus uten Bærum,02,Småhus,2022,152.1
+005,Akershus uten Bærum,02,Småhus,2023,149.5
+005,Akershus uten Bærum,02,Småhus,2024,152.7
+005,Akershus uten Bærum,02,Småhus,2025,157.8
+005,Akershus uten Bærum,03,Blokkleiligheter,1992,14.4
+005,Akershus uten Bærum,03,Blokkleiligheter,1993,14.5
+005,Akershus uten Bærum,03,Blokkleiligheter,1994,17.1
+005,Akershus uten Bærum,03,Blokkleiligheter,1995,18.3
+005,Akershus uten Bærum,03,Blokkleiligheter,1996,21.3
+005,Akershus uten Bærum,03,Blokkleiligheter,1997,24.7
+005,Akershus uten Bærum,03,Blokkleiligheter,1998,28.5
+005,Akershus uten Bærum,03,Blokkleiligheter,1999,32.9
+005,Akershus uten Bærum,03,Blokkleiligheter,2000,39.5
+005,Akershus uten Bærum,03,Blokkleiligheter,2001,41.5
+005,Akershus uten Bærum,03,Blokkleiligheter,2002,44.1
+005,Akershus uten Bærum,03,Blokkleiligheter,2003,45.8
+005,Akershus uten Bærum,03,Blokkleiligheter,2004,48.8
+005,Akershus uten Bærum,03,Blokkleiligheter,2005,52.8
+005,Akershus uten Bærum,03,Blokkleiligheter,2006,59.1
+005,Akershus uten Bærum,03,Blokkleiligheter,2007,67.7
+005,Akershus uten Bærum,03,Blokkleiligheter,2008,65.5
+005,Akershus uten Bærum,03,Blokkleiligheter,2009,66.0
+005,Akershus uten Bærum,03,Blokkleiligheter,2010,70.3
+005,Akershus uten Bærum,03,Blokkleiligheter,2011,77.6
+005,Akershus uten Bærum,03,Blokkleiligheter,2012,83.8
+005,Akershus uten Bærum,03,Blokkleiligheter,2013,88.6
+005,Akershus uten Bærum,03,Blokkleiligheter,2014,91.1
+005,Akershus uten Bærum,03,Blokkleiligheter,2015,100.0
+005,Akershus uten Bærum,03,Blokkleiligheter,2016,111.0
+005,Akershus uten Bærum,03,Blokkleiligheter,2017,122.4
+005,Akershus uten Bærum,03,Blokkleiligheter,2018,122.7
+005,Akershus uten Bærum,03,Blokkleiligheter,2019,127.0
+005,Akershus uten Bærum,03,Blokkleiligheter,2020,130.6
+005,Akershus uten Bærum,03,Blokkleiligheter,2021,142.1
+005,Akershus uten Bærum,03,Blokkleiligheter,2022,148.7
+005,Akershus uten Bærum,03,Blokkleiligheter,2023,150.0
+005,Akershus uten Bærum,03,Blokkleiligheter,2024,153.4
+005,Akershus uten Bærum,03,Blokkleiligheter,2025,159.2
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1992,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1993,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1994,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1995,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1996,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1997,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1998,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,1999,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2000,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2001,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2002,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2003,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2004,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2005,58.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2006,63.5
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2007,70.9
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2008,71.4
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2009,72.4
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2010,77.3
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2011,82.1
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2012,87.3
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2013,90.8
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2014,93.7
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2015,100.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2016,107.5
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2017,112.6
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2018,117.0
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2019,120.9
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2020,127.9
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2021,143.6
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2022,151.6
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2023,149.1
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2024,151.1
+006,"Østfold, Buskerud, Vestfold og Telemark",00,Alle boligtyper,2025,155.7
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1992,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1993,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1994,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1995,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1996,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1997,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1998,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,1999,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2000,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2001,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2002,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2003,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2004,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2005,58.9
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2006,64.1
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2007,71.8
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2008,72.5
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2009,73.1
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2010,78.2
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2011,82.7
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2012,87.4
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2013,90.8
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2014,94.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2015,100.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2016,107.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2017,111.9
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2018,116.2
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2019,120.0
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2020,127.6
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2021,144.4
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2022,151.4
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2023,148.4
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2024,150.5
+006,"Østfold, Buskerud, Vestfold og Telemark",01,Eneboliger,2025,154.6
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1992,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1993,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1994,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1995,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1996,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1997,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1998,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,1999,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2000,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2001,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2002,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2003,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2004,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2005,56.6
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2006,62.7
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2007,69.7
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2008,69.5
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2009,71.3
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2010,76.2
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2011,81.4
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2012,87.2
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2013,90.9
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2014,92.7
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2015,100.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2016,108.8
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2017,113.8
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2018,117.8
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2019,121.9
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2020,127.8
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2021,142.4
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2022,152.0
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2023,149.3
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2024,151.1
+006,"Østfold, Buskerud, Vestfold og Telemark",02,Småhus,2025,156.8
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1992,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1993,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1994,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1995,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1996,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1997,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1998,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,1999,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2000,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2001,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2002,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2003,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2004,0.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2005,54.9
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2006,61.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2007,68.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2008,68.7
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2009,69.8
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2010,74.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2011,79.5
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2012,86.3
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2013,90.4
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2014,93.7
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2015,100.0
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2016,108.1
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2017,114.4
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2018,119.4
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2019,123.8
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2020,129.4
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2021,141.8
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2022,152.2
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2023,152.3
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2024,154.1
+006,"Østfold, Buskerud, Vestfold og Telemark",03,Blokkleiligheter,2025,159.2
+007,Innlandet,00,Alle boligtyper,1992,0.0
+007,Innlandet,00,Alle boligtyper,1993,0.0
+007,Innlandet,00,Alle boligtyper,1994,0.0
+007,Innlandet,00,Alle boligtyper,1995,0.0
+007,Innlandet,00,Alle boligtyper,1996,0.0
+007,Innlandet,00,Alle boligtyper,1997,0.0
+007,Innlandet,00,Alle boligtyper,1998,0.0
+007,Innlandet,00,Alle boligtyper,1999,0.0
+007,Innlandet,00,Alle boligtyper,2000,0.0
+007,Innlandet,00,Alle boligtyper,2001,0.0
+007,Innlandet,00,Alle boligtyper,2002,0.0
+007,Innlandet,00,Alle boligtyper,2003,0.0
+007,Innlandet,00,Alle boligtyper,2004,0.0
+007,Innlandet,00,Alle boligtyper,2005,60.3
+007,Innlandet,00,Alle boligtyper,2006,66.1
+007,Innlandet,00,Alle boligtyper,2007,72.2
+007,Innlandet,00,Alle boligtyper,2008,72.5
+007,Innlandet,00,Alle boligtyper,2009,74.2
+007,Innlandet,00,Alle boligtyper,2010,79.1
+007,Innlandet,00,Alle boligtyper,2011,83.3
+007,Innlandet,00,Alle boligtyper,2012,87.5
+007,Innlandet,00,Alle boligtyper,2013,90.6
+007,Innlandet,00,Alle boligtyper,2014,94.4
+007,Innlandet,00,Alle boligtyper,2015,100.0
+007,Innlandet,00,Alle boligtyper,2016,105.8
+007,Innlandet,00,Alle boligtyper,2017,113.5
+007,Innlandet,00,Alle boligtyper,2018,116.8
+007,Innlandet,00,Alle boligtyper,2019,118.8
+007,Innlandet,00,Alle boligtyper,2020,122.2
+007,Innlandet,00,Alle boligtyper,2021,134.4
+007,Innlandet,00,Alle boligtyper,2022,140.5
+007,Innlandet,00,Alle boligtyper,2023,138.5
+007,Innlandet,00,Alle boligtyper,2024,138.7
+007,Innlandet,00,Alle boligtyper,2025,144.9
+007,Innlandet,01,Eneboliger,1992,0.0
+007,Innlandet,01,Eneboliger,1993,0.0
+007,Innlandet,01,Eneboliger,1994,0.0
+007,Innlandet,01,Eneboliger,1995,0.0
+007,Innlandet,01,Eneboliger,1996,0.0
+007,Innlandet,01,Eneboliger,1997,0.0
+007,Innlandet,01,Eneboliger,1998,0.0
+007,Innlandet,01,Eneboliger,1999,0.0
+007,Innlandet,01,Eneboliger,2000,0.0
+007,Innlandet,01,Eneboliger,2001,0.0
+007,Innlandet,01,Eneboliger,2002,0.0
+007,Innlandet,01,Eneboliger,2003,0.0
+007,Innlandet,01,Eneboliger,2004,0.0
+007,Innlandet,01,Eneboliger,2005,60.7
+007,Innlandet,01,Eneboliger,2006,66.4
+007,Innlandet,01,Eneboliger,2007,72.5
+007,Innlandet,01,Eneboliger,2008,73.0
+007,Innlandet,01,Eneboliger,2009,74.6
+007,Innlandet,01,Eneboliger,2010,79.5
+007,Innlandet,01,Eneboliger,2011,83.4
+007,Innlandet,01,Eneboliger,2012,87.3
+007,Innlandet,01,Eneboliger,2013,90.4
+007,Innlandet,01,Eneboliger,2014,94.2
+007,Innlandet,01,Eneboliger,2015,100.0
+007,Innlandet,01,Eneboliger,2016,104.8
+007,Innlandet,01,Eneboliger,2017,112.7
+007,Innlandet,01,Eneboliger,2018,115.1
+007,Innlandet,01,Eneboliger,2019,116.5
+007,Innlandet,01,Eneboliger,2020,120.4
+007,Innlandet,01,Eneboliger,2021,133.2
+007,Innlandet,01,Eneboliger,2022,139.3
+007,Innlandet,01,Eneboliger,2023,136.6
+007,Innlandet,01,Eneboliger,2024,136.3
+007,Innlandet,01,Eneboliger,2025,142.9
+007,Innlandet,02,Småhus,1992,0.0
+007,Innlandet,02,Småhus,1993,0.0
+007,Innlandet,02,Småhus,1994,0.0
+007,Innlandet,02,Småhus,1996,0.0
+007,Innlandet,02,Småhus,1997,0.0
+007,Innlandet,02,Småhus,1998,0.0
+007,Innlandet,02,Småhus,1999,0.0
+007,Innlandet,02,Småhus,2000,0.0
+007,Innlandet,02,Småhus,2001,0.0
+007,Innlandet,02,Småhus,2002,0.0
+007,Innlandet,02,Småhus,2003,0.0
+007,Innlandet,02,Småhus,2004,0.0
+007,Innlandet,02,Småhus,2005,0.0
+007,Innlandet,02,Småhus,2006,0.0
+007,Innlandet,02,Småhus,2007,0.0
+007,Innlandet,02,Småhus,2008,0.0
+007,Innlandet,02,Småhus,2009,0.0
+007,Innlandet,02,Småhus,2010,0.0
+007,Innlandet,02,Småhus,2011,0.0
+007,Innlandet,02,Småhus,2012,0.0
+007,Innlandet,02,Småhus,2013,0.0
+007,Innlandet,02,Småhus,2014,0.0
+007,Innlandet,02,Småhus,2015,0.0
+007,Innlandet,02,Småhus,2016,0.0
+007,Innlandet,03,Blokkleiligheter,1992,0.0
+007,Innlandet,03,Blokkleiligheter,1993,0.0
+007,Innlandet,03,Blokkleiligheter,1994,0.0
+007,Innlandet,03,Blokkleiligheter,1995,0.0
+007,Innlandet,03,Blokkleiligheter,1996,0.0
+007,Innlandet,03,Blokkleiligheter,1997,0.0
+007,Innlandet,03,Blokkleiligheter,1998,0.0
+007,Innlandet,03,Blokkleiligheter,1999,0.0
+007,Innlandet,03,Blokkleiligheter,2000,0.0
+007,Innlandet,03,Blokkleiligheter,2001,0.0
+007,Innlandet,03,Blokkleiligheter,2002,0.0
+007,Innlandet,03,Blokkleiligheter,2003,0.0
+007,Innlandet,03,Blokkleiligheter,2004,0.0
+007,Innlandet,03,Blokkleiligheter,2005,59.1
+007,Innlandet,03,Blokkleiligheter,2006,63.9
+007,Innlandet,03,Blokkleiligheter,2007,69.3
+007,Innlandet,03,Blokkleiligheter,2008,68.5
+007,Innlandet,03,Blokkleiligheter,2009,69.9
+007,Innlandet,03,Blokkleiligheter,2010,74.9
+007,Innlandet,03,Blokkleiligheter,2011,80.2
+007,Innlandet,03,Blokkleiligheter,2012,85.4
+007,Innlandet,03,Blokkleiligheter,2013,89.6
+007,Innlandet,03,Blokkleiligheter,2014,92.5
+007,Innlandet,03,Blokkleiligheter,2015,100.0
+007,Innlandet,03,Blokkleiligheter,2016,107.6
+007,Innlandet,03,Blokkleiligheter,2017,117.5
+007,Innlandet,03,Blokkleiligheter,2018,123.1
+007,Innlandet,03,Blokkleiligheter,2019,127.4
+007,Innlandet,03,Blokkleiligheter,2020,131.9
+007,Innlandet,03,Blokkleiligheter,2021,141.3
+007,Innlandet,03,Blokkleiligheter,2022,147.8
+007,Innlandet,03,Blokkleiligheter,2023,147.3
+007,Innlandet,03,Blokkleiligheter,2024,148.9
+007,Innlandet,03,Blokkleiligheter,2025,154.9
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1992,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1993,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1994,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1995,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1996,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1997,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1998,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,1999,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2000,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2001,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2002,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2003,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2004,0.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2005,53.4
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2006,62.5
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2007,74.9
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2008,78.2
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2009,78.6
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2010,85.3
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2011,92.2
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2012,96.6
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2013,98.8
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2014,99.5
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2015,100.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2016,99.0
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2017,100.1
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2018,100.3
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2019,101.6
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2020,104.3
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2021,114.3
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2022,122.3
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2023,125.9
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2024,132.4
+008,Agder og Rogaland uten Stavanger,00,Alle boligtyper,2025,144.6
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1992,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1993,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1994,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1995,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1996,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1997,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1998,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,1999,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2000,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2001,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2002,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2003,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2004,0.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2005,53.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2006,61.7
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2007,74.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2008,77.6
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2009,78.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2010,84.9
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2011,91.8
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2012,96.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2013,98.4
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2014,99.3
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2015,100.0
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2016,98.7
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2017,99.9
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2018,100.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2019,101.7
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2020,104.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2021,114.7
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2022,122.1
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2023,124.7
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2024,131.2
+008,Agder og Rogaland uten Stavanger,01,Eneboliger,2025,142.6
+008,Agder og Rogaland uten Stavanger,02,Småhus,1992,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1993,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1994,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1995,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1996,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1997,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1998,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,1999,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2000,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2001,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2002,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2003,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2004,0.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2005,53.3
+008,Agder og Rogaland uten Stavanger,02,Småhus,2006,64.2
+008,Agder og Rogaland uten Stavanger,02,Småhus,2007,77.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2008,79.5
+008,Agder og Rogaland uten Stavanger,02,Småhus,2009,79.1
+008,Agder og Rogaland uten Stavanger,02,Småhus,2010,86.2
+008,Agder og Rogaland uten Stavanger,02,Småhus,2011,93.1
+008,Agder og Rogaland uten Stavanger,02,Småhus,2012,96.9
+008,Agder og Rogaland uten Stavanger,02,Småhus,2013,99.4
+008,Agder og Rogaland uten Stavanger,02,Småhus,2014,99.8
+008,Agder og Rogaland uten Stavanger,02,Småhus,2015,100.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2016,99.9
+008,Agder og Rogaland uten Stavanger,02,Småhus,2017,100.4
+008,Agder og Rogaland uten Stavanger,02,Småhus,2018,100.3
+008,Agder og Rogaland uten Stavanger,02,Småhus,2019,100.7
+008,Agder og Rogaland uten Stavanger,02,Småhus,2020,104.7
+008,Agder og Rogaland uten Stavanger,02,Småhus,2021,114.1
+008,Agder og Rogaland uten Stavanger,02,Småhus,2022,123.0
+008,Agder og Rogaland uten Stavanger,02,Småhus,2023,127.7
+008,Agder og Rogaland uten Stavanger,02,Småhus,2024,133.9
+008,Agder og Rogaland uten Stavanger,02,Småhus,2025,147.2
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1992,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1993,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1994,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1995,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1996,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1997,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1998,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,1999,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2000,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2001,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2002,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2003,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2004,0.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2005,55.4
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2006,65.9
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2007,78.3
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2008,80.1
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2009,80.3
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2010,86.6
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2011,92.9
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2012,98.7
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2013,101.6
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2014,100.2
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2015,100.0
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2016,100.1
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2017,101.5
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2018,101.5
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2019,102.6
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2020,104.6
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2021,112.3
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2022,122.2
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2023,130.2
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2024,136.5
+008,Agder og Rogaland uten Stavanger,03,Blokkleiligheter,2025,152.7
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1992,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1993,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1994,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1995,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1996,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1997,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1998,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,1999,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2000,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2001,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2002,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2003,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2004,0.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2005,56.9
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2006,63.8
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2007,72.1
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2008,73.2
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2009,76.6
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2010,80.6
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2011,86.5
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2012,90.6
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2013,94.3
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2014,96.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2015,100.0
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2016,103.6
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2017,104.9
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2018,106.2
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2019,107.3
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2020,109.4
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2021,118.6
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2022,127.8
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2023,128.4
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2024,132.8
+009,Møre og Romsdal og Vestland uten Bergen,00,Alle boligtyper,2025,139.9
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1992,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1993,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1994,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1995,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1996,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1997,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1998,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,1999,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2000,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2001,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2002,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2003,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2004,0.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2005,57.6
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2006,64.2
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2007,71.9
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2008,73.6
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2009,77.2
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2010,80.8
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2011,87.3
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2012,91.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2013,94.9
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2014,96.3
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2015,100.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2016,103.6
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2017,105.1
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2018,106.1
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2019,107.2
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2020,108.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2021,118.0
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2022,126.3
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2023,126.4
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2024,130.3
+009,Møre og Romsdal og Vestland uten Bergen,01,Eneboliger,2025,137.5
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1992,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1993,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1994,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1995,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1996,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1997,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1998,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,1999,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2000,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2001,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2002,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2003,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2004,0.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2005,54.7
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2006,63.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2007,72.8
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2008,73.2
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2009,74.7
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2010,80.8
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2011,84.2
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2012,90.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2013,93.3
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2014,95.7
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2015,100.0
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2016,104.4
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2017,104.6
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2018,107.6
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2019,108.1
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2020,113.2
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2021,120.4
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2022,131.9
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2023,133.6
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2024,139.5
+009,Møre og Romsdal og Vestland uten Bergen,02,Småhus,2025,145.8
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1992,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1993,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1994,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1995,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1996,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1997,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1998,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,1999,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2000,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2001,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2002,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2003,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2004,0.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2005,56.1
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2006,63.8
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2007,74.2
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2008,70.1
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2009,75.3
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2010,78.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2011,83.8
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2012,87.6
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2013,90.9
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2014,94.5
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2015,100.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2016,100.6
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2017,102.6
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2018,103.1
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2019,105.3
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2020,111.2
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2021,117.1
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2022,128.9
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2023,130.9
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2024,136.0
+009,Møre og Romsdal og Vestland uten Bergen,03,Blokkleiligheter,2025,144.1
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1992,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1993,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1994,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1995,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1996,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1997,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1998,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,1999,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2000,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2001,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2002,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2003,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2004,0.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2005,52.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2006,58.9
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2007,65.2
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2008,67.2
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2009,67.3
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2010,73.3
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2011,80.8
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2012,87.7
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2013,91.9
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2014,95.2
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2015,100.0
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2016,105.3
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2017,108.7
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2018,108.8
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2019,109.4
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2020,113.7
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2021,124.5
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2022,131.5
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2023,132.9
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2024,134.8
+010,Trøndelag uten Trondheim,00,Alle boligtyper,2025,136.9
+010,Trøndelag uten Trondheim,01,Eneboliger,1992,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1993,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1994,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1995,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1996,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1997,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1998,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,1999,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2000,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2001,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2002,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2003,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2004,0.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2005,52.1
+010,Trøndelag uten Trondheim,01,Eneboliger,2006,58.6
+010,Trøndelag uten Trondheim,01,Eneboliger,2007,64.6
+010,Trøndelag uten Trondheim,01,Eneboliger,2008,67.4
+010,Trøndelag uten Trondheim,01,Eneboliger,2009,66.8
+010,Trøndelag uten Trondheim,01,Eneboliger,2010,73.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2011,80.1
+010,Trøndelag uten Trondheim,01,Eneboliger,2012,87.7
+010,Trøndelag uten Trondheim,01,Eneboliger,2013,91.7
+010,Trøndelag uten Trondheim,01,Eneboliger,2014,95.1
+010,Trøndelag uten Trondheim,01,Eneboliger,2015,100.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2016,105.1
+010,Trøndelag uten Trondheim,01,Eneboliger,2017,107.7
+010,Trøndelag uten Trondheim,01,Eneboliger,2018,107.5
+010,Trøndelag uten Trondheim,01,Eneboliger,2019,108.0
+010,Trøndelag uten Trondheim,01,Eneboliger,2020,112.1
+010,Trøndelag uten Trondheim,01,Eneboliger,2021,122.7
+010,Trøndelag uten Trondheim,01,Eneboliger,2022,130.6
+010,Trøndelag uten Trondheim,01,Eneboliger,2023,130.7
+010,Trøndelag uten Trondheim,01,Eneboliger,2024,132.4
+010,Trøndelag uten Trondheim,01,Eneboliger,2025,133.4
+010,Trøndelag uten Trondheim,02,Småhus,1992,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1993,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1994,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1996,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1997,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1998,0.0
+010,Trøndelag uten Trondheim,02,Småhus,1999,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2000,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2001,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2002,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2003,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2004,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2005,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2006,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2007,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2008,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2009,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2010,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2011,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2012,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2013,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2014,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2015,0.0
+010,Trøndelag uten Trondheim,02,Småhus,2016,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1992,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1993,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1994,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1995,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1996,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1997,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1998,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,1999,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2000,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2001,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2002,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2003,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2004,0.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2005,51.3
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2006,59.1
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2007,65.7
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2008,66.6
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2009,69.8
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2010,74.4
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2011,81.5
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2012,88.6
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2013,91.3
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2014,95.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2015,100.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2016,105.4
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2017,108.3
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2018,110.9
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2019,115.3
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2020,118.0
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2021,127.7
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2022,138.3
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2023,139.1
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2024,142.7
+010,Trøndelag uten Trondheim,03,Blokkleiligheter,2025,145.5
+011,Nord-Norge,00,Alle boligtyper,1992,0.0
+011,Nord-Norge,00,Alle boligtyper,1993,0.0
+011,Nord-Norge,00,Alle boligtyper,1994,0.0
+011,Nord-Norge,00,Alle boligtyper,1995,0.0
+011,Nord-Norge,00,Alle boligtyper,1996,0.0
+011,Nord-Norge,00,Alle boligtyper,1997,0.0
+011,Nord-Norge,00,Alle boligtyper,1998,0.0
+011,Nord-Norge,00,Alle boligtyper,1999,0.0
+011,Nord-Norge,00,Alle boligtyper,2000,0.0
+011,Nord-Norge,00,Alle boligtyper,2001,0.0
+011,Nord-Norge,00,Alle boligtyper,2002,0.0
+011,Nord-Norge,00,Alle boligtyper,2003,0.0
+011,Nord-Norge,00,Alle boligtyper,2004,0.0
+011,Nord-Norge,00,Alle boligtyper,2005,55.0
+011,Nord-Norge,00,Alle boligtyper,2006,62.4
+011,Nord-Norge,00,Alle boligtyper,2007,71.0
+011,Nord-Norge,00,Alle boligtyper,2008,69.8
+011,Nord-Norge,00,Alle boligtyper,2009,70.2
+011,Nord-Norge,00,Alle boligtyper,2010,76.2
+011,Nord-Norge,00,Alle boligtyper,2011,79.8
+011,Nord-Norge,00,Alle boligtyper,2012,86.2
+011,Nord-Norge,00,Alle boligtyper,2013,91.1
+011,Nord-Norge,00,Alle boligtyper,2014,95.6
+011,Nord-Norge,00,Alle boligtyper,2015,100.0
+011,Nord-Norge,00,Alle boligtyper,2016,108.3
+011,Nord-Norge,00,Alle boligtyper,2017,112.9
+011,Nord-Norge,00,Alle boligtyper,2018,115.1
+011,Nord-Norge,00,Alle boligtyper,2019,118.7
+011,Nord-Norge,00,Alle boligtyper,2020,122.3
+011,Nord-Norge,00,Alle boligtyper,2021,134.5
+011,Nord-Norge,00,Alle boligtyper,2022,142.5
+011,Nord-Norge,00,Alle boligtyper,2023,140.4
+011,Nord-Norge,00,Alle boligtyper,2024,142.0
+011,Nord-Norge,00,Alle boligtyper,2025,149.9
+011,Nord-Norge,01,Eneboliger,1992,0.0
+011,Nord-Norge,01,Eneboliger,1993,0.0
+011,Nord-Norge,01,Eneboliger,1994,0.0
+011,Nord-Norge,01,Eneboliger,1995,0.0
+011,Nord-Norge,01,Eneboliger,1996,0.0
+011,Nord-Norge,01,Eneboliger,1997,0.0
+011,Nord-Norge,01,Eneboliger,1998,0.0
+011,Nord-Norge,01,Eneboliger,1999,0.0
+011,Nord-Norge,01,Eneboliger,2000,0.0
+011,Nord-Norge,01,Eneboliger,2001,0.0
+011,Nord-Norge,01,Eneboliger,2002,0.0
+011,Nord-Norge,01,Eneboliger,2003,0.0
+011,Nord-Norge,01,Eneboliger,2004,0.0
+011,Nord-Norge,01,Eneboliger,2005,56.0
+011,Nord-Norge,01,Eneboliger,2006,63.1
+011,Nord-Norge,01,Eneboliger,2007,72.4
+011,Nord-Norge,01,Eneboliger,2008,71.8
+011,Nord-Norge,01,Eneboliger,2009,71.8
+011,Nord-Norge,01,Eneboliger,2010,78.6
+011,Nord-Norge,01,Eneboliger,2011,81.5
+011,Nord-Norge,01,Eneboliger,2012,87.6
+011,Nord-Norge,01,Eneboliger,2013,91.7
+011,Nord-Norge,01,Eneboliger,2014,96.4
+011,Nord-Norge,01,Eneboliger,2015,100.0
+011,Nord-Norge,01,Eneboliger,2016,108.8
+011,Nord-Norge,01,Eneboliger,2017,113.7
+011,Nord-Norge,01,Eneboliger,2018,115.8
+011,Nord-Norge,01,Eneboliger,2019,120.0
+011,Nord-Norge,01,Eneboliger,2020,122.3
+011,Nord-Norge,01,Eneboliger,2021,134.9
+011,Nord-Norge,01,Eneboliger,2022,143.6
+011,Nord-Norge,01,Eneboliger,2023,141.9
+011,Nord-Norge,01,Eneboliger,2024,143.3
+011,Nord-Norge,01,Eneboliger,2025,149.9
+011,Nord-Norge,02,Småhus,1992,0.0
+011,Nord-Norge,02,Småhus,1993,0.0
+011,Nord-Norge,02,Småhus,1994,0.0
+011,Nord-Norge,02,Småhus,1996,0.0
+011,Nord-Norge,02,Småhus,1997,0.0
+011,Nord-Norge,02,Småhus,1998,0.0
+011,Nord-Norge,02,Småhus,1999,0.0
+011,Nord-Norge,02,Småhus,2000,0.0
+011,Nord-Norge,02,Småhus,2001,0.0
+011,Nord-Norge,02,Småhus,2002,0.0
+011,Nord-Norge,02,Småhus,2003,0.0
+011,Nord-Norge,02,Småhus,2004,0.0
+011,Nord-Norge,02,Småhus,2005,0.0
+011,Nord-Norge,02,Småhus,2006,0.0
+011,Nord-Norge,02,Småhus,2007,0.0
+011,Nord-Norge,02,Småhus,2008,0.0
+011,Nord-Norge,02,Småhus,2009,0.0
+011,Nord-Norge,02,Småhus,2010,0.0
+011,Nord-Norge,02,Småhus,2011,0.0
+011,Nord-Norge,02,Småhus,2012,0.0
+011,Nord-Norge,02,Småhus,2013,0.0
+011,Nord-Norge,02,Småhus,2014,0.0
+011,Nord-Norge,02,Småhus,2015,0.0
+011,Nord-Norge,02,Småhus,2016,0.0
+011,Nord-Norge,03,Blokkleiligheter,1992,0.0
+011,Nord-Norge,03,Blokkleiligheter,1993,0.0
+011,Nord-Norge,03,Blokkleiligheter,1994,0.0
+011,Nord-Norge,03,Blokkleiligheter,1995,0.0
+011,Nord-Norge,03,Blokkleiligheter,1996,0.0
+011,Nord-Norge,03,Blokkleiligheter,1997,0.0
+011,Nord-Norge,03,Blokkleiligheter,1998,0.0
+011,Nord-Norge,03,Blokkleiligheter,1999,0.0
+011,Nord-Norge,03,Blokkleiligheter,2000,0.0
+011,Nord-Norge,03,Blokkleiligheter,2001,0.0
+011,Nord-Norge,03,Blokkleiligheter,2002,0.0
+011,Nord-Norge,03,Blokkleiligheter,2003,0.0
+011,Nord-Norge,03,Blokkleiligheter,2004,0.0
+011,Nord-Norge,03,Blokkleiligheter,2005,54.2
+011,Nord-Norge,03,Blokkleiligheter,2006,61.9
+011,Nord-Norge,03,Blokkleiligheter,2007,68.5
+011,Nord-Norge,03,Blokkleiligheter,2008,64.6
+011,Nord-Norge,03,Blokkleiligheter,2009,65.3
+011,Nord-Norge,03,Blokkleiligheter,2010,69.5
+011,Nord-Norge,03,Blokkleiligheter,2011,74.7
+011,Nord-Norge,03,Blokkleiligheter,2012,80.5
+011,Nord-Norge,03,Blokkleiligheter,2013,87.0
+011,Nord-Norge,03,Blokkleiligheter,2014,93.2
+011,Nord-Norge,03,Blokkleiligheter,2015,100.0
+011,Nord-Norge,03,Blokkleiligheter,2016,105.9
+011,Nord-Norge,03,Blokkleiligheter,2017,112.1
+011,Nord-Norge,03,Blokkleiligheter,2018,115.4
+011,Nord-Norge,03,Blokkleiligheter,2019,119.1
+011,Nord-Norge,03,Blokkleiligheter,2020,123.6
+011,Nord-Norge,03,Blokkleiligheter,2021,133.8
+011,Nord-Norge,03,Blokkleiligheter,2022,141.6
+011,Nord-Norge,03,Blokkleiligheter,2023,139.9
+011,Nord-Norge,03,Blokkleiligheter,2024,142.1
+011,Nord-Norge,03,Blokkleiligheter,2025,153.0
+TOTAL,Hele landet,00,Alle boligtyper,1992,18.8
+TOTAL,Hele landet,00,Alle boligtyper,1993,19.0
+TOTAL,Hele landet,00,Alle boligtyper,1994,21.5
+TOTAL,Hele landet,00,Alle boligtyper,1995,23.1
+TOTAL,Hele landet,00,Alle boligtyper,1996,25.1
+TOTAL,Hele landet,00,Alle boligtyper,1997,28.1
+TOTAL,Hele landet,00,Alle boligtyper,1998,31.3
+TOTAL,Hele landet,00,Alle boligtyper,1999,34.7
+TOTAL,Hele landet,00,Alle boligtyper,2000,40.3
+TOTAL,Hele landet,00,Alle boligtyper,2001,43.0
+TOTAL,Hele landet,00,Alle boligtyper,2002,45.2
+TOTAL,Hele landet,00,Alle boligtyper,2003,45.9
+TOTAL,Hele landet,00,Alle boligtyper,2004,50.6
+TOTAL,Hele landet,00,Alle boligtyper,2005,54.8
+TOTAL,Hele landet,00,Alle boligtyper,2006,62.3
+TOTAL,Hele landet,00,Alle boligtyper,2007,70.1
+TOTAL,Hele landet,00,Alle boligtyper,2008,69.4
+TOTAL,Hele landet,00,Alle boligtyper,2009,70.7
+TOTAL,Hele landet,00,Alle boligtyper,2010,76.5
+TOTAL,Hele landet,00,Alle boligtyper,2011,82.6
+TOTAL,Hele landet,00,Alle boligtyper,2012,88.2
+TOTAL,Hele landet,00,Alle boligtyper,2013,91.8
+TOTAL,Hele landet,00,Alle boligtyper,2014,94.3
+TOTAL,Hele landet,00,Alle boligtyper,2015,100.0
+TOTAL,Hele landet,00,Alle boligtyper,2016,107.0
+TOTAL,Hele landet,00,Alle boligtyper,2017,112.4
+TOTAL,Hele landet,00,Alle boligtyper,2018,114.0
+TOTAL,Hele landet,00,Alle boligtyper,2019,116.8
+TOTAL,Hele landet,00,Alle boligtyper,2020,121.8
+TOTAL,Hele landet,00,Alle boligtyper,2021,134.5
+TOTAL,Hele landet,00,Alle boligtyper,2022,141.6
+TOTAL,Hele landet,00,Alle boligtyper,2023,140.8
+TOTAL,Hele landet,00,Alle boligtyper,2024,144.6
+TOTAL,Hele landet,00,Alle boligtyper,2025,152.5
+TOTAL,Hele landet,01,Eneboliger,1992,23.1
+TOTAL,Hele landet,01,Eneboliger,1993,23.3
+TOTAL,Hele landet,01,Eneboliger,1994,25.7
+TOTAL,Hele landet,01,Eneboliger,1995,27.9
+TOTAL,Hele landet,01,Eneboliger,1996,30.0
+TOTAL,Hele landet,01,Eneboliger,1997,32.7
+TOTAL,Hele landet,01,Eneboliger,1998,35.1
+TOTAL,Hele landet,01,Eneboliger,1999,37.8
+TOTAL,Hele landet,01,Eneboliger,2000,42.3
+TOTAL,Hele landet,01,Eneboliger,2001,45.3
+TOTAL,Hele landet,01,Eneboliger,2002,46.6
+TOTAL,Hele landet,01,Eneboliger,2003,47.4
+TOTAL,Hele landet,01,Eneboliger,2004,52.0
+TOTAL,Hele landet,01,Eneboliger,2005,55.9
+TOTAL,Hele landet,01,Eneboliger,2006,62.9
+TOTAL,Hele landet,01,Eneboliger,2007,71.2
+TOTAL,Hele landet,01,Eneboliger,2008,71.8
+TOTAL,Hele landet,01,Eneboliger,2009,72.7
+TOTAL,Hele landet,01,Eneboliger,2010,78.6
+TOTAL,Hele landet,01,Eneboliger,2011,84.2
+TOTAL,Hele landet,01,Eneboliger,2012,89.1
+TOTAL,Hele landet,01,Eneboliger,2013,92.7
+TOTAL,Hele landet,01,Eneboliger,2014,95.4
+TOTAL,Hele landet,01,Eneboliger,2015,100.0
+TOTAL,Hele landet,01,Eneboliger,2016,105.4
+TOTAL,Hele landet,01,Eneboliger,2017,110.1
+TOTAL,Hele landet,01,Eneboliger,2018,112.1
+TOTAL,Hele landet,01,Eneboliger,2019,114.8
+TOTAL,Hele landet,01,Eneboliger,2020,119.1
+TOTAL,Hele landet,01,Eneboliger,2021,132.4
+TOTAL,Hele landet,01,Eneboliger,2022,139.0
+TOTAL,Hele landet,01,Eneboliger,2023,137.4
+TOTAL,Hele landet,01,Eneboliger,2024,140.2
+TOTAL,Hele landet,01,Eneboliger,2025,147.5
+TOTAL,Hele landet,02,Småhus,1992,17.9
+TOTAL,Hele landet,02,Småhus,1993,17.9
+TOTAL,Hele landet,02,Småhus,1994,20.7
+TOTAL,Hele landet,02,Småhus,1995,22.2
+TOTAL,Hele landet,02,Småhus,1996,24.2
+TOTAL,Hele landet,02,Småhus,1997,27.2
+TOTAL,Hele landet,02,Småhus,1998,30.6
+TOTAL,Hele landet,02,Småhus,1999,34.1
+TOTAL,Hele landet,02,Småhus,2000,39.5
+TOTAL,Hele landet,02,Småhus,2001,41.9
+TOTAL,Hele landet,02,Småhus,2002,44.2
+TOTAL,Hele landet,02,Småhus,2003,45.0
+TOTAL,Hele landet,02,Småhus,2004,49.6
+TOTAL,Hele landet,02,Småhus,2005,54.4
+TOTAL,Hele landet,02,Småhus,2006,62.2
+TOTAL,Hele landet,02,Småhus,2007,70.5
+TOTAL,Hele landet,02,Småhus,2008,69.3
+TOTAL,Hele landet,02,Småhus,2009,70.3
+TOTAL,Hele landet,02,Småhus,2010,77.0
+TOTAL,Hele landet,02,Småhus,2011,83.2
+TOTAL,Hele landet,02,Småhus,2012,88.7
+TOTAL,Hele landet,02,Småhus,2013,92.5
+TOTAL,Hele landet,02,Småhus,2014,94.3
+TOTAL,Hele landet,02,Småhus,2015,100.0
+TOTAL,Hele landet,02,Småhus,2016,107.3
+TOTAL,Hele landet,02,Småhus,2017,112.8
+TOTAL,Hele landet,02,Småhus,2018,114.5
+TOTAL,Hele landet,02,Småhus,2019,116.9
+TOTAL,Hele landet,02,Småhus,2020,122.0
+TOTAL,Hele landet,02,Småhus,2021,134.8
+TOTAL,Hele landet,02,Småhus,2022,142.4
+TOTAL,Hele landet,02,Småhus,2023,141.1
+TOTAL,Hele landet,02,Småhus,2024,145.0
+TOTAL,Hele landet,02,Småhus,2025,153.0
+TOTAL,Hele landet,03,Blokkleiligheter,1992,13.1
+TOTAL,Hele landet,03,Blokkleiligheter,1993,13.4
+TOTAL,Hele landet,03,Blokkleiligheter,1994,15.8
+TOTAL,Hele landet,03,Blokkleiligheter,1995,16.5
+TOTAL,Hele landet,03,Blokkleiligheter,1996,18.8
+TOTAL,Hele landet,03,Blokkleiligheter,1997,22.1
+TOTAL,Hele landet,03,Blokkleiligheter,1998,25.7
+TOTAL,Hele landet,03,Blokkleiligheter,1999,30.1
+TOTAL,Hele landet,03,Blokkleiligheter,2000,36.3
+TOTAL,Hele landet,03,Blokkleiligheter,2001,39.1
+TOTAL,Hele landet,03,Blokkleiligheter,2002,42.3
+TOTAL,Hele landet,03,Blokkleiligheter,2003,43.2
+TOTAL,Hele landet,03,Blokkleiligheter,2004,48.2
+TOTAL,Hele landet,03,Blokkleiligheter,2005,52.5
+TOTAL,Hele landet,03,Blokkleiligheter,2006,61.0
+TOTAL,Hele landet,03,Blokkleiligheter,2007,67.2
+TOTAL,Hele landet,03,Blokkleiligheter,2008,63.6
+TOTAL,Hele landet,03,Blokkleiligheter,2009,66.3
+TOTAL,Hele landet,03,Blokkleiligheter,2010,71.2
+TOTAL,Hele landet,03,Blokkleiligheter,2011,78.4
+TOTAL,Hele landet,03,Blokkleiligheter,2012,85.4
+TOTAL,Hele landet,03,Blokkleiligheter,2013,89.0
+TOTAL,Hele landet,03,Blokkleiligheter,2014,91.6
+TOTAL,Hele landet,03,Blokkleiligheter,2015,100.0
+TOTAL,Hele landet,03,Blokkleiligheter,2016,110.8
+TOTAL,Hele landet,03,Blokkleiligheter,2017,117.1
+TOTAL,Hele landet,03,Blokkleiligheter,2018,117.8
+TOTAL,Hele landet,03,Blokkleiligheter,2019,121.4
+TOTAL,Hele landet,03,Blokkleiligheter,2020,127.5
+TOTAL,Hele landet,03,Blokkleiligheter,2021,139.3
+TOTAL,Hele landet,03,Blokkleiligheter,2022,146.9
+TOTAL,Hele landet,03,Blokkleiligheter,2023,148.3
+TOTAL,Hele landet,03,Blokkleiligheter,2024,153.9
+TOTAL,Hele landet,03,Blokkleiligheter,2025,163.1

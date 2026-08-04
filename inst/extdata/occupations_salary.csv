@@ -1,0 +1,1023 @@
+code,label,schedule,median_nok,mean_nok,headcount
+0000,Uoppgitt / yrker som ikke kan identifiseres,all,42820,45140,11937
+0000,Uoppgitt / yrker som ikke kan identifiseres,full,48440,51320,2763
+0000,Uoppgitt / yrker som ikke kan identifiseres,part,37350,38900,9174
+0110,Offiserer fra fenrik og høyere grad,all,88010,93330,5238
+0110,Offiserer fra fenrik og høyere grad,full,88260,93470,4923
+0110,Offiserer fra fenrik og høyere grad,part,66310,84010,315
+0210,Befal med sersjant grad,all,80760,85550,5204
+0210,Befal med sersjant grad,full,80800,85330,4939
+0210,Befal med sersjant grad,part,67270,104170,265
+0310,Menige,all,55680,62140,5323
+0310,Menige,full,55780,62010,4991
+0310,Menige,part,49440,70740,332
+1111,Politikere,all,88680,88200,2510
+1111,Politikere,full,87330,87690,706
+1111,Politikere,part,91650,89420,1804
+1112,Toppledere i offentlig administrasjon,all,119520,123580,1018
+1112,Toppledere i offentlig administrasjon,full,120190,124650,966
+1114,Toppledere i interesseorganisasjoner,all,75250,80410,2564
+1114,Toppledere i interesseorganisasjoner,full,77300,82630,2056
+1114,Toppledere i interesseorganisasjoner,part,54360,57270,508
+1120,Administrerende direktører,all,84000,108510,39086
+1120,Administrerende direktører,full,87670,112360,32376
+1120,Administrerende direktører,part,56900,64770,6710
+1211,Finans- og økonomisjefer,all,101670,119060,9109
+1211,Finans- og økonomisjefer,full,103460,120750,8217
+1211,Finans- og økonomisjefer,part,75000,84870,892
+1212,Personalsjefer,all,96670,106360,2350
+1212,Personalsjefer,full,97620,107170,2221
+1212,Personalsjefer,part,67680,78660,129
+1213,Strategi- og planleggingssjefer,all,85560,87110,4924
+1213,Strategi- og planleggingssjefer,full,85570,87230,4821
+1213,Strategi- og planleggingssjefer,part,75000,75450,103
+1219,Andre administrative ledere,all,79170,89170,27365
+1219,Andre administrative ledere,full,80210,90390,23453
+1219,Andre administrative ledere,part,64840,69730,3912
+1221,Salgs- og markedssjefer,all,89170,98290,16123
+1221,Salgs- og markedssjefer,full,89720,98970,15318
+1221,Salgs- og markedssjefer,part,65460,72470,805
+1222,PR- og informasjonssjefer,all,83130,90320,1895
+1222,PR- og informasjonssjefer,full,84650,92250,1639
+1222,PR- og informasjonssjefer,part,59800,63750,256
+1223,Forsknings- og utviklingsledere,all,96010,104570,3177
+1223,Forsknings- og utviklingsledere,full,97050,105570,2905
+1223,Forsknings- og utviklingsledere,part,74980,82600,272
+1311,"Ledere i skogbruk, gartnerier mv.",all,67940,74250,693
+1311,"Ledere i skogbruk, gartnerier mv.",full,68950,75210,590
+1311,"Ledere i skogbruk, gartnerier mv.",part,58670,62930,103
+1312,Ledere innen akvakultur mv.,all,88000,94270,404
+1312,Ledere innen akvakultur mv.,full,88440,94590,388
+1321,Ledere av industriproduksjon mv.,all,83330,93080,12794
+1321,Ledere av industriproduksjon mv.,full,83680,93670,11965
+1321,Ledere av industriproduksjon mv.,part,61620,74730,829
+1322,Ledere av olje- og gassutvinning mv.,all,120670,132900,7988
+1322,Ledere av olje- og gassutvinning mv.,full,120840,133140,7872
+1322,Ledere av olje- og gassutvinning mv.,part,94620,106820,116
+1323,Ledere av bygge- og anleggsvirksomhet,all,73140,81220,16295
+1323,Ledere av bygge- og anleggsvirksomhet,full,74480,82380,14241
+1323,Ledere av bygge- og anleggsvirksomhet,part,57670,63090,2054
+1324,Ledere av logistikk og transport mv.,all,79220,86850,9014
+1324,Ledere av logistikk og transport mv.,full,80000,87750,8293
+1324,Ledere av logistikk og transport mv.,part,55870,63370,721
+1330,Ledere av IKT-enheter,all,98510,107770,6199
+1330,Ledere av IKT-enheter,full,99920,109190,5673
+1330,Ledere av IKT-enheter,part,65000,71920,526
+1341,Ledere av omsorgstjenester for barn,all,68600,69770,4201
+1341,Ledere av omsorgstjenester for barn,full,68760,70050,3635
+1341,Ledere av omsorgstjenester for barn,part,65080,66080,566
+1342,Ledere av helsetjenester,all,71330,79480,12678
+1342,Ledere av helsetjenester,full,71330,79720,11951
+1342,Ledere av helsetjenester,part,67480,71750,727
+1343,Ledere av eldreomsorg,all,74530,76170,2178
+1343,Ledere av eldreomsorg,full,74600,76400,2036
+1343,Ledere av eldreomsorg,part,68510,68830,142
+1344,Ledere av sosialomsorg,all,67070,71620,1775
+1344,Ledere av sosialomsorg,full,67560,72180,1563
+1344,Ledere av sosialomsorg,part,57890,61840,212
+1345,Ledere av utdanning og undervisning,all,75610,77340,11809
+1345,Ledere av utdanning og undervisning,full,76010,77880,10461
+1345,Ledere av utdanning og undervisning,part,68600,68310,1348
+1346,Ledere av forsikring og finansvirksomhet,all,108190,126920,5162
+1346,Ledere av forsikring og finansvirksomhet,full,108940,128110,4836
+1346,Ledere av forsikring og finansvirksomhet,part,70480,85370,326
+1349,Andre ledere av produksjon og tjenesteyting,all,85320,92990,5861
+1349,Andre ledere av produksjon og tjenesteyting,full,86200,93890,5449
+1349,Andre ledere av produksjon og tjenesteyting,part,62350,69300,412
+1411,Hotellsjefer,all,52610,58740,777
+1411,Hotellsjefer,full,53180,59260,688
+1412,Restaurantsjefer,all,50770,55440,3913
+1412,Restaurantsjefer,full,51470,56010,3372
+1412,Restaurantsjefer,part,43330,46540,541
+1420,Varehandelssjefer,all,55390,63810,34513
+1420,Varehandelssjefer,full,57000,64940,29611
+1420,Varehandelssjefer,part,45830,50010,4902
+1431,"Sports-, rekreasjons- og kultursenterledere",all,62500,66750,3145
+1431,"Sports-, rekreasjons- og kultursenterledere",full,64140,68580,2366
+1431,"Sports-, rekreasjons- og kultursenterledere",part,51590,54220,779
+1439,Andre daglige ledere i tjenesteytende virksomheter,all,55000,62370,1180
+1439,Andre daglige ledere i tjenesteytende virksomheter,full,56400,63590,909
+1439,Andre daglige ledere i tjenesteytende virksomheter,part,48660,53370,271
+2111,Fysikere og astronomer,all,75790,80670,532
+2111,Fysikere og astronomer,full,75210,80420,469
+2112,Meteorologer,all,66690,66760,315
+2112,Meteorologer,full,66900,67100,278
+2113,Kjemikere,all,78390,82950,958
+2113,Kjemikere,full,78110,82630,833
+2113,Kjemikere,part,85220,86800,125
+2114,Geologer og geofysikere,all,93990,105360,2859
+2114,Geologer og geofysikere,full,95040,106150,2641
+2114,Geologer og geofysikere,part,81750,90240,218
+2120,"Matematikere, statistikere mv.",all,66400,71700,1825
+2120,"Matematikere, statistikere mv.",full,66670,72280,1581
+2120,"Matematikere, statistikere mv.",part,58300,63120,244
+2131,"Biologer, botanikere, zoologer mv.",all,68640,71880,1937
+2131,"Biologer, botanikere, zoologer mv.",full,68810,71490,1643
+2131,"Biologer, botanikere, zoologer mv.",part,63920,77570,294
+2132,Sivilagronomer mv.,all,61830,63550,636
+2132,Sivilagronomer mv.,full,62300,64050,506
+2132,Sivilagronomer mv.,part,57890,59720,130
+2133,Miljøvernrådgivere,all,66430,72560,1165
+2133,Miljøvernrådgivere,full,66570,73210,1011
+2133,Miljøvernrådgivere,part,56830,63750,154
+2141,Sivilingeniører (industri og produksjon),all,68690,75200,1137
+2141,Sivilingeniører (industri og produksjon),full,68720,75370,1089
+2142,Sivilingeniører (bygg og anlegg),all,75990,81250,27143
+2142,Sivilingeniører (bygg og anlegg),full,76020,81430,25291
+2142,Sivilingeniører (bygg og anlegg),part,73910,76520,1852
+2143,Sivilingeniører (miljøteknikk),all,78690,81860,546
+2143,Sivilingeniører (miljøteknikk),full,78180,81970,494
+2144,Sivilingeniører (maskin- og marin-teknikk),all,87200,90390,4972
+2144,Sivilingeniører (maskin- og marin-teknikk),full,87360,90620,4731
+2144,Sivilingeniører (maskin- og marin-teknikk),part,78480,82000,241
+2145,Sivilingeniører (kjemi),all,72440,80520,870
+2145,Sivilingeniører (kjemi),full,73080,80930,790
+2146,"Sivilingeniører (geofag, petro-leumsteknologi, metallurgi mv.)",all,98500,102790,11695
+2146,"Sivilingeniører (geofag, petro-leumsteknologi, metallurgi mv.)",full,98730,103010,11253
+2146,"Sivilingeniører (geofag, petro-leumsteknologi, metallurgi mv.)",part,88990,93560,442
+2149,Andre sivilingeniører (unntatt elektroteknologi),all,77770,82500,8076
+2149,Andre sivilingeniører (unntatt elektroteknologi),full,77880,82660,7071
+2149,Andre sivilingeniører (unntatt elektroteknologi),part,77160,80000,1005
+2151,Sivilingeniører (elkraftteknikk),all,84580,89670,4612
+2151,Sivilingeniører (elkraftteknikk),full,84760,89780,4418
+2151,Sivilingeniører (elkraftteknikk),part,81330,85030,194
+2152,Sivilingeniører (elektronikk),all,83330,87590,4639
+2152,Sivilingeniører (elektronikk),full,83430,87720,4398
+2152,Sivilingeniører (elektronikk),part,78380,83070,241
+2153,Sivilingeniører (telekommunikasjon),all,81100,86690,686
+2153,Sivilingeniører (telekommunikasjon),full,81180,86850,659
+2161,Sivilarkitekter,all,75010,76880,6336
+2161,Sivilarkitekter,full,75590,77420,5334
+2161,Sivilarkitekter,part,71430,71840,1002
+2162,Landskapsarkitekter,all,72500,74230,940
+2162,Landskapsarkitekter,full,71860,74110,769
+2162,Landskapsarkitekter,part,76800,75070,171
+2163,Produkt- og klesdesignere,all,62670,66430,910
+2163,Produkt- og klesdesignere,full,63260,66980,788
+2163,Produkt- og klesdesignere,part,56600,59410,122
+2164,Arealplanleggere,all,68140,71080,1454
+2164,Arealplanleggere,full,67830,70970,1339
+2164,Arealplanleggere,part,71660,73110,115
+2165,"Landmålere, kartografer mv.",all,63810,65480,888
+2165,"Landmålere, kartografer mv.",full,63820,65570,802
+2166,Grafiske- og multimediadesignere,all,60520,63450,4844
+2166,Grafiske- og multimediadesignere,full,61670,64320,4076
+2166,Grafiske- og multimediadesignere,part,50560,53650,768
+2211,Allmennpraktiserende leger,all,83080,92260,10867
+2211,Allmennpraktiserende leger,full,78850,91590,5856
+2211,Allmennpraktiserende leger,part,89400,94750,5011
+2212,Legespesialister,all,107160,109950,19778
+2212,Legespesialister,full,107940,110460,15814
+2212,Legespesialister,part,100700,105290,3964
+2221,Spesialsykepleiere,all,63810,64770,32743
+2221,Spesialsykepleiere,full,63420,63870,21095
+2221,Spesialsykepleiere,part,65830,67910,11648
+2222,Jordmødre,all,69660,70480,3284
+2222,Jordmødre,full,67530,68040,1676
+2222,Jordmødre,part,73780,75080,1608
+2223,Sykepleiere,all,57830,58290,69015
+2223,Sykepleiere,full,56660,56720,35798
+2223,Sykepleiere,part,60380,61460,33217
+2224,Vernepleiere,all,57190,57350,27210
+2224,Vernepleiere,full,57060,56800,15126
+2224,Vernepleiere,part,57760,58830,12084
+2250,Veterinærer,all,66270,69070,1986
+2250,Veterinærer,full,66790,69890,1367
+2250,Veterinærer,part,63070,65520,619
+2261,Tannleger,all,75000,79370,3469
+2261,Tannleger,full,75410,79910,2529
+2261,Tannleger,part,73110,75950,940
+2262,Farmasøyter,all,62840,65720,2051
+2262,Farmasøyter,full,62760,65950,1555
+2262,Farmasøyter,part,63780,64000,496
+2263,Helse- og miljørådgivere,all,66740,71160,143
+2263,Helse- og miljørådgivere,full,68600,72650,110
+2264,Fysioterapeuter,all,54350,54800,6495
+2264,Fysioterapeuter,full,54500,54920,5102
+2264,Fysioterapeuter,part,53200,53960,1393
+2265,Ernæringsfysiologer,all,59380,62370,1087
+2265,Ernæringsfysiologer,full,60030,63250,836
+2265,Ernæringsfysiologer,part,56020,56000,251
+2266,Audiografer og logopeder,all,54410,57370,768
+2266,Audiografer og logopeder,full,54410,57640,598
+2266,Audiografer og logopeder,part,54300,55530,170
+2267,Ergoterapeuter,all,52780,52570,3260
+2267,Ergoterapeuter,full,52780,52510,2545
+2267,Ergoterapeuter,part,52550,52950,715
+2269,Kiropraktorer mv.,all,65900,66000,382
+2269,Kiropraktorer mv.,full,66670,66850,312
+2310,Universitets- og høyskolelektorer/-lærere,all,62740,64140,38880
+2310,Universitets- og høyskolelektorer/-lærere,full,64100,65660,23551
+2310,Universitets- og høyskolelektorer/-lærere,part,55570,55440,15329
+2320,Yrkesfaglærere,all,56300,56920,1077
+2320,Yrkesfaglærere,full,56970,57700,630
+2320,Yrkesfaglærere,part,53850,53980,447
+2330,Lektorer mv. (videregående skole),all,61930,62140,29654
+2330,Lektorer mv. (videregående skole),full,62140,62450,21906
+2330,Lektorer mv. (videregående skole),part,59860,60170,7748
+2341,Grunnskolelærere,all,58750,58370,86589
+2341,Grunnskolelærere,full,59010,58710,63619
+2341,Grunnskolelærere,part,55980,56110,22970
+2342,Førskole-/barnehagelærere,all,53550,52230,34858
+2342,Førskole-/barnehagelærere,full,53600,52270,29222
+2342,Førskole-/barnehagelærere,part,52880,51920,5636
+2351,Spesialister i pedagogikk,all,65980,63710,2315
+2351,Spesialister i pedagogikk,full,67050,64330,1743
+2351,Spesialister i pedagogikk,part,56770,58560,572
+2352,Spesiallærere / spesialpedagoger,all,56610,56630,3041
+2352,Spesiallærere / spesialpedagoger,full,56920,56800,2389
+2352,Spesiallærere / spesialpedagoger,part,55160,55490,652
+2353,Andre språklærere,all,46670,49050,385
+2353,Andre språklærere,part,46670,50350,296
+2354,Andre musikklærere,all,56680,56560,5186
+2354,Andre musikklærere,full,58160,58110,754
+2354,Andre musikklærere,part,56040,55840,4432
+2355,Andre lærere i estetiske fag,all,50970,52990,562
+2355,Andre lærere i estetiske fag,part,50150,50610,503
+2359,Andre lærere,all,57220,60660,3722
+2359,Andre lærere,full,58750,62480,1801
+2359,Andre lærere,part,52160,53980,1921
+2411,"Revisorer, regnskapsrådgivere",all,72300,77750,15365
+2411,"Revisorer, regnskapsrådgivere",full,72820,78280,13815
+2411,"Revisorer, regnskapsrådgivere",part,62470,67410,1550
+2412,Finans- og investeringsrådgivere,all,74680,86900,9947
+2412,Finans- og investeringsrådgivere,full,75000,87230,9270
+2412,Finans- og investeringsrådgivere,part,62500,77700,677
+2413,Finansanalytikere,all,75360,84480,17660
+2413,Finansanalytikere,full,76020,85190,16012
+2413,Finansanalytikere,part,60750,67080,1648
+2421,Organisasjonsrådgivere mv.,all,70310,79630,16297
+2421,Organisasjonsrådgivere mv.,full,72000,81490,12855
+2421,Organisasjonsrådgivere mv.,part,55830,59960,3442
+2422,Høyere saksbehandlere i offentlig og privat virksomhet,all,61630,64500,93179
+2422,Høyere saksbehandlere i offentlig og privat virksomhet,full,62110,64980,82688
+2422,Høyere saksbehandlere i offentlig og privat virksomhet,part,53000,55920,10491
+2423,Personal- og karriererådgivere,all,66480,71970,16527
+2423,Personal- og karriererådgivere,full,66750,72610,14615
+2423,Personal- og karriererådgivere,part,55560,59820,1912
+2424,Rådgivere innen kompetanseutvikling,all,65280,70820,1151
+2424,Rådgivere innen kompetanseutvikling,full,65490,71400,1009
+2424,Rådgivere innen kompetanseutvikling,part,56830,60620,142
+2431,Reklame- og markedsføringsrådgivere,all,60800,65240,9565
+2431,Reklame- og markedsføringsrådgivere,full,61740,66380,7771
+2431,Reklame- og markedsføringsrådgivere,part,48110,50700,1794
+2432,Informasjonsrådgivere,all,64330,69250,4682
+2432,Informasjonsrådgivere,full,65080,70370,3984
+2432,Informasjonsrådgivere,part,51070,53980,698
+2433,Salgskonsulenter innen tekniske og medisinske produkter,all,76120,79750,3020
+2433,Salgskonsulenter innen tekniske og medisinske produkter,full,76150,79870,2924
+2434,Salgskonsulenter innen IKT-produkter,all,73790,80880,698
+2434,Salgskonsulenter innen IKT-produkter,full,73970,81270,668
+2511,Systemanalytikere/-arkitekter,all,76330,80120,33567
+2511,Systemanalytikere/-arkitekter,full,76570,80360,32042
+2511,Systemanalytikere/-arkitekter,part,66710,70250,1525
+2512,Programvareutviklere,all,77420,81050,8281
+2512,Programvareutviklere,full,78000,81620,7652
+2512,Programvareutviklere,part,60000,65760,629
+2513,Nett- og multimediautviklere,all,62500,66690,770
+2513,Nett- og multimediautviklere,full,63500,67940,649
+2513,Nett- og multimediautviklere,part,47620,51200,121
+2514,Applikasjonsprogrammerere,all,70700,73640,351
+2514,Applikasjonsprogrammerere,full,70830,74260,303
+2519,Andre programvare- og applikasjonsutviklere,all,74170,78430,22085
+2519,Andre programvare- og applikasjonsutviklere,full,74560,78770,20964
+2519,Andre programvare- og applikasjonsutviklere,part,60000,65540,1121
+2521,Databasedesignere og -administratorer,all,75150,79230,540
+2521,Databasedesignere og -administratorer,full,75440,79940,480
+2522,Systemadministratorer,all,66240,72700,1611
+2522,Systemadministratorer,full,66660,73120,1518
+2529,Sikkerhetsanalytikere mv.,all,78010,81800,1821
+2529,Sikkerhetsanalytikere mv.,full,78300,82440,1663
+2529,Sikkerhetsanalytikere mv.,part,59270,65230,158
+2611,Jurister og advokater,all,80830,89920,11649
+2611,Jurister og advokater,full,81250,90370,10975
+2611,Jurister og advokater,part,65220,74120,674
+2612,Dommere,all,118470,104630,867
+2612,Dommere,full,118470,104890,842
+2619,Andre juridiske yrker,all,72920,83730,1241
+2619,Andre juridiske yrker,full,73350,84680,1092
+2619,Andre juridiske yrker,part,57080,63690,149
+2621,Arkivarer og kuratorer,all,56080,56720,1835
+2621,Arkivarer og kuratorer,full,57330,58340,1126
+2621,Arkivarer og kuratorer,part,48090,49080,709
+2622,Bibliotekarer og andre informasjonsarbeidere,all,53360,53960,2618
+2622,Bibliotekarer og andre informasjonsarbeidere,full,53790,54460,1880
+2622,Bibliotekarer og andre informasjonsarbeidere,part,51760,51320,738
+2631,"Rådgivere/forskere, samfunnsøkonomi",all,71120,81800,1246
+2631,"Rådgivere/forskere, samfunnsøkonomi",full,71100,82030,1099
+2631,"Rådgivere/forskere, samfunnsøkonomi",part,75190,77520,147
+2632,"Rådgivere/forskere, samfunnsvitenskap",all,68360,71980,1260
+2632,"Rådgivere/forskere, samfunnsvitenskap",full,68780,72670,1041
+2632,"Rådgivere/forskere, samfunnsvitenskap",part,61290,63360,219
+2633,"Rådgivere/forskere, humanistiske fag",all,58380,60300,270
+2633,"Rådgivere/forskere, humanistiske fag",full,58560,60300,236
+2634,Psykologer,all,66270,70020,9895
+2634,Psykologer,full,66040,69930,8727
+2634,Psykologer,part,69340,71420,1168
+2635,Rådgivere innen sosiale fagfelt,all,56000,56480,17426
+2635,Rådgivere innen sosiale fagfelt,full,56020,56260,12268
+2635,Rådgivere innen sosiale fagfelt,part,55810,57760,5158
+2636,Geistlige yrker,all,64500,64810,2451
+2636,Geistlige yrker,full,67430,66680,1724
+2636,Geistlige yrker,part,55080,55140,727
+2641,Forfattere mv.,all,66300,69720,1309
+2641,Forfattere mv.,full,67500,71420,946
+2641,Forfattere mv.,part,52710,54880,363
+2642,Journalister,all,64630,67220,8068
+2642,Journalister,full,65300,68120,6257
+2642,Journalister,part,56250,57720,1811
+2643,"Oversettere, tolker mv.",all,53990,55890,6331
+2643,"Oversettere, tolker mv.",full,52930,55370,620
+2643,"Oversettere, tolker mv.",part,55130,56310,5711
+2651,"Skulptører, kunstmalere og andre billedkunstnere",all,50510,54780,373
+2651,"Skulptører, kunstmalere og andre billedkunstnere",full,52700,55700,272
+2651,"Skulptører, kunstmalere og andre billedkunstnere",part,45580,48450,101
+2652,"Dirigenter, komponister, musikere og sangere",all,61710,60200,2954
+2652,"Dirigenter, komponister, musikere og sangere",full,64330,62800,1503
+2652,"Dirigenter, komponister, musikere og sangere",part,52220,53010,1451
+2653,Koreografer og dansere,all,54670,55550,342
+2653,Koreografer og dansere,full,56070,56530,175
+2653,Koreografer og dansere,part,49150,52040,167
+2654,Regissører,all,62500,66560,1339
+2654,Regissører,full,64250,68370,1016
+2654,Regissører,part,50220,53370,323
+2655,Skuespillere,all,53840,55260,896
+2655,Skuespillere,full,56990,56940,409
+2655,Skuespillere,part,46810,46580,487
+2656,Programledere i TV og radio,all,72900,73320,332
+2656,Programledere i TV og radio,full,74050,75570,253
+2659,Andre utøvende kunstneriske yrker,all,57730,59590,347
+2659,Andre utøvende kunstneriske yrker,full,62020,63270,144
+2659,Andre utøvende kunstneriske yrker,part,44190,45330,203
+3112,Bygningsingeniører,all,66720,70640,17825
+3112,Bygningsingeniører,full,66880,70830,16342
+3112,Bygningsingeniører,part,63700,66230,1483
+3113,Elkraftingeniører,all,72390,75670,5974
+3113,Elkraftingeniører,full,72500,75790,5672
+3113,Elkraftingeniører,part,68780,71590,302
+3114,Elektronikkingeniører,all,70830,74440,15453
+3114,Elektronikkingeniører,full,70920,74610,14613
+3114,Elektronikkingeniører,part,66530,68620,840
+3115,Maskiningeniører,all,65440,69140,8926
+3115,Maskiningeniører,full,65670,69330,8366
+3115,Maskiningeniører,part,59310,63170,560
+3116,Kjemiingeniører,all,66310,70700,2800
+3116,Kjemiingeniører,full,66970,71240,2542
+3116,Kjemiingeniører,part,56760,60570,258
+3117,"Ingeniører innen petroleum, bergverk og metallurgi",all,85470,94310,14770
+3117,"Ingeniører innen petroleum, bergverk og metallurgi",full,85730,94690,14088
+3117,"Ingeniører innen petroleum, bergverk og metallurgi",part,79790,81610,682
+3118,Tekniske tegnere,all,62500,64430,2185
+3118,Tekniske tegnere,full,62720,64930,1866
+3118,Tekniske tegnere,part,57690,58590,319
+3119,Andre ingeniører,all,68780,72660,29906
+3119,Andre ingeniører,full,69060,72930,28052
+3119,Andre ingeniører,part,60640,64520,1854
+3121,"Arbeidsleder, bergfag",all,72610,76280,158
+3121,"Arbeidsleder, bergfag",full,72650,76490,155
+3122,"Arbeidsleder, industri",all,60350,62950,4366
+3122,"Arbeidsleder, industri",full,60440,63030,4107
+3122,"Arbeidsleder, industri",part,58320,60610,259
+3123,"Arbeidsleder, bygg og anlegg",all,66550,69060,12769
+3123,"Arbeidsleder, bygg og anlegg",full,66670,69200,11916
+3123,"Arbeidsleder, bygg og anlegg",part,62420,65610,853
+3131,Energikontrolloperatører,all,72360,75940,1701
+3131,Energikontrolloperatører,full,72680,76160,1623
+3133,Kontrolloperatører innen kjemisk prosessindustri,all,67060,67610,303
+3133,Kontrolloperatører innen kjemisk prosessindustri,full,67060,67640,294
+3134,Kontrolloperatører ved olje- og naturgassraffineringsanlegg,all,78930,84530,1875
+3134,Kontrolloperatører ved olje- og naturgassraffineringsanlegg,full,78460,84300,1748
+3134,Kontrolloperatører ved olje- og naturgassraffineringsanlegg,part,93130,89220,127
+3135,Kontrolloperatører innen metallproduksjon,all,58420,59430,188
+3135,Kontrolloperatører innen metallproduksjon,full,58460,59460,175
+3141,Bioteknikere (ikke-medisinske laboratorier),all,51790,53400,1437
+3141,Bioteknikere (ikke-medisinske laboratorier),full,52500,54330,1044
+3141,Bioteknikere (ikke-medisinske laboratorier),part,44430,46910,393
+3142,Agroteknikere,all,58690,61020,634
+3142,Agroteknikere,full,60300,62580,477
+3142,Agroteknikere,part,48340,50910,157
+3143,Skogteknikere,all,60230,62310,731
+3143,Skogteknikere,full,60600,62700,562
+3143,Skogteknikere,part,58120,58800,169
+3151,Skipsmaskinister,all,81310,84420,3947
+3151,Skipsmaskinister,full,82120,85310,3640
+3151,Skipsmaskinister,part,55220,58680,307
+3152,Dekksoffiserer og loser,all,80000,83090,8182
+3152,Dekksoffiserer og loser,full,80720,84150,7423
+3152,Dekksoffiserer og loser,part,53350,57080,759
+3153,Flygere,all,118440,115630,2277
+3153,Flygere,full,113360,113520,1797
+3153,Flygere,part,135390,126080,480
+3154,Flygeledere,all,121910,112510,520
+3154,Flygeledere,full,123350,115710,485
+3155,Teknikere innen luftfartssikkerhet,all,87240,86500,669
+3155,Teknikere innen luftfartssikkerhet,full,87310,86630,623
+3211,Radiografer mv.,all,58080,57270,3204
+3211,Radiografer mv.,full,58170,57320,2777
+3211,Radiografer mv.,part,56220,56610,427
+3212,Bioingeniører,all,56270,56700,7334
+3212,Bioingeniører,full,56430,56810,6093
+3212,Bioingeniører,part,54590,55690,1241
+3213,Reseptarer,all,53260,54180,2351
+3213,Reseptarer,full,52770,53890,1651
+3213,Reseptarer,part,55530,55740,700
+3214,Protese- og tannteknikere,all,57630,59020,1051
+3214,Protese- og tannteknikere,full,57750,59190,894
+3214,Protese- og tannteknikere,part,55660,57380,157
+3230,Yrker innen alternativ medisin,all,55000,56420,219
+3230,Yrker innen alternativ medisin,full,56500,57400,155
+3240,Dyrepleiere,all,42290,43620,1153
+3240,Dyrepleiere,full,43020,44400,655
+3240,Dyrepleiere,part,39940,41280,498
+3251,Tannpleiere,all,51460,51950,1150
+3251,Tannpleiere,full,51200,51670,800
+3251,Tannpleiere,part,52410,53190,350
+3254,Optikere,all,55940,58580,1465
+3254,Optikere,full,55830,59080,1026
+3254,Optikere,part,56000,56520,439
+3256,Helsesekretærer,all,45710,45500,9750
+3256,Helsesekretærer,full,45780,45640,5379
+3256,Helsesekretærer,part,45380,45200,4371
+3257,Helse- og miljøkontrollører,all,69150,78340,5863
+3257,Helse- og miljøkontrollører,full,70050,79500,5069
+3257,Helse- og miljøkontrollører,part,56490,59820,794
+3258,Ambulansepersonell,all,59260,57610,6901
+3258,Ambulansepersonell,full,59860,57840,4375
+3258,Ambulansepersonell,part,54770,56540,2526
+3259,Andre helseyrker,all,51850,54060,1830
+3259,Andre helseyrker,full,52900,55110,1318
+3259,Andre helseyrker,part,48390,48750,512
+3311,Finansmeglere,all,88680,117130,5252
+3311,Finansmeglere,full,89080,117820,5014
+3311,Finansmeglere,part,70590,85780,238
+3312,Kundebehandlere lån og kreditt,all,63130,71170,14856
+3312,Kundebehandlere lån og kreditt,full,63540,71840,13576
+3312,Kundebehandlere lån og kreditt,part,53020,55240,1280
+3313,Regnskapsførere,all,61500,66150,21036
+3313,Regnskapsførere,full,62270,67130,16367
+3313,Regnskapsførere,part,56510,58510,4669
+3315,Takstmenn,all,59330,65860,2238
+3315,Takstmenn,full,60000,66640,1925
+3315,Takstmenn,part,50510,53290,313
+3321,Forsikringsagenter,all,66100,75810,9858
+3321,Forsikringsagenter,full,67160,76850,8897
+3321,Forsikringsagenter,part,50680,56110,961
+3322,Selgere (engros),all,64890,70590,44901
+3322,Selgere (engros),full,65610,71630,39693
+3322,Selgere (engros),part,46150,51680,5208
+3323,Innkjøpere,all,65540,70830,7857
+3323,Innkjøpere,full,66270,71680,6844
+3323,Innkjøpere,part,46150,54240,1013
+3324,Handels- og skipsmeglere,all,105000,172630,771
+3324,Handels- og skipsmeglere,full,106060,173910,737
+3331,Speditører og befraktere,all,56320,63380,4853
+3331,Speditører og befraktere,full,56650,63860,4417
+3331,Speditører og befraktere,part,48900,51980,436
+3332,Konferanse- og arrangementsplanleggere mv.,all,55940,62740,1394
+3332,Konferanse- og arrangementsplanleggere mv.,full,57460,64580,962
+3332,Konferanse- og arrangementsplanleggere mv.,part,48330,51860,432
+3333,Arbeidsformidlere,all,51440,57520,2343
+3333,Arbeidsformidlere,full,52060,58430,1972
+3333,Arbeidsformidlere,part,46660,47250,371
+3334,Eiendomsmeglere og - forvaltere,all,72090,84940,7252
+3334,Eiendomsmeglere og - forvaltere,full,76330,88680,5635
+3334,Eiendomsmeglere og - forvaltere,part,41620,54150,1617
+3339,Andre yrker innen forretningstjenester,all,68940,79320,175
+3339,Andre yrker innen forretningstjenester,full,70000,80750,153
+3341,Arbeidsledere for kontorpersonell,all,68330,74700,7717
+3341,Arbeidsledere for kontorpersonell,full,69780,76300,6059
+3341,Arbeidsledere for kontorpersonell,part,56670,61350,1658
+3342,Advokatsekretær,all,54930,56350,785
+3342,Advokatsekretær,full,56250,57900,523
+3342,Advokatsekretær,part,48330,48300,262
+3343,Sjefssekretærer,all,56200,61700,12056
+3343,Sjefssekretærer,full,57540,63360,8490
+3343,Sjefssekretærer,part,49170,51390,3566
+3351,Tollere,all,53680,53690,1148
+3351,Tollere,full,53740,53760,1093
+3352,Skattefunksjonærer,all,51640,53400,2604
+3352,Skattefunksjonærer,full,52050,53860,2261
+3352,Skattefunksjonærer,part,47730,47590,343
+3353,Saksbehandlere innen sosiale ytelser,all,50060,50010,4528
+3353,Saksbehandlere innen sosiale ytelser,full,50080,50030,4036
+3353,Saksbehandlere innen sosiale ytelser,part,49520,49740,492
+3355,Politibetjenter mv.,all,63920,64630,12168
+3355,Politibetjenter mv.,full,64000,64740,11869
+3355,Politibetjenter mv.,part,50450,51760,299
+3359,Andre yrker innen offentlig forvaltning,all,52540,54500,7818
+3359,Andre yrker innen offentlig forvaltning,full,53750,55680,4711
+3359,Andre yrker innen offentlig forvaltning,part,48140,49210,3107
+3412,Miljøarbeidere innen sosiale fagfelt,all,52680,53440,18690
+3412,Miljøarbeidere innen sosiale fagfelt,full,52800,53330,12482
+3412,Miljøarbeidere innen sosiale fagfelt,part,51970,53980,6208
+3413,Religiøse yrker,all,51110,51490,3607
+3413,Religiøse yrker,full,53450,53540,1447
+3413,Religiøse yrker,part,47860,47860,2160
+3421,Idrettsutøvere,all,42030,72810,2852
+3421,Idrettsutøvere,full,55130,94010,962
+3421,Idrettsutøvere,part,34880,36730,1890
+3422,Trenere og idrettsdommere,all,47000,50410,10983
+3422,Trenere og idrettsdommere,full,50960,55720,1993
+3422,Trenere og idrettsdommere,part,41670,44040,8990
+3423,Sports- og aktivitetsinstruktører,all,44170,45960,10836
+3423,Sports- og aktivitetsinstruktører,full,45830,48180,799
+3423,Sports- og aktivitetsinstruktører,part,42500,44370,10037
+3431,Fotografer og filmfotografer,all,55220,57830,1274
+3431,Fotografer og filmfotografer,full,57540,59350,953
+3431,Fotografer og filmfotografer,part,43200,46400,321
+3432,Interiørdesignere og dekoratører,all,47900,52220,1614
+3432,Interiørdesignere og dekoratører,full,48730,53460,1192
+3432,Interiørdesignere og dekoratører,part,44120,45670,422
+3433,Tekniske konservatorer,all,53800,54000,229
+3433,Tekniske konservatorer,full,55410,55410,146
+3434,Sjefskokker,all,47850,50370,3233
+3434,Sjefskokker,full,48520,51100,2652
+3434,Sjefskokker,part,42410,44120,581
+3439,Andre yrker innen estetiske fag,all,53750,56430,2152
+3439,Andre yrker innen estetiske fag,full,54900,58010,1327
+3439,Andre yrker innen estetiske fag,part,44860,47250,825
+3511,"Driftsteknikere, IKT",all,64680,68500,16445
+3511,"Driftsteknikere, IKT",full,65200,69140,14909
+3511,"Driftsteknikere, IKT",part,49420,53870,1536
+3512,"Brukerstøtte, IKT",all,57800,62160,5126
+3512,"Brukerstøtte, IKT",full,58330,62870,4472
+3512,"Brukerstøtte, IKT",part,45000,49010,654
+3513,"Nettverks- og systemteknikere, IKT",all,71490,73590,808
+3513,"Nettverks- og systemteknikere, IKT",full,71870,73910,753
+3514,Internett-teknikere,all,62500,66550,224
+3514,Internett-teknikere,full,63120,67220,194
+3521,Teknikere innen radio og tv,all,57920,59260,1667
+3521,Teknikere innen radio og tv,full,59140,60450,1078
+3521,Teknikere innen radio og tv,part,50000,52860,589
+3522,Teknikere innen telekom,all,47170,51710,1296
+3522,Teknikere innen telekom,full,48310,52650,1035
+3522,Teknikere innen telekom,part,41590,43470,261
+4110,Kontormedarbeidere,all,49430,52310,60425
+4110,Kontormedarbeidere,full,50400,53590,36137
+4110,Kontormedarbeidere,part,45690,47400,24288
+4132,Dataregistrere,all,59280,62250,634
+4132,Dataregistrere,full,60260,63260,516
+4132,Dataregistrere,part,46670,51180,118
+4211,"Kundebehandlere, bank og postkontor",all,47300,47880,815
+4211,"Kundebehandlere, bank og postkontor",full,47550,48220,516
+4211,"Kundebehandlere, bank og postkontor",part,46320,46440,299
+4212,"Bingoverter, bookmakere mv.",all,37020,40800,591
+4212,"Bingoverter, bookmakere mv.",full,38810,44020,151
+4212,"Bingoverter, bookmakere mv.",part,36120,37620,440
+4214,Inkassomedarbeidere mv.,all,48630,50330,1362
+4214,Inkassomedarbeidere mv.,full,49000,50890,1112
+4214,Inkassomedarbeidere mv.,part,43170,44200,250
+4221,Reisebyråmedarbeidere mv.,all,47120,49250,4783
+4221,Reisebyråmedarbeidere mv.,full,48000,50270,3120
+4221,Reisebyråmedarbeidere mv.,part,43140,44280,1663
+4222,Kundesentermedarbeidere,all,47130,50010,5516
+4222,Kundesentermedarbeidere,full,47850,50770,4353
+4222,Kundesentermedarbeidere,part,41850,43100,1163
+4223,Sentralbordoperatører,all,46600,47780,770
+4223,Sentralbordoperatører,full,47720,48570,428
+4223,Sentralbordoperatører,part,44000,45420,342
+4224,Hotellresepsjonister,all,39630,40170,10231
+4224,Hotellresepsjonister,full,40270,40750,3600
+4224,Hotellresepsjonister,part,38820,39290,6631
+4225,Informasjonsskrankemedarbeidere,all,50340,50760,467
+4225,Informasjonsskrankemedarbeidere,full,52000,52390,300
+4225,Informasjonsskrankemedarbeidere,part,43840,43560,167
+4226,Resepsjonister (ekskl. hotell),all,47500,47860,9209
+4226,Resepsjonister (ekskl. hotell),full,49520,49980,4703
+4226,Resepsjonister (ekskl. hotell),part,38010,39390,4506
+4227,Intervjuere,all,32540,34640,757
+4227,Intervjuere,part,32350,33230,695
+4229,Andre opplysningsmedarbeidere,all,44570,48650,1057
+4229,Andre opplysningsmedarbeidere,full,48000,51000,499
+4229,Andre opplysningsmedarbeidere,part,38330,40750,558
+4311,Regnskapsmedarbeidere,all,55290,58080,17360
+4311,Regnskapsmedarbeidere,full,56100,58980,11806
+4311,Regnskapsmedarbeidere,part,50750,53220,5554
+4312,Forsikrings- og finansmedarbeidere,all,58560,60840,368
+4312,Forsikrings- og finansmedarbeidere,full,59370,61490,277
+4313,Lønningsmedarbeidere,all,56920,58080,2163
+4313,Lønningsmedarbeidere,full,57160,58210,1908
+4313,Lønningsmedarbeidere,part,55220,56290,255
+4321,Lagermedarbeidere og material-forvaltere,all,48310,50160,39123
+4321,Lagermedarbeidere og material-forvaltere,full,48750,50640,28760
+4321,Lagermedarbeidere og material-forvaltere,part,45210,46430,10363
+4322,Logistikkmedarbeidere,all,56200,59760,11424
+4322,Logistikkmedarbeidere,full,56690,60260,10245
+4322,Logistikkmedarbeidere,part,45500,49270,1179
+4323,Transportfunksjonærer,all,55230,54380,7416
+4323,Transportfunksjonærer,full,55890,54820,6111
+4323,Transportfunksjonærer,part,47170,49230,1305
+4411,Bibliotekassistenter,all,45670,46840,405
+4411,Bibliotekassistenter,part,43580,43580,359
+4412,Postbud og postsorterere,all,45060,44720,3313
+4412,Postbud og postsorterere,full,45070,44860,2035
+4412,Postbud og postsorterere,part,44990,44230,1278
+4415,Arkivassistenter,all,51800,53530,1010
+4415,Arkivassistenter,full,52770,54590,695
+4415,Arkivassistenter,part,44490,45220,315
+4416,Personalkontormedarbeidere,all,58730,61120,862
+4416,Personalkontormedarbeidere,full,59310,62080,728
+4416,Personalkontormedarbeidere,part,46270,48890,134
+5111,"Flyverter, båtverter mv.",all,41510,43790,2764
+5111,"Flyverter, båtverter mv.",full,39530,42980,1778
+5111,"Flyverter, båtverter mv.",part,46070,46130,986
+5112,Konduktører,all,66330,64620,1399
+5112,Konduktører,full,66210,64510,1185
+5112,Konduktører,part,67350,65710,214
+5113,Reiseledere og guider,all,42220,43520,2617
+5113,Reiseledere og guider,full,43000,44890,783
+5113,Reiseledere og guider,part,40610,41150,1834
+5120,Kokker,all,41610,43160,25743
+5120,Kokker,full,42290,44000,15473
+5120,Kokker,part,38970,39730,10270
+5131,Servitører,all,37350,38370,30741
+5131,Servitører,full,38970,39940,7995
+5131,Servitører,part,35730,36290,22746
+5132,Bartendere,all,37480,38710,9771
+5132,Bartendere,full,39980,40930,1649
+5132,Bartendere,part,35730,36920,8122
+5141,Frisører,all,39670,41340,8659
+5141,Frisører,full,40000,41300,4936
+5141,Frisører,part,38970,41430,3723
+5142,Kosmetologer mv.,all,39330,41930,3213
+5142,Kosmetologer mv.,full,40590,43640,1390
+5142,Kosmetologer mv.,part,36560,38860,1823
+5151,Renholdsledere i bedrifter,all,47600,49710,2456
+5151,Renholdsledere i bedrifter,full,48340,50440,1894
+5151,Renholdsledere i bedrifter,part,43480,43970,562
+5152,Husholdere,all,52120,51480,247
+5152,Husholdere,full,52750,53310,127
+5152,Husholdere,part,45710,46240,120
+5153,Vaktmestre,all,48190,50820,24912
+5153,Vaktmestre,full,49180,52000,15285
+5153,Vaktmestre,part,43840,44580,9627
+5163,Begravelsesbyrå- og krematoriearbeidere,all,52790,54440,1147
+5163,Begravelsesbyrå- og krematoriearbeidere,full,53680,55740,612
+5163,Begravelsesbyrå- og krematoriearbeidere,part,47300,49580,535
+5164,Dyrepassere og - trenere mv.,all,36670,36640,1203
+5164,Dyrepassere og - trenere mv.,full,37080,36320,516
+5164,Dyrepassere og - trenere mv.,part,36150,37410,687
+5165,Kjøreskolelærere,all,58310,61350,2045
+5165,Kjøreskolelærere,full,58620,61760,1738
+5165,Kjøreskolelærere,part,51960,55150,307
+5169,Andre personlige tjenesteytere,all,41800,45700,670
+5169,Andre personlige tjenesteytere,part,40440,42330,599
+5211,Torghandlere,all,62500,62320,377
+5211,Torghandlere,full,64790,65140,242
+5211,Torghandlere,part,34100,37650,135
+5221,Innehavere av kiosk/liten butikk,all,50000,51350,151
+5222,Butikkavdelingssjefer,all,47680,50860,5414
+5222,Butikkavdelingssjefer,full,48150,51440,4611
+5222,Butikkavdelingssjefer,part,44780,45720,803
+5223,Butikkmedarbeidere,all,42020,41570,187647
+5223,Butikkmedarbeidere,full,43470,45040,42713
+5223,Butikkmedarbeidere,part,37560,38190,144934
+5230,Billettselgere,all,43230,43570,543
+5230,Billettselgere,full,45650,45150,127
+5230,Billettselgere,part,40600,41550,416
+5241,Mannekenger og modeller,all,35600,39770,136
+5241,Mannekenger og modeller,part,33330,34430,127
+5243,Dørselgere,all,48230,50690,317
+5243,Dørselgere,full,52000,56490,171
+5243,Dørselgere,part,31770,35610,146
+5244,Telefon- og nettselgere,all,47440,50670,3949
+5244,Telefon- og nettselgere,full,50670,54900,2240
+5244,Telefon- og nettselgere,part,31830,37270,1709
+5245,Servicemedarbeidere (bensinstasjon),all,39670,42160,721
+5245,Servicemedarbeidere (bensinstasjon),full,40590,44060,361
+5245,Servicemedarbeidere (bensinstasjon),part,34700,35990,360
+5246,Gatekjøkken- og kafémedarbeidere mv.,all,36360,37120,18538
+5246,Gatekjøkken- og kafémedarbeidere mv.,full,37880,38950,4275
+5246,Gatekjøkken- og kafémedarbeidere mv.,part,35500,35190,14263
+5249,Andre salgsmedarbeidere,all,44970,46490,3827
+5249,Andre salgsmedarbeidere,full,46000,47510,2560
+5249,Andre salgsmedarbeidere,part,37890,39770,1267
+5311,Barnehage- og skolefritidsassistenter mv.,all,41610,40970,118927
+5311,Barnehage- og skolefritidsassistenter mv.,full,41610,41090,42219
+5311,Barnehage- og skolefritidsassistenter mv.,part,41180,40810,76708
+5312,Skoleassistenter,all,39510,39450,17412
+5312,Skoleassistenter,full,39510,39790,2251
+5312,Skoleassistenter,part,39510,39330,15161
+5321,Helsefagarbeidere,all,51430,50580,116127
+5321,Helsefagarbeidere,full,50780,48720,38266
+5321,Helsefagarbeidere,part,52240,52400,77861
+5322,Hjemmehjelper,all,42370,44040,23499
+5322,Hjemmehjelper,full,43310,44450,1720
+5322,Hjemmehjelper,part,42140,43930,21779
+5329,Andre pleiemedarbeidere,all,45070,46080,91248
+5329,Andre pleiemedarbeidere,full,44860,44940,12549
+5329,Andre pleiemedarbeidere,part,45240,46600,78699
+5411,Brannkonstabler,all,60510,62090,10602
+5411,Brannkonstabler,full,61690,62720,3377
+5411,Brannkonstabler,part,52910,60030,7225
+5413,Fengselsbetjenter,all,55900,53920,3853
+5413,Fengselsbetjenter,full,56470,54570,3106
+5413,Fengselsbetjenter,part,44270,47710,747
+5414,Vektere,all,43450,45360,12645
+5414,Vektere,full,43710,46170,5019
+5414,Vektere,part,42970,43920,7626
+5419,Andre sikkerhetsarbeidere,all,42340,43460,4645
+5419,Andre sikkerhetsarbeidere,full,44590,45050,1025
+5419,Andre sikkerhetsarbeidere,part,40690,41710,3620
+6111,Korn- og grønnsaksprodusenter,all,40270,43190,188
+6111,Korn- og grønnsaksprodusenter,part,36770,39980,118
+6113,Gartnere,all,43860,43210,6262
+6113,Gartnere,full,44470,43550,4865
+6113,Gartnere,part,40280,40420,1397
+6121,Melke- og husdyrprodusenter,all,38160,39450,4943
+6121,Melke- og husdyrprodusenter,full,40000,40430,1433
+6121,Melke- og husdyrprodusenter,part,36160,37870,3510
+6122,Egg- og fjærfeprodusenter,all,43520,44830,492
+6122,Egg- og fjærfeprodusenter,full,47280,48470,149
+6122,Egg- og fjærfeprodusenter,part,37230,38630,343
+6130,Plante- og husdyrprodusenter (kombinasjonsbruk),all,38100,39170,8796
+6130,Plante- og husdyrprodusenter (kombinasjonsbruk),full,39400,40780,1862
+6130,Plante- og husdyrprodusenter (kombinasjonsbruk),part,36410,37100,6934
+6210,Skogbrukere,all,43090,44970,1247
+6210,Skogbrukere,full,43190,44950,1037
+6210,Skogbrukere,part,42220,45290,210
+6221,Havbruksarbeidere,all,59270,58920,8184
+6221,Havbruksarbeidere,full,59710,59510,6844
+6221,Havbruksarbeidere,part,47210,49230,1340
+6222,Fiskere,all,48500,49790,444
+6222,Fiskere,full,50000,50520,240
+6222,Fiskere,part,43030,47650,204
+7112,Murere,all,48710,49770,4058
+7112,Murere,full,48710,49750,3679
+7112,Murere,part,49160,50060,379
+7113,Steinhoggere mv.,all,50000,52030,742
+7113,Steinhoggere mv.,full,50390,52340,656
+7114,Betongarbeidere,all,53420,54140,10597
+7114,Betongarbeidere,full,53270,53940,9315
+7114,Betongarbeidere,part,55370,56480,1282
+7115,Tømrere og snekkere,all,47900,48020,45196
+7115,Tømrere og snekkere,full,47940,48050,41047
+7115,Tømrere og snekkere,part,46090,47360,4149
+7119,Andre bygningsarbeidere,all,46470,48180,7169
+7119,Andre bygningsarbeidere,full,46320,48030,6407
+7119,Andre bygningsarbeidere,part,47900,50540,762
+7121,Taktekkere,all,49560,50370,1498
+7121,Taktekkere,full,49480,50230,1347
+7121,Taktekkere,part,51960,52370,151
+7122,Gulv- og flisleggere,all,48710,50450,2294
+7122,Gulv- og flisleggere,full,48710,50580,1984
+7122,Gulv- og flisleggere,part,47820,48770,310
+7124,Isolatører mv.,all,47740,48610,2533
+7124,Isolatører mv.,full,47740,48490,2307
+7124,Isolatører mv.,part,48300,50770,226
+7125,Glassarbeidere,all,47120,48690,1378
+7125,Glassarbeidere,full,47100,48590,1248
+7125,Glassarbeidere,part,47610,50910,130
+7126,Rørleggere og VVS-montører,all,53750,53110,20762
+7126,Rørleggere og VVS-montører,full,53750,53030,18804
+7126,Rørleggere og VVS-montører,part,53570,54370,1958
+7127,Kuldemontører mv.,all,56830,54400,1435
+7127,Kuldemontører mv.,full,56830,54310,1306
+7127,Kuldemontører mv.,part,56830,56090,129
+7131,Malere og byggtapetserere,all,45900,47310,7396
+7131,Malere og byggtapetserere,full,46000,47420,6607
+7131,Malere og byggtapetserere,part,44090,45390,789
+7132,Overflatebehandlere og lakkerere,all,48690,49230,4996
+7132,Overflatebehandlere og lakkerere,full,48650,49140,4592
+7132,Overflatebehandlere og lakkerere,part,49680,51340,404
+7133,"Feiere, fasaderenholdere mv.",all,47800,48340,870
+7133,"Feiere, fasaderenholdere mv.",full,47960,48540,787
+7211,Støpere,all,46570,49880,274
+7211,Støpere,full,46630,49800,252
+7212,Sveisere,all,50500,51810,8885
+7212,Sveisere,full,50500,51920,7729
+7212,Sveisere,part,50430,50600,1156
+7213,Kopper- og blikkenslagere,all,50330,50160,4688
+7213,Kopper- og blikkenslagere,full,50340,50220,4272
+7213,Kopper- og blikkenslagere,part,48300,48890,416
+7214,Platearbeidere,all,48950,49450,5649
+7214,Platearbeidere,full,48920,49470,5044
+7214,Platearbeidere,part,49250,49260,605
+7215,Riggere og spleisere,all,56450,58720,1953
+7215,Riggere og spleisere,full,56700,59260,1643
+7215,Riggere og spleisere,part,51210,51650,310
+7221,Smeder,all,49010,49500,317
+7221,Smeder,full,49180,50250,218
+7222,"Verktøymaker, låsesmeder mv.",all,52460,51660,2662
+7222,"Verktøymaker, låsesmeder mv.",full,52470,51590,2466
+7222,"Verktøymaker, låsesmeder mv.",part,52200,53380,196
+7223,Metalldreiere mv.,all,50140,50240,2507
+7223,Metalldreiere mv.,full,50340,50310,2189
+7223,Metalldreiere mv.,part,48090,49170,318
+7231,Bilmekanikere,all,48500,48020,23022
+7231,Bilmekanikere,full,48710,48280,20485
+7231,Bilmekanikere,part,40590,42720,2537
+7232,Mekanikere innen flytekniske fag,all,65810,71890,1212
+7232,Mekanikere innen flytekniske fag,full,65850,72040,1140
+7233,Anleggsmaskin- og industrimekanikere,all,53540,54020,22902
+7233,Anleggsmaskin- og industrimekanikere,full,53670,54110,20811
+7233,Anleggsmaskin- og industrimekanikere,part,49720,52060,2091
+7234,Sykkelreparatører mv.,all,35640,37270,396
+7234,Sykkelreparatører mv.,full,35000,37350,269
+7234,Sykkelreparatører mv.,part,37500,36660,127
+7311,Presisjonsinstrumentmakere og -reparatører,all,55430,61230,550
+7311,Presisjonsinstrumentmakere og -reparatører,full,56110,61980,480
+7313,"Gull- og sølvsmeder, gravører mv.",all,48000,49080,368
+7313,"Gull- og sølvsmeder, gravører mv.",full,48790,49910,266
+7313,"Gull- og sølvsmeder, gravører mv.",part,42280,44120,102
+7318,"Vevere, strikkere mv. (innen husflidsproduksjon)",all,41310,40960,501
+7318,"Vevere, strikkere mv. (innen husflidsproduksjon)",full,42370,41710,158
+7318,"Vevere, strikkere mv. (innen husflidsproduksjon)",part,40110,39750,343
+7319,Andre kunsthåndverkere,all,45750,46820,169
+7319,Andre kunsthåndverkere,full,45750,46990,145
+7321,Førtrykkere,all,47350,49390,825
+7321,Førtrykkere,full,48120,49940,656
+7321,Førtrykkere,part,42830,43920,169
+7322,Trykkere,all,46730,48530,1060
+7322,Trykkere,full,47680,49170,828
+7322,Trykkere,part,40220,42520,232
+7323,Innbindere mv.,all,43110,44000,229
+7323,Innbindere mv.,full,43290,44440,182
+7411,Elektrikere,all,54930,54460,34779
+7411,Elektrikere,full,54800,54230,31455
+7411,Elektrikere,part,57930,58160,3324
+7412,Automatikere,all,60080,61120,6481
+7412,Automatikere,full,59950,60790,5861
+7412,Automatikere,part,69020,66340,620
+7413,Energimontører,all,58140,54510,4405
+7413,Energimontører,full,58140,54460,4121
+7413,Energimontører,part,57370,55790,284
+7421,Serviceelektronikere,all,53570,56340,1350
+7421,Serviceelektronikere,full,53810,56620,1227
+7421,Serviceelektronikere,part,48710,51110,123
+7422,Tele- og IKT-installatører,all,48590,45820,4081
+7422,Tele- og IKT-installatører,full,48710,45850,3623
+7422,Tele- og IKT-installatører,part,40120,45260,458
+7511,"Slaktere, fiskehandlere mv.",all,44650,47390,2503
+7511,"Slaktere, fiskehandlere mv.",full,45260,47480,1884
+7511,"Slaktere, fiskehandlere mv.",part,40590,46740,619
+7512,"Bakere, konditorer mv.",all,42490,43260,1571
+7512,"Bakere, konditorer mv.",full,42830,43430,1300
+7512,"Bakere, konditorer mv.",part,40410,41430,271
+7522,Møbelsnekkere,all,45300,46300,2053
+7522,Møbelsnekkere,full,45540,46630,1668
+7522,Møbelsnekkere,part,41590,42610,385
+7531,"Skreddere, buntmakere mv.",all,49250,46530,578
+7531,"Skreddere, buntmakere mv.",full,49640,47310,393
+7531,"Skreddere, buntmakere mv.",part,41670,42630,185
+7534,Møbeltapetserere mv.,all,46520,46690,301
+7534,Møbeltapetserere mv.,full,46570,47100,236
+7541,Yrkesdykkere,all,58250,59360,655
+7541,Yrkesdykkere,full,58250,59420,581
+7542,Skytebaser og sprengningsarbeidere,all,67160,69260,2110
+7542,Skytebaser og sprengningsarbeidere,full,65090,67170,1776
+7542,Skytebaser og sprengningsarbeidere,part,86520,82400,334
+7544,Desinfeksjonsarbeidere og skadedyrbekjempere,all,46300,50000,450
+7544,Desinfeksjonsarbeidere og skadedyrbekjempere,full,46370,50230,409
+7549,Andre håndverkere,all,41520,40360,838
+7549,Andre håndverkere,full,42130,40820,383
+7549,Andre håndverkere,part,40590,39570,455
+8111,Bergfagarbeidere,all,55570,58330,669
+8111,Bergfagarbeidere,full,55610,58380,617
+8112,Prosessoperatører (oppredning),all,66190,66610,210
+8112,Prosessoperatører (oppredning),full,66190,66700,207
+8113,Operatører innen boring mv.,all,80180,80360,14486
+8113,Operatører innen boring mv.,full,80300,80440,13454
+8113,Operatører innen boring mv.,part,78190,78900,1032
+8114,Operatører innen produksjon av betong mv.,all,48070,49070,2199
+8114,Operatører innen produksjon av betong mv.,full,48130,49150,2013
+8114,Operatører innen produksjon av betong mv.,part,47090,47310,186
+8121,Operatører innen metallurgiske prosessfag,all,48440,49890,8735
+8121,Operatører innen metallurgiske prosessfag,full,48610,50060,7932
+8121,Operatører innen metallurgiske prosessfag,part,44650,45890,803
+8131,Operatører innen kjemisk industri,all,58810,57550,10176
+8131,Operatører innen kjemisk industri,full,59030,57710,9724
+8131,Operatører innen kjemisk industri,part,48300,50140,452
+8141,Operatører innen produksjon av gummiprodukter,all,46460,48550,282
+8141,Operatører innen produksjon av gummiprodukter,full,46490,48670,263
+8142,Operatører innen plastprodukter,all,46510,47470,2320
+8142,Operatører innen plastprodukter,full,46690,47630,2066
+8142,Operatører innen plastprodukter,part,42670,44230,254
+8143,Operatører innen papirprodukter,all,43830,42970,610
+8143,Operatører innen papirprodukter,full,44240,43140,485
+8143,Operatører innen papirprodukter,part,39390,40050,125
+8151,Spinne- og nøstemaskinoperatører,all,45210,43940,153
+8151,Spinne- og nøstemaskinoperatører,full,45460,44340,117
+8152,Operatører innen tekstilproduksjon mv.,all,43840,44750,926
+8152,Operatører innen tekstilproduksjon mv.,full,43910,44980,756
+8152,Operatører innen tekstilproduksjon mv.,part,41300,42350,170
+8153,Industrisyere,all,43310,42450,784
+8153,Industrisyere,full,43330,42480,559
+8153,Industrisyere,part,43180,42320,225
+8157,Renseri- og vaskerimaskinoperatører,all,41420,41380,2764
+8157,Renseri- og vaskerimaskinoperatører,full,41510,41710,1611
+8157,Renseri- og vaskerimaskinoperatører,part,41050,40220,1153
+8160,Operatører innen næringsmiddelproduksjon,all,43480,45790,29184
+8160,Operatører innen næringsmiddelproduksjon,full,43800,46130,22537
+8160,Operatører innen næringsmiddelproduksjon,part,40810,42820,6647
+8171,Operatører innen treforedling,all,46210,47410,2834
+8171,Operatører innen treforedling,full,46450,47650,2426
+8171,Operatører innen treforedling,part,41440,43250,408
+8172,Operatører innen trelastproduksjon,all,43630,45190,3433
+8172,Operatører innen trelastproduksjon,full,43690,45290,2993
+8172,Operatører innen trelastproduksjon,part,42140,43200,440
+8181,Operatører innen glass- og keramisk produksjon,all,44540,46480,1145
+8181,Operatører innen glass- og keramisk produksjon,full,45440,47340,865
+8181,Operatører innen glass- og keramisk produksjon,part,41970,41810,280
+8182,Fyrkjele- og turbinoperatører,all,54930,56100,1381
+8182,Fyrkjele- og turbinoperatører,full,55150,56330,1204
+8182,Fyrkjele- og turbinoperatører,part,48590,51950,177
+8183,"Pakke-, tappe- og etikettmaskinoperatører",all,47980,49530,981
+8183,"Pakke-, tappe- og etikettmaskinoperatører",full,48430,49840,838
+8183,"Pakke-, tappe- og etikettmaskinoperatører",part,41420,44460,143
+8211,Montører av mekaniske produkter,all,48230,51330,2514
+8211,Montører av mekaniske produkter,full,48270,51460,2258
+8211,Montører av mekaniske produkter,part,46970,48940,256
+8212,Montører av elektriske og elektroniske produkter,all,49830,51080,4865
+8212,Montører av elektriske og elektroniske produkter,full,50060,51400,4385
+8212,Montører av elektriske og elektroniske produkter,part,44410,44330,480
+8311,Lokomotiv og T-baneførere,all,74940,71760,2186
+8311,Lokomotiv og T-baneførere,full,74900,71520,1902
+8311,Lokomotiv og T-baneførere,part,75290,75080,284
+8322,"Bil-, drosje- og varebilførere",all,41570,42870,18672
+8322,"Bil-, drosje- og varebilførere",full,42750,44020,9966
+8322,"Bil-, drosje- og varebilførere",part,37650,38950,8706
+8331,Bussjåfører og trikkeførere,all,47270,47630,18907
+8331,Bussjåfører og trikkeførere,full,47330,47490,11871
+8331,Bussjåfører og trikkeførere,part,46790,48230,7036
+8332,Lastebil- og trailersjåfører,all,47260,48950,27312
+8332,Lastebil- og trailersjåfører,full,47420,49050,23583
+8332,Lastebil- og trailersjåfører,part,44410,47490,3729
+8341,Jordbruks- og skogbruksmaskinførere,all,46250,47740,960
+8341,Jordbruks- og skogbruksmaskinførere,full,46310,48000,793
+8341,Jordbruks- og skogbruksmaskinførere,part,42480,43670,167
+8342,Anleggsmaskinførere,all,51510,52830,20869
+8342,Anleggsmaskinførere,full,51640,52900,18282
+8342,Anleggsmaskinførere,part,49000,51650,2587
+8343,Kran- og heisførere mv.,all,54560,56490,2039
+8343,Kran- og heisførere mv.,full,54160,56580,1574
+8343,Kran- og heisførere mv.,part,56290,55920,465
+8344,Truckførere,all,46520,47910,759
+8344,Truckførere,full,46550,47920,652
+8344,Truckførere,part,45740,47790,107
+8350,Dekks- og maskinmannskap (skip),all,58940,56020,6681
+8350,Dekks- og maskinmannskap (skip),full,59430,56680,6009
+8350,Dekks- og maskinmannskap (skip),part,36660,41820,672
+9111,Renholdere i private hjem,all,38970,40290,525
+9111,Renholdere i private hjem,full,39700,41890,111
+9111,Renholdere i private hjem,part,38680,39130,414
+9112,Renholdere i bedrifter,all,41180,42350,74751
+9112,Renholdere i bedrifter,full,41930,43790,26645
+9112,Renholdere i bedrifter,part,40040,40150,48106
+9122,Bilvaskere,all,39960,41330,3579
+9122,Bilvaskere,full,40760,42220,2340
+9122,Bilvaskere,part,34910,36940,1239
+9211,Hjelpearbeidere i nyttevekstproduksjon,all,31390,35200,325
+9211,Hjelpearbeidere i nyttevekstproduksjon,full,30850,35610,181
+9211,Hjelpearbeidere i nyttevekstproduksjon,part,32370,33540,144
+9212,Hjelpearbeidere i husdyrproduksjon,all,32470,33500,891
+9212,Hjelpearbeidere i husdyrproduksjon,full,32500,34280,278
+9212,Hjelpearbeidere i husdyrproduksjon,part,31660,32000,613
+9213,Hjelpearbeidere i kombinasjonsbruk,all,36530,39640,957
+9213,Hjelpearbeidere i kombinasjonsbruk,full,39120,42230,272
+9213,Hjelpearbeidere i kombinasjonsbruk,part,33330,35410,685
+9214,Hjelpearbeidere i gartneri mv.,all,43130,41920,1777
+9214,Hjelpearbeidere i gartneri mv.,full,43720,42350,1137
+9214,Hjelpearbeidere i gartneri mv.,part,40590,39680,640
+9215,Hjelpearbeidere i skogbruk,all,34910,34170,114
+9216,Hjelpearbeidere innen havbruk,all,39300,41490,195
+9216,Hjelpearbeidere innen havbruk,part,37670,39290,112
+9312,Hjelpearbeidere i anlegg,all,48520,49400,16569
+9312,Hjelpearbeidere i anlegg,full,48710,49500,12756
+9312,Hjelpearbeidere i anlegg,part,45460,48550,3813
+9313,Hjelpearbeidere i bygg,all,43690,44210,7128
+9313,Hjelpearbeidere i bygg,full,43840,44610,5084
+9313,Hjelpearbeidere i bygg,part,40600,41170,2044
+9321,Håndpakkere mv.,all,43880,45710,1119
+9321,Håndpakkere mv.,full,44800,46450,547
+9321,Håndpakkere mv.,part,39870,42430,572
+9329,Andre hjelpearbeidere i industri,all,47090,50010,8577
+9329,Andre hjelpearbeidere i industri,full,48000,51010,5423
+9329,Andre hjelpearbeidere i industri,part,41760,43510,3154
+9333,Laste- og lossearbeidere,all,46780,47530,5820
+9333,Laste- og lossearbeidere,full,48200,48480,2696
+9333,Laste- og lossearbeidere,part,41260,44360,3124
+9334,Varepåfyllere,all,40590,41230,1750
+9334,Varepåfyllere,full,42460,43340,588
+9334,Varepåfyllere,part,35290,36110,1162
+9412,Kjøkkenassistenter,all,38140,38530,23661
+9412,Kjøkkenassistenter,full,38840,39310,6280
+9412,Kjøkkenassistenter,part,37200,37630,17381
+9510,Reklamedistributører mv.,all,44040,45920,324
+9510,Reklamedistributører mv.,full,44170,46150,225
+9611,Renovasjonsarbeidere,all,46420,47560,5576
+9611,Renovasjonsarbeidere,full,46580,47720,4793
+9611,Renovasjonsarbeidere,part,44120,44990,783
+9612,Gjenvinningsarbeidere,all,44200,44330,1290
+9612,Gjenvinningsarbeidere,full,44200,44310,946
+9612,Gjenvinningsarbeidere,part,44060,44520,344
+9621,Bud mv.,all,39260,38770,7434
+9621,Bud mv.,full,41320,40770,905
+9621,Bud mv.,part,38400,37780,6529
+9622,Altmuligmann,all,43540,44370,3779
+9622,Altmuligmann,full,45330,46180,1424
+9622,Altmuligmann,part,38970,39570,2355
+9623,Måleravlesere mv.,all,42140,44890,108
+9629,Andre hjelpearbeidere,all,40230,38920,4109
+9629,Andre hjelpearbeidere,full,41710,41420,572
+9629,Andre hjelpearbeidere,part,37510,36670,3537

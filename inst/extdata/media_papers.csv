@@ -1,0 +1,11 @@
+paper,base_weight,under30_mult,age30_50_mult,age50_67_mult,over67_mult,low_edu_mult,high_edu_mult,storby_mult,distrikt_mult
+VG,1.0,1.2,1.1,1.0,0.8,1.3,0.7,1.1,1.0
+Aftenposten,0.6,0.8,1.0,1.1,1.3,0.5,1.6,1.5,0.5
+Dagbladet,0.5,1.1,1.0,0.9,0.7,1.2,0.8,1.1,0.9
+Dagens Næringsliv,0.3,0.4,1.0,1.2,1.0,0.3,1.8,1.4,0.4
+Klassekampen,0.2,0.5,1.2,1.5,1.3,0.3,2.5,1.6,0.5
+Morgenbladet,0.1,0.5,1.0,1.6,1.5,0.2,3.0,1.7,0.4
+Vårt Land,0.15,0.5,0.8,1.3,2.0,0.7,1.3,0.6,1.4
+Nationen,0.15,0.4,0.7,1.3,1.5,1.2,0.7,0.2,2.2
+Lokalavis,0.8,0.7,0.9,1.3,1.6,1.3,0.7,0.5,1.8
+Ingen avis,0.6,1.8,1.0,0.6,0.3,1.4,0.6,1.1,0.9

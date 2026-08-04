@@ -1,0 +1,17 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^LICENSE\.md$
+^README\.Rmd$
+^\.github$
+^\.DS_Store$
+^instruction\.md$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^_pkgdown\.yml$
+^docs$
+^\.git$
+^\.gitignore$
+^demo\.R$
+^CITATION\.cff$
+^codemeta\.json$

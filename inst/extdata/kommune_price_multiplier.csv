@@ -1,0 +1,1072 @@
+kommune_code,kommune,fylke,boligtype_code,multiplier,source
+0301,Oslo,Oslo,01,1.0,data
+0301,Oslo,Oslo,02,1.0,data
+0301,Oslo,Oslo,03,1.0,data
+1101,Eigersund,Rogaland,01,0.723,data
+1101,Eigersund,Rogaland,02,0.777,data
+1101,Eigersund,Rogaland,03,0.696,data
+1103,Stavanger,Rogaland,01,1.313,data
+1103,Stavanger,Rogaland,02,1.112,data
+1103,Stavanger,Rogaland,03,1.163,data
+1106,Haugesund,Rogaland,01,0.857,data
+1106,Haugesund,Rogaland,02,0.705,data
+1106,Haugesund,Rogaland,03,0.767,data
+1108,Sandnes,Rogaland,01,1.09,data
+1108,Sandnes,Rogaland,02,1.079,data
+1108,Sandnes,Rogaland,03,1.027,data
+1111,Sokndal,Rogaland,01,0.648,data
+1111,Sokndal,Rogaland,02,0.55,imputed
+1111,Sokndal,Rogaland,03,0.55,imputed
+1112,Lund,Rogaland,01,0.45,data
+1112,Lund,Rogaland,02,0.55,imputed
+1112,Lund,Rogaland,03,0.55,imputed
+1114,Bjerkreim,Rogaland,01,0.55,imputed
+1114,Bjerkreim,Rogaland,02,0.55,imputed
+1114,Bjerkreim,Rogaland,03,0.55,imputed
+1119,Hå,Rogaland,01,0.91,data
+1119,Hå,Rogaland,02,0.86,data
+1119,Hå,Rogaland,03,0.836,data
+1120,Klepp,Rogaland,01,1.051,data
+1120,Klepp,Rogaland,02,1.036,data
+1120,Klepp,Rogaland,03,0.955,data
+1121,Time,Rogaland,01,1.013,data
+1121,Time,Rogaland,02,1.039,data
+1121,Time,Rogaland,03,0.955,data
+1122,Gjesdal,Rogaland,01,0.878,data
+1122,Gjesdal,Rogaland,02,0.986,data
+1122,Gjesdal,Rogaland,03,0.888,data
+1124,Sola,Rogaland,01,1.159,data
+1124,Sola,Rogaland,02,1.171,data
+1124,Sola,Rogaland,03,1.046,data
+1127,Randaberg,Rogaland,01,1.141,data
+1127,Randaberg,Rogaland,02,1.097,data
+1127,Randaberg,Rogaland,03,1.003,data
+1130,Strand,Rogaland,01,0.864,data
+1130,Strand,Rogaland,02,0.876,data
+1130,Strand,Rogaland,03,0.764,data
+1133,Hjelmeland,Rogaland,01,0.769,data
+1133,Hjelmeland,Rogaland,02,0.55,imputed
+1133,Hjelmeland,Rogaland,03,0.55,imputed
+1134,Suldal,Rogaland,01,0.55,imputed
+1134,Suldal,Rogaland,02,0.55,imputed
+1134,Suldal,Rogaland,03,0.55,imputed
+1135,Sauda,Rogaland,01,0.456,data
+1135,Sauda,Rogaland,02,0.55,imputed
+1135,Sauda,Rogaland,03,0.55,imputed
+1144,Kvitsøy,Rogaland,01,0.55,imputed
+1144,Kvitsøy,Rogaland,02,0.55,imputed
+1144,Kvitsøy,Rogaland,03,0.55,imputed
+1145,Bokn,Rogaland,01,0.55,imputed
+1145,Bokn,Rogaland,02,0.55,imputed
+1145,Bokn,Rogaland,03,0.55,imputed
+1146,Tysvær,Rogaland,01,0.771,data
+1146,Tysvær,Rogaland,02,0.777,data
+1146,Tysvær,Rogaland,03,0.673,data
+1149,Karmøy,Rogaland,01,0.715,data
+1149,Karmøy,Rogaland,02,0.775,data
+1149,Karmøy,Rogaland,03,0.657,data
+1151,Utsira,Rogaland,01,0.55,imputed
+1151,Utsira,Rogaland,02,0.55,imputed
+1151,Utsira,Rogaland,03,0.55,imputed
+1160,Vindafjord,Rogaland,01,0.601,data
+1160,Vindafjord,Rogaland,02,0.72,imputed
+1160,Vindafjord,Rogaland,03,0.72,imputed
+1505,Kristiansund,Møre og Romsdal,01,1.029,data
+1505,Kristiansund,Møre og Romsdal,02,0.832,data
+1505,Kristiansund,Møre og Romsdal,03,0.701,data
+1506,Molde,Møre og Romsdal,01,1.228,data
+1506,Molde,Møre og Romsdal,02,1.068,data
+1506,Molde,Møre og Romsdal,03,1.137,data
+1508,Ålesund,Møre og Romsdal,01,1.325,data
+1508,Ålesund,Møre og Romsdal,02,1.146,data
+1508,Ålesund,Møre og Romsdal,03,1.133,data
+1511,Vanylven,Møre og Romsdal,01,0.55,imputed
+1511,Vanylven,Møre og Romsdal,02,0.55,imputed
+1511,Vanylven,Møre og Romsdal,03,0.55,imputed
+1514,Sande,Møre og Romsdal,01,0.55,imputed
+1514,Sande,Møre og Romsdal,02,0.55,imputed
+1514,Sande,Møre og Romsdal,03,0.55,imputed
+1515,Herøy (Møre og Romsdal),Møre og Romsdal,01,0.717,data
+1515,Herøy (Møre og Romsdal),Møre og Romsdal,02,0.831,data
+1515,Herøy (Møre og Romsdal),Møre og Romsdal,03,0.804,data
+1516,Ulstein,Møre og Romsdal,01,0.848,data
+1516,Ulstein,Møre og Romsdal,02,0.998,data
+1516,Ulstein,Møre og Romsdal,03,0.903,data
+1517,Hareid,Møre og Romsdal,01,0.808,data
+1517,Hareid,Møre og Romsdal,02,0.72,imputed
+1517,Hareid,Møre og Romsdal,03,0.694,data
+1520,Ørsta,Møre og Romsdal,01,1.053,data
+1520,Ørsta,Møre og Romsdal,02,0.92,data
+1520,Ørsta,Møre og Romsdal,03,0.866,data
+1525,Stranda,Møre og Romsdal,01,0.613,data
+1525,Stranda,Møre og Romsdal,02,0.55,imputed
+1525,Stranda,Møre og Romsdal,03,0.55,imputed
+1528,Sykkylven,Møre og Romsdal,01,0.732,data
+1528,Sykkylven,Møre og Romsdal,02,0.72,imputed
+1528,Sykkylven,Møre og Romsdal,03,0.873,data
+1531,Sula,Møre og Romsdal,01,1.11,data
+1531,Sula,Møre og Romsdal,02,1.04,data
+1531,Sula,Møre og Romsdal,03,1.051,data
+1532,Giske,Møre og Romsdal,01,1.135,data
+1532,Giske,Møre og Romsdal,02,1.055,data
+1532,Giske,Møre og Romsdal,03,0.949,data
+1535,Vestnes,Møre og Romsdal,01,0.738,data
+1535,Vestnes,Møre og Romsdal,02,0.72,imputed
+1535,Vestnes,Møre og Romsdal,03,0.974,data
+1539,Rauma,Møre og Romsdal,01,0.913,data
+1539,Rauma,Møre og Romsdal,02,0.655,data
+1539,Rauma,Møre og Romsdal,03,0.803,data
+1547,Aukra,Møre og Romsdal,01,1.044,data
+1547,Aukra,Møre og Romsdal,02,0.55,imputed
+1547,Aukra,Møre og Romsdal,03,0.88,data
+1554,Averøy,Møre og Romsdal,01,0.879,data
+1554,Averøy,Møre og Romsdal,02,0.72,imputed
+1554,Averøy,Møre og Romsdal,03,0.72,imputed
+1557,Gjemnes,Møre og Romsdal,01,0.55,imputed
+1557,Gjemnes,Møre og Romsdal,02,0.55,imputed
+1557,Gjemnes,Møre og Romsdal,03,0.55,imputed
+1560,Tingvoll,Møre og Romsdal,01,0.489,data
+1560,Tingvoll,Møre og Romsdal,02,0.55,imputed
+1560,Tingvoll,Møre og Romsdal,03,0.55,imputed
+1563,Sunndal,Møre og Romsdal,01,0.871,data
+1563,Sunndal,Møre og Romsdal,02,0.72,imputed
+1563,Sunndal,Møre og Romsdal,03,0.72,imputed
+1566,Surnadal,Møre og Romsdal,01,0.733,data
+1566,Surnadal,Møre og Romsdal,02,0.72,imputed
+1566,Surnadal,Møre og Romsdal,03,0.72,imputed
+1573,Smøla,Møre og Romsdal,01,0.726,data
+1573,Smøla,Møre og Romsdal,02,0.55,imputed
+1573,Smøla,Møre og Romsdal,03,0.55,imputed
+1576,Aure,Møre og Romsdal,01,0.634,data
+1576,Aure,Møre og Romsdal,02,0.55,imputed
+1576,Aure,Møre og Romsdal,03,0.55,imputed
+1577,Volda,Møre og Romsdal,01,1.054,data
+1577,Volda,Møre og Romsdal,02,0.884,data
+1577,Volda,Møre og Romsdal,03,0.879,data
+1578,Fjord,Møre og Romsdal,01,0.55,imputed
+1578,Fjord,Møre og Romsdal,02,0.55,imputed
+1578,Fjord,Møre og Romsdal,03,0.55,imputed
+1579,Hustadvika,Møre og Romsdal,01,0.908,data
+1579,Hustadvika,Møre og Romsdal,02,0.972,data
+1579,Hustadvika,Møre og Romsdal,03,0.879,data
+1580,Haram,Møre og Romsdal,01,0.808,data
+1580,Haram,Møre og Romsdal,02,1.001,data
+1580,Haram,Møre og Romsdal,03,0.894,data
+1804,Bodø,Nordland,01,1.591,data
+1804,Bodø,Nordland,02,1.286,data
+1804,Bodø,Nordland,03,1.207,data
+1806,Narvik,Nordland,01,0.961,data
+1806,Narvik,Nordland,02,0.743,data
+1806,Narvik,Nordland,03,0.653,data
+1811,Bindal,Nordland,01,0.55,imputed
+1811,Bindal,Nordland,02,0.55,imputed
+1811,Bindal,Nordland,03,0.55,imputed
+1812,Sømna,Nordland,01,0.55,imputed
+1812,Sømna,Nordland,02,0.55,imputed
+1812,Sømna,Nordland,03,0.55,imputed
+1813,Brønnøy,Nordland,01,1.103,data
+1813,Brønnøy,Nordland,02,0.72,imputed
+1813,Brønnøy,Nordland,03,0.703,data
+1815,Vega,Nordland,01,0.55,imputed
+1815,Vega,Nordland,02,0.55,imputed
+1815,Vega,Nordland,03,0.55,imputed
+1816,Vevelstad,Nordland,01,0.55,imputed
+1816,Vevelstad,Nordland,02,0.55,imputed
+1816,Vevelstad,Nordland,03,0.55,imputed
+1818,Herøy (Nordland),Nordland,01,0.988,data
+1818,Herøy (Nordland),Nordland,02,0.55,imputed
+1818,Herøy (Nordland),Nordland,03,0.55,imputed
+1820,Alstahaug,Nordland,01,0.865,data
+1820,Alstahaug,Nordland,02,0.72,imputed
+1820,Alstahaug,Nordland,03,0.641,data
+1822,Leirfjord,Nordland,01,0.828,data
+1822,Leirfjord,Nordland,02,0.55,imputed
+1822,Leirfjord,Nordland,03,0.55,imputed
+1824,Vefsn,Nordland,01,0.984,data
+1824,Vefsn,Nordland,02,0.718,data
+1824,Vefsn,Nordland,03,0.783,data
+1825,Grane,Nordland,01,0.55,imputed
+1825,Grane,Nordland,02,0.55,imputed
+1825,Grane,Nordland,03,0.55,imputed
+1826,Aarborte,Nordland,01,0.55,imputed
+1826,Aarborte,Nordland,02,0.55,imputed
+1826,Aarborte,Nordland,03,0.55,imputed
+1827,Dønna,Nordland,01,0.55,imputed
+1827,Dønna,Nordland,02,0.55,imputed
+1827,Dønna,Nordland,03,0.55,imputed
+1828,Nesna,Nordland,01,0.701,data
+1828,Nesna,Nordland,02,0.55,imputed
+1828,Nesna,Nordland,03,0.55,imputed
+1832,Hemnes,Nordland,01,0.704,data
+1832,Hemnes,Nordland,02,0.55,imputed
+1832,Hemnes,Nordland,03,0.55,imputed
+1833,Rana,Nordland,01,1.065,data
+1833,Rana,Nordland,02,0.867,data
+1833,Rana,Nordland,03,0.872,data
+1834,Lurøy,Nordland,01,0.689,data
+1834,Lurøy,Nordland,02,0.55,imputed
+1834,Lurøy,Nordland,03,0.55,imputed
+1835,Træna,Nordland,01,0.55,imputed
+1835,Træna,Nordland,02,0.55,imputed
+1835,Træna,Nordland,03,0.55,imputed
+1836,Rødøy,Nordland,01,0.55,imputed
+1836,Rødøy,Nordland,02,0.55,imputed
+1836,Rødøy,Nordland,03,0.55,imputed
+1837,Meløy,Nordland,01,0.629,data
+1837,Meløy,Nordland,02,0.72,imputed
+1837,Meløy,Nordland,03,0.72,imputed
+1838,Gildeskål,Nordland,01,0.643,data
+1838,Gildeskål,Nordland,02,0.55,imputed
+1838,Gildeskål,Nordland,03,0.55,imputed
+1839,Beiarn,Nordland,01,0.55,imputed
+1839,Beiarn,Nordland,02,0.55,imputed
+1839,Beiarn,Nordland,03,0.55,imputed
+1840,Saltdal,Nordland,01,0.82,data
+1840,Saltdal,Nordland,02,0.55,imputed
+1840,Saltdal,Nordland,03,0.55,imputed
+1841,Fauske,Nordland,01,0.92,data
+1841,Fauske,Nordland,02,0.72,imputed
+1841,Fauske,Nordland,03,0.72,imputed
+1845,Sørfold,Nordland,01,0.55,imputed
+1845,Sørfold,Nordland,02,0.55,imputed
+1845,Sørfold,Nordland,03,0.55,imputed
+1848,Steigen,Nordland,01,1.049,data
+1848,Steigen,Nordland,02,0.55,imputed
+1848,Steigen,Nordland,03,0.55,imputed
+1851,Lødingen,Nordland,01,0.55,imputed
+1851,Lødingen,Nordland,02,0.55,imputed
+1851,Lødingen,Nordland,03,0.55,imputed
+1853,Evenes,Nordland,01,0.596,data
+1853,Evenes,Nordland,02,0.55,imputed
+1853,Evenes,Nordland,03,0.55,imputed
+1856,Røst,Nordland,01,0.55,imputed
+1856,Røst,Nordland,02,0.55,imputed
+1856,Røst,Nordland,03,0.55,imputed
+1857,Værøy,Nordland,01,0.55,imputed
+1857,Værøy,Nordland,02,0.55,imputed
+1857,Værøy,Nordland,03,0.55,imputed
+1859,Flakstad,Nordland,01,0.751,data
+1859,Flakstad,Nordland,02,0.55,imputed
+1859,Flakstad,Nordland,03,0.55,imputed
+1860,Vestvågøy,Nordland,01,1.075,data
+1860,Vestvågøy,Nordland,02,0.976,data
+1860,Vestvågøy,Nordland,03,0.712,data
+1865,Vågan,Nordland,01,1.093,data
+1865,Vågan,Nordland,02,0.72,imputed
+1865,Vågan,Nordland,03,1.217,data
+1866,Hadsel,Nordland,01,0.805,data
+1866,Hadsel,Nordland,02,0.846,data
+1866,Hadsel,Nordland,03,0.77,data
+1867,Bø,Nordland,01,0.6,data
+1867,Bø,Nordland,02,0.55,imputed
+1867,Bø,Nordland,03,0.55,imputed
+1868,Øksnes,Nordland,01,0.741,data
+1868,Øksnes,Nordland,02,0.55,imputed
+1868,Øksnes,Nordland,03,0.55,imputed
+1870,Sortland,Nordland,01,0.985,data
+1870,Sortland,Nordland,02,1.088,data
+1870,Sortland,Nordland,03,0.84,data
+1871,Andøy,Nordland,01,0.671,data
+1871,Andøy,Nordland,02,0.55,imputed
+1871,Andøy,Nordland,03,0.55,imputed
+1874,Moskenes,Nordland,01,0.881,data
+1874,Moskenes,Nordland,02,0.55,imputed
+1874,Moskenes,Nordland,03,0.55,imputed
+1875,Hábmer,Nordland,01,0.697,data
+1875,Hábmer,Nordland,02,0.55,imputed
+1875,Hábmer,Nordland,03,0.55,imputed
+3101,Halden,Østfold,01,0.897,data
+3101,Halden,Østfold,02,0.905,data
+3101,Halden,Østfold,03,0.736,data
+3103,Moss,Østfold,01,1.243,data
+3103,Moss,Østfold,02,1.162,data
+3103,Moss,Østfold,03,1.09,data
+3105,Sarpsborg,Østfold,01,0.932,data
+3105,Sarpsborg,Østfold,02,0.904,data
+3105,Sarpsborg,Østfold,03,0.894,data
+3107,Fredrikstad,Østfold,01,1.093,data
+3107,Fredrikstad,Østfold,02,1.073,data
+3107,Fredrikstad,Østfold,03,1.084,data
+3110,Hvaler,Østfold,01,1.185,data
+3110,Hvaler,Østfold,02,0.55,imputed
+3110,Hvaler,Østfold,03,0.55,imputed
+3112,Råde,Østfold,01,1.028,data
+3112,Råde,Østfold,02,1.205,data
+3112,Råde,Østfold,03,0.926,data
+3114,Våler (Østfold),Østfold,01,0.967,data
+3114,Våler (Østfold),Østfold,02,0.72,imputed
+3114,Våler (Østfold),Østfold,03,0.894,data
+3116,Skiptvet,Østfold,01,0.767,data
+3116,Skiptvet,Østfold,02,0.55,imputed
+3116,Skiptvet,Østfold,03,0.55,imputed
+3118,Indre Østfold,Østfold,01,0.836,data
+3118,Indre Østfold,Østfold,02,0.914,data
+3118,Indre Østfold,Østfold,03,0.872,data
+3120,Rakkestad,Østfold,01,0.739,data
+3120,Rakkestad,Østfold,02,0.72,imputed
+3120,Rakkestad,Østfold,03,0.785,data
+3122,Marker,Østfold,01,0.791,data
+3122,Marker,Østfold,02,0.55,imputed
+3122,Marker,Østfold,03,0.55,imputed
+3124,Aremark,Østfold,01,0.528,data
+3124,Aremark,Østfold,02,0.55,imputed
+3124,Aremark,Østfold,03,0.55,imputed
+3201,Bærum,Akershus,01,1.54,data
+3201,Bærum,Akershus,02,1.29,data
+3201,Bærum,Akershus,03,1.209,data
+3203,Asker,Akershus,01,1.092,data
+3203,Asker,Akershus,02,1.018,data
+3203,Asker,Akershus,03,1.007,data
+3205,Lillestrøm,Akershus,01,0.923,data
+3205,Lillestrøm,Akershus,02,0.912,data
+3205,Lillestrøm,Akershus,03,1.052,data
+3207,Nordre Follo,Akershus,01,1.071,data
+3207,Nordre Follo,Akershus,02,0.982,data
+3207,Nordre Follo,Akershus,03,0.938,data
+3209,Ullensaker,Akershus,01,0.885,data
+3209,Ullensaker,Akershus,02,0.89,data
+3209,Ullensaker,Akershus,03,0.863,data
+3212,Nesodden,Akershus,01,1.305,data
+3212,Nesodden,Akershus,02,1.126,data
+3212,Nesodden,Akershus,03,1.032,data
+3214,Frogn,Akershus,01,1.197,data
+3214,Frogn,Akershus,02,1.048,data
+3214,Frogn,Akershus,03,1.0,data
+3216,Vestby,Akershus,01,0.99,data
+3216,Vestby,Akershus,02,0.758,data
+3216,Vestby,Akershus,03,0.839,data
+3218,Ås,Akershus,01,0.984,data
+3218,Ås,Akershus,02,0.98,data
+3218,Ås,Akershus,03,1.027,data
+3220,Enebakk,Akershus,01,0.745,data
+3220,Enebakk,Akershus,02,0.663,data
+3220,Enebakk,Akershus,03,0.714,data
+3222,Lørenskog,Akershus,01,1.12,data
+3222,Lørenskog,Akershus,02,0.936,data
+3222,Lørenskog,Akershus,03,1.075,data
+3224,Rælingen,Akershus,01,0.998,data
+3224,Rælingen,Akershus,02,0.911,data
+3224,Rælingen,Akershus,03,0.837,data
+3226,Aurskog-Høland,Akershus,01,0.594,data
+3226,Aurskog-Høland,Akershus,02,0.62,data
+3226,Aurskog-Høland,Akershus,03,0.66,data
+3228,Nes,Akershus,01,0.642,data
+3228,Nes,Akershus,02,0.605,data
+3228,Nes,Akershus,03,0.688,data
+3230,Gjerdrum,Akershus,01,0.759,data
+3230,Gjerdrum,Akershus,02,0.837,data
+3230,Gjerdrum,Akershus,03,0.866,data
+3232,Nittedal,Akershus,01,0.926,data
+3232,Nittedal,Akershus,02,0.856,data
+3232,Nittedal,Akershus,03,0.869,data
+3234,Lunner,Akershus,01,0.574,data
+3234,Lunner,Akershus,02,0.486,data
+3234,Lunner,Akershus,03,0.809,data
+3236,Jevnaker,Akershus,01,0.535,data
+3236,Jevnaker,Akershus,02,0.605,data
+3236,Jevnaker,Akershus,03,0.593,data
+3238,Nannestad,Akershus,01,0.719,data
+3238,Nannestad,Akershus,02,0.751,data
+3238,Nannestad,Akershus,03,0.687,data
+3240,Eidsvoll,Akershus,01,0.665,data
+3240,Eidsvoll,Akershus,02,0.747,data
+3240,Eidsvoll,Akershus,03,0.718,data
+3242,Hurdal,Akershus,01,0.532,data
+3242,Hurdal,Akershus,02,0.55,imputed
+3242,Hurdal,Akershus,03,0.55,imputed
+3301,Drammen,Buskerud,01,1.154,data
+3301,Drammen,Buskerud,02,1.031,data
+3301,Drammen,Buskerud,03,1.106,data
+3303,Kongsberg,Buskerud,01,0.943,data
+3303,Kongsberg,Buskerud,02,0.913,data
+3303,Kongsberg,Buskerud,03,0.888,data
+3305,Ringerike,Buskerud,01,0.81,data
+3305,Ringerike,Buskerud,02,0.871,data
+3305,Ringerike,Buskerud,03,0.864,data
+3310,Hole,Buskerud,01,1.2,data
+3310,Hole,Buskerud,02,1.108,data
+3310,Hole,Buskerud,03,0.956,data
+3312,Lier,Buskerud,01,1.242,data
+3312,Lier,Buskerud,02,1.23,data
+3312,Lier,Buskerud,03,1.077,data
+3314,Øvre Eiker,Buskerud,01,1.005,data
+3314,Øvre Eiker,Buskerud,02,0.936,data
+3314,Øvre Eiker,Buskerud,03,0.925,data
+3316,Modum,Buskerud,01,0.764,data
+3316,Modum,Buskerud,02,0.813,data
+3316,Modum,Buskerud,03,0.672,data
+3318,Krødsherad,Buskerud,01,0.55,imputed
+3318,Krødsherad,Buskerud,02,0.55,imputed
+3318,Krødsherad,Buskerud,03,0.55,imputed
+3320,Flå,Buskerud,01,0.55,imputed
+3320,Flå,Buskerud,02,0.55,imputed
+3320,Flå,Buskerud,03,0.55,imputed
+3322,Nesbyen,Buskerud,01,0.514,data
+3322,Nesbyen,Buskerud,02,0.55,imputed
+3322,Nesbyen,Buskerud,03,0.55,imputed
+3324,Gol,Buskerud,01,0.79,data
+3324,Gol,Buskerud,02,0.854,data
+3324,Gol,Buskerud,03,0.55,imputed
+3326,Hemsedal,Buskerud,01,0.55,imputed
+3326,Hemsedal,Buskerud,02,0.55,imputed
+3326,Hemsedal,Buskerud,03,0.902,data
+3328,Ål,Buskerud,01,0.656,data
+3328,Ål,Buskerud,02,0.72,imputed
+3328,Ål,Buskerud,03,0.72,imputed
+3330,Hol,Buskerud,01,0.602,data
+3330,Hol,Buskerud,02,0.55,imputed
+3330,Hol,Buskerud,03,0.55,imputed
+3332,Sigdal,Buskerud,01,0.553,data
+3332,Sigdal,Buskerud,02,0.55,imputed
+3332,Sigdal,Buskerud,03,0.55,imputed
+3334,Flesberg,Buskerud,01,0.64,data
+3334,Flesberg,Buskerud,02,0.55,imputed
+3334,Flesberg,Buskerud,03,0.55,imputed
+3336,Rollag,Buskerud,01,0.55,imputed
+3336,Rollag,Buskerud,02,0.55,imputed
+3336,Rollag,Buskerud,03,0.55,imputed
+3338,Nore og Uvdal,Buskerud,01,0.55,imputed
+3338,Nore og Uvdal,Buskerud,02,0.55,imputed
+3338,Nore og Uvdal,Buskerud,03,0.55,imputed
+3401,Kongsvinger,Innlandet,01,0.953,data
+3401,Kongsvinger,Innlandet,02,0.928,data
+3401,Kongsvinger,Innlandet,03,1.107,data
+3403,Hamar,Innlandet,01,1.425,data
+3403,Hamar,Innlandet,02,1.187,data
+3403,Hamar,Innlandet,03,1.188,data
+3405,Lillehammer,Innlandet,01,1.386,data
+3405,Lillehammer,Innlandet,02,1.095,data
+3405,Lillehammer,Innlandet,03,1.136,data
+3407,Gjøvik,Innlandet,01,1.112,data
+3407,Gjøvik,Innlandet,02,1.004,data
+3407,Gjøvik,Innlandet,03,1.016,data
+3411,Ringsaker,Innlandet,01,1.04,data
+3411,Ringsaker,Innlandet,02,0.97,data
+3411,Ringsaker,Innlandet,03,0.997,data
+3412,Løten,Innlandet,01,1.021,data
+3412,Løten,Innlandet,02,0.72,imputed
+3412,Løten,Innlandet,03,0.797,data
+3413,Stange,Innlandet,01,1.274,data
+3413,Stange,Innlandet,02,1.093,data
+3413,Stange,Innlandet,03,0.958,data
+3414,Nord-Odal,Innlandet,01,0.772,data
+3414,Nord-Odal,Innlandet,02,0.55,imputed
+3414,Nord-Odal,Innlandet,03,0.55,imputed
+3415,Sør-Odal,Innlandet,01,0.969,data
+3415,Sør-Odal,Innlandet,02,0.72,imputed
+3415,Sør-Odal,Innlandet,03,0.845,data
+3416,Eidskog,Innlandet,01,0.739,data
+3416,Eidskog,Innlandet,02,0.72,imputed
+3416,Eidskog,Innlandet,03,0.72,imputed
+3417,Grue,Innlandet,01,0.568,data
+3417,Grue,Innlandet,02,0.55,imputed
+3417,Grue,Innlandet,03,0.55,imputed
+3418,Åsnes,Innlandet,01,0.572,data
+3418,Åsnes,Innlandet,02,0.72,imputed
+3418,Åsnes,Innlandet,03,0.817,data
+3419,Våler (Innlandet),Innlandet,01,0.564,data
+3419,Våler (Innlandet),Innlandet,02,0.55,imputed
+3419,Våler (Innlandet),Innlandet,03,0.55,imputed
+3420,Elverum,Innlandet,01,0.973,data
+3420,Elverum,Innlandet,02,0.888,data
+3420,Elverum,Innlandet,03,0.853,data
+3421,Trysil,Innlandet,01,0.87,data
+3421,Trysil,Innlandet,02,0.72,imputed
+3421,Trysil,Innlandet,03,0.893,data
+3422,Åmot,Innlandet,01,0.584,data
+3422,Åmot,Innlandet,02,0.55,imputed
+3422,Åmot,Innlandet,03,0.55,imputed
+3423,Stor-Elvdal,Innlandet,01,0.45,data
+3423,Stor-Elvdal,Innlandet,02,0.55,imputed
+3423,Stor-Elvdal,Innlandet,03,0.55,imputed
+3424,Rendalen,Innlandet,01,0.55,imputed
+3424,Rendalen,Innlandet,02,0.55,imputed
+3424,Rendalen,Innlandet,03,0.55,imputed
+3425,Engerdal,Innlandet,01,0.55,imputed
+3425,Engerdal,Innlandet,02,0.55,imputed
+3425,Engerdal,Innlandet,03,0.55,imputed
+3426,Tolga,Innlandet,01,0.55,imputed
+3426,Tolga,Innlandet,02,0.55,imputed
+3426,Tolga,Innlandet,03,0.55,imputed
+3427,Tynset,Innlandet,01,0.799,data
+3427,Tynset,Innlandet,02,0.72,imputed
+3427,Tynset,Innlandet,03,0.679,data
+3428,Alvdal,Innlandet,01,0.55,imputed
+3428,Alvdal,Innlandet,02,0.55,imputed
+3428,Alvdal,Innlandet,03,0.55,imputed
+3429,Folldal,Innlandet,01,0.55,imputed
+3429,Folldal,Innlandet,02,0.55,imputed
+3429,Folldal,Innlandet,03,0.55,imputed
+3430,Os,Innlandet,01,0.55,imputed
+3430,Os,Innlandet,02,0.55,imputed
+3430,Os,Innlandet,03,0.55,imputed
+3431,Dovre,Innlandet,01,0.55,imputed
+3431,Dovre,Innlandet,02,0.55,imputed
+3431,Dovre,Innlandet,03,0.55,imputed
+3432,Lesja,Innlandet,01,0.55,imputed
+3432,Lesja,Innlandet,02,0.55,imputed
+3432,Lesja,Innlandet,03,0.55,imputed
+3433,Skjåk,Innlandet,01,0.55,imputed
+3433,Skjåk,Innlandet,02,0.55,imputed
+3433,Skjåk,Innlandet,03,0.55,imputed
+3434,Lom,Innlandet,01,0.55,imputed
+3434,Lom,Innlandet,02,0.55,imputed
+3434,Lom,Innlandet,03,0.55,imputed
+3435,Vågå,Innlandet,01,0.855,data
+3435,Vågå,Innlandet,02,0.55,imputed
+3435,Vågå,Innlandet,03,0.55,imputed
+3436,Nord-Fron,Innlandet,01,0.645,data
+3436,Nord-Fron,Innlandet,02,0.72,imputed
+3436,Nord-Fron,Innlandet,03,0.72,imputed
+3437,Sel,Innlandet,01,0.633,data
+3437,Sel,Innlandet,02,0.72,imputed
+3437,Sel,Innlandet,03,0.72,imputed
+3438,Sør-Fron,Innlandet,01,0.55,imputed
+3438,Sør-Fron,Innlandet,02,0.55,imputed
+3438,Sør-Fron,Innlandet,03,0.55,imputed
+3439,Ringebu,Innlandet,01,0.688,data
+3439,Ringebu,Innlandet,02,0.55,imputed
+3439,Ringebu,Innlandet,03,0.55,imputed
+3440,Øyer,Innlandet,01,0.903,data
+3440,Øyer,Innlandet,02,0.72,imputed
+3440,Øyer,Innlandet,03,0.936,data
+3441,Gausdal,Innlandet,01,0.787,data
+3441,Gausdal,Innlandet,02,0.72,imputed
+3441,Gausdal,Innlandet,03,0.72,imputed
+3442,Østre Toten,Innlandet,01,0.891,data
+3442,Østre Toten,Innlandet,02,0.973,data
+3442,Østre Toten,Innlandet,03,0.912,data
+3443,Vestre Toten,Innlandet,01,0.976,data
+3443,Vestre Toten,Innlandet,02,1.009,data
+3443,Vestre Toten,Innlandet,03,0.934,data
+3446,Gran,Innlandet,01,1.006,data
+3446,Gran,Innlandet,02,0.929,data
+3446,Gran,Innlandet,03,0.786,data
+3447,Søndre Land,Innlandet,01,0.714,data
+3447,Søndre Land,Innlandet,02,0.72,imputed
+3447,Søndre Land,Innlandet,03,0.72,imputed
+3448,Nordre Land,Innlandet,01,0.732,data
+3448,Nordre Land,Innlandet,02,0.72,imputed
+3448,Nordre Land,Innlandet,03,0.72,imputed
+3449,Sør-Aurdal,Innlandet,01,0.685,data
+3449,Sør-Aurdal,Innlandet,02,0.55,imputed
+3449,Sør-Aurdal,Innlandet,03,0.55,imputed
+3450,Etnedal,Innlandet,01,0.55,imputed
+3450,Etnedal,Innlandet,02,0.55,imputed
+3450,Etnedal,Innlandet,03,0.55,imputed
+3451,Nord-Aurdal,Innlandet,01,0.884,data
+3451,Nord-Aurdal,Innlandet,02,0.72,imputed
+3451,Nord-Aurdal,Innlandet,03,0.72,imputed
+3452,Vestre Slidre,Innlandet,01,0.55,imputed
+3452,Vestre Slidre,Innlandet,02,0.55,imputed
+3452,Vestre Slidre,Innlandet,03,0.55,imputed
+3453,Øystre Slidre,Innlandet,01,0.55,imputed
+3453,Øystre Slidre,Innlandet,02,0.55,imputed
+3453,Øystre Slidre,Innlandet,03,0.55,imputed
+3454,Vang,Innlandet,01,0.55,imputed
+3454,Vang,Innlandet,02,0.55,imputed
+3454,Vang,Innlandet,03,0.55,imputed
+3901,Horten,Vestfold,01,0.979,data
+3901,Horten,Vestfold,02,0.861,data
+3901,Horten,Vestfold,03,0.9,data
+3903,Holmestrand,Vestfold,01,0.91,data
+3903,Holmestrand,Vestfold,02,1.01,data
+3903,Holmestrand,Vestfold,03,0.941,data
+3905,Tønsberg,Vestfold,01,1.096,data
+3905,Tønsberg,Vestfold,02,1.121,data
+3905,Tønsberg,Vestfold,03,1.129,data
+3907,Sandefjord,Vestfold,01,0.987,data
+3907,Sandefjord,Vestfold,02,0.939,data
+3907,Sandefjord,Vestfold,03,0.945,data
+3909,Larvik,Vestfold,01,0.865,data
+3909,Larvik,Vestfold,02,0.905,data
+3909,Larvik,Vestfold,03,0.801,data
+3911,Færder,Vestfold,01,1.125,data
+3911,Færder,Vestfold,02,1.244,data
+3911,Færder,Vestfold,03,0.953,data
+4001,Porsgrunn,Telemark,01,1.118,data
+4001,Porsgrunn,Telemark,02,1.012,data
+4001,Porsgrunn,Telemark,03,1.077,data
+4003,Skien,Telemark,01,1.097,data
+4003,Skien,Telemark,02,1.096,data
+4003,Skien,Telemark,03,0.994,data
+4005,Notodden,Telemark,01,0.739,data
+4005,Notodden,Telemark,02,0.716,data
+4005,Notodden,Telemark,03,0.85,imputed
+4010,Siljan,Telemark,01,0.979,data
+4010,Siljan,Telemark,02,0.55,imputed
+4010,Siljan,Telemark,03,0.55,imputed
+4012,Bamble,Telemark,01,1.105,data
+4012,Bamble,Telemark,02,1.015,data
+4012,Bamble,Telemark,03,0.85,imputed
+4014,Kragerø,Telemark,01,1.175,data
+4014,Kragerø,Telemark,02,0.85,imputed
+4014,Kragerø,Telemark,03,1.014,data
+4016,Drangedal,Telemark,01,0.612,data
+4016,Drangedal,Telemark,02,0.55,imputed
+4016,Drangedal,Telemark,03,0.55,imputed
+4018,Nome,Telemark,01,0.715,data
+4018,Nome,Telemark,02,0.72,imputed
+4018,Nome,Telemark,03,0.72,imputed
+4020,Midt-Telemark,Telemark,01,0.869,data
+4020,Midt-Telemark,Telemark,02,0.85,imputed
+4020,Midt-Telemark,Telemark,03,1.01,data
+4022,Seljord,Telemark,01,0.781,data
+4022,Seljord,Telemark,02,0.55,imputed
+4022,Seljord,Telemark,03,0.55,imputed
+4024,Hjartdal,Telemark,01,0.55,imputed
+4024,Hjartdal,Telemark,02,0.55,imputed
+4024,Hjartdal,Telemark,03,0.55,imputed
+4026,Tinn,Telemark,01,0.628,data
+4026,Tinn,Telemark,02,0.72,imputed
+4026,Tinn,Telemark,03,0.72,imputed
+4028,Kviteseid,Telemark,01,0.668,data
+4028,Kviteseid,Telemark,02,0.55,imputed
+4028,Kviteseid,Telemark,03,0.55,imputed
+4030,Nissedal,Telemark,01,0.55,imputed
+4030,Nissedal,Telemark,02,0.55,imputed
+4030,Nissedal,Telemark,03,0.55,imputed
+4032,Fyresdal,Telemark,01,0.55,imputed
+4032,Fyresdal,Telemark,02,0.55,imputed
+4032,Fyresdal,Telemark,03,0.55,imputed
+4034,Tokke,Telemark,01,0.825,data
+4034,Tokke,Telemark,02,0.55,imputed
+4034,Tokke,Telemark,03,0.55,imputed
+4036,Vinje,Telemark,01,0.55,imputed
+4036,Vinje,Telemark,02,0.55,imputed
+4036,Vinje,Telemark,03,0.55,imputed
+4201,Risør,Agder,01,1.059,data
+4201,Risør,Agder,02,0.72,imputed
+4201,Risør,Agder,03,0.72,imputed
+4202,Grimstad,Agder,01,1.157,data
+4202,Grimstad,Agder,02,1.002,data
+4202,Grimstad,Agder,03,0.988,data
+4203,Arendal,Agder,01,0.985,data
+4203,Arendal,Agder,02,0.909,data
+4203,Arendal,Agder,03,0.813,data
+4204,Kristiansand,Agder,01,1.216,data
+4204,Kristiansand,Agder,02,1.095,data
+4204,Kristiansand,Agder,03,1.164,data
+4205,Lindesnes,Agder,01,0.89,data
+4205,Lindesnes,Agder,02,0.987,data
+4205,Lindesnes,Agder,03,0.815,data
+4206,Farsund,Agder,01,0.683,data
+4206,Farsund,Agder,02,0.792,data
+4206,Farsund,Agder,03,0.658,data
+4207,Flekkefjord,Agder,01,0.765,data
+4207,Flekkefjord,Agder,02,0.799,data
+4207,Flekkefjord,Agder,03,0.802,data
+4211,Gjerstad,Agder,01,0.553,data
+4211,Gjerstad,Agder,02,0.55,imputed
+4211,Gjerstad,Agder,03,0.55,imputed
+4212,Vegårshei,Agder,01,0.621,data
+4212,Vegårshei,Agder,02,0.55,imputed
+4212,Vegårshei,Agder,03,0.55,imputed
+4213,Tvedestrand,Agder,01,1.007,data
+4213,Tvedestrand,Agder,02,0.791,data
+4213,Tvedestrand,Agder,03,0.664,data
+4214,Froland,Agder,01,0.8,data
+4214,Froland,Agder,02,0.887,data
+4214,Froland,Agder,03,0.717,data
+4215,Lillesand,Agder,01,1.154,data
+4215,Lillesand,Agder,02,1.055,data
+4215,Lillesand,Agder,03,0.937,data
+4216,Birkenes,Agder,01,0.815,data
+4216,Birkenes,Agder,02,0.882,data
+4216,Birkenes,Agder,03,0.663,data
+4217,Åmli,Agder,01,0.55,imputed
+4217,Åmli,Agder,02,0.55,imputed
+4217,Åmli,Agder,03,0.55,imputed
+4218,Iveland,Agder,01,0.505,data
+4218,Iveland,Agder,02,0.55,imputed
+4218,Iveland,Agder,03,0.55,imputed
+4219,Evje og Hornnes,Agder,01,0.584,data
+4219,Evje og Hornnes,Agder,02,0.55,imputed
+4219,Evje og Hornnes,Agder,03,0.55,imputed
+4220,Bygland,Agder,01,0.55,imputed
+4220,Bygland,Agder,02,0.55,imputed
+4220,Bygland,Agder,03,0.55,imputed
+4221,Valle,Agder,01,0.55,imputed
+4221,Valle,Agder,02,0.55,imputed
+4221,Valle,Agder,03,0.55,imputed
+4222,Bykle,Agder,01,0.55,imputed
+4222,Bykle,Agder,02,0.55,imputed
+4222,Bykle,Agder,03,0.55,imputed
+4223,Vennesla,Agder,01,0.787,data
+4223,Vennesla,Agder,02,0.821,data
+4223,Vennesla,Agder,03,0.743,data
+4224,Åseral,Agder,01,0.55,imputed
+4224,Åseral,Agder,02,0.55,imputed
+4224,Åseral,Agder,03,0.55,imputed
+4225,Lyngdal,Agder,01,0.695,data
+4225,Lyngdal,Agder,02,0.813,data
+4225,Lyngdal,Agder,03,0.671,data
+4226,Hægebostad,Agder,01,0.55,imputed
+4226,Hægebostad,Agder,02,0.55,imputed
+4226,Hægebostad,Agder,03,0.55,imputed
+4227,Kvinesdal,Agder,01,0.642,data
+4227,Kvinesdal,Agder,02,0.72,imputed
+4227,Kvinesdal,Agder,03,0.72,imputed
+4228,Sirdal,Agder,01,0.55,imputed
+4228,Sirdal,Agder,02,0.55,imputed
+4228,Sirdal,Agder,03,0.55,imputed
+4601,Bergen,Vestland,01,1.363,data
+4601,Bergen,Vestland,02,1.145,data
+4601,Bergen,Vestland,03,1.108,data
+4602,Kinn,Vestland,01,0.719,data
+4602,Kinn,Vestland,02,0.819,data
+4602,Kinn,Vestland,03,0.711,data
+4611,Etne,Vestland,01,0.521,data
+4611,Etne,Vestland,02,0.55,imputed
+4611,Etne,Vestland,03,0.55,imputed
+4612,Sveio,Vestland,01,0.738,data
+4612,Sveio,Vestland,02,0.662,data
+4612,Sveio,Vestland,03,0.72,imputed
+4613,Bømlo,Vestland,01,0.598,data
+4613,Bømlo,Vestland,02,0.618,data
+4613,Bømlo,Vestland,03,0.439,data
+4614,Stord,Vestland,01,0.806,data
+4614,Stord,Vestland,02,0.865,data
+4614,Stord,Vestland,03,0.65,data
+4615,Fitjar,Vestland,01,0.637,data
+4615,Fitjar,Vestland,02,0.55,imputed
+4615,Fitjar,Vestland,03,0.55,imputed
+4616,Tysnes,Vestland,01,0.681,data
+4616,Tysnes,Vestland,02,0.55,imputed
+4616,Tysnes,Vestland,03,0.55,imputed
+4617,Kvinnherad,Vestland,01,0.6,data
+4617,Kvinnherad,Vestland,02,0.85,imputed
+4617,Kvinnherad,Vestland,03,0.625,data
+4618,Ullensvang,Vestland,01,0.652,data
+4618,Ullensvang,Vestland,02,0.569,data
+4618,Ullensvang,Vestland,03,0.85,imputed
+4619,Eidfjord,Vestland,01,0.55,imputed
+4619,Eidfjord,Vestland,02,0.55,imputed
+4619,Eidfjord,Vestland,03,0.55,imputed
+4620,Ulvik,Vestland,01,0.55,imputed
+4620,Ulvik,Vestland,02,0.55,imputed
+4620,Ulvik,Vestland,03,0.55,imputed
+4621,Voss,Vestland,01,0.978,data
+4621,Voss,Vestland,02,0.984,data
+4621,Voss,Vestland,03,0.969,data
+4622,Kvam,Vestland,01,0.671,data
+4622,Kvam,Vestland,02,0.72,imputed
+4622,Kvam,Vestland,03,0.772,data
+4623,Samnanger,Vestland,01,0.55,imputed
+4623,Samnanger,Vestland,02,0.55,imputed
+4623,Samnanger,Vestland,03,0.55,imputed
+4624,Bjørnafjorden,Vestland,01,0.975,data
+4624,Bjørnafjorden,Vestland,02,0.937,data
+4624,Bjørnafjorden,Vestland,03,0.792,data
+4625,Austevoll,Vestland,01,0.765,data
+4625,Austevoll,Vestland,02,0.72,imputed
+4625,Austevoll,Vestland,03,0.677,data
+4626,Øygarden,Vestland,01,0.942,data
+4626,Øygarden,Vestland,02,0.89,data
+4626,Øygarden,Vestland,03,0.735,data
+4627,Askøy,Vestland,01,1.036,data
+4627,Askøy,Vestland,02,0.888,data
+4627,Askøy,Vestland,03,0.704,data
+4628,Vaksdal,Vestland,01,0.547,data
+4628,Vaksdal,Vestland,02,0.55,imputed
+4628,Vaksdal,Vestland,03,0.55,imputed
+4629,Modalen,Vestland,01,0.55,imputed
+4629,Modalen,Vestland,02,0.55,imputed
+4629,Modalen,Vestland,03,0.55,imputed
+4630,Osterøy,Vestland,01,0.704,data
+4630,Osterøy,Vestland,02,0.72,imputed
+4630,Osterøy,Vestland,03,0.604,data
+4631,Alver,Vestland,01,0.863,data
+4631,Alver,Vestland,02,0.833,data
+4631,Alver,Vestland,03,0.712,data
+4632,Austrheim,Vestland,01,0.805,data
+4632,Austrheim,Vestland,02,0.55,imputed
+4632,Austrheim,Vestland,03,0.55,imputed
+4633,Fedje,Vestland,01,0.55,imputed
+4633,Fedje,Vestland,02,0.55,imputed
+4633,Fedje,Vestland,03,0.55,imputed
+4634,Masfjorden,Vestland,01,0.55,imputed
+4634,Masfjorden,Vestland,02,0.55,imputed
+4634,Masfjorden,Vestland,03,0.55,imputed
+4635,Gulen,Vestland,01,0.55,imputed
+4635,Gulen,Vestland,02,0.55,imputed
+4635,Gulen,Vestland,03,0.55,imputed
+4636,Solund,Vestland,01,0.55,imputed
+4636,Solund,Vestland,02,0.55,imputed
+4636,Solund,Vestland,03,0.55,imputed
+4637,Hyllestad,Vestland,01,0.55,imputed
+4637,Hyllestad,Vestland,02,0.55,imputed
+4637,Hyllestad,Vestland,03,0.55,imputed
+4638,Høyanger,Vestland,01,0.386,data
+4638,Høyanger,Vestland,02,0.55,imputed
+4638,Høyanger,Vestland,03,0.55,imputed
+4639,Vik,Vestland,01,0.656,data
+4639,Vik,Vestland,02,0.55,imputed
+4639,Vik,Vestland,03,0.55,imputed
+4640,Sogndal,Vestland,01,0.992,data
+4640,Sogndal,Vestland,02,1.107,data
+4640,Sogndal,Vestland,03,0.899,data
+4641,Aurland,Vestland,01,0.55,imputed
+4641,Aurland,Vestland,02,0.55,imputed
+4641,Aurland,Vestland,03,0.55,imputed
+4642,Lærdal,Vestland,01,0.55,imputed
+4642,Lærdal,Vestland,02,0.55,imputed
+4642,Lærdal,Vestland,03,0.55,imputed
+4643,Årdal,Vestland,01,0.533,data
+4643,Årdal,Vestland,02,0.26,data
+4643,Årdal,Vestland,03,0.72,imputed
+4644,Luster,Vestland,01,0.66,data
+4644,Luster,Vestland,02,0.72,imputed
+4644,Luster,Vestland,03,0.72,imputed
+4645,Askvoll,Vestland,01,0.538,data
+4645,Askvoll,Vestland,02,0.55,imputed
+4645,Askvoll,Vestland,03,0.55,imputed
+4646,Fjaler,Vestland,01,0.55,imputed
+4646,Fjaler,Vestland,02,0.55,imputed
+4646,Fjaler,Vestland,03,0.55,imputed
+4647,Sunnfjord,Vestland,01,0.909,data
+4647,Sunnfjord,Vestland,02,1.037,data
+4647,Sunnfjord,Vestland,03,0.897,data
+4648,Bremanger,Vestland,01,0.447,data
+4648,Bremanger,Vestland,02,0.55,imputed
+4648,Bremanger,Vestland,03,0.55,imputed
+4649,Stad,Vestland,01,0.619,data
+4649,Stad,Vestland,02,0.72,imputed
+4649,Stad,Vestland,03,0.62,data
+4650,Gloppen,Vestland,01,0.547,data
+4650,Gloppen,Vestland,02,0.72,imputed
+4650,Gloppen,Vestland,03,0.72,imputed
+4651,Stryn,Vestland,01,0.696,data
+4651,Stryn,Vestland,02,0.72,imputed
+4651,Stryn,Vestland,03,0.72,imputed
+5001,Trondheim,Trøndelag,01,1.512,data
+5001,Trondheim,Trøndelag,02,1.14,data
+5001,Trondheim,Trøndelag,03,1.086,data
+5006,Steinkjer,Trøndelag,01,0.676,data
+5006,Steinkjer,Trøndelag,02,0.56,data
+5006,Steinkjer,Trøndelag,03,0.557,data
+5007,Namsos,Trøndelag,01,0.663,data
+5007,Namsos,Trøndelag,02,0.612,data
+5007,Namsos,Trøndelag,03,0.611,data
+5014,Frøya,Trøndelag,01,0.918,data
+5014,Frøya,Trøndelag,02,0.72,imputed
+5014,Frøya,Trøndelag,03,0.636,data
+5020,Osen,Trøndelag,01,0.55,imputed
+5020,Osen,Trøndelag,02,0.55,imputed
+5020,Osen,Trøndelag,03,0.55,imputed
+5021,Oppdal,Trøndelag,01,0.891,data
+5021,Oppdal,Trøndelag,02,0.72,imputed
+5021,Oppdal,Trøndelag,03,0.747,data
+5022,Rennebu,Trøndelag,01,0.439,data
+5022,Rennebu,Trøndelag,02,0.55,imputed
+5022,Rennebu,Trøndelag,03,0.55,imputed
+5025,Røros,Trøndelag,01,0.768,data
+5025,Røros,Trøndelag,02,0.72,imputed
+5025,Røros,Trøndelag,03,0.616,data
+5026,Holtålen,Trøndelag,01,0.55,imputed
+5026,Holtålen,Trøndelag,02,0.55,imputed
+5026,Holtålen,Trøndelag,03,0.55,imputed
+5027,Midtre Gauldal,Trøndelag,01,0.571,data
+5027,Midtre Gauldal,Trøndelag,02,0.72,imputed
+5027,Midtre Gauldal,Trøndelag,03,0.555,data
+5028,Melhus,Trøndelag,01,1.043,data
+5028,Melhus,Trøndelag,02,0.888,data
+5028,Melhus,Trøndelag,03,0.818,data
+5029,Skaun,Trøndelag,01,1.119,data
+5029,Skaun,Trøndelag,02,1.001,data
+5029,Skaun,Trøndelag,03,0.828,data
+5031,Malvik,Trøndelag,01,1.328,data
+5031,Malvik,Trøndelag,02,1.038,data
+5031,Malvik,Trøndelag,03,0.838,data
+5032,Selbu,Trøndelag,01,0.556,data
+5032,Selbu,Trøndelag,02,0.55,imputed
+5032,Selbu,Trøndelag,03,0.55,imputed
+5033,Tydal,Trøndelag,01,0.55,imputed
+5033,Tydal,Trøndelag,02,0.55,imputed
+5033,Tydal,Trøndelag,03,0.55,imputed
+5034,Meråker,Trøndelag,01,0.571,data
+5034,Meråker,Trøndelag,02,0.55,imputed
+5034,Meråker,Trøndelag,03,0.55,imputed
+5035,Stjørdal,Trøndelag,01,1.058,data
+5035,Stjørdal,Trøndelag,02,0.893,data
+5035,Stjørdal,Trøndelag,03,0.78,data
+5036,Frosta,Trøndelag,01,0.754,data
+5036,Frosta,Trøndelag,02,0.55,imputed
+5036,Frosta,Trøndelag,03,0.55,imputed
+5037,Levanger,Trøndelag,01,0.9,data
+5037,Levanger,Trøndelag,02,0.647,data
+5037,Levanger,Trøndelag,03,0.629,data
+5038,Verdal,Trøndelag,01,0.786,data
+5038,Verdal,Trøndelag,02,0.534,data
+5038,Verdal,Trøndelag,03,0.503,data
+5041,Snåase,Trøndelag,01,0.475,data
+5041,Snåase,Trøndelag,02,0.55,imputed
+5041,Snåase,Trøndelag,03,0.55,imputed
+5042,Lierne,Trøndelag,01,0.55,imputed
+5042,Lierne,Trøndelag,02,0.55,imputed
+5042,Lierne,Trøndelag,03,0.55,imputed
+5043,Raarvihke,Trøndelag,01,0.55,imputed
+5043,Raarvihke,Trøndelag,02,0.55,imputed
+5043,Raarvihke,Trøndelag,03,0.55,imputed
+5044,Namsskogan,Trøndelag,01,0.55,imputed
+5044,Namsskogan,Trøndelag,02,0.55,imputed
+5044,Namsskogan,Trøndelag,03,0.55,imputed
+5045,Grong,Trøndelag,01,0.449,data
+5045,Grong,Trøndelag,02,0.55,imputed
+5045,Grong,Trøndelag,03,0.55,imputed
+5046,Høylandet,Trøndelag,01,0.55,imputed
+5046,Høylandet,Trøndelag,02,0.55,imputed
+5046,Høylandet,Trøndelag,03,0.55,imputed
+5047,Overhalla,Trøndelag,01,0.594,data
+5047,Overhalla,Trøndelag,02,0.55,imputed
+5047,Overhalla,Trøndelag,03,0.55,imputed
+5049,Flatanger,Trøndelag,01,0.55,imputed
+5049,Flatanger,Trøndelag,02,0.55,imputed
+5049,Flatanger,Trøndelag,03,0.55,imputed
+5052,Leka,Trøndelag,01,0.55,imputed
+5052,Leka,Trøndelag,02,0.55,imputed
+5052,Leka,Trøndelag,03,0.55,imputed
+5053,Inderøy,Trøndelag,01,0.731,data
+5053,Inderøy,Trøndelag,02,0.72,imputed
+5053,Inderøy,Trøndelag,03,0.72,imputed
+5054,Indre Fosen,Trøndelag,01,0.685,data
+5054,Indre Fosen,Trøndelag,02,0.85,imputed
+5054,Indre Fosen,Trøndelag,03,0.514,data
+5055,Heim,Trøndelag,01,0.695,data
+5055,Heim,Trøndelag,02,0.72,imputed
+5055,Heim,Trøndelag,03,0.72,imputed
+5056,Hitra,Trøndelag,01,0.83,data
+5056,Hitra,Trøndelag,02,0.72,imputed
+5056,Hitra,Trøndelag,03,0.699,data
+5057,Ørland,Trøndelag,01,0.809,data
+5057,Ørland,Trøndelag,02,0.817,data
+5057,Ørland,Trøndelag,03,0.674,data
+5058,Åfjord,Trøndelag,01,0.735,data
+5058,Åfjord,Trøndelag,02,0.55,imputed
+5058,Åfjord,Trøndelag,03,0.55,imputed
+5059,Orkland,Trøndelag,01,0.77,data
+5059,Orkland,Trøndelag,02,0.802,data
+5059,Orkland,Trøndelag,03,0.69,data
+5060,Nærøysund,Trøndelag,01,0.688,data
+5060,Nærøysund,Trøndelag,02,0.643,data
+5060,Nærøysund,Trøndelag,03,0.547,data
+5061,Rindal,Trøndelag,01,0.55,imputed
+5061,Rindal,Trøndelag,02,0.55,imputed
+5061,Rindal,Trøndelag,03,0.55,imputed
+5501,Tromsø,Troms,01,1.465,data
+5501,Tromsø,Troms,02,1.139,data
+5501,Tromsø,Troms,03,1.078,data
+5503,Harstad,Troms,01,0.874,data
+5503,Harstad,Troms,02,0.656,data
+5503,Harstad,Troms,03,0.607,data
+5510,Kvæfjord,Troms,01,0.604,data
+5510,Kvæfjord,Troms,02,0.55,imputed
+5510,Kvæfjord,Troms,03,0.55,imputed
+5512,Dielddanuorri,Troms,01,0.587,data
+5512,Dielddanuorri,Troms,02,0.55,imputed
+5512,Dielddanuorri,Troms,03,0.55,imputed
+5514,Ibestad,Troms,01,0.55,imputed
+5514,Ibestad,Troms,02,0.55,imputed
+5514,Ibestad,Troms,03,0.55,imputed
+5516,Gratangen,Troms,01,0.55,imputed
+5516,Gratangen,Troms,02,0.55,imputed
+5516,Gratangen,Troms,03,0.55,imputed
+5518,Loabák,Troms,01,0.55,imputed
+5518,Loabák,Troms,02,0.55,imputed
+5518,Loabák,Troms,03,0.55,imputed
+5520,Bardu,Troms,01,0.635,data
+5520,Bardu,Troms,02,0.55,imputed
+5520,Bardu,Troms,03,0.55,imputed
+5522,Salangen,Troms,01,0.466,data
+5522,Salangen,Troms,02,0.55,imputed
+5522,Salangen,Troms,03,0.55,imputed
+5524,Målselv,Troms,01,0.62,data
+5524,Målselv,Troms,02,0.72,imputed
+5524,Målselv,Troms,03,0.72,imputed
+5526,Sørreisa,Troms,01,0.715,data
+5526,Sørreisa,Troms,02,0.55,imputed
+5526,Sørreisa,Troms,03,0.55,imputed
+5528,Dyrøy,Troms,01,0.55,imputed
+5528,Dyrøy,Troms,02,0.55,imputed
+5528,Dyrøy,Troms,03,0.55,imputed
+5530,Senja,Troms,01,0.726,data
+5530,Senja,Troms,02,0.85,imputed
+5530,Senja,Troms,03,0.683,data
+5532,Balsfjord,Troms,01,0.636,data
+5532,Balsfjord,Troms,02,0.72,imputed
+5532,Balsfjord,Troms,03,0.72,imputed
+5534,Karlsøy,Troms,01,0.622,data
+5534,Karlsøy,Troms,02,0.55,imputed
+5534,Karlsøy,Troms,03,0.55,imputed
+5536,Lyngen,Troms,01,0.7,data
+5536,Lyngen,Troms,02,0.55,imputed
+5536,Lyngen,Troms,03,0.55,imputed
+5538,Storfjord,Troms,01,0.55,imputed
+5538,Storfjord,Troms,02,0.55,imputed
+5538,Storfjord,Troms,03,0.55,imputed
+5540,Gáivuotna,Troms,01,0.55,imputed
+5540,Gáivuotna,Troms,02,0.55,imputed
+5540,Gáivuotna,Troms,03,0.55,imputed
+5542,Skjervøy,Troms,01,0.769,data
+5542,Skjervøy,Troms,02,0.55,imputed
+5542,Skjervøy,Troms,03,0.55,imputed
+5544,Nordreisa,Troms,01,0.663,data
+5544,Nordreisa,Troms,02,0.55,imputed
+5544,Nordreisa,Troms,03,0.55,imputed
+5546,Kvænangen,Troms,01,0.55,imputed
+5546,Kvænangen,Troms,02,0.55,imputed
+5546,Kvænangen,Troms,03,0.55,imputed
+5601,Alta,Finnmark,01,1.403,data
+5601,Alta,Finnmark,02,1.664,data
+5601,Alta,Finnmark,03,1.127,data
+5603,Hammerfest,Finnmark,01,0.901,data
+5603,Hammerfest,Finnmark,02,0.943,data
+5603,Hammerfest,Finnmark,03,0.832,data
+5605,Sør-Varanger,Finnmark,01,0.925,data
+5605,Sør-Varanger,Finnmark,02,0.849,data
+5605,Sør-Varanger,Finnmark,03,0.746,data
+5607,Vadsø,Finnmark,01,0.684,data
+5607,Vadsø,Finnmark,02,0.72,imputed
+5607,Vadsø,Finnmark,03,0.72,imputed
+5610,Kárásjohka,Finnmark,01,0.782,data
+5610,Kárásjohka,Finnmark,02,0.55,imputed
+5610,Kárásjohka,Finnmark,03,0.55,imputed
+5612,Guovdageaidnu,Finnmark,01,0.55,imputed
+5612,Guovdageaidnu,Finnmark,02,0.55,imputed
+5612,Guovdageaidnu,Finnmark,03,0.55,imputed
+5614,Loppa,Finnmark,01,0.55,imputed
+5614,Loppa,Finnmark,02,0.55,imputed
+5614,Loppa,Finnmark,03,0.55,imputed
+5616,Hasvik,Finnmark,01,0.55,imputed
+5616,Hasvik,Finnmark,02,0.55,imputed
+5616,Hasvik,Finnmark,03,0.55,imputed
+5618,Måsøy,Finnmark,01,0.55,imputed
+5618,Måsøy,Finnmark,02,0.55,imputed
+5618,Måsøy,Finnmark,03,0.55,imputed
+5620,Nordkapp,Finnmark,01,0.491,data
+5620,Nordkapp,Finnmark,02,0.55,imputed
+5620,Nordkapp,Finnmark,03,0.55,imputed
+5622,Porsanger,Finnmark,01,0.847,data
+5622,Porsanger,Finnmark,02,0.55,imputed
+5622,Porsanger,Finnmark,03,0.55,imputed
+5624,Lebesby,Finnmark,01,0.55,imputed
+5624,Lebesby,Finnmark,02,0.55,imputed
+5624,Lebesby,Finnmark,03,0.55,imputed
+5626,Gamvik,Finnmark,01,0.55,imputed
+5626,Gamvik,Finnmark,02,0.55,imputed
+5626,Gamvik,Finnmark,03,0.55,imputed
+5628,Deatnu,Finnmark,01,0.682,data
+5628,Deatnu,Finnmark,02,0.55,imputed
+5628,Deatnu,Finnmark,03,0.55,imputed
+5630,Berlevåg,Finnmark,01,0.55,imputed
+5630,Berlevåg,Finnmark,02,0.55,imputed
+5630,Berlevåg,Finnmark,03,0.55,imputed
+5632,Båtsfjord,Finnmark,01,0.55,imputed
+5632,Båtsfjord,Finnmark,02,0.55,imputed
+5632,Båtsfjord,Finnmark,03,0.55,imputed
+5634,Vardø,Finnmark,01,0.55,imputed
+5634,Vardø,Finnmark,02,0.55,imputed
+5634,Vardø,Finnmark,03,0.55,imputed
+5636,Unjárga,Finnmark,01,0.55,imputed
+5636,Unjárga,Finnmark,02,0.55,imputed
+5636,Unjárga,Finnmark,03,0.55,imputed

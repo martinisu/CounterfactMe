@@ -1,0 +1,433 @@
+fylke_code,fylke,boligtype_code,boligtype,year,price_m2_nok
+0,Hele landet,01,Eneboliger,2002,11268
+0,Hele landet,01,Eneboliger,2003,11352
+0,Hele landet,01,Eneboliger,2004,12392
+0,Hele landet,01,Eneboliger,2005,13302
+0,Hele landet,01,Eneboliger,2006,14917
+0,Hele landet,01,Eneboliger,2007,16643
+0,Hele landet,01,Eneboliger,2008,16456
+0,Hele landet,01,Eneboliger,2009,16847
+0,Hele landet,01,Eneboliger,2010,17930
+0,Hele landet,01,Eneboliger,2011,19028
+0,Hele landet,01,Eneboliger,2012,19976
+0,Hele landet,01,Eneboliger,2013,20780
+0,Hele landet,01,Eneboliger,2014,21138
+0,Hele landet,01,Eneboliger,2015,22068
+0,Hele landet,01,Eneboliger,2016,23368
+0,Hele landet,01,Eneboliger,2017,24550
+0,Hele landet,01,Eneboliger,2018,24917
+0,Hele landet,01,Eneboliger,2019,25691
+0,Hele landet,01,Eneboliger,2020,26434
+0,Hele landet,01,Eneboliger,2021,29167
+0,Hele landet,01,Eneboliger,2022,30328
+0,Hele landet,01,Eneboliger,2023,30056
+0,Hele landet,01,Eneboliger,2024,30995
+0,Hele landet,02,Småhus,2002,13535
+0,Hele landet,02,Småhus,2003,13706
+0,Hele landet,02,Småhus,2004,14995
+0,Hele landet,02,Småhus,2005,16343
+0,Hele landet,02,Småhus,2006,18607
+0,Hele landet,02,Småhus,2007,21005
+0,Hele landet,02,Småhus,2008,20483
+0,Hele landet,02,Småhus,2009,21143
+0,Hele landet,02,Småhus,2010,22907
+0,Hele landet,02,Småhus,2011,24767
+0,Hele landet,02,Småhus,2012,26219
+0,Hele landet,02,Småhus,2013,27648
+0,Hele landet,02,Småhus,2014,27687
+0,Hele landet,02,Småhus,2015,29266
+0,Hele landet,02,Småhus,2016,30873
+0,Hele landet,02,Småhus,2017,32796
+0,Hele landet,02,Småhus,2018,33252
+0,Hele landet,02,Småhus,2019,34241
+0,Hele landet,02,Småhus,2020,35130
+0,Hele landet,02,Småhus,2021,38141
+0,Hele landet,02,Småhus,2022,40281
+0,Hele landet,02,Småhus,2023,40418
+0,Hele landet,02,Småhus,2024,41737
+0,Hele landet,03,Blokkleiligheter,2002,20451
+0,Hele landet,03,Blokkleiligheter,2003,20969
+0,Hele landet,03,Blokkleiligheter,2004,23323
+0,Hele landet,03,Blokkleiligheter,2005,25924
+0,Hele landet,03,Blokkleiligheter,2006,29864
+0,Hele landet,03,Blokkleiligheter,2007,32553
+0,Hele landet,03,Blokkleiligheter,2008,30607
+0,Hele landet,03,Blokkleiligheter,2009,31326
+0,Hele landet,03,Blokkleiligheter,2010,34067
+0,Hele landet,03,Blokkleiligheter,2011,37197
+0,Hele landet,03,Blokkleiligheter,2012,40059
+0,Hele landet,03,Blokkleiligheter,2013,41506
+0,Hele landet,03,Blokkleiligheter,2014,42094
+0,Hele landet,03,Blokkleiligheter,2015,45724
+0,Hele landet,03,Blokkleiligheter,2016,49647
+0,Hele landet,03,Blokkleiligheter,2017,52755
+0,Hele landet,03,Blokkleiligheter,2018,53404
+0,Hele landet,03,Blokkleiligheter,2019,55210
+0,Hele landet,03,Blokkleiligheter,2020,57277
+0,Hele landet,03,Blokkleiligheter,2021,62085
+0,Hele landet,03,Blokkleiligheter,2022,65506
+0,Hele landet,03,Blokkleiligheter,2023,66663
+0,Hele landet,03,Blokkleiligheter,2024,69261
+03,Oslo,01,Eneboliger,2002,20687
+03,Oslo,01,Eneboliger,2003,20225
+03,Oslo,01,Eneboliger,2004,21919
+03,Oslo,01,Eneboliger,2005,25504
+03,Oslo,01,Eneboliger,2006,28099
+03,Oslo,01,Eneboliger,2007,31046
+03,Oslo,01,Eneboliger,2008,31603
+03,Oslo,01,Eneboliger,2009,32437
+03,Oslo,01,Eneboliger,2010,35100
+03,Oslo,01,Eneboliger,2011,38480
+03,Oslo,01,Eneboliger,2012,41017
+03,Oslo,01,Eneboliger,2013,41948
+03,Oslo,01,Eneboliger,2014,42606
+03,Oslo,01,Eneboliger,2015,46753
+03,Oslo,01,Eneboliger,2016,51941
+03,Oslo,01,Eneboliger,2017,57525
+03,Oslo,01,Eneboliger,2018,58761
+03,Oslo,01,Eneboliger,2019,61729
+03,Oslo,01,Eneboliger,2020,64089
+03,Oslo,01,Eneboliger,2021,72110
+03,Oslo,01,Eneboliger,2022,72307
+03,Oslo,01,Eneboliger,2023,71525
+03,Oslo,01,Eneboliger,2024,73055
+03,Oslo,02,Småhus,2002,19425
+03,Oslo,02,Småhus,2003,18933
+03,Oslo,02,Småhus,2004,20985
+03,Oslo,02,Småhus,2005,23530
+03,Oslo,02,Småhus,2006,27063
+03,Oslo,02,Småhus,2007,30511
+03,Oslo,02,Småhus,2008,30532
+03,Oslo,02,Småhus,2009,32699
+03,Oslo,02,Småhus,2010,36535
+03,Oslo,02,Småhus,2011,39208
+03,Oslo,02,Småhus,2012,41719
+03,Oslo,02,Småhus,2013,43405
+03,Oslo,02,Småhus,2014,44289
+03,Oslo,02,Småhus,2015,47517
+03,Oslo,02,Småhus,2016,53685
+03,Oslo,02,Småhus,2017,60121
+03,Oslo,02,Småhus,2018,60563
+03,Oslo,02,Småhus,2019,63254
+03,Oslo,02,Småhus,2020,65388
+03,Oslo,02,Småhus,2021,73788
+03,Oslo,02,Småhus,2022,76041
+03,Oslo,02,Småhus,2023,75047
+03,Oslo,02,Småhus,2024,77889
+03,Oslo,03,Blokkleiligheter,2002,25202
+03,Oslo,03,Blokkleiligheter,2003,24747
+03,Oslo,03,Blokkleiligheter,2004,27665
+03,Oslo,03,Blokkleiligheter,2005,31367
+03,Oslo,03,Blokkleiligheter,2006,36583
+03,Oslo,03,Blokkleiligheter,2007,39572
+03,Oslo,03,Blokkleiligheter,2008,37205
+03,Oslo,03,Blokkleiligheter,2009,39416
+03,Oslo,03,Blokkleiligheter,2010,42572
+03,Oslo,03,Blokkleiligheter,2011,47474
+03,Oslo,03,Blokkleiligheter,2012,51315
+03,Oslo,03,Blokkleiligheter,2013,53043
+03,Oslo,03,Blokkleiligheter,2014,54112
+03,Oslo,03,Blokkleiligheter,2015,60528
+03,Oslo,03,Blokkleiligheter,2016,70585
+03,Oslo,03,Blokkleiligheter,2017,75781
+03,Oslo,03,Blokkleiligheter,2018,76281
+03,Oslo,03,Blokkleiligheter,2019,78861
+03,Oslo,03,Blokkleiligheter,2020,83304
+03,Oslo,03,Blokkleiligheter,2021,92213
+03,Oslo,03,Blokkleiligheter,2022,96955
+03,Oslo,03,Blokkleiligheter,2023,97949
+03,Oslo,03,Blokkleiligheter,2024,102899
+11,Rogaland,01,Eneboliger,2002,10428
+11,Rogaland,01,Eneboliger,2003,10940
+11,Rogaland,01,Eneboliger,2004,11948
+11,Rogaland,01,Eneboliger,2005,13129
+11,Rogaland,01,Eneboliger,2006,15957
+11,Rogaland,01,Eneboliger,2007,18955
+11,Rogaland,01,Eneboliger,2008,19461
+11,Rogaland,01,Eneboliger,2009,19380
+11,Rogaland,01,Eneboliger,2010,21125
+11,Rogaland,01,Eneboliger,2011,22783
+11,Rogaland,01,Eneboliger,2012,24453
+11,Rogaland,01,Eneboliger,2013,25097
+11,Rogaland,01,Eneboliger,2014,24863
+11,Rogaland,01,Eneboliger,2015,23710
+11,Rogaland,01,Eneboliger,2016,23098
+11,Rogaland,01,Eneboliger,2017,23818
+11,Rogaland,01,Eneboliger,2018,23687
+11,Rogaland,01,Eneboliger,2019,23738
+11,Rogaland,01,Eneboliger,2020,24059
+11,Rogaland,01,Eneboliger,2021,26175
+11,Rogaland,01,Eneboliger,2022,27321
+11,Rogaland,01,Eneboliger,2023,27865
+11,Rogaland,01,Eneboliger,2024,29608
+11,Rogaland,02,Småhus,2002,11474
+11,Rogaland,02,Småhus,2003,11979
+11,Rogaland,02,Småhus,2004,13599
+11,Rogaland,02,Småhus,2005,15418
+11,Rogaland,02,Småhus,2006,19070
+11,Rogaland,02,Småhus,2007,23583
+11,Rogaland,02,Småhus,2008,22968
+11,Rogaland,02,Småhus,2009,23381
+11,Rogaland,02,Småhus,2010,25764
+11,Rogaland,02,Småhus,2011,28345
+11,Rogaland,02,Småhus,2012,30221
+11,Rogaland,02,Småhus,2013,31446
+11,Rogaland,02,Småhus,2014,30666
+11,Rogaland,02,Småhus,2015,29387
+11,Rogaland,02,Småhus,2016,27819
+11,Rogaland,02,Småhus,2017,28719
+11,Rogaland,02,Småhus,2018,28736
+11,Rogaland,02,Småhus,2019,28652
+11,Rogaland,02,Småhus,2020,28750
+11,Rogaland,02,Småhus,2021,30808
+11,Rogaland,02,Småhus,2022,32563
+11,Rogaland,02,Småhus,2023,33969
+11,Rogaland,02,Småhus,2024,36753
+11,Rogaland,03,Blokkleiligheter,2002,15936
+11,Rogaland,03,Blokkleiligheter,2003,16790
+11,Rogaland,03,Blokkleiligheter,2004,19123
+11,Rogaland,03,Blokkleiligheter,2005,21304
+11,Rogaland,03,Blokkleiligheter,2006,26039
+11,Rogaland,03,Blokkleiligheter,2007,31373
+11,Rogaland,03,Blokkleiligheter,2008,30294
+11,Rogaland,03,Blokkleiligheter,2009,30301
+11,Rogaland,03,Blokkleiligheter,2010,34149
+11,Rogaland,03,Blokkleiligheter,2011,37882
+11,Rogaland,03,Blokkleiligheter,2012,40918
+11,Rogaland,03,Blokkleiligheter,2013,41566
+11,Rogaland,03,Blokkleiligheter,2014,40816
+11,Rogaland,03,Blokkleiligheter,2015,39720
+11,Rogaland,03,Blokkleiligheter,2016,37361
+11,Rogaland,03,Blokkleiligheter,2017,39074
+11,Rogaland,03,Blokkleiligheter,2018,38554
+11,Rogaland,03,Blokkleiligheter,2019,38041
+11,Rogaland,03,Blokkleiligheter,2020,38500
+11,Rogaland,03,Blokkleiligheter,2021,40840
+11,Rogaland,03,Blokkleiligheter,2022,43860
+11,Rogaland,03,Blokkleiligheter,2023,45832
+11,Rogaland,03,Blokkleiligheter,2024,49808
+15,Møre og Romsdal,01,Eneboliger,2002,8354
+15,Møre og Romsdal,01,Eneboliger,2003,8379
+15,Møre og Romsdal,01,Eneboliger,2004,8802
+15,Møre og Romsdal,01,Eneboliger,2005,9801
+15,Møre og Romsdal,01,Eneboliger,2006,10609
+15,Møre og Romsdal,01,Eneboliger,2007,12144
+15,Møre og Romsdal,01,Eneboliger,2008,12524
+15,Møre og Romsdal,01,Eneboliger,2009,13179
+15,Møre og Romsdal,01,Eneboliger,2010,13970
+15,Møre og Romsdal,01,Eneboliger,2011,14822
+15,Møre og Romsdal,01,Eneboliger,2012,15367
+15,Møre og Romsdal,01,Eneboliger,2013,16024
+15,Møre og Romsdal,01,Eneboliger,2014,16070
+15,Møre og Romsdal,01,Eneboliger,2015,17063
+15,Møre og Romsdal,01,Eneboliger,2016,17273
+15,Møre og Romsdal,01,Eneboliger,2017,17928
+15,Møre og Romsdal,01,Eneboliger,2018,17981
+15,Møre og Romsdal,01,Eneboliger,2019,18159
+15,Møre og Romsdal,01,Eneboliger,2020,19001
+15,Møre og Romsdal,01,Eneboliger,2021,19942
+15,Møre og Romsdal,01,Eneboliger,2022,21470
+15,Møre og Romsdal,01,Eneboliger,2023,21255
+15,Møre og Romsdal,01,Eneboliger,2024,22161
+15,Møre og Romsdal,02,Småhus,2002,9717
+15,Møre og Romsdal,02,Småhus,2003,9673
+15,Møre og Romsdal,02,Småhus,2004,10915
+15,Møre og Romsdal,02,Småhus,2005,11662
+15,Møre og Romsdal,02,Småhus,2006,13937
+15,Møre og Romsdal,02,Småhus,2007,15992
+15,Møre og Romsdal,02,Småhus,2008,16580
+15,Møre og Romsdal,02,Småhus,2009,17311
+15,Møre og Romsdal,02,Småhus,2010,18768
+15,Møre og Romsdal,02,Småhus,2011,18876
+15,Møre og Romsdal,02,Småhus,2012,20675
+15,Møre og Romsdal,02,Småhus,2013,21067
+15,Møre og Romsdal,02,Småhus,2014,21517
+15,Møre og Romsdal,02,Småhus,2015,22718
+15,Møre og Romsdal,02,Småhus,2016,23041
+15,Møre og Romsdal,02,Småhus,2017,24088
+15,Møre og Romsdal,02,Småhus,2018,24214
+15,Møre og Romsdal,02,Småhus,2019,24910
+15,Møre og Romsdal,02,Småhus,2020,25079
+15,Møre og Romsdal,02,Småhus,2021,26976
+15,Møre og Romsdal,02,Småhus,2022,29495
+15,Møre og Romsdal,02,Småhus,2023,30023
+15,Møre og Romsdal,02,Småhus,2024,31329
+15,Møre og Romsdal,03,Blokkleiligheter,2002,12406
+15,Møre og Romsdal,03,Blokkleiligheter,2003,12938
+15,Møre og Romsdal,03,Blokkleiligheter,2004,14120
+15,Møre og Romsdal,03,Blokkleiligheter,2005,15662
+15,Møre og Romsdal,03,Blokkleiligheter,2006,18143
+15,Møre og Romsdal,03,Blokkleiligheter,2007,21244
+15,Møre og Romsdal,03,Blokkleiligheter,2008,20640
+15,Møre og Romsdal,03,Blokkleiligheter,2009,22297
+15,Møre og Romsdal,03,Blokkleiligheter,2010,23762
+15,Møre og Romsdal,03,Blokkleiligheter,2011,25642
+15,Møre og Romsdal,03,Blokkleiligheter,2012,26999
+15,Møre og Romsdal,03,Blokkleiligheter,2013,27946
+15,Møre og Romsdal,03,Blokkleiligheter,2014,29029
+15,Møre og Romsdal,03,Blokkleiligheter,2015,29856
+15,Møre og Romsdal,03,Blokkleiligheter,2016,30994
+15,Møre og Romsdal,03,Blokkleiligheter,2017,31969
+15,Møre og Romsdal,03,Blokkleiligheter,2018,31651
+15,Møre og Romsdal,03,Blokkleiligheter,2019,32176
+15,Møre og Romsdal,03,Blokkleiligheter,2020,33508
+15,Møre og Romsdal,03,Blokkleiligheter,2021,35775
+15,Møre og Romsdal,03,Blokkleiligheter,2022,38051
+15,Møre og Romsdal,03,Blokkleiligheter,2023,39061
+15,Møre og Romsdal,03,Blokkleiligheter,2024,40620
+18,Nordland,01,Eneboliger,2002,8124
+18,Nordland,01,Eneboliger,2003,8664
+18,Nordland,01,Eneboliger,2004,10078
+18,Nordland,01,Eneboliger,2005,10191
+18,Nordland,01,Eneboliger,2006,11396
+18,Nordland,01,Eneboliger,2007,13079
+18,Nordland,01,Eneboliger,2008,12891
+18,Nordland,01,Eneboliger,2009,13369
+18,Nordland,01,Eneboliger,2010,14139
+18,Nordland,01,Eneboliger,2011,14724
+18,Nordland,01,Eneboliger,2012,15332
+18,Nordland,01,Eneboliger,2013,15965
+18,Nordland,01,Eneboliger,2014,16626
+18,Nordland,01,Eneboliger,2015,17607
+18,Nordland,01,Eneboliger,2016,18415
+18,Nordland,01,Eneboliger,2017,19386
+18,Nordland,01,Eneboliger,2018,19764
+18,Nordland,01,Eneboliger,2019,20100
+18,Nordland,01,Eneboliger,2020,20495
+18,Nordland,01,Eneboliger,2021,22232
+18,Nordland,01,Eneboliger,2022,24354
+18,Nordland,01,Eneboliger,2023,23133
+18,Nordland,01,Eneboliger,2024,23542
+18,Nordland,02,Småhus,2002,9624
+18,Nordland,02,Småhus,2003,9788
+18,Nordland,02,Småhus,2004,11523
+18,Nordland,02,Småhus,2005,12746
+18,Nordland,02,Småhus,2006,14563
+18,Nordland,02,Småhus,2007,16529
+18,Nordland,02,Småhus,2008,15538
+18,Nordland,02,Småhus,2009,15960
+18,Nordland,02,Småhus,2010,16623
+18,Nordland,02,Småhus,2011,17977
+18,Nordland,02,Småhus,2012,19947
+18,Nordland,02,Småhus,2013,21239
+18,Nordland,02,Småhus,2014,21688
+18,Nordland,02,Småhus,2015,22398
+18,Nordland,02,Småhus,2016,24370
+18,Nordland,02,Småhus,2017,25763
+18,Nordland,02,Småhus,2018,26287
+18,Nordland,02,Småhus,2019,26368
+18,Nordland,02,Småhus,2020,27166
+18,Nordland,02,Småhus,2021,30822
+18,Nordland,02,Småhus,2022,32451
+18,Nordland,02,Småhus,2023,32864
+18,Nordland,02,Småhus,2024,31064
+18,Nordland,03,Blokkleiligheter,2002,13554
+18,Nordland,03,Blokkleiligheter,2003,15219
+18,Nordland,03,Blokkleiligheter,2004,15972
+18,Nordland,03,Blokkleiligheter,2005,17750
+18,Nordland,03,Blokkleiligheter,2006,20509
+18,Nordland,03,Blokkleiligheter,2007,22168
+18,Nordland,03,Blokkleiligheter,2008,21360
+18,Nordland,03,Blokkleiligheter,2009,21123
+18,Nordland,03,Blokkleiligheter,2010,22602
+18,Nordland,03,Blokkleiligheter,2011,25276
+18,Nordland,03,Blokkleiligheter,2012,27505
+18,Nordland,03,Blokkleiligheter,2013,28175
+18,Nordland,03,Blokkleiligheter,2014,29881
+18,Nordland,03,Blokkleiligheter,2015,31420
+18,Nordland,03,Blokkleiligheter,2016,33236
+18,Nordland,03,Blokkleiligheter,2017,35221
+18,Nordland,03,Blokkleiligheter,2018,36184
+18,Nordland,03,Blokkleiligheter,2019,38276
+18,Nordland,03,Blokkleiligheter,2020,40116
+18,Nordland,03,Blokkleiligheter,2021,46952
+18,Nordland,03,Blokkleiligheter,2022,49654
+18,Nordland,03,Blokkleiligheter,2023,50121
+18,Nordland,03,Blokkleiligheter,2024,50343
+31,Østfold,01,Eneboliger,2024,31102
+31,Østfold,02,Småhus,2024,33904
+31,Østfold,03,Blokkleiligheter,2024,51255
+32,Akershus,01,Eneboliger,2024,43184
+32,Akershus,02,Småhus,2024,51672
+32,Akershus,03,Blokkleiligheter,2024,69376
+33,Buskerud,01,Eneboliger,2024,31025
+33,Buskerud,02,Småhus,2024,36839
+33,Buskerud,03,Blokkleiligheter,2024,54143
+34,Innlandet,01,Eneboliger,2020,18949
+34,Innlandet,01,Eneboliger,2021,21222
+34,Innlandet,01,Eneboliger,2022,22290
+34,Innlandet,01,Eneboliger,2023,21684
+34,Innlandet,01,Eneboliger,2024,21883
+34,Innlandet,02,Småhus,2020,27916
+34,Innlandet,02,Småhus,2021,29479
+34,Innlandet,02,Småhus,2022,31829
+34,Innlandet,02,Småhus,2023,32287
+34,Innlandet,02,Småhus,2024,32092
+34,Innlandet,03,Blokkleiligheter,2020,38495
+34,Innlandet,03,Blokkleiligheter,2021,41141
+34,Innlandet,03,Blokkleiligheter,2022,43722
+34,Innlandet,03,Blokkleiligheter,2023,43175
+34,Innlandet,03,Blokkleiligheter,2024,44431
+39,Vestfold,01,Eneboliger,2024,34069
+39,Vestfold,02,Småhus,2024,35573
+39,Vestfold,03,Blokkleiligheter,2024,51968
+40,Telemark,01,Eneboliger,2024,23584
+40,Telemark,02,Småhus,2024,25943
+40,Telemark,03,Blokkleiligheter,2024,35056
+42,Agder,01,Eneboliger,2020,20609
+42,Agder,01,Eneboliger,2021,23144
+42,Agder,01,Eneboliger,2022,24717
+42,Agder,01,Eneboliger,2023,25414
+42,Agder,01,Eneboliger,2024,26579
+42,Agder,02,Småhus,2020,22618
+42,Agder,02,Småhus,2021,25155
+42,Agder,02,Småhus,2022,26818
+42,Agder,02,Småhus,2023,28247
+42,Agder,02,Småhus,2024,29354
+42,Agder,03,Blokkleiligheter,2020,34690
+42,Agder,03,Blokkleiligheter,2021,38034
+42,Agder,03,Blokkleiligheter,2022,41011
+42,Agder,03,Blokkleiligheter,2023,44695
+42,Agder,03,Blokkleiligheter,2024,45940
+46,Vestland,01,Eneboliger,2020,25645
+46,Vestland,01,Eneboliger,2021,27547
+46,Vestland,01,Eneboliger,2022,28745
+46,Vestland,01,Eneboliger,2023,28713
+46,Vestland,01,Eneboliger,2024,29659
+46,Vestland,02,Småhus,2020,31295
+46,Vestland,02,Småhus,2021,34141
+46,Vestland,02,Småhus,2022,35508
+46,Vestland,02,Småhus,2023,35884
+46,Vestland,02,Småhus,2024,36740
+46,Vestland,03,Blokkleiligheter,2020,49648
+46,Vestland,03,Blokkleiligheter,2021,53262
+46,Vestland,03,Blokkleiligheter,2022,56320
+46,Vestland,03,Blokkleiligheter,2023,56916
+46,Vestland,03,Blokkleiligheter,2024,59601
+50,Trøndelag,01,Eneboliger,2018,21990
+50,Trøndelag,01,Eneboliger,2019,22153
+50,Trøndelag,01,Eneboliger,2020,22379
+50,Trøndelag,01,Eneboliger,2021,24781
+50,Trøndelag,01,Eneboliger,2022,26609
+50,Trøndelag,01,Eneboliger,2023,25908
+50,Trøndelag,01,Eneboliger,2024,27014
+50,Trøndelag,02,Småhus,2018,31082
+50,Trøndelag,02,Småhus,2019,31387
+50,Trøndelag,02,Småhus,2020,32332
+50,Trøndelag,02,Småhus,2021,35472
+50,Trøndelag,02,Småhus,2022,37078
+50,Trøndelag,02,Småhus,2023,37980
+50,Trøndelag,02,Småhus,2024,38672
+50,Trøndelag,03,Blokkleiligheter,2018,48501
+50,Trøndelag,03,Blokkleiligheter,2019,49863
+50,Trøndelag,03,Blokkleiligheter,2020,51051
+50,Trøndelag,03,Blokkleiligheter,2021,56179
+50,Trøndelag,03,Blokkleiligheter,2022,59190
+50,Trøndelag,03,Blokkleiligheter,2023,59625
+50,Trøndelag,03,Blokkleiligheter,2024,60529
+55,Troms,01,Eneboliger,2024,27144
+55,Troms,02,Småhus,2024,42383
+55,Troms,03,Blokkleiligheter,2024,60922
+56,Finnmark,01,Eneboliger,2024,23883
+56,Finnmark,02,Småhus,2024,24795
+56,Finnmark,03,Blokkleiligheter,2024,47603

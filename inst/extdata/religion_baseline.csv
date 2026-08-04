@@ -1,0 +1,11 @@
+code,label_no,label_en,share_majority
+DnK,Den norske kirke,Church of Norway,0.660
+KAT,Katolsk,Catholic,0.025
+ANN_KRIS,Annet kristent trossamfunn,Other Christian,0.020
+ISL,Islam,Islam,0.002
+HUM,Humanistforbundet,Norwegian Humanist Assoc.,0.030
+BUD,Buddhisme,Buddhism,0.001
+HIN,Hinduisme,Hinduism,0.001
+JOD,Jødedom,Judaism,0.0005
+ANN,Annet,Other,0.013
+INGEN,Ingen registrert tilhorighet,No registered religion,0.2475
