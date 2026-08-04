@@ -17,12 +17,12 @@
 .PENSJONIST_LABELS <- c(
   "Hyttepusser", "Turlag-general", "Kaffeslabberas-koordinator",
   "Strikkedronning", "Strikkekonge", "Kryssordmester",
-  "Barnebarn-logistiker", "Seniorsvømmer", "Bridgeekspert",
-  "Hageentusiast", "Frimerkesamler", "Modelljernbane-ingeniør",
-  "Sudokumester", "Turgåer", "Fjordfisker", "Vedhogger",
-  "Boksirkel-leder", "Kirkekorsanger", "Eldretrim-instruktør",
+  "Barnebarn-logistiker", "Seniorsv\u{00f8}mmer", "Bridgeekspert",
+  "Hageentusiast", "Frimerkesamler", "Modelljernbane-ingeni\u{00f8}r",
+  "Sudokumester", "Turg\u{00e5}er", "Fjordfisker", "Vedhogger",
+  "Boksirkel-leder", "Kirkekorsanger", "Eldretrim-instrukt\u{00f8}r",
   "Baketeoretiker", "Kolonihage-stolthet", "Hyttebokforfatter",
-  "Lotto-veteran", "Kaffekos-ambassadør"
+  "Lotto-veteran", "Kaffekos-ambassad\u{00f8}r"
 )
 
 # -- Age -> Education --
@@ -50,14 +50,14 @@
 }
 
 .edu_band <- function(age) {
-  if (age <= 19)      "16-19 år"
-  else if (age <= 24) "20-24 år"
-  else if (age <= 29) "25-29 år"
-  else if (age <= 39) "30-39 år"
-  else if (age <= 49) "40-49 år"
-  else if (age <= 59) "50-59 år"
-  else if (age <= 66) "60-66 år"
-  else                "67 år eller eldre"
+  if (age <= 19)      "16-19 \u{00e5}r"
+  else if (age <= 24) "20-24 \u{00e5}r"
+  else if (age <= 29) "25-29 \u{00e5}r"
+  else if (age <= 39) "30-39 \u{00e5}r"
+  else if (age <= 49) "40-49 \u{00e5}r"
+  else if (age <= 59) "50-59 \u{00e5}r"
+  else if (age <= 66) "60-66 \u{00e5}r"
+  else                "67 \u{00e5}r eller eldre"
 }
 
 .cond_education <- function(age, gender = NULL, lang = "en") {
@@ -252,13 +252,13 @@
       "Saftsommelier", "Sandkassesjef", "Lekeklosspilot",
       "Dinosaurekspert", "Puslespillmester", "Tegnefilmkritiker",
       "Kosedyrsjef", "Trehjulsyklist", "Dukkehusarkitekt",
-      "Vannpytt-inspektør"
+      "Vannpytt-inspekt\u{00f8}r"
     ), 1), "kid"))
   }
   if (age >= 6 && age <= 12) {
     return(.wrap(sample(c(
-      "Minecraft-arkitekt", "Fotballentusiast", "Pokémonsamler",
-      "Slime-produsent", "Trampolineakrobat", "Lego-ingeniør",
+      "Minecraft-arkitekt", "Fotballentusiast", "Pok\u{00e9}monsamler",
+      "Slime-produsent", "Trampolineakrobat", "Lego-ingeni\u{00f8}r",
       "Kiosk-strategist", "Klassens klovn", "Sykkelstuntmann",
       "Friminutts-dirigent", "Leksehjelp-unnviker", "SFO-veteran"
     ), 1), "kid"))
@@ -274,7 +274,7 @@
   if (age >= 16 && age <= 18) {
     return(.wrap(sample(c(
       "Russeknuter", "Kassa-veteran", "Kino-billettselger",
-      "Barista-in-training", "Gymnasiast", "Lærling",
+      "Barista-in-training", "Gymnasiast", "L\u{00e6}rling",
       "Festival-frivillig", "Eksamensangst-kjemper",
       "Kollektivtransport-filosof", "Skolekor-stjerne",
       "Bensinstasjon-nattvakt"
@@ -316,7 +316,7 @@
       else 0.01
     } else .disability_prob(age)
     if (stats::runif(1) < p_ufore) {
-      return(.wrap("Uføretrygdet", "disabled"))
+      return(.wrap("Uf\u{00f8}retrygdet", "disabled"))
     }
   }
 
@@ -575,7 +575,7 @@
   }
 
   # Disabled on uforetrygd: lower-middle deciles, floor around minsteytelse
-  if (identical(occ_kind, "disabled") || identical(occ_label, "Uføretrygdet")) {
+  if (identical(occ_kind, "disabled") || identical(occ_label, "Uf\u{00f8}retrygdet")) {
     w <- c(1.0, 2.5, 3.0, 2.0, 1.0, 0.4, 0.1, 0.05, 0.02, 0.01)
     w <- w / sum(w)
     idx <- sample(seq_len(nrow(inc)), 1, prob = w)
@@ -739,7 +739,7 @@
     jokes_0_5 <- c(
       "Gift med bamsen sin",
       "Forlova med en badeand",
-      "I et seriøst forhold med tåteflaska"
+      "I et seri\u{00f8}st forhold med t\u{00e5}teflaska"
     )
     jokes_6_12 <- c(
       "Gift med bestevennen sin i barnehagen (skilte seg etter lunsj)",
@@ -749,10 +749,10 @@
     jokes_13_18 <- c(
       "Det er komplisert (Snapchat-status)",
       "Gift med sofaen",
-      "Singel og stolt (ifølge TikTok)"
+      "Singel og stolt (if\u{00f8}lge TikTok)"
     )
     jokes_adult <- c(
-      "Ønsker å bo hos sin mor og ha sin mor i fred",
+      "\u{00d8}nsker \u{00e5} bo hos sin mor og ha sin mor i fred",
       "Har forlatt sin mann for en traktor",
       "Gift med jobben (bokstavelig talt)",
       "I et langdistanseforhold med kontoen sin",
@@ -760,8 +760,8 @@
     )
     jokes_elder <- c(
       "Gift med kaffen sin siden 1973",
-      "Enke etter en svært dyr båt",
-      "I et åpent forhold med hytteboka",
+      "Enke etter en sv\u{00e6}rt dyr b\u{00e5}t",
+      "I et \u{00e5}pent forhold med hytteboka",
       "Forlovet med kryssordene i Aftenposten"
     )
     joke <- if (age <= 5) sample(jokes_0_5, 1)
@@ -1489,7 +1489,7 @@
     }
     if (runif(1) < p_hus) {
       return(list(
-        label = "Hjemmeværende",
+        label = "Hjemmev\u{00e6}rende",
         styrk_code = NA_character_,
         median_monthly = NA_integer_,
         kind = "homemaker"
@@ -1503,7 +1503,7 @@
     k <- if (!is.null(o$kind)) as.character(o$kind) else ""
     if (k %in% c("disabled", "unemployed")) return(TRUE)
     lbl <- if (!is.null(o$label)) as.character(o$label) else ""
-    grepl("^AAP|^Sosialhjelp|^Dagpenger|^Uforetrygdet|^Uføretrygdet", lbl)
+    grepl("^AAP|^Sosialhjelp|^Dagpenger|^Uforetrygdet|^Uf\u{00f8}retrygdet", lbl)
   }
   occ <- .cond_occupation(age = 50L, edu_code = edu_code, gender = gender)
   for (i in seq_len(8)) {
@@ -1778,21 +1778,21 @@
 .draw_boligtype <- function(age, income_nok = NULL, county = "",
                             parents_capital = NULL) {
   urban_score <- if (identical(county, "Oslo")) 0.85
-                 else if (county %in% c("Akershus", "Vestland", "Rogaland", "Trøndelag", "Trøndelag")) 0.45
-                 else if (county %in% c("Østfold", "Vestfold", "Buskerud", "Agder", "Møre og Romsdal")) 0.25
+                 else if (county %in% c("Akershus", "Vestland", "Rogaland", "Tr\u{00f8}ndelag", "Tr\u{00f8}ndelag")) 0.45
+                 else if (county %in% c("\u{00d8}stfold", "Vestfold", "Buskerud", "Agder", "M\u{00f8}re og Romsdal")) 0.25
                  else 0.12
   age_score <- if (age < 30) 0.70 else if (age < 45) 0.30 else 0.15
   inc <- if (is.null(income_nok) || is.na(income_nok)) 400000 else income_nok
   pc  <- if (is.null(parents_capital) || is.na(parents_capital)) 0 else parents_capital
 
   p_blokk   <- min(0.85, urban_score * 0.60 + age_score * 0.40)
-  p_småhus  <- 0.35 * (1 - p_blokk)
-  p_enebolig <- 1 - p_blokk - p_småhus
+  p_smahus  <- 0.35 * (1 - p_blokk)
+  p_enebolig <- 1 - p_blokk - p_smahus
 
   if (inc > 800000 && urban_score < 0.8) {
     p_enebolig <- p_enebolig + 0.15
     p_blokk    <- p_blokk    - 0.10
-    p_småhus   <- p_småhus   - 0.05
+    p_smahus   <- p_smahus   - 0.05
   }
 
   # Geografi-bevisst aldersjustering:
@@ -1804,15 +1804,15 @@
     if (urban_score >= 0.5 && pc < 5e6) {
       # Urban + ingen rik forelder: kun blokk
       p_blokk <- 1.0
-      p_småhus <- 0; p_enebolig <- 0
+      p_smahus <- 0; p_enebolig <- 0
     } else if (urban_score >= 0.5) {
       # Urban + rik forelder: tillat småhus, ikke enebolig
-      p_småhus <- p_småhus + p_enebolig * 0.3
+      p_smahus <- p_smahus + p_enebolig * 0.3
       p_enebolig <- 0
     } else {
       # Distrikt: enebolig mulig men dempet (typisk arvet eller billig distrikt-hus)
       p_enebolig <- p_enebolig * 0.4
-      p_småhus <- p_småhus * 1.2
+      p_smahus <- p_smahus * 1.2
     }
   } else if (age < 30) {
     if (urban_score >= 0.5 && pc < 5e6) {
@@ -1824,14 +1824,14 @@
     }
   }
 
-  probs <- c(p_enebolig, p_småhus, p_blokk)
+  probs <- c(p_enebolig, p_smahus, p_blokk)
   probs <- pmax(probs, 0.01)
   probs <- probs / sum(probs)
   pick <- sample(c("01", "02", "03"), 1, prob = probs)
   if (identical(pick, "01")) {
     list(code = "01", label_en = "Detached house", label_no = "Enebolig")
   } else if (identical(pick, "02")) {
-    list(code = "02", label_en = "Small house",    label_no = "Småhus")
+    list(code = "02", label_en = "Small house",    label_no = "Sm\u{00e5}hus")
   } else {
     list(code = "03", label_en = "Apartment",      label_no = "Blokkleilighet")
   }
@@ -2002,7 +2002,7 @@
 
   # Geographic: oslofolk har "rad-hytte"-tradisjon, kystfylker har sjokk
   geo_mult <- if (county %in% c("Oslo", "Akershus")) 1.20
-              else if (county %in% c("Innlandet", "Buskerud", "Vestfold", "Telemark", "Trøndelag")) 1.10
+              else if (county %in% c("Innlandet", "Buskerud", "Vestfold", "Telemark", "Tr\u{00f8}ndelag")) 1.10
               else 0.95
 
   # Parents_capital — arvet hytte
@@ -2030,11 +2030,11 @@
     type_probs <- c(fjell = 0.55, innland = 0.30, kyst = 0.13, kyst_luksus = 0.02)
   } else if (county %in% c("Vestfold", "Agder")) {
     type_probs <- c(fjell = 0.15, innland = 0.10, kyst = 0.55, kyst_luksus = 0.20)
-  } else if (county %in% c("Vestland", "Rogaland", "Møre og Romsdal")) {
+  } else if (county %in% c("Vestland", "Rogaland", "M\u{00f8}re og Romsdal")) {
     type_probs <- c(fjell = 0.30, innland = 0.10, kyst = 0.50, kyst_luksus = 0.10)
   } else if (county %in% c("Nordland", "Troms", "Finnmark")) {
     type_probs <- c(fjell = 0.20, innland = 0.30, kyst = 0.45, kyst_luksus = 0.05)
-  } else if (county %in% c("Trøndelag")) {
+  } else if (county %in% c("Tr\u{00f8}ndelag")) {
     type_probs <- c(fjell = 0.40, innland = 0.25, kyst = 0.30, kyst_luksus = 0.05)
   } else {
     type_probs <- c(fjell = 0.30, innland = 0.30, kyst = 0.35, kyst_luksus = 0.05)
@@ -2702,14 +2702,14 @@
 .child_religion_label <- function(code, lang = "en") {
   no <- identical(lang, "no")
   switch(code,
-    "DnK" = if (no) "Døpt i Den norske kirke" else "Baptized in Church of Norway",
-    "KAT" = if (no) "Døpt katolsk" else "Baptized Catholic",
-    "ANN_KRIS" = if (no) "Døpt i annet kristent samfunn" else "Baptized other Christian",
-    "ISL" = if (no) "Tilhører islam (foreldrenes valg)" else "Muslim (parents' affiliation)",
+    "DnK" = if (no) "D\u{00f8}pt i Den norske kirke" else "Baptized in Church of Norway",
+    "KAT" = if (no) "D\u{00f8}pt katolsk" else "Baptized Catholic",
+    "ANN_KRIS" = if (no) "D\u{00f8}pt i annet kristent samfunn" else "Baptized other Christian",
+    "ISL" = if (no) "Tilh\u{00f8}rer islam (foreldrenes valg)" else "Muslim (parents' affiliation)",
     "HUM" = if (no) "Navnefest i Human-Etisk Forbund" else "Naming ceremony, Humanist",
-    "BUD" = if (no) "Tilhører buddhisme (foreldrenes valg)" else "Buddhist (parents' affiliation)",
-    "HIN" = if (no) "Tilhører hinduisme (foreldrenes valg)" else "Hindu (parents' affiliation)",
-    "JOD" = if (no) "Tilhører mosaisk trossamfunn" else "Jewish (parents' affiliation)",
+    "BUD" = if (no) "Tilh\u{00f8}rer buddhisme (foreldrenes valg)" else "Buddhist (parents' affiliation)",
+    "HIN" = if (no) "Tilh\u{00f8}rer hinduisme (foreldrenes valg)" else "Hindu (parents' affiliation)",
+    "JOD" = if (no) "Tilh\u{00f8}rer mosaisk trossamfunn" else "Jewish (parents' affiliation)",
     "ANN" = if (no) "Foreldrenes tradisjon" else "Parents' tradition",
     "INGEN" = if (no) "Ingen registrert tilhorighet" else "No registered religion",
     code
@@ -3137,7 +3137,7 @@
   klasse <- .bourdieu_klasse(econ_score, cult_score, soc_score, lang = lang)
 
   list(
-    økonomisk = econ_score,
+    okonomisk = econ_score,
     kulturell = cult_score,
     sosial = soc_score,
     klasse = klasse
@@ -3149,14 +3149,14 @@
   # Etablert overklasse: hoy økonomisk + hoy kulturell
   if (econ >= 70 && cult >= 70) return(if (no) "Etablert overklasse" else "Established upper class")
   # Økonomisk elite: hoy økonomisk, lav-medium kulturell
-  if (econ >= 75 && cult < 65) return(if (no) "Økonomisk elite" else "Economic elite")
+  if (econ >= 75 && cult < 65) return(if (no) "\u{00d8}konomisk elite" else "Economic elite")
   # Kulturell elite: hoy kulturell, lav-medium økonomisk
   if (cult >= 75 && econ < 65) return(if (no) "Kulturell elite" else "Cultural elite")
   # Etablert middelklasse: medium-hoy begge
   if (econ >= 50 && cult >= 50) return(if (no) "Etablert middelklasse" else "Established middle class")
   # Ny middelklasse / kulturell mellomlag
   if (cult >= 55 && econ >= 30) return(if (no) "Kulturell middelklasse" else "Cultural middle class")
-  if (econ >= 55 && cult >= 30) return(if (no) "Økonomisk middelklasse" else "Economic middle class")
+  if (econ >= 55 && cult >= 30) return(if (no) "\u{00d8}konomisk middelklasse" else "Economic middle class")
   # Tradisjonell arbeiderklasse: medium-low begge
   if (econ >= 30 && cult >= 25) return(if (no) "Tradisjonell arbeiderklasse" else "Traditional working class")
   # Ny arbeiderklasse / service
@@ -3343,7 +3343,7 @@
   # Self-rated health
   row <- srh[srh$age_band == band, , drop = FALSE]
   if (nrow(row) == 0) row <- srh[1, ]
-  probs <- c(row$p_meget_god, row$p_god, row$p_så_som, row$p_dårlig, row$p_meget_dårlig)
+  probs <- c(row$p_meget_god, row$p_god, row$p_saa_som, row$p_daarlig, row$p_meget_daarlig)
   # Edu adjustment: høyere utdanning → bedre selvrapportert helse
   if (!is.null(edu_code) && !is.na(edu_code)) {
     if (edu_code >= 6) {
@@ -3354,7 +3354,7 @@
     probs <- probs / sum(probs)
   }
   pick <- sample(1:5, 1, prob = probs)
-  labels_no <- c("Meget god", "God", "Så som så", "Dårlig", "Meget dårlig")
+  labels_no <- c("Meget god", "God", "S\u{00e5} som s\u{00e5}", "D\u{00e5}rlig", "Meget d\u{00e5}rlig")
   labels_en <- c("Excellent", "Good", "Fair", "Poor", "Very poor")
   srh_label <- if (identical(lang, "no")) labels_no[pick] else labels_en[pick]
 
@@ -3421,8 +3421,8 @@
   }
 
   pick <- sample(1:4, 1, prob = probs)
-  labels_no <- c("Føler seg ofte ensom", "Føler seg av og til ensom",
-                 "Føler seg sjelden ensom", "Føler seg aldri ensom")
+  labels_no <- c("F\u{00f8}ler seg ofte ensom", "F\u{00f8}ler seg av og til ensom",
+                 "F\u{00f8}ler seg sjelden ensom", "F\u{00f8}ler seg aldri ensom")
   labels_en <- c("Often lonely", "Sometimes lonely", "Rarely lonely", "Never lonely")
   lon_label <- if (identical(lang, "no")) labels_no[pick] else labels_en[pick]
 
@@ -3526,7 +3526,7 @@
 
   # Alkohol-justering: avholdsmann/sjelden → fjern drikke-hobbier
   if (!is.null(alcohol_label) && !is.na(alcohol_label)) {
-    drinking_hobby_pattern <- "[Vv]inkurs|[Vv]insmaking|[Øø]lbrygging|[Ww]hisky|[Vv]inmaking|[Ww]ine"
+    drinking_hobby_pattern <- "[Vv]inkurs|[Vv]insmaking|[\u{00d8}\u{00f8}]lbrygging|[Ww]hisky|[Vv]inmaking|[Ww]ine"
     is_drinking <- grepl(drinking_hobby_pattern, hb$hobby_no)
     if (grepl("[Aa]vhold|[Tt]eetot", alcohol_label)) {
       weights[is_drinking] <- 0
@@ -3595,9 +3595,9 @@
   if (is.null(s) || is.na(s) || !nzchar(s)) return(s)
   out <- tolower(s)
   # Cap first letter
-  out <- sub("^([a-zæøå])", "\\U\\1", out, perl = TRUE)
+  out <- sub("^([a-z\u{00e6}\u{00f8}\u{00e5}])", "\\U\\1", out, perl = TRUE)
   # Cap letter after "(" or ", " or ": " or " - "
-  out <- gsub("([(,:\\-] ?)([a-zæøå])", "\\1\\U\\2", out, perl = TRUE)
+  out <- gsub("([(,:\\-] ?)([a-z\u{00e6}\u{00f8}\u{00e5}])", "\\1\\U\\2", out, perl = TRUE)
   # Restore common acronyms
   acronyms <- c("LIS1", "LIS", "NAV", "KRLE", "ICT", "IKT", "BJJ", "MMA",
                 "VVS", "HMS", "KOLS", "ADHD", "AAP", "FOU", "PR",
@@ -3645,9 +3645,9 @@
   if (!is.null(party_code) && !is.na(party_code)) {
     idx_klassekamp <- which(mp$paper == "Klassekampen")
     idx_morgenbl   <- which(mp$paper == "Morgenbladet")
-    idx_vart_land  <- which(mp$paper == "Vårt Land")
+    idx_vart_land  <- which(mp$paper == "V\u{00e5}rt Land")
     idx_nationen   <- which(mp$paper == "Nationen")
-    idx_dn         <- which(mp$paper == "Dagens Næringsliv")
+    idx_dn         <- which(mp$paper == "Dagens N\u{00e6}ringsliv")
     idx_aften      <- which(mp$paper == "Aftenposten")
     idx_vg         <- which(mp$paper == "VG")
     idx_dag        <- which(mp$paper == "Dagbladet")
@@ -3682,7 +3682,7 @@
   if (!is.null(bourdieu_klasse) && !is.na(bourdieu_klasse)) {
     idx_aften    <- which(mp$paper == "Aftenposten")
     idx_morgenbl <- which(mp$paper == "Morgenbladet")
-    idx_dn       <- which(mp$paper == "Dagens Næringsliv")
+    idx_dn       <- which(mp$paper == "Dagens N\u{00e6}ringsliv")
     idx_vg       <- which(mp$paper == "VG")
     idx_dag      <- which(mp$paper == "Dagbladet")
     idx_ingen    <- which(mp$paper == "Ingen avis")
@@ -3692,7 +3692,7 @@
       w[idx_vg]       <- w[idx_vg]       * 0.3
       w[idx_dag]      <- w[idx_dag]      * 0.2
       w[idx_ingen]    <- w[idx_ingen]    * 0.2
-    } else if (grepl("[Øø]konomisk elite", bourdieu_klasse)) {
+    } else if (grepl("[\u{00d8}\u{00f8}]konomisk elite", bourdieu_klasse)) {
       w[idx_dn]    <- w[idx_dn]    * 4.0
       w[idx_aften] <- w[idx_aften] * 1.5
     } else if (grepl("[Pp]rekariat|[Nn]y arbeiderklasse", bourdieu_klasse)) {
@@ -4084,13 +4084,13 @@
   fem <- identical(toupper(gender %||% ""), "F")
   man <- identical(toupper(gender %||% ""), "M")
   if (age < 18) {
-    types <- c("lærevansker", "ADHD", "autismespekter", "bevegelse", "syn", "hørsel")
+    types <- c("l\u{00e6}revansker", "ADHD", "autismespekter", "bevegelse", "syn", "h\u{00f8}rsel")
     tw <- c(0.30, 0.22, 0.12, 0.18, 0.09, 0.09)
     # ADHD/autisme/lærevansker diagnostiseres klart oftere hos gutter
     if (man) tw <- tw * c(1.3, 1.8, 2.5, 1.0, 1.0, 1.0)
     else if (fem) tw <- tw * c(0.8, 0.55, 0.4, 1.0, 1.0, 1.0)
   } else {
-    types <- c("bevegelse", "psykisk", "hørsel", "syn", "kognitiv", "annet")
+    types <- c("bevegelse", "psykisk", "h\u{00f8}rsel", "syn", "kognitiv", "annet")
     tw <- c(0.40, 0.22, 0.14, 0.10, 0.07, 0.07)
     # psykiske lidelser oftere registrert hos kvinner; hørsel/kognitiv litt oftere menn
     if (fem) tw <- tw * c(1.0, 1.5, 0.8, 1.0, 0.8, 1.0)
@@ -4120,8 +4120,8 @@
   base <- base / sum(base)
   k <- sample(1:4, 1, prob = base)
 
-  bands_no <- c("Ingen nære venner", "1–2 nære venner",
-                "3–5 nære venner", "6 eller flere nære venner")
+  bands_no <- c("Ingen n\u{00e6}re venner", "1\u{2013}2 n\u{00e6}re venner",
+                "3\u{2013}5 n\u{00e6}re venner", "6 eller flere n\u{00e6}re venner")
   bands_en <- c("No close friends", "1-2 close friends",
                 "3-5 close friends", "6+ close friends")
   friends <- if (no) bands_no[k] else bands_en[k]

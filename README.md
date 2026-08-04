@@ -19,7 +19,7 @@ other in sociologically realistic ways.
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.28.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.29.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
 remotes::install_github("martinisungset/CounterfactMe")

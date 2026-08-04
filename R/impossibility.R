@@ -74,7 +74,7 @@
 
   # --- 6. NEET med ekte yrke ---
   if (isTRUE(x$neet) && !is.null(x$occupation) &&
-      !grepl("[Uu]oppgitt|^Student|kid|teen|[Ii]kke i utdanning|[Nn]ot in education|hjelp|trygd|stoenad|stønad|sosial",
+      !grepl("[Uu]oppgitt|^Student|kid|teen|[Ii]kke i utdanning|[Nn]ot in education|hjelp|trygd|stoenad|st\u{00f8}nad|sosial",
              x$occupation)) {
     v <- c(v, "neet_with_real_occupation")
   }
@@ -168,7 +168,7 @@
     } else if (grepl("_male_husmor$", p)) {
       who <- sub("_male_husmor$", "", p)
       if (!is.null(x[[who]])) {
-        x[[who]]$occupation <- "Hjemmeværende"
+        x[[who]]$occupation <- "Hjemmev\u{00e6}rende"
       }
     } else if (identical(p, "parents_identical_name")) {
       # Append "*" so they're distinguishable; downstream rerunning is hard.

@@ -11,11 +11,11 @@ sample_income(n = 1)
 }
 \value{
 A list with two elements: \code{bracket} (character vector of
-  labels) and \code{nok} (integer vector of NOK amounts).
+labels) and \code{nok} (integer vector of NOK amounts).
 }
 \description{
 Draws an income decile from the Norwegian gross income distribution.
-Each decile is equally likely (10 % each). Returns both the bracket
+Each decile is equally likely (10 \% each). Returns both the bracket
 label and a random NOK amount within that bracket.
 }
 \examples{

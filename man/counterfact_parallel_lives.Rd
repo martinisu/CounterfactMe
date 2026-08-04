@@ -4,25 +4,25 @@
 \alias{counterfact_parallel_lives}
 \title{Generate parallel counterfactual lives varying one dimension}
 \usage{
-counterfact_parallel_lives(givens = list(),
-                                       vary_dim = c("county", "occupation",
-                                                    "education", "background",
-                                                    "religion", "party"),
-                                       n = 5,
-                                       vary_values = NULL,
-                                       lang = c("no", "en"),
-                                       max_attempts_each = 300L)
+counterfact_parallel_lives(
+  givens = list(),
+  vary_dim = c("county", "occupation", "education", "background", "religion", "party"),
+  n = 5,
+  vary_values = NULL,
+  lang = c("no", "en"),
+  max_attempts_each = 300L
+)
 }
 \arguments{
 \item{givens}{A named list of constraints to hold fixed across all lives.}
 
 \item{vary_dim}{Which dimension to vary. One of \code{"county"},
-  \code{"occupation"}, \code{"education"}, \code{"background"}.}
+\code{"occupation"}, \code{"education"}, \code{"background"}.}
 
 \item{n}{Number of parallel lives. Default 5.}
 
 \item{vary_values}{If non-NULL, a vector of specific values to use for
-  the varying dimension. If NULL, draws random distinct values.}
+the varying dimension. If NULL, draws random distinct values.}
 
 \item{lang}{Language for labels. Default "no".}
 

@@ -4,51 +4,54 @@
 \alias{counterfact_me}
 \title{Generate a counterfactual life}
 \usage{
-counterfact_me(dimensions = available_dimensions(),
-                           lang = c("en", "no"),
-                           gender = NULL,
-                           conditional = TRUE,
-                           min_age = 0L,
-                           max_age = 99L,
-                           reject_impossible = TRUE,
-                           max_reject_attempts = 20L)
+counterfact_me(
+  dimensions = available_dimensions(),
+  lang = c("en", "no"),
+  gender = NULL,
+  conditional = TRUE,
+  min_age = 0L,
+  max_age = 99L,
+  reject_impossible = TRUE,
+  max_reject_attempts = 20L
+)
 }
 \arguments{
 \item{dimensions}{Character vector of dimensions to include. Defaults to
-  all available (see \code{\link{available_dimensions}}). Pass a subset to
-  draw only some traits.}
+all available (see \code{\link{available_dimensions}}). Pass a subset to
+draw only some traits.}
 
 \item{lang}{Language for labels where translations exist: \code{"en"}
-  (default) or \code{"no"} for Norwegian.}
+(default) or \code{"no"} for Norwegian.}
 
 \item{gender}{Force a gender for the first name: \code{"M"}, \code{"F"},
-  or \code{NULL} (default) for random.}
+or \code{NULL} (default) for random.}
 
 \item{conditional}{If \code{TRUE} (default), dimensions are sampled with
-  dependency constraints (age -> education -> occupation -> income, etc.).
-  If \code{FALSE}, each dimension is drawn independently.}
+dependency constraints (age -> education -> occupation -> income, etc.).
+If \code{FALSE}, each dimension is drawn independently.}
 
 \item{min_age}{Minimum age to draw. Default 0 (all ages). Set to e.g. 18 to draw only adults.}
 
 \item{max_age}{Maximum age to draw. Default 99.}
 
 \item{reject_impossible}{If \code{TRUE} (default), draws are checked
-  against \code{\link{find_impossibilities}} and re-drawn when a hard
-  impossibility (e.g. married under 18) is found. Improbable but possible
-  combinations are left alone.}
+against \code{\link{find_impossibilities}} and re-drawn when a hard
+impossibility (e.g. married under 18) is found. Improbable but possible
+combinations are left alone.}
 
 \item{max_reject_attempts}{Maximum re-draws before returning the cleanest
-  attempt with post-hoc fixes. Default 20.}
+attempt with post-hoc fixes. Default 20.}
 }
 \value{
 An object of class \code{"counterfactme"} -- a named list of drawn
-  traits with a pretty-print method.
+traits with a pretty-print method.
 }
 \description{
 Draws a random but plausible alternate Norwegian life -- a name, age,
 municipality, occupation, education, income, household type, and marital
 status -- all sampled from real population distributions.
-
+}
+\details{
 By default, dimensions are drawn conditionally: age constrains education,
 education constrains occupation, and so on. Set \code{conditional = FALSE}
 to draw each dimension independently (v0.1 behaviour).

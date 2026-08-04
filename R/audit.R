@@ -89,10 +89,10 @@ audit_plausibility <- function(N = 5000L, by = "gender", lang = "no",
   }
 
   if (verbose) {
-    cat(sprintf("\n=== Plausibilitets-revisjon (N = %d, gruppert på '%s') ===\n",
+    cat(sprintf("\n=== Plausibilitets-revisjon (N = %d, gruppert p\u{00e5} '%s') ===\n",
                 length(draws), by))
     cat("Andel (%) av hver verdi som faller i hver gruppe. Se etter verdier\n")
-    cat("som burde vært sterkt skjeve, men ikke er det.\n")
+    cat("som burde v\u{00e6}rt sterkt skjeve, men ikke er det.\n")
     for (dm in names(results)) {
       df <- results[[dm]]
       cat(sprintf("\n--- %s (%d verdier med n >= %d) ---\n", dm, nrow(df), min_n))

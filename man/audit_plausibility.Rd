@@ -4,12 +4,16 @@
 \alias{audit_plausibility}
 \title{Audit soft plausibility of generated lives across dimensions}
 \usage{
-audit_plausibility(N = 5000L, by = "gender", lang = "no",
-                               dims = c("hobbies", "diet", "party", "religion",
-                                        "orientation", "education", "occupation",
-                                        "marital_status", "disability",
-                                        "close_friends"),
-                               min_n = 15L, top = 12L, verbose = TRUE)
+audit_plausibility(
+  N = 5000L,
+  by = "gender",
+  lang = "no",
+  dims = c("hobbies", "diet", "party", "religion", "orientation", "education",
+    "occupation", "marital_status", "disability", "close_friends"),
+  min_n = 15L,
+  top = 12L,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{N}{Number of lives. Default 5000.}
@@ -23,7 +27,7 @@ audit_plausibility(N = 5000L, by = "gender", lang = "no",
 \item{min_n}{Minimum occurrences of a value before it is reported. Default 15.}
 
 \item{top}{Show only the \code{top} most- and least-skewed values per
-  dimension (0 = all). Default 12.}
+dimension (0 = all). Default 12.}
 
 \item{verbose}{Print a report. Default TRUE.}
 }

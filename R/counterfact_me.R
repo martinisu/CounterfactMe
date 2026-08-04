@@ -542,7 +542,7 @@ counterfact_me <- function(dimensions = available_dimensions(),
                            party_code = party_c,
                            lang = lang)
     }
-    result$bourdieu_økonomisk <- bp$økonomisk
+    result$bourdieu_okonomisk <- bp$okonomisk
     result$bourdieu_kulturell <- bp$kulturell
     result$bourdieu_sosial    <- bp$sosial
     result$bourdieu_klasse    <- bp$klasse
@@ -580,12 +580,12 @@ counterfact_me <- function(dimensions = available_dimensions(),
       else if (grepl("Senterpart", party_c)) party_c <- "SP"
       else if (grepl("Sosialist", party_c)) party_c <- "SV"
       else if (grepl("Arbeiderpartiet|^Sier .sosialdem|Stemmer .* AP|Vokste opp paa Furuset|Furuset|sosialdemokrati|stemte AP", party_c)) party_c <- "AP"
-      else if (grepl("Hoeyre|Høyre|Civita|Tesla|^Stemmer H ", party_c)) party_c <- "H"
+      else if (grepl("Hoeyre|H\u{00f8}yre|Civita|Tesla|^Stemmer H ", party_c)) party_c <- "H"
       else if (grepl("Fremskrittspart|Sylvi|bilavgifter|Frp", party_c)) party_c <- "FRP"
       else if (grepl("Venstre|Trine|jeg-er-groenn", party_c)) party_c <- "V"
       else if (grepl("Kristelig|KrF|Hareide|bedehus", party_c)) party_c <- "KRF"
-      else if (grepl("Roedt|Rødt|Moxnes|RU paa 90-tallet|kapitalismen", party_c)) party_c <- "R"
-      else if (grepl("Miljopartiet|Miljøpartiet|MDG|Lan Marie|diesel-Audi|sykler", party_c)) party_c <- "MDG"
+      else if (grepl("Roedt|R\u{00f8}dt|Moxnes|RU paa 90-tallet|kapitalismen", party_c)) party_c <- "R"
+      else if (grepl("Miljopartiet|Milj\u{00f8}partiet|MDG|Lan Marie|diesel-Audi|sykler", party_c)) party_c <- "MDG"
     }
     md <- .cond_media(age, edu_code = edu$code,
                        sentralitet = result$sentralitet,
@@ -610,12 +610,12 @@ counterfact_me <- function(dimensions = available_dimensions(),
       else if (grepl("Senterpart", party_c)) party_c <- "SP"
       else if (grepl("Sosialist", party_c)) party_c <- "SV"
       else if (grepl("Arbeiderpart|sosialdemokrati", party_c)) party_c <- "AP"
-      else if (grepl("Hoeyre|Høyre|Civita", party_c)) party_c <- "H"
+      else if (grepl("Hoeyre|H\u{00f8}yre|Civita", party_c)) party_c <- "H"
       else if (grepl("Fremskritt|Frp|Sylvi", party_c)) party_c <- "FRP"
       else if (grepl("Venstre", party_c)) party_c <- "V"
       else if (grepl("Kristelig|KrF|Hareide", party_c)) party_c <- "KRF"
-      else if (grepl("Roedt|Rødt|Moxnes", party_c)) party_c <- "R"
-      else if (grepl("MDG|Miljopart|Miljøpart", party_c)) party_c <- "MDG"
+      else if (grepl("Roedt|R\u{00f8}dt|Moxnes", party_c)) party_c <- "R"
+      else if (grepl("MDG|Miljopart|Milj\u{00f8}part", party_c)) party_c <- "MDG"
     }
     hb <- .cond_hobbies(age, gender = gender_draw,
                         sentralitet = result$sentralitet,

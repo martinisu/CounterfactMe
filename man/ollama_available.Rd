@@ -8,7 +8,7 @@ ollama_available(host = "http://localhost:11434")
 }
 \arguments{
 \item{host}{Base URL of the Ollama server. Default
-  \code{"http://localhost:11434"}.}
+\code{"http://localhost:11434"}.}
 }
 \value{
 \code{TRUE} if the server responds, otherwise \code{FALSE}.

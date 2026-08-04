@@ -9,20 +9,20 @@ sample_first_name(n = 1, gender = NULL, birth_year = NULL)
 \arguments{
 \item{n}{Number of names to draw. Default 1.}
 
-\item{gender}{Filter by gender: `"M"`, `"F"`, or `NULL` (default) for both.}
+\item{gender}{Filter by gender: \code{"M"}, \code{"F"}, or \code{NULL} (default) for both.}
 
 \item{birth_year}{Optional integer birth year. Cohorts outside 1940-2020
-  are snapped to the nearest available decade.}
+are snapped to the nearest available decade.}
 }
 \value{
 A character vector of first names.
 }
 \description{
 Draws a first name from Norwegian birth-registry names (SSB table 10467),
-weighted by frequency. When a `birth_year` is supplied the sample is
+weighted by frequency. When a \code{birth_year} is supplied the sample is
 restricted to that person's birth-decade cohort (e.g. someone born in
 1996 draws from names given to children born 1990-1999), so the name is
-plausible for their age. Without `birth_year`, frequencies are summed
+plausible for their age. Without \code{birth_year}, frequencies are summed
 across all cohorts (1940-2020).
 }
 \examples{

@@ -10,7 +10,7 @@ sample_municipality(n = 1, weighted = TRUE)
 \item{n}{Number of municipalities to draw. Default 1.}
 
 \item{weighted}{If \code{TRUE} (default), sampling is proportional to
-  population. Set to \code{FALSE} for uniform sampling.}
+population. Set to \code{FALSE} for uniform sampling.}
 }
 \value{
 A character vector of municipality names.

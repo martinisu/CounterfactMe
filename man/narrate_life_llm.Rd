@@ -4,22 +4,28 @@
 \alias{narrate_life_llm}
 \title{Narrate a counterfactual life with a local LLM (Ollama)}
 \usage{
-narrate_life_llm(x, model = "llama3.1",
-                             host = "http://localhost:11434",
-                             style = c("biografi", "kaaseri", "noktern"),
-                             temperature = 0.5, system = NULL, seed = NULL,
-                             num_predict = 800, think = NULL)
+narrate_life_llm(
+  x,
+  model = "llama3.1",
+  host = "http://localhost:11434",
+  style = c("biografi", "kaaseri", "noktern"),
+  temperature = 0.5,
+  system = NULL,
+  seed = NULL,
+  num_predict = 800,
+  think = NULL
+)
 }
 \arguments{
 \item{x}{A \code{counterfactme} object.}
 
 \item{model}{Ollama model tag, e.g. \code{"llama3.1"}, \code{"mistral"},
-  \code{"gemma2"}. Run \code{ollama list} in a terminal to see installed models.}
+\code{"gemma2"}. Run \code{ollama list} in a terminal to see installed models.}
 
 \item{host}{Base URL. Default \code{"http://localhost:11434"}.}
 
 \item{style}{One of \code{"biografi"} (default), \code{"kaaseri"} (looser,
-  wry), or \code{"noktern"} (factual).}
+wry), or \code{"noktern"} (factual).}
 
 \item{temperature}{Sampling temperature. Default 0.7.}
 
@@ -30,7 +36,7 @@ narrate_life_llm(x, model = "llama3.1",
 \item{num_predict}{Maximum number of tokens to generate. Default 800.}
 
 \item{think}{Passed to Ollama's \code{think} option for reasoning
-  models. \code{NULL} (default) leaves it unset.}
+models. \code{NULL} (default) leaves it unset.}
 }
 \value{
 A \code{counterfactme_narrative} object.

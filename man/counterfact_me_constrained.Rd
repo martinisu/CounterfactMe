@@ -4,18 +4,20 @@
 \alias{counterfact_me_constrained}
 \title{Generate a counterfactual life with constraints}
 \usage{
-counterfact_me_constrained(givens = list(),
-                                       max_attempts = 500L,
-                                       lang = c("no", "en"),
-                                       dimensions = available_dimensions(),
-                                       verbose = FALSE)
+counterfact_me_constrained(
+  givens = list(),
+  max_attempts = 500L,
+  lang = c("no", "en"),
+  dimensions = available_dimensions(),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{givens}{A named list of constraints, e.g.,
-  \code{list(age = 42, gender = "M", county = "Oslo")}.
-  Supported fields: \code{age}, \code{gender}, \code{county},
-  \code{municipality}, \code{occupation}, \code{education},
-  \code{marital_status}, \code{religion}, \code{party}, \code{background}.}
+\code{list(age = 42, gender = "M", county = "Oslo")}.
+Supported fields: \code{age}, \code{gender}, \code{county},
+\code{municipality}, \code{occupation}, \code{education},
+\code{marital_status}, \code{religion}, \code{party}, \code{background}.}
 
 \item{max_attempts}{Max rejection-sampling attempts. Default 500.}
 

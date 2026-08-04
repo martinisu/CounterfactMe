@@ -22,7 +22,7 @@ print.counterfactme <- function(x, ...) {
     cat(sprintf("  %s: %s\n", lbl, x$name))
   }
   if (!is.null(x$gender)) {
-    lbl <- if (is_no) "Kjønn" else "Gender"
+    lbl <- if (is_no) "Kj\u{00f8}nn" else "Gender"
     g <- if (x$gender == "M") {
       if (is_no) "Mann" else "Male"
     } else {
@@ -43,7 +43,7 @@ print.counterfactme <- function(x, ...) {
                    if (!is.null(x$years_in_norway) && !is.na(x$years_in_norway))
                      sprintf(", %d years in Norway", x$years_in_norway) else "")
     } else if (identical(x$background, "second_gen")) {
-      if (is_no) sprintf("Norskfødt med foreldre fra %s", cb)
+      if (is_no) sprintf("Norskf\u{00f8}dt med foreldre fra %s", cb)
       else sprintf("Norwegian-born to parents from %s", cb)
     } else x$background
     cat(sprintf("  %s: %s\n", lbl, desc))
@@ -136,7 +136,7 @@ print.counterfactme <- function(x, ...) {
   }
   if (isTRUE(x$neet)) {
     lbl <- if (is_no) "NEET" else "NEET"
-    msg <- if (is_no) "Ikke i utdanning, jobb eller opplæring" else "Not in education, employment, or training"
+    msg <- if (is_no) "Ikke i utdanning, jobb eller oppl\u{00e6}ring" else "Not in education, employment, or training"
     cat(sprintf("  %s: %s\n", lbl, msg))
   }
 
@@ -207,14 +207,14 @@ print.counterfactme <- function(x, ...) {
     }
     if (!is.null(x$business_equity_nok) && !is.na(x$business_equity_nok) &&
         x$business_equity_nok > 0) {
-      bl <- if (is_no) "    Næringsformue" else "    Business equity"
+      bl <- if (is_no) "    N\u{00e6}ringsformue" else "    Business equity"
       cat(sprintf("%s: %s kr\n", bl,
                   format(x$business_equity_nok, big.mark = " ")))
     }
     if (!is.null(x$capital_income_nok) && !is.na(x$capital_income_nok) &&
         x$capital_income_nok > 0) {
       cl <- if (is_no) "    Utbytte/kapitalavkastning (anslag, brutto)" else "    Dividends/returns (est., gross)"
-      cat(sprintf("%s: %s kr/år\n", cl,
+      cat(sprintf("%s: %s kr/\u{00e5}r\n", cl,
                   format(x$capital_income_nok, big.mark = " ")))
     }
     if (!is.null(x$inheritance_nok) && !is.na(x$inheritance_nok) &&
@@ -248,7 +248,7 @@ print.counterfactme <- function(x, ...) {
     cat(sprintf("  %s: %s\n", lbl, x$disability))
   }
   if (!is.null(x$close_friends) && !is.na(x$close_friends)) {
-    lbl <- if (is_no) "Nære venner" else "Close friends"
+    lbl <- if (is_no) "N\u{00e6}re venner" else "Close friends"
     cat(sprintf("  %s: %s\n", lbl, x$close_friends))
   }
   if (!is.null(x$has_confidant) && !is.na(x$has_confidant)) {
@@ -288,7 +288,7 @@ print.counterfactme <- function(x, ...) {
     cat(sprintf("  %s: %s\n", lbl, x$media_social))
   }
   if (!is.null(x$sleep_hours) && !is.na(x$sleep_hours)) {
-    lbl <- if (is_no) "Søvn (t/natt)" else "Sleep (h/night)"
+    lbl <- if (is_no) "S\u{00f8}vn (t/natt)" else "Sleep (h/night)"
     cat(sprintf("  %s: %.1f\n", lbl, x$sleep_hours))
   }
   if (!is.null(x$diet) && !is.na(x$diet)) {
@@ -320,8 +320,8 @@ print.counterfactme <- function(x, ...) {
       if (is_no) "Klassebakgrunn (fra foreldrene)" else "Class background (from parents)"
     } else if (is_no) "Bourdieu-profil" else "Bourdieu profile"
     cat(sprintf("  %s: %s\n", lbl, x$bourdieu_klasse))
-    cat(sprintf("    Økonomisk: %.0f / Kulturell: %.0f / Sosial: %.0f\n",
-                x$bourdieu_økonomisk, x$bourdieu_kulturell, x$bourdieu_sosial))
+    cat(sprintf("    \u{00d8}konomisk: %.0f / Kulturell: %.0f / Sosial: %.0f\n",
+                x$bourdieu_okonomisk, x$bourdieu_kulturell, x$bourdieu_sosial))
   }
 
 
@@ -364,7 +364,7 @@ print.counterfactme <- function(x, ...) {
       both_dead <- !is.null(x$mother$death_year) && !is.na(x$mother$death_year) &&
                    !is.null(x$father$death_year) && !is.na(x$father$death_year)
       lbl <- if (both_dead) {
-        if (is_no) "Foreldrekapital (før arveoppgjør)" else "Parental capital (pre-inheritance)"
+        if (is_no) "Foreldrekapital (f\u{00f8}r arveoppgj\u{00f8}r)" else "Parental capital (pre-inheritance)"
       } else {
         if (is_no) "Anslatt foreldrekapital" else "Est. parental capital"
       }
@@ -375,12 +375,12 @@ print.counterfactme <- function(x, ...) {
 
   # Siblings
   if (!is.null(x$n_siblings) && !is.na(x$n_siblings) && x$n_siblings > 0) {
-    lbl <- if (is_no) "Søsken" else "Siblings"
+    lbl <- if (is_no) "S\u{00f8}sken" else "Siblings"
     cat(sprintf("  %s: %d\n", lbl, x$n_siblings))
     if (!is.null(x$siblings) && length(x$siblings) > 0) {
       for (s in x$siblings) {
-        relation_no <- if (s$age_delta < 0) sprintf("(%d år eldre)", -s$age_delta)
-                       else if (s$age_delta > 0) sprintf("(%d år yngre)", s$age_delta)
+        relation_no <- if (s$age_delta < 0) sprintf("(%d \u{00e5}r eldre)", -s$age_delta)
+                       else if (s$age_delta > 0) sprintf("(%d \u{00e5}r yngre)", s$age_delta)
                        else "(jevnaldring)"
         relation_en <- if (s$age_delta < 0) sprintf("(%d yrs older)", -s$age_delta)
                        else if (s$age_delta > 0) sprintf("(%d yrs younger)", s$age_delta)
@@ -427,11 +427,11 @@ print.counterfactme <- function(x, ...) {
   if (nok < 280000) return(if (no) "Desil 2 - lavt" else "Decile 2 - low")
   if (nok < 340000) return(if (no) "Desil 3 - under medianen" else "Decile 3 - below median")
   if (nok < 410000) return(if (no) "Desil 4 - rett under medianen" else "Decile 4 - just below median")
-  if (nok < 480000) return(if (no) "Desil 5 - midt på treet" else "Decile 5 - middle of the pack")
+  if (nok < 480000) return(if (no) "Desil 5 - midt p\u{00e5} treet" else "Decile 5 - middle of the pack")
   if (nok < 560000) return(if (no) "Desil 6 - over medianen" else "Decile 6 - above median")
   if (nok < 660000) return(if (no) "Desil 7 - over snittet" else "Decile 7 - above average")
   if (nok < 810000) return(if (no) "Desil 8 - godt over snittet" else "Decile 8 - well above average")
-  if (nok < 1100000) return(if (no) "Desil 9 - blant de høyest betalte" else "Decile 9 - among top earners")
+  if (nok < 1100000) return(if (no) "Desil 9 - blant de h\u{00f8}yest betalte" else "Decile 9 - among top earners")
   if (nok < 2000000) return(if (no) "Topp 10 %" else "Top 10%")
   if (nok < 5000000) return(if (no) "Topp 1 %" else "Top 1%")
   return(if (no) "Topp 0,1 %" else "Top 0.1%")

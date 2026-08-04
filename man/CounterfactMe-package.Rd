@@ -6,13 +6,7 @@
 \alias{CounterfactMe-package}
 \title{CounterfactMe: Generate Random Counterfactual Lives Based on Norwegian Open Data}
 \description{
-What if you had been someone else? CounterfactMe generates random counterfactual
-Norwegian lives from open SSB data. Each call to counterfact_me() returns a
-coherent life across 33 dimensions -- name, age, education, occupation, income,
-family structure (parents, siblings, grandparents), housing (with hytte), wealth
-(with inheritance flow), immigrant background, religion, party preference, and a
-Bourdieu-style class profile. Dimensions are conditionally sampled in
-sociologically realistic order.
+What if you had been someone else? CounterfactMe generates random counterfactual Norwegian lives from open SSB data. Each call to counterfact_me() returns a coherent life across 33 dimensions — name, age, education, occupation, income, family structure (parents, siblings, grandparents), housing (with hytte), wealth (with inheritance flow), immigrant background, religion, party preference, and a Bourdieu-style class profile. Dimensions are conditionally sampled in sociologically realistic order.
 }
 \seealso{
 Useful links:
@@ -20,8 +14,15 @@ Useful links:
   \item \url{https://github.com/martinisungset/CounterfactMe}
   \item Report bugs at \url{https://github.com/martinisungset/CounterfactMe/issues}
 }
+
 }
 \author{
 \strong{Maintainer}: Martin Isungset \email{martinisungset@gmail.com}
+
+Authors:
+\itemize{
+  \item Martin Isungset \email{martinisungset@gmail.com}
+}
+
 }
 \keyword{internal}

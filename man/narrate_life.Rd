@@ -4,14 +4,13 @@
 \alias{narrate_life}
 \title{Generate a biographical narrative from a counterfactual life}
 \usage{
-narrate_life(x, style = c("biography", "obituary", "compact"),
-                         seed = NULL)
+narrate_life(x, style = c("biography", "obituary", "compact"), seed = NULL)
 }
 \arguments{
 \item{x}{A \code{counterfactme} object.}
 
 \item{style}{One of \code{"biography"} (default), \code{"obituary"},
-  or \code{"compact"}.}
+or \code{"compact"}.}
 
 \item{seed}{Optional integer for reproducible narration.}
 }

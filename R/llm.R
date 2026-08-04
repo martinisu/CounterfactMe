@@ -33,16 +33,16 @@ life_factsheet <- function(x) {
 
   add("Navn", x$name)
   add("Alder", x$age)
-  add("Født", .birthyear(x))
-  add("Kjønn", if (identical(x$gender, "M")) "mann" else if (identical(x$gender, "F")) "kvinne" else NA)
+  add("F\u{00f8}dt", .birthyear(x))
+  add("Kj\u{00f8}nn", if (identical(x$gender, "M")) "mann" else if (identical(x$gender, "F")) "kvinne" else NA)
   add("Bosted", x$municipality %||% x$county)
   add("Fylke", x$county)
   if (!is.null(x$background) && !is.na(x$background) && x$background != "majority") {
     add("Bakgrunn", switch(x$background,
-        first_gen = "innvandrer (første generasjon)",
-        second_gen = "norskfødt med innvandrerforeldre", x$background))
+        first_gen = "innvandrer (f\u{00f8}rste generasjon)",
+        second_gen = "norskf\u{00f8}dt med innvandrerforeldre", x$background))
     add("Opprinnelsesland", x$country_background %||% x$country_label)
-    add("År i Norge", x$years_in_norway)
+    add("\u{00c5}r i Norge", x$years_in_norway)
   }
 
   if (!is.null(x$mother)) {
@@ -52,25 +52,25 @@ life_factsheet <- function(x) {
     add("Far", paste(c(x$father$name, x$father$occupation), collapse = ", "))
   }
   ns <- .nsiblings(x)
-  if (!is.na(ns)) add("Søsken", if (ns == 0) "ingen (enebarn)" else as.character(ns))
+  if (!is.na(ns)) add("S\u{00f8}sken", if (ns == 0) "ingen (enebarn)" else as.character(ns))
   if (!is.null(x$parents_relationship) && !is.na(x$parents_relationship))
     add("Foreldrenes samliv", x$parents_relationship)
   mob <- .mobility(x)
   if (!is.null(mob)) {
     add("Utdanningsmobilitet", switch(mob$dir,
-        sterk_opp = "kraftig oppadgående vs. foreldrene",
-        opp = "oppadgående vs. foreldrene",
-        lik = "samme nivå som foreldrene",
-        ned = "nedadgående vs. foreldrene",
-        sterk_ned = "kraftig nedadgående vs. foreldrene"))
+        sterk_opp = "kraftig oppadg\u{00e5}ende vs. foreldrene",
+        opp = "oppadg\u{00e5}ende vs. foreldrene",
+        lik = "samme niv\u{00e5} som foreldrene",
+        ned = "nedadg\u{00e5}ende vs. foreldrene",
+        sterk_ned = "kraftig nedadg\u{00e5}ende vs. foreldrene"))
   }
 
   add("Utdanning", x$education)
   add("Fagfelt", x$field_of_study)
   add("Yrke", x$occupation)
   if (!isTRUE(x$neet) && !is.null(x$income_nok) && !is.na(x$income_nok) && x$income_nok >= 50000)
-    add("Årsinntekt (kr)", formatC(round(x$income_nok / 10000) * 10000, format = "d", big.mark = " "))
-  if (isTRUE(x$neet)) add("Arbeid", "ikke i jobb eller utdanning akkurat nå")
+    add("\u{00c5}rsinntekt (kr)", formatC(round(x$income_nok / 10000) * 10000, format = "d", big.mark = " "))
+  if (isTRUE(x$neet)) add("Arbeid", "ikke i jobb eller utdanning akkurat n\u{00e5}")
   if (!is.null(x$ukepenger) && !is.na(x$ukepenger)) add("Ukepenger", x$ukepenger)
 
   if (!is.null(x$partner)) {
@@ -107,7 +107,7 @@ life_factsheet <- function(x) {
   add("Selvopplevd helse", x$self_rated_health)
   if (isTRUE(x$has_chronic)) add("Kronisk sykdom", x$chronic_type)
   if (isTRUE(x$has_disability)) add("Funksjonsnedsettelse", x$disability)
-  add("Nære venner", x$close_friends)
+  add("N\u{00e6}re venner", x$close_friends)
   if (!is.null(x$has_confidant) && !is.na(x$has_confidant))
     add("Fortrolig venn", if (isTRUE(x$has_confidant)) "ja" else "nei")
   if (!is.null(x$loneliness) && !is.na(x$loneliness)) add("Ensomhet", x$loneliness)
@@ -160,28 +160,28 @@ narrate_life_llm <- function(x, model = "llama3.1",
   if (!requireNamespace("jsonlite", quietly = TRUE))
     stop("Pakken 'jsonlite' trengs for narrate_life_llm(). Installer: install.packages('jsonlite')")
   if (nzchar(Sys.which("curl")) == FALSE)
-    stop("Fant ikke 'curl' på systemet (trengs for å snakke med Ollama).")
+    stop("Fant ikke 'curl' p\u{00e5} systemet (trengs for \u{00e5} snakke med Ollama).")
 
   sheet <- life_factsheet(x)
 
   sys_default <- paste(
-    "Du er en presis og varm biograf som skriver på norsk.",
-    "Du får et faktaark om en fiktiv, kontrafaktisk norsk person.",
+    "Du er en presis og varm biograf som skriver p\u{00e5} norsk.",
+    "Du f\u{00e5}r et faktaark om en fiktiv, kontrafaktisk norsk person.",
     "Skriv en kort, levende biografi (4-6 korte avsnitt).",
     "Strenge regler:",
-    "1) Bruk BARE fakta fra arket. Ikke dikt opp navn, tall, steder eller hendelser som ikke står der.",
-    "2) Ikke ramse opp felt. Bind sammen til naturlig prosa med årsak og tid.",
-    "3) Varier setningsåpninger; unngå at hvert avsnitt starter med navnet eller han/hun.",
-    "4) Unngå klisjeer og overdrivelser. Hvis et felt mangler, la det være.",
-    "5) Ikke tolk eller overdriv. Ved tvil, gjengi nøkternt. En ung person uten jobb har ikke 'tilbrakt livet utenfor arbeidslivet'.",
-    "6) Bruk korrekt norsk med æ, ø og å.")
+    "1) Bruk BARE fakta fra arket. Ikke dikt opp navn, tall, steder eller hendelser som ikke st\u{00e5}r der.",
+    "2) Ikke ramse opp felt. Bind sammen til naturlig prosa med \u{00e5}rsak og tid.",
+    "3) Varier setnings\u{00e5}pninger; unng\u{00e5} at hvert avsnitt starter med navnet eller han/hun.",
+    "4) Unng\u{00e5} klisjeer og overdrivelser. Hvis et felt mangler, la det v\u{00e6}re.",
+    "5) Ikke tolk eller overdriv. Ved tvil, gjengi n\u{00f8}kternt. En ung person uten jobb har ikke 'tilbrakt livet utenfor arbeidslivet'.",
+    "6) Bruk korrekt norsk med \u{00e6}, \u{00f8} og \u{00e5}.")
   sys_style <- switch(style,
-    biografi = "Tone: nøktern, observerende, lett varm.",
-    kaaseri  = "Tone: løsere og lett ironisk, som et kåseri — men fortsatt tro mot fakta.",
+    biografi = "Tone: n\u{00f8}ktern, observerende, lett varm.",
+    kaaseri  = "Tone: l\u{00f8}sere og lett ironisk, som et k\u{00e5}seri \u{2014} men fortsatt tro mot fakta.",
     noktern  = "Tone: knapp og saklig, nesten som en oppslagsbok.")
   sys_msg <- system %||% paste(sys_default, sys_style)
 
-  prompt <- paste0("Faktaark:\n", sheet, "\n\nSkriv biografien nå.")
+  prompt <- paste0("Faktaark:\n", sheet, "\n\nSkriv biografien n\u{00e5}.")
 
   body <- list(model = model, prompt = prompt, system = sys_msg, stream = FALSE,
                options = list(temperature = temperature,
@@ -209,9 +209,9 @@ narrate_life_llm <- function(x, model = "llama3.1",
 
   parsed <- tryCatch(jsonlite::fromJSON(txt), error = function(e) NULL)
   if (is.null(parsed) || is.null(parsed$response)) {
-    stop("Uventet svar fra Ollama. Kjører serveren på ", host,
+    stop("Uventet svar fra Ollama. Kj\u{00f8}rer serveren p\u{00e5} ", host,
          ", og er modellen '", model, "' lastet ned (ollama pull ", model, ")?\n",
-         "Rådata: ", substr(txt, 1, 400))
+         "R\u{00e5}data: ", substr(txt, 1, 400))
   }
 
   out <- trimws(parsed$response)

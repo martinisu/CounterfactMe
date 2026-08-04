@@ -1,3 +1,19 @@
+# CounterfactMe 0.9.29
+
+## Portability
+- Alle norske tegn i R-strenger er escapet som `\u{00e6}` / `\u{00f8}` /
+  `\u{00e5}` (208 tegn). Utskriften er uendret — dette er kun kildekode-
+  representasjon, som kreves for portable pakker. Kommentarer er urort.
+- `importFrom(stats, dnorm)` lagt til.
+- Kolonnene `p_så_som`, `p_dårlig`, `p_meget_dårlig` i
+  `self_rated_health.csv` er dopt om til `p_saa_som`, `p_daarlig`,
+  `p_meget_daarlig`. Ikke-ASCII kolonnenavn kan mangles av `read.csv()` pa
+  ikke-UTF-8 locale, som CI ofte kjorer.
+- Feltet `bourdieu_økonomisk` heter na `bourdieu_okonomisk`, og
+  listeelementet `økonomisk` fra `.cond_bourdieu()` heter `okonomisk`.
+  Brytende endring, men pakken er ikke publisert enna.
+- Lokal variabel `p_småhus` -> `p_smahus`.
+
 # CounterfactMe 0.9.28
 
 ## Bug fixes

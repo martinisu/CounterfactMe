@@ -96,7 +96,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
     # 8. Bolig under 22 år eier
     if (is_owner(d) && !is.na(age) && age < 22) {
       add("08_owner_too_young",
-          sprintf("%s, %d år eier %s",
+          sprintf("%s, %d \u{00e5}r eier %s",
                   d$name %||% "?", age, d$housing_type %||% "?"))
     }
 
@@ -148,7 +148,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
         (is.null(d$business_equity_nok) || is.na(d$business_equity_nok) ||
          d$business_equity_nok < 1e6)) {
       add("12_high_cap_income_no_biz",
-          sprintf("%s, %dk utbytte uten næringsformue",
+          sprintf("%s, %dk utbytte uten n\u{00e6}ringsformue",
                   d$name %||% "?", d$capital_income_nok/1000))
     }
 
@@ -199,7 +199,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
         if (!is.null(s$birth_year) && !is.null(d$age) &&
             s$birth_year > 2026L) {
           add("18_sibling_unborn",
-              sprintf("%s, søsken %s f. %d (etter referanseaar)",
+              sprintf("%s, s\u{00f8}sken %s f. %d (etter referanseaar)",
                       d$name %||% "?", s$name %||% "?", s$birth_year))
         }
       }
@@ -218,7 +218,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
         !is.null(d$age) && !is.na(d$age)) {
       if (d$years_in_norway > d$age) {
         add("20_botid_exceeds_age",
-            sprintf("%s, %d år gammel, %d år i Norge",
+            sprintf("%s, %d \u{00e5}r gammel, %d \u{00e5}r i Norge",
                     d$name %||% "?", d$age, d$years_in_norway))
       }
     }
@@ -236,7 +236,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
     if (!is.null(d$mother) && !is.null(d$mother$gender) &&
         identical(d$mother$gender, "M") &&
         !is.null(d$mother$occupation) &&
-        grepl("[Hh]jemmeværende|[Hh]ousewife", d$mother$occupation)) {
+        grepl("[Hh]jemmev\u{00e6}rende|[Hh]ousewife", d$mother$occupation)) {
       add("22_male_homemaker",
           sprintf("%s, mor %s (M): %s",
                   d$name %||% "?", d$mother$name %||% "?", d$mother$occupation))
@@ -358,7 +358,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
     if (!is.null(d$bourdieu_klasse) &&
         grepl("[Ee]tablert overklasse|[Ee]stablished upper", d$bourdieu_klasse) &&
         !is.null(d$self_rated_health) &&
-        grepl("[Dd]aarlig|[Mm]eget dårlig|[Pp]oor|[Vv]ery poor",
+        grepl("[Dd]aarlig|[Mm]eget d\u{00e5}rlig|[Pp]oor|[Vv]ery poor",
               d$self_rated_health)) {
       add("36_upper_class_poor_health",
           sprintf("%s: %s + helse %s",
@@ -417,7 +417,7 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
     if (!is.null(d$occupation) && !is.na(d$occupation) &&
         grepl("Uf\u00f8retrygd", d$occupation) && !isTRUE(d$has_disability)) {
       add("42_ufore_without_disability",
-          sprintf("%s, %d aar: uføretrygd uten funksjonsnedsettelse",
+          sprintf("%s, %d aar: uf\u{00f8}retrygd uten funksjonsnedsettelse",
                   d$name %||% "?", age))
     }
 
