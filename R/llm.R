@@ -146,6 +146,9 @@ ollama_available <- function(host = "http://localhost:11434") {
 #' @param temperature Sampling temperature. Default 0.7.
 #' @param system Optional system prompt override (advanced).
 #' @param seed Optional integer for reproducible generation.
+#' @param num_predict Maximum number of tokens to generate. Default 800.
+#' @param think Passed to Ollama's \code{think} option for reasoning
+#'   models. \code{NULL} (default) leaves it unset.
 #' @return A \code{counterfactme_narrative} object.
 #' @export
 narrate_life_llm <- function(x, model = "llama3.1",

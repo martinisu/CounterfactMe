@@ -9,10 +9,17 @@ test_that("counterfact_me() returns a counterfactme object with expected fields"
 })
 
 test_that("counterfact_me works with subset of dimensions", {
-  x <- counterfact_me(dimensions = c("name", "age", "gender"))
+  # gender is a parameter, not a dimension -- it is always drawn
+  x <- counterfact_me(dimensions = c("name", "age"))
   expect_true(!is.null(x$name))
   expect_true(!is.null(x$age))
+  expect_true(!is.null(x$gender))
   expect_true(is.null(x$housing_value_nok))
+})
+
+test_that("unknown dimensions are rejected", {
+  expect_error(counterfact_me(dimensions = c("name", "not_a_dimension")),
+               "Unknown dimensions")
 })
 
 test_that("counterfact_me works in both languages", {

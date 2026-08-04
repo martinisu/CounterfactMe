@@ -21,10 +21,17 @@ test_that("sample_education returns plausible labels", {
   expect_type(edus, "character")
 })
 
-test_that("sample_municipality returns county info", {
+test_that("sample_municipality returns municipality names", {
   mun <- sample_municipality(n = 5)
-  expect_equal(nrow(mun), 5)
-  expect_true(all(c("name", "county", "population") %in% names(mun)))
+  expect_length(mun, 5)
+  expect_type(mun, "character")
+  expect_true(all(nzchar(mun)))
+})
+
+test_that("sample_municipality works unweighted", {
+  mun <- sample_municipality(n = 5, weighted = FALSE)
+  expect_length(mun, 5)
+  expect_type(mun, "character")
 })
 
 test_that("available_dimensions returns expected set", {

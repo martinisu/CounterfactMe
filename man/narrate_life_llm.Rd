@@ -26,6 +26,11 @@ narrate_life_llm(x, model = "llama3.1",
 \item{system}{Optional system prompt override (advanced).}
 
 \item{seed}{Optional integer for reproducible generation.}
+
+\item{num_predict}{Maximum number of tokens to generate. Default 800.}
+
+\item{think}{Passed to Ollama's \code{think} option for reasoning
+  models. \code{NULL} (default) leaves it unset.}
 }
 \value{
 A \code{counterfactme_narrative} object.

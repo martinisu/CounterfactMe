@@ -1,6 +1,6 @@
 Package: CounterfactMe
 Title: Generate Random Counterfactual Lives Based on Norwegian Open Data
-Version: 0.9.27
+Version: 0.9.28
 Authors@R:
     person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"))
 Description: What if you had been someone else? CounterfactMe generates random
@@ -14,7 +14,6 @@ Description: What if you had been someone else? CounterfactMe generates random
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -31,3 +30,4 @@ LazyData: true
 URL: https://github.com/martinisungset/CounterfactMe
 BugReports: https://github.com/martinisungset/CounterfactMe/issues
 Language: en-US
+Config/roxygen2/version: 8.0.0

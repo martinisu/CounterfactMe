@@ -1,3 +1,21 @@
+# CounterfactMe 0.9.28
+
+## Bug fixes
+- `counterfact_me(conditional = FALSE)` feilet med "object 'age' not found":
+  `.counterfact_independent()` kalte `.cond_parents_relationship()` med en
+  udefinert variabel. Bruker nå `ego_age`.
+
+## Documentation
+- Dokumenterte `reject_impossible` og `max_reject_attempts` i `counterfact_me()`.
+- Dokumenterte `num_predict` og `think` i `narrate_life_llm()`.
+- Dokumenterte `print.counterfactme_narrative()`.
+
+## Tests
+- Rettet foreldet test som sendte `"gender"` som dimensjon (det er et
+  parameter, ikke en dimensjon), og la til test for ukjente dimensjoner.
+- Rettet foreldet test som forventet at `sample_municipality()` returnerer
+  en data.frame; den returnerer en character-vektor, som dokumentert.
+
 # CounterfactMe 0.9.27
 
 ## Preview-release

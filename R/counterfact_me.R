@@ -20,6 +20,12 @@
 #'   If \code{FALSE}, each dimension is drawn independently.
 #' @param min_age Minimum age to draw. Default 0 (all ages). Set to e.g. 18 to draw only adults.
 #' @param max_age Maximum age to draw. Default 99.
+#' @param reject_impossible If \code{TRUE} (default), draws are checked
+#'   against \code{\link{find_impossibilities}} and re-drawn when a hard
+#'   impossibility (e.g. married under 18) is found. Improbable but possible
+#'   combinations are left alone.
+#' @param max_reject_attempts Maximum re-draws before returning the cleanest
+#'   attempt with post-hoc fixes. Default 20.
 #' @return An object of class \code{"counterfactme"} -- a named list of drawn
 #'   traits with a pretty-print method.
 #' @export
@@ -717,7 +723,7 @@ counterfact_me <- function(dimensions = available_dimensions(),
     result$father <- par$father
     result$couple_type <- par$couple_type
     result$couple_sex <- par$couple_sex
-    pr <- .cond_parents_relationship(age, par$mother, par$father, lang = lang)
+    pr <- .cond_parents_relationship(ego_age, par$mother, par$father, lang = lang)
     if (!is.null(pr)) {
       result$parents_divorced <- pr$divorced
       result$parents_relationship <- pr$label

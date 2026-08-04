@@ -2,7 +2,18 @@
 % Please edit documentation in R/narrate.R
 \name{print.counterfactme_narrative}
 \alias{print.counterfactme_narrative}
-\title{print.counterfactme_narrative}
+\title{Print a counterfactual life narrative}
 \usage{
 \method{print}{counterfactme_narrative}(x, ...)
+}
+\arguments{
+\item{x}{A \code{counterfactme_narrative} object.}
+
+\item{...}{Ignored.}
+}
+\value{
+Invisibly returns \code{x}.
+}
+\description{
+Print a counterfactual life narrative
 }

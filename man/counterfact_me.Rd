@@ -31,6 +31,14 @@ counterfact_me(dimensions = available_dimensions(),
 \item{min_age}{Minimum age to draw. Default 0 (all ages). Set to e.g. 18 to draw only adults.}
 
 \item{max_age}{Maximum age to draw. Default 99.}
+
+\item{reject_impossible}{If \code{TRUE} (default), draws are checked
+  against \code{\link{find_impossibilities}} and re-drawn when a hard
+  impossibility (e.g. married under 18) is found. Improbable but possible
+  combinations are left alone.}
+
+\item{max_reject_attempts}{Maximum re-draws before returning the cleanest
+  attempt with post-hoc fixes. Default 20.}
 }
 \value{
 An object of class \code{"counterfactme"} -- a named list of drawn

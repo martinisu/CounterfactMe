@@ -56,6 +56,11 @@ narrate_life <- function(x, style = c("biography", "obituary", "compact"),
   text
 }
 
+#' Print a counterfactual life narrative
+#'
+#' @param x A \code{counterfactme_narrative} object.
+#' @param ... Ignored.
+#' @return Invisibly returns \code{x}.
 #' @export
 print.counterfactme_narrative <- function(x, ...) {
   cat(x, "\n")
