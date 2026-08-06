@@ -1,3 +1,28 @@
+# CounterfactMe 0.9.32
+
+## Data provenance
+- Fjernet `0-15`-radene fra `self_rated_health.csv`, `social_isolation.csv`,
+  `tv_hours.csv`, `sleep_hours.csv` og `chronic_illness_prob.csv`. Ingen
+  av dem hadde provenans: ingen skript i `data-raw/` henter dem, og
+  verdiene var runde tall som summerte til noyaktig 1. De ble satt fordi
+  aldersoppslaget trengte noe a finne.
+- Tilsvarende for `.cond_disability()`, som hadde en hardkodet
+  barnesannsynlighet pa 0.06 med hardkodede typevekter.
+  `disability_by_age.csv` dekker ikke barn -- den gjelder uforetrygd, ikke
+  funksjonsnedsettelse, og starter pa 18-24.
+- `sleep_hours`, `media_tv_hours`, `has_chronic` og `has_disability` gates
+  na under 16, sammen med sporreskjema-feltene fra 0.9.31.
+
+  Barn beholder det som enten er SSB-basert (navn, alder, geografi,
+  familie, husholdning, religion) eller apenbart skrevet (barnevarianter
+  av yrke, inntekt og kosthold). Ingenting imellom -- ingen ukildede tall
+  presentert som malinger.
+
+## Robustness
+- Oppslag som ikke finner sitt aldersband returnerer na `NA` i stedet for
+  a falle tilbake pa forste rad i tabellen. Den gamle fallbacken
+  (`row <- srh[1, ]`) ville gitt et barn 16-24-verdien uten a si fra.
+
 # CounterfactMe 0.9.31
 
 ## Validity

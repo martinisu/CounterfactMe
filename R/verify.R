@@ -272,9 +272,12 @@ verify_consistency <- function(N = 5000L, lang = "no", verbose = TRUE) {
 
     # === NYE DIMENSJONER (v0.8.0) ===
 
-    # 26. Kronisk sykdom under 12 (sjelden)
-    if (isTRUE(d$has_chronic) && !is.na(age) && age < 12) {
-      add("26_chronic_under_12",
+    # 26. Kronisk sykdom under aldersgrensa.
+    # 0-15-raden i chronic_illness_prob.csv var et anslag uten kilde og er
+    # fjernet; feltet skal derfor vaere FALSE for barn. Slar dette ut, er
+    # gaten omgatt et sted.
+    if (isTRUE(d$has_chronic) && !is.na(age) && age < 16) {
+      add("26_chronic_under_age_floor",
           sprintf("%s, %d aar: kronisk %s", d$name %||% "?", age,
                   d$chronic_type %||% "?"))
     }

@@ -30,7 +30,7 @@ counterfact_me(lang = "en")   # engelsk ramme, norske yrker
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.31.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.32.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
 remotes::install_github("martinisungset/CounterfactMe")

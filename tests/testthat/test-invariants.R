@@ -217,38 +217,87 @@ test_that("survey dimensions are suppressed below their age floor", {
 })
 
 test_that("the same dimensions ARE present for adults", {
-  # Guards against a gate that is too aggressive and silently empties
-  # a field for everyone.
+  # Guards against a gate that is too aggressive and silently empties a
+  # field for everyone.
+  #
+  # Note the predicate: has_chronic and has_disability are FALSE, not NA,
+  # for a healthy adult, so an is.na() check would count them as present
+  # even if they were fully gated. They need a prevalence threshold drawn
+  # from the underlying rates instead.
   set.seed(109)
-  n <- 120L
-  draws <- lapply(seq_len(n), function(i) counterfact_me(min_age = 30, max_age = 60))
-  for (f in names(CounterfactMe:::.dimension_min_age)) {
-    share <- mean(vapply(draws, function(d) {
-      v <- d[[f]]; !is.null(v) && !all(is.na(v))
-    }, logical(1)))
-    expect_gt(share, 0.5,
-              label = sprintf("adults with '%s' (%.2f)", f, share))
+  draws <- lapply(1:200, function(i) counterfact_me(min_age = 30, max_age = 60))
+
+  present <- function(f) mean(vapply(draws, function(d) {
+    v <- d[[f]]; !is.null(v) && !all(is.na(v)) && !identical(v, FALSE)
+  }, logical(1)))
+
+  # Value-bearing fields: essentially everyone should have one
+  for (f in c("trust", "loneliness", "close_friends", "self_rated_health",
+              "media_paper", "media_podcast", "media_social",
+              "media_tv_hours", "sleep_hours")) {
+    got <- present(f)
+    expect_gt(got, 0.5, label = sprintf("adults with '%s' (%.2f)", f, got))
+  }
+
+  # Prevalence fields: TRUE only for a minority, so the bar is the
+  # underlying rate, not a majority.
+  # chronic_illness_prob: 0.18 (25-44) to 0.36 (45-64)
+  expect_gt(present("has_chronic"), 0.05)
+  # .cond_disability: 0.13 (25-44) to 0.20 (45-66)
+  expect_gt(present("has_disability"), 0.03)
+})
+
+test_that("children keep only sourced or plainly-written fields", {
+  # Everything a child is given must be either SSB-derived (name, age,
+  # geography, family, household) or obviously authored (the child
+  # variants of occupation, income and diet). Nothing in between:
+  # no unsourced numbers dressed as measurements.
+  set.seed(110)
+  draws <- lapply(1:200, function(i) counterfact_me(min_age = 0, max_age = 15))
+
+  share <- function(f) mean(vapply(draws, function(d) {
+    v <- d[[f]]; !is.null(v) && !all(is.na(v)) && !identical(v, FALSE)
+  }, logical(1)))
+
+  # Estimates without provenance -- must be gone
+  for (f in c("sleep_hours", "media_tv_hours", "has_chronic",
+              "has_disability", "chronic_type", "disability")) {
+    expect_equal(share(f), 0,
+                 label = sprintf("unsourced field '%s' present for children", f))
+  }
+
+  # SSB-derived and authored fields -- must remain
+  for (f in c("name", "age", "municipality", "county", "household",
+              "occupation", "mother", "father")) {
+    expect_gt(share(f), 0.9,
+              label = sprintf("child lost sourced field '%s'", f))
   }
 })
 
-test_that("register-based child attributes are NOT suppressed", {
-  # Chronic illness and disability are recorded conditions, not survey
-  # answers, so children must still be able to have them. Likewise TV
-  # time and sleep, which have genuine 0-15 bands.
-  set.seed(110)
-  draws <- lapply(1:250, function(i) counterfact_me(min_age = 0, max_age = 15))
-  any_chronic <- any(vapply(draws, function(d) isTRUE(d$has_chronic), logical(1)))
-  expect_true(any_chronic)
+test_that("the removed 0-15 rows are really gone from the data", {
+  # If a band row reappears, the gates above would still hide it, so the
+  # test would pass while the unsourced numbers quietly returned.
+  ed <- system.file("extdata", package = "CounterfactMe")
+  for (f in c("self_rated_health", "social_isolation", "tv_hours",
+              "sleep_hours", "chronic_illness_prob")) {
+    d <- utils::read.csv(file.path(ed, paste0(f, ".csv")),
+                         stringsAsFactors = FALSE)
+    expect_false("0-15" %in% d$age_band,
+                 label = sprintf("%s.csv still has a 0-15 row", f))
+  }
+})
 
-  tv <- mean(vapply(draws, function(d) {
-    v <- d$media_tv_hours; !is.null(v) && !is.na(v)
-  }, logical(1)))
-  expect_gt(tv, 0.5)
+test_that("a missing age band yields NA rather than an adult value", {
+  # The old fallback was `row <- srh[1, ]`, which would hand a child the
+  # 16-24 row without any error. That is the failure mode worth guarding:
+  # silent, plausible, and wrong.
+  h <- CounterfactMe:::.cond_health(age = 8L, edu_code = 1L, lang = "no")
+  expect_true(is.na(h$self_rated))
+  expect_false(isTRUE(h$chronic))
 
-  slp <- mean(vapply(draws, function(d) {
-    v <- d$sleep_hours; !is.null(v) && !is.na(v)
-  }, logical(1)))
-  expect_gt(slp, 0.5)
+  iso <- CounterfactMe:::.cond_social_isolation(age = 8L, lang = "no")
+  expect_true(is.na(iso$loneliness))
+  expect_true(is.na(iso$trust))
 })
 
 test_that("alcohol remains gated at 16", {

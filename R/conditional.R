@@ -3322,38 +3322,56 @@
 }
 
 # --- Helse: selvrapportert + kronisk sykdom ----------------------------
-# --- Aldersgrenser for sporreskjema-baserte dimensjoner -----------------
+# --- Aldersgrenser per dimensjon ---------------------------------------
 #
-# Flere dimensjoner stammer fra undersokelser med en nedre aldersgrense.
-# Levekarsundersokelsen spor 16+; a trekke en verdi for et barn er da ikke
-# en tilnaerming, men en oppdiktet observasjon presentert med samme
-# autoritet som registertallene. Slike felt settes til NA under grensa,
-# og print() hopper over NA, sa de vises ikke i det hele tatt.
+# To grunner til at et felt ikke gjelder barn:
 #
-# Merk skillet: selvrapportert helse er et sporreskjemasvar og gates,
-# mens kronisk sykdom og funksjonsnedsettelse er registerfestede forhold
-# som gjelder barn like fullt og derfor IKKE gates.
+#   (a) Sporreskjema-grense. Levekarsundersokelsen spor 16+. A trekke en
+#       tillitsscore for en firearing er ikke en tilnaerming, men en
+#       oppdiktet observasjon presentert med samme autoritet som
+#       registertallene.
 #
-# TV-tid, sovn og kosthold beholdes for barn: de er faktiske forhold med
-# egne 0-15-band, ikke selvrapporterte holdninger.
+#   (b) Manglende kilde. Radene for 0-15 i sleep_hours, tv_hours og
+#       chronic_illness_prob, og barnesannsynligheten i .cond_disability,
+#       har ingen provenans: ingen skript i data-raw/ henter dem, og
+#       verdiene er runde tall som summerer til nayaktig 1. De ble satt
+#       fordi oppslaget trengte noe a finne.
+#
+# Begge klasser gates her. print() hopper over NA, sa feltene vises ikke.
+# Barn beholder det som enten er SSB-basert (navn, alder, geografi,
+# familie, husholdning) eller apenbart skrevet (barnevarianter av yrke,
+# inntekt og kosthold) -- der er det ingen fare for a forveksle dikt med
+# maling.
 .dimension_min_age <- c(
+  # (a) sporreskjema-grense
   trust             = 16L,  # generell tillit 0-10, Levekar/ESS 16+
   loneliness        = 16L,  # Levekar 16+
   close_friends     = 16L,  # Levekar 16+
   has_confidant     = 16L,  # Levekar 16+
   self_rated_health = 16L,  # Levekar 16+
-  media_paper       = 13L,  # avisvalg betinges av parti; meningslost for barn
+  media_paper       = 13L,  # avisvalg betinges av parti
   media_podcast     = 13L,
-  media_social      = 13L   # plattformene har 13-arsgrense
+  media_social      = 13L,  # plattformene har 13-arsgrense
+  # (b) anslag uten kilde
+  sleep_hours       = 16L,
+  media_tv_hours    = 16L,
+  has_chronic       = 16L,
+  has_disability    = 16L
 )
+
 
 .cond_health <- function(age, edu_code = NULL, background = "majority",
                          lang = "en") {
   if (is.null(age) || is.na(age)) {
     return(list(self_rated = NA_character_, chronic = FALSE))
   }
-  # Selvrapportert helse er et sporreskjemasvar (Levekar 16+); kronisk
-  # sykdom er registerfestet og gjelder ogsa barn. Bare den forste gates.
+  # Bade selvrapportert helse (sporreskjema, 16+) og kronisk sykdom
+  # (0-15-raden er et anslag uten kilde) gates for barn.
+  if (age < .dimension_min_age[["self_rated_health"]] &&
+      age < .dimension_min_age[["has_chronic"]]) {
+    return(list(self_rated = NA_character_, chronic = FALSE,
+                chronic_type = NA_character_))
+  }
   gate_srh <- age < .dimension_min_age[["self_rated_health"]]
 
   band <- if (age < 16) "0-15"
@@ -3371,7 +3389,12 @@
 
   # Self-rated health
   row <- srh[srh$age_band == band, , drop = FALSE]
-  if (nrow(row) == 0) row <- srh[1, ]
+  if (nrow(row) == 0) {
+    # Fant ikke aldersbandet. Ikke fall tilbake pa forste rad -- det ville
+    # gitt et barn en voksenverdi uten a si fra. Bedre a returnere NA.
+    return(list(self_rated = NA_character_, chronic = FALSE,
+                chronic_type = NA_character_))
+  }
   probs <- c(row$p_meget_god, row$p_god, row$p_saa_som, row$p_daarlig, row$p_meget_daarlig)
   # Edu adjustment: høyere utdanning → bedre selvrapportert helse
   if (!is.null(edu_code) && !is.na(edu_code)) {
@@ -3389,7 +3412,10 @@
 
   # Chronic illness
   prow <- cip[cip$age_band == band, , drop = FALSE]
-  if (nrow(prow) == 0) prow <- cip[1, ]
+  if (nrow(prow) == 0) {
+    return(list(self_rated = srh_label, chronic = FALSE,
+                chronic_type = NA_character_))
+  }
   p_chr <- prow$p_chronic[1]
   # Edu adjustment: lavere edu → mer kronisk
   if (!is.null(edu_code) && !is.na(edu_code)) {
@@ -3435,7 +3461,9 @@
   si <- .cfm_env$social_isolation
   if (is.null(si)) return(list(loneliness = NA_character_, trust = NA_integer_))
   row <- si[si$age_band == band, , drop = FALSE]
-  if (nrow(row) == 0) row <- si[1, ]
+  if (nrow(row) == 0) {
+    return(list(loneliness = NA_character_, trust = NA_integer_))
+  }
 
   probs <- c(row$p_lonely_often, row$p_lonely_sometimes,
              row$p_lonely_rarely, row$p_lonely_never)
@@ -3805,9 +3833,9 @@
     if (!is.na(i0)) sm_lbl <- if (identical(lang, "no")) sm$level_no[i0] else sm$level_en[i0]
   }
 
-  # Avis, podkast og sosiale medier gates: avisvalget betinges av parti,
-  # og plattformene har 13-arsgrense. TV-tid beholdes -- det er et faktisk
-  # forhold med eget 0-15-band, ikke en holdning.
+  # Avis, podkast og sosiale medier gates ved 13; TV-tid ved 16 fordi
+  # 0-15-raden i tv_hours.csv er et anslag uten kilde.
+  if (age < .dimension_min_age[["media_tv_hours"]]) tv_h       <- NA_real_
   if (age < .dimension_min_age[["media_paper"]])   paper       <- NA_character_
   if (age < .dimension_min_age[["media_podcast"]]) podcast_lbl <- NA_character_
   if (age < .dimension_min_age[["media_social"]])  sm_lbl      <- NA_character_
@@ -3817,6 +3845,9 @@
 # --- Daglig tidsbruk: søvn ------------------------------------------------
 .cond_sleep <- function(age, n_children = 0, styrk_code = NULL,
                         has_chronic = FALSE, lang = "en") {
+  # 0-15-raden i sleep_hours.csv er et anslag uten kilde.
+  if (is.null(age) || is.na(age) ||
+      age < .dimension_min_age[["sleep_hours"]]) return(NA_real_)
   .load_data()
   sh <- .cfm_env$sleep_hours
   if (is.null(sh)) return(NA_real_)
@@ -4138,10 +4169,13 @@
   no <- identical(lang, "no")
   none <- list(has = FALSE, type = NA_character_, severity = NA_character_, label = NA_character_)
   if (is.null(age) || is.na(age)) return(none)
+  # Barnesannsynligheten var hardkodet 0.06 med hardkodede typevekter, uten
+  # kilde. disability_by_age.csv hjelper ikke: den gjelder uforetrygd, ikke
+  # funksjonsnedsettelse, og starter pa 18-24.
+  if (age < .dimension_min_age[["has_disability"]]) return(none)
 
   # Andel med funksjonsnedsettelse, grovt etter SSB-aldersgradient
-  p <- if (age < 16) 0.06
-       else if (age < 25) 0.14
+  p <- if (age < 25) 0.14
        else if (age < 45) 0.13
        else if (age < 67) 0.20
        else if (age < 80) 0.30
