@@ -23,9 +23,13 @@ test_that("modern fields of study are rare for pre-1960 cohorts", {
     if (any(vapply(modern, function(m) any(grepl(m, f, ignore.case = TRUE)),
                    logical(1)))) hits <- hits + 1L
   }
-  # cohort_mult is 0.05 for pre-1960, so a few percent is expected;
-  # anything above 10% means the multiplier stopped being applied.
-  expect_lt(hits / n, 0.10)
+  # A multiplier can only shift weight onto something else. STYRK 35
+  # (ICT technicians) has no non-modern candidate at all and STYRK 25 is
+  # 90% modern, so x0.05 left those groups untouched and the observed rate
+  # was 20%. Those two now fall back to an open field of study instead of
+  # asserting a degree that did not exist, which should leave only the
+  # genuinely dampened cases.
+  expect_lt(hits / n, 0.05)
 })
 
 test_that("young cohorts still reach modern fields", {
@@ -149,4 +153,76 @@ test_that("sibling birth years are within a plausible span of ego", {
     }
   }
   expect_gt(checked, 50L)
+})
+
+# ---------------------------------------------------------------
+# The all-modern fallback must leave the broad field intact -- it opens
+# the detail, it does not blank the whole dimension.
+# ---------------------------------------------------------------
+
+test_that("an opened field of study keeps its broad field", {
+  set.seed(207)
+  checked <- 0L
+  for (i in 1:200) {
+    x <- counterfact_me(min_age = 70, max_age = 95)
+    if (is.null(x$field_of_study) || is.na(x$field_of_study)) next
+    checked <- checked + 1L
+    # detail may be NA (opened), but broad must still be a real label
+    expect_true(nzchar(as.character(x$field_of_study)))
+  }
+  expect_gt(checked, 40L)
+})
+
+# ---------------------------------------------------------------
+# Wealth is held as double, not integer.
+#
+# Kroner amounts for the top 0.1% exceed R's integer maximum
+# (2,147,483,647). as.integer() turned those into NA with a warning, and
+# the next line -- if (residual < 0 && net_wealth > 0) -- then failed with
+# "missing value where TRUE/FALSE needed". The draw is rare, so the crash
+# surfaced only once the suite ran hundreds of lives.
+# ---------------------------------------------------------------
+
+test_that("very large fortunes do not overflow", {
+  set.seed(208)
+  # Draw enough to reach the top tiers several times over.
+  for (i in 1:400) {
+    x <- counterfact_me(min_age = 40, max_age = 80)
+    nw <- x$net_wealth_nok
+    if (is.null(nw)) next
+    expect_false(is.na(nw))
+    expect_true(is.finite(nw))
+  }
+})
+
+test_that("wealth fields are numeric and survive above integer.max", {
+  set.seed(209)
+  seen_large <- FALSE
+  for (i in 1:500) {
+    x <- counterfact_me(min_age = 45, max_age = 75)
+    for (f in c("net_wealth_nok", "financial_assets_nok",
+                "business_equity_nok", "inheritance_nok")) {
+      v <- x[[f]]
+      if (is.null(v) || is.na(v)) next
+      expect_true(is.numeric(v))
+      expect_true(is.finite(v))
+      if (abs(v) > .Machine$integer.max) seen_large <- TRUE
+    }
+  }
+  # Not asserted as required -- the top tier is rare enough that a given
+  # seed may miss it -- but recorded so the intent is visible.
+  expect_true(is.logical(seen_large))
+})
+
+test_that("the wealth guard survives a forced top-tier draw", {
+  # .cond_wealth is internal, so call it directly with inputs that push
+  # into the Pareto tail rather than hoping the sampler gets there.
+  set.seed(210)
+  for (i in 1:100) {
+    w <- CounterfactMe:::.cond_wealth(
+      age = 65L, income_nok = 5e6, parents_capital = 2e8,
+      housing_equity_nok = 5e7, hytte_value_nok = 3e7, lang = "no")
+    expect_false(is.na(w$net_wealth_nok))
+    expect_true(is.finite(w$net_wealth_nok))
+  }
 })

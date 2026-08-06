@@ -1028,6 +1028,16 @@
 # Uses nus_detail_by_styrk.csv first, filtered to codes whose first digit
 # matches `broad`. Falls back to uniform across nus_detailed.csv rows with
 # matching broad.
+# NUS-koder for utdanninger som knapt fantes i Norge for 1980-tallet.
+# Brukes til a dempe anakronistiske studieretninger for eldre kohorter.
+.modern_nus_codes <- c(
+  "161", "165", "166",          # design (bruks-, interior-, kles-)
+  "351", "353", "359",          # medier og kommunikasjon
+  "481", "482", "489",          # informatikk
+  "513", "514",                 # mikrobiologi, miljostudier
+  "541", "542", "549"           # informasjons- og datateknologi
+)
+
 .cond_nus_detail <- function(broad, sk2, lang = "en", age = NULL) {
   dm <- .cfm_env$nus_detail_by_styrk
   dl <- .cfm_env$nus_detailed
@@ -1065,18 +1075,25 @@
   # Weighted draw from candidates, justert for kohort
   w <- cand$weight
   w[is.na(w) | w < 0] <- 0
-  # Modern NUS-koder (IT, design, media, miljø, mikrobiologi) burde være sjeldent
-  # for ego født før 1980 (utdanning før Reform 94)
+  # Moderne NUS-koder (IT, design, media, miljo, mikrobiologi) skal vaere
+  # sjeldne for ego fodt for 1980 -- utdanningene fantes knapt.
   if (!is.null(age) && !is.na(age)) {
     birth_year <- .cfm_env$ref_year - age
-    modern_codes <- c("481", "482", "489", "541", "542", "549",
-                      "351", "359", "161", "165", "166",
-                      "513", "514", "489", "353")
-    is_modern <- cand$nus_code %in% modern_codes
+    is_modern <- cand$nus_code %in% .modern_nus_codes
     cohort_mult <- if (birth_year < 1960) 0.05
                    else if (birth_year < 1970) 0.15
                    else if (birth_year < 1980) 0.45
                    else 1.0
+
+    # En multiplikator kan bare flytte vekt til noe annet. Er alle
+    # kandidatene moderne -- STYRK 35 (IKT-teknikere) har bare slike, og
+    # STYRK 25 er 90 % -- endrer x0.05 ingenting relativt, og en 78-aring
+    # fikk fortsatt IKT-utdanning. Da er det riktigere a la
+    # studieretningen sta apen enn a pasta en grad som ikke fantes:
+    # det brede fagfeltet vises fortsatt.
+    if (cohort_mult < 1 && all(is_modern)) {
+      return(list(code = NA_character_, label = NA_character_))
+    }
     w[is_modern] <- w[is_modern] * cohort_mult
   }
   if (sum(w) == 0) w <- rep(1, nrow(cand))
@@ -2108,12 +2125,14 @@
                          n_siblings = 0,
                          gender = NULL,
                          lang = "en") {
+  # NA_real_, ikke NA_integer_: formuesfeltene er double fordi kronebelop
+  # i toppsjiktet overstiger R sitt heltallstak.
   na_result <- list(
-    net_wealth_nok = NA_integer_,
-    financial_assets_nok = NA_integer_,
-    business_equity_nok = NA_integer_,
-    capital_income_nok = NA_integer_,
-    inheritance_nok = NA_integer_,
+    net_wealth_nok = NA_real_,
+    financial_assets_nok = NA_real_,
+    business_equity_nok = NA_real_,
+    capital_income_nok = NA_real_,
+    inheritance_nok = NA_real_,
     wealth_class = NA_character_
   )
   if (is.null(age) || is.na(age)) return(na_result)
@@ -2191,9 +2210,9 @@
   }
   # Compute real estate wealth first (used to gate negative-wealth bracket)
   re_wealth <- (if (is.null(housing_equity_nok) || is.na(housing_equity_nok)) 0L
-                else as.integer(housing_equity_nok)) +
+                else as.numeric(housing_equity_nok)) +
                (if (is.null(hytte_value_nok) || is.na(hytte_value_nok)) 0L
-                else as.integer(hytte_value_nok))
+                else as.numeric(hytte_value_nok))
 
   # Bracket "00-" (≤0): negative, typically student loans / billån / kreditt.
   # But if ego has substantial real estate equity, pure negative wealth is
@@ -2209,7 +2228,12 @@
     }
   }
 
-  net_wealth <- as.integer(round(nw))
+  net_wealth <- round(nw)
+  # Formue holdes som double, ikke integer: for topp 0,1 % overstiger
+  # kronebelopet R sitt heltallstak (2 147 483 647), og as.integer() ga da
+  # NA med advarsel -- som i neste linje ble til "missing value where
+  # TRUE/FALSE needed". Vakten her fanger enhver annen vei til NA.
+  if (!is.finite(net_wealth)) net_wealth <- as.numeric(re_wealth)
 
   # 4. Decompose: housing equity + hytte are given, residual is financial+business
   residual <- net_wealth - re_wealth
@@ -2217,12 +2241,12 @@
   # If residual is negative but net_wealth is moderate, treat re_wealth as the anchor
   # and shift up net_wealth a bit.
   if (residual < 0 && net_wealth > 0) {
-    net_wealth <- as.integer(re_wealth + max(0, residual + abs(residual) * 0.3))
+    net_wealth <- round(re_wealth + max(0, residual + abs(residual) * 0.3))
     residual <- net_wealth - re_wealth
   }
 
   business_equity <- 0L
-  financial <- max(0L, as.integer(residual))
+  financial <- max(0, round(residual))
 
   # Inheritance: if both parents dead, ego received share of parents_capital
   # (Norway has no inheritance tax since 2014, full transfer)
@@ -2230,10 +2254,10 @@
   if (isTRUE(parents_both_dead) && !is.null(parents_capital) &&
       !is.na(parents_capital) && parents_capital > 0) {
     n_kids <- max(1, as.integer(n_siblings) + 1L)
-    inheritance <- as.integer(round(parents_capital / n_kids))
+    inheritance <- round(parents_capital / n_kids)
     # Add to financial assets
     financial <- financial + inheritance
-    net_wealth <- as.integer(net_wealth + inheritance)
+    net_wealth <- round(net_wealth + inheritance)
     # Inheritance can push ego into a higher wealth class
     if (net_wealth >= 133e6) wealth_class <- "top01"
     else if (net_wealth >= 28e6 && !(wealth_class %in% c("top01"))) wealth_class <- "top1"
@@ -2244,12 +2268,12 @@
   if (wealth_class %in% c("top1", "top01")) {
     biz_share <- if (wealth_class == "top01") stats::runif(1, 0.65, 0.85)
                  else stats::runif(1, 0.45, 0.75)
-    business_equity <- as.integer(round(residual * biz_share))
-    financial <- max(0L, as.integer(residual - business_equity))
+    business_equity <- round(residual * biz_share)
+    financial <- max(0, round(residual - business_equity))
   } else if (wealth_class == "top5" && residual > 5e6) {
     biz_share <- stats::runif(1, 0.20, 0.45)
-    business_equity <- as.integer(round(residual * biz_share))
-    financial <- max(0L, as.integer(residual - business_equity))
+    business_equity <- round(residual * biz_share)
+    financial <- max(0, round(residual - business_equity))
   }
 
   # 5. Capital income: utbytte + renter
@@ -2265,14 +2289,14 @@
       cap_income <- cap_income + business_equity * stats::runif(1, 0.020, 0.080)
     }
   }
-  cap_income <- as.integer(round(cap_income, -3))
+  cap_income <- round(cap_income, -3)
 
   list(
     net_wealth_nok = net_wealth,
-    financial_assets_nok = as.integer(financial),
-    business_equity_nok = as.integer(business_equity),
+    financial_assets_nok = financial,
+    business_equity_nok = business_equity,
     capital_income_nok = cap_income,
-    inheritance_nok = as.integer(inheritance),
+    inheritance_nok = inheritance,
     wealth_class = wealth_class
   )
 }

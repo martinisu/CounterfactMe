@@ -1,6 +1,6 @@
 Package: CounterfactMe
 Title: Generate Random Counterfactual Lives Based on Norwegian Open Data
-Version: 0.9.34
+Version: 0.9.35
 Authors@R:
     person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"))
 Description: What if you had been someone else? CounterfactMe generates random

@@ -1,3 +1,23 @@
+# CounterfactMe 0.9.35
+
+## Bug fixes
+- `.cond_wealth()` krasjet med "missing value where TRUE/FALSE needed" for
+  de storste formuene. Kronebelop i topp 0,1 % overstiger R sitt
+  heltallstak (2 147 483 647), og `as.integer()` gjorde dem til `NA` med
+  advarsel; neste linje testet sa `residual < 0` pa en `NA`. Formue holdes
+  na som `double`. Dette var ogsa kilden til over tusen advarsler i
+  testkjoringen. Feilen krevde flere hundre trekninger for a vise seg.
+- Studieretning for kohorter for 1980: kohort-multiplikatoren pa 0,05
+  kunne bare flytte vekt over pa noe annet, og STYRK 35 (IKT-teknikere)
+  har ingen ikke-moderne kandidat i det hele tatt, mens STYRK 25 er 90 %
+  moderne. En 78-aring fikk derfor fortsatt IKT-utdanning i 20 % av
+  tilfellene. Er alle kandidatene moderne, star studieretningen na apen --
+  det brede fagfeltet vises fortsatt.
+
+## Internals
+- `.modern_nus_codes` er hentet ut som en dokumentert konstant (koden
+  hadde `"489"` oppfort to ganger).
+
 # CounterfactMe 0.9.34
 
 ## Tests
