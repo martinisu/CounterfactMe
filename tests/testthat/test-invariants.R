@@ -188,3 +188,73 @@ test_that("generational birth years are ordered", {
     }
   }
 })
+
+# ---------------------------------------------------------------
+# 7. Survey-based dimensions must be absent below the survey's own
+#    lower age limit.
+#
+#    A 4-year-old was being given a generalized-trust score, a podcast
+#    habit and a favourite newspaper -- the last one conditioned on the
+#    party they "vote" for. These are not rounding errors: the source
+#    surveys do not ask children, so any value is invented, and it looks
+#    just as authoritative as the register-derived fields.
+# ---------------------------------------------------------------
+
+test_that("survey dimensions are suppressed below their age floor", {
+  floors <- CounterfactMe:::.dimension_min_age
+  set.seed(108)
+  for (i in 1:120) {
+    x <- counterfact_me(min_age = 0, max_age = 15)
+    for (f in names(floors)) {
+      if (x$age >= floors[[f]]) next
+      v <- x[[f]]
+      expect_true(is.null(v) || all(is.na(v)),
+                  label = sprintf("%s present at age %d (floor %d): %s",
+                                  f, x$age, floors[[f]],
+                                  paste(as.character(v), collapse = ",")))
+    }
+  }
+})
+
+test_that("the same dimensions ARE present for adults", {
+  # Guards against a gate that is too aggressive and silently empties
+  # a field for everyone.
+  set.seed(109)
+  n <- 120L
+  draws <- lapply(seq_len(n), function(i) counterfact_me(min_age = 30, max_age = 60))
+  for (f in names(CounterfactMe:::.dimension_min_age)) {
+    share <- mean(vapply(draws, function(d) {
+      v <- d[[f]]; !is.null(v) && !all(is.na(v))
+    }, logical(1)))
+    expect_gt(share, 0.5,
+              label = sprintf("adults with '%s' (%.2f)", f, share))
+  }
+})
+
+test_that("register-based child attributes are NOT suppressed", {
+  # Chronic illness and disability are recorded conditions, not survey
+  # answers, so children must still be able to have them. Likewise TV
+  # time and sleep, which have genuine 0-15 bands.
+  set.seed(110)
+  draws <- lapply(1:250, function(i) counterfact_me(min_age = 0, max_age = 15))
+  any_chronic <- any(vapply(draws, function(d) isTRUE(d$has_chronic), logical(1)))
+  expect_true(any_chronic)
+
+  tv <- mean(vapply(draws, function(d) {
+    v <- d$media_tv_hours; !is.null(v) && !is.na(v)
+  }, logical(1)))
+  expect_gt(tv, 0.5)
+
+  slp <- mean(vapply(draws, function(d) {
+    v <- d$sleep_hours; !is.null(v) && !is.na(v)
+  }, logical(1)))
+  expect_gt(slp, 0.5)
+})
+
+test_that("alcohol remains gated at 16", {
+  set.seed(111)
+  for (i in 1:150) {
+    x <- counterfact_me(min_age = 0, max_age = 15)
+    expect_true(is.null(x$alcohol_pattern) || is.na(x$alcohol_pattern))
+  }
+})

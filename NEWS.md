@@ -1,3 +1,21 @@
+# CounterfactMe 0.9.31
+
+## Validity
+- Sporreskjema-baserte dimensjoner undertrykkes na under undersokelsens
+  egen nedre aldersgrense. En firearing fikk tidligere en generell
+  tillitsscore (0-10), en podkastvane og en favorittavis -- den siste
+  betinget av partiet barnet "stemmer" pa. Levekarsundersokelsen spor
+  16+, sa slike verdier var ikke tilnaerminger, men oppdiktede
+  observasjoner presentert med samme autoritet som registertallene.
+
+  Grenser (`.dimension_min_age`): generell tillit, ensomhet, naere
+  venner, fortrolig og selvrapportert helse fra 16; avis, podkast og
+  sosiale medier fra 13.
+
+  Bevisst IKKE gatet: kronisk sykdom og funksjonsnedsettelse er
+  registerfestede forhold som gjelder barn like fullt, og TV-tid, sovn
+  og kosthold har egne 0-15-band. Alkohol var allerede gatet ved 16.
+
 # CounterfactMe 0.9.30
 
 ## Breaking

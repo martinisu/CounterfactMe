@@ -3322,11 +3322,40 @@
 }
 
 # --- Helse: selvrapportert + kronisk sykdom ----------------------------
+# --- Aldersgrenser for sporreskjema-baserte dimensjoner -----------------
+#
+# Flere dimensjoner stammer fra undersokelser med en nedre aldersgrense.
+# Levekarsundersokelsen spor 16+; a trekke en verdi for et barn er da ikke
+# en tilnaerming, men en oppdiktet observasjon presentert med samme
+# autoritet som registertallene. Slike felt settes til NA under grensa,
+# og print() hopper over NA, sa de vises ikke i det hele tatt.
+#
+# Merk skillet: selvrapportert helse er et sporreskjemasvar og gates,
+# mens kronisk sykdom og funksjonsnedsettelse er registerfestede forhold
+# som gjelder barn like fullt og derfor IKKE gates.
+#
+# TV-tid, sovn og kosthold beholdes for barn: de er faktiske forhold med
+# egne 0-15-band, ikke selvrapporterte holdninger.
+.dimension_min_age <- c(
+  trust             = 16L,  # generell tillit 0-10, Levekar/ESS 16+
+  loneliness        = 16L,  # Levekar 16+
+  close_friends     = 16L,  # Levekar 16+
+  has_confidant     = 16L,  # Levekar 16+
+  self_rated_health = 16L,  # Levekar 16+
+  media_paper       = 13L,  # avisvalg betinges av parti; meningslost for barn
+  media_podcast     = 13L,
+  media_social      = 13L   # plattformene har 13-arsgrense
+)
+
 .cond_health <- function(age, edu_code = NULL, background = "majority",
                          lang = "en") {
   if (is.null(age) || is.na(age)) {
     return(list(self_rated = NA_character_, chronic = FALSE))
   }
+  # Selvrapportert helse er et sporreskjemasvar (Levekar 16+); kronisk
+  # sykdom er registerfestet og gjelder ogsa barn. Bare den forste gates.
+  gate_srh <- age < .dimension_min_age[["self_rated_health"]]
+
   band <- if (age < 16) "0-15"
           else if (age < 25) "16-24"
           else if (age < 45) "25-44"
@@ -3385,12 +3414,17 @@
     chronic_type <- if (identical(lang, "no")) types_no[idx] else types_en[idx]
   }
 
+  if (isTRUE(gate_srh)) srh_label <- NA_character_
   list(self_rated = srh_label, chronic = chronic, chronic_type = chronic_type)
 }
 
 # --- Sosial isolasjon (ensomhet + tillit) -------------------------------
 .cond_social_isolation <- function(age, household = NULL, lang = "en") {
   if (is.null(age) || is.na(age)) return(list(loneliness = NA_character_, trust = NA_integer_))
+  # Ensomhet og generell tillit er Levekar-sporsmal (16+). Under grensa
+  # finnes det ikke noe svar a rapportere.
+  if (age < .dimension_min_age[["loneliness"]])
+    return(list(loneliness = NA_character_, trust = NA_integer_))
   band <- if (age < 16) "0-15"
           else if (age < 25) "16-24"
           else if (age < 45) "25-44"
@@ -3771,6 +3805,12 @@
     if (!is.na(i0)) sm_lbl <- if (identical(lang, "no")) sm$level_no[i0] else sm$level_en[i0]
   }
 
+  # Avis, podkast og sosiale medier gates: avisvalget betinges av parti,
+  # og plattformene har 13-arsgrense. TV-tid beholdes -- det er et faktisk
+  # forhold med eget 0-15-band, ikke en holdning.
+  if (age < .dimension_min_age[["media_paper"]])   paper       <- NA_character_
+  if (age < .dimension_min_age[["media_podcast"]]) podcast_lbl <- NA_character_
+  if (age < .dimension_min_age[["media_social"]])  sm_lbl      <- NA_character_
   list(paper = paper, tv_hours = tv_h, podcast = podcast_lbl, social_media = sm_lbl)
 }
 
@@ -4133,6 +4173,9 @@
 .cond_social_support <- function(age, loneliness = NULL, household = NULL, lang = "en") {
   no <- identical(lang, "no")
   if (is.null(age) || is.na(age))
+    return(list(close_friends = NA_character_, n_band = NA_integer_, has_confidant = NA))
+  # Naere venner / fortrolig er Levekar-sporsmal (16+).
+  if (age < .dimension_min_age[["close_friends"]])
     return(list(close_friends = NA_character_, n_band = NA_integer_, has_confidant = NA))
 
   lon <- tolower(loneliness %||% "")
