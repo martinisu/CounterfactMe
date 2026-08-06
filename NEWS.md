@@ -1,3 +1,19 @@
+# CounterfactMe 0.9.34
+
+## Tests
+- Nye regresjonstester (`test-regressions.R`) for fikser som ikke var
+  vaktet: kohort-anakronisme i studieretning (#97), yrke mot utdanning
+  (#94), navn mot bakgrunn (#55), botid mot alder (#51) og
+  sosken-fodselsar (#68). Alle disse feiler stille -- resultatet er en
+  plausibel verdi, ikke en feilmelding.
+- Nye kontraktstester (`test-api-contracts.R`) for
+  `counterfact_me_constrained()`, `counterfact_parallel_lives()`,
+  `narrate_life()` og `life_factsheet()`, som ikke hadde noen tester i
+  det hele tatt.
+- Tester som hopper over trekninger har na en dekningsassertion, sa de
+  ikke kan bestå tomt. To av testene jeg skrev i denne okta gjorde
+  nettopp det for de ble rettet.
+
 # CounterfactMe 0.9.33
 
 ## Tests
