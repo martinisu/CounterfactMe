@@ -387,7 +387,7 @@
 
   # Trekk en spesifikk 7-sifret yrkesbetegnelse innenfor STYRK-08 group
   styrk08_label <- tbl$label[idx]
-  detail_label <- .draw_detail_yrke(code, styrk08_label)
+  detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender)
 
   worker <- list(
     label = detail_label,
@@ -3570,7 +3570,21 @@
 }
 
 # --- Detail-yrke lookup (STYRK-4 → 7-sifret yrkesbetegnelse) -------------
-.draw_detail_yrke <- function(styrk4_code, fallback_label = NA) {
+# Yrkestitler i STYRK-98 som beskriver ARBEIDERENS kjonn. Disse finnes i
+# par, og et kvinnelig ego skal ikke ende som "Fosterfar".
+#
+# NB: DAMEFRISOR/HERREFRISOR og DAMESKREDDER/HERRESKREDDER er bevisst IKKE
+# med. De beskriver KUNDENS kjonn, ikke arbeiderens - en damefrisor kan
+# utmerket godt vaere mann. Et generisk MOR/FAR-bytte over hele registeret
+# ville innfort en ny feil mens det fikset denne.
+.gendered_yrke_titles <- list(
+  female = c("FOSTERMOR", "INTERNATHUSMOR", "BYSSEPIKE",
+             "LUGARPIKE", "MESSEPIKE", "STALLPIKE"),
+  male   = c("FOSTERFAR", "INTERNATHUSFAR", "BYSSEGUTT",
+             "LUGARGUTT", "MESSEGUTT", "STALLGUTT")
+)
+
+.draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL) {
   if (is.null(styrk4_code) || is.na(styrk4_code) || !nzchar(styrk4_code)) {
     return(fallback_label)
   }
@@ -3586,6 +3600,19 @@
     cand <- occ[substr(occ$code, 1, 4) == styrk4_code, , drop = FALSE]
   }
   if (nrow(cand) == 0) return(fallback_label)
+
+  # Drop titler som motsier egos kjonn. Faller tilbake pa ufiltrert liste
+  # hvis filteret skulle tomme kandidatsettet.
+  if (!is.null(gender) && !is.na(gender)) {
+    drop <- if (identical(toupper(gender), "F")) {
+      .gendered_yrke_titles$male
+    } else {
+      .gendered_yrke_titles$female
+    }
+    keep <- !(toupper(cand$name) %in% drop)
+    if (any(keep)) cand <- cand[keep, , drop = FALSE]
+  }
+
   pick <- cand$name[sample.int(nrow(cand), 1)]
   .titlecase_yrke(pick)
 }

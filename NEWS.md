@@ -1,3 +1,22 @@
+# CounterfactMe 0.9.30
+
+## Breaking
+- Standardspraket i `counterfact_me()` er endret fra `"en"` til `"no"`.
+  Resten av pakken (`counterfact_me_constrained()`,
+  `counterfact_parallel_lives()`, `verify_consistency()`) hadde allerede
+  norsk som default, sa dette gjor pakken konsistent. Engelsk finnes
+  fortsatt via `lang = "en"`, men er delvis: yrkestitler kommer fra SSBs
+  STYRK-98-register, som bare finnes pa norsk.
+
+## Bug fixes
+- Kjonnede yrkestitler ble tildelt uavhengig av ego sitt kjonn, sa en
+  kvinne kunne fa "Fosterfar". Kjonnsvektingen i `occupations_gender.csv`
+  ligger pa 4-sifret STYRK-08-niva, mens FOSTERMOR og FOSTERFAR deler
+  gruppe 5311 -- valget mellom dem var derfor blindt. `.draw_detail_yrke()`
+  filtrerer na pa kjonn for seks slike par.
+  Merk: DAMEFRISOR/HERREFRISOR og DAMESKREDDER/HERRESKREDDER er bevisst
+  holdt utenfor. De beskriver kundens kjonn, ikke arbeiderens.
+
 # CounterfactMe 0.9.29
 
 ## Portability

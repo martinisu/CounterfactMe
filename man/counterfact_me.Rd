@@ -6,7 +6,7 @@
 \usage{
 counterfact_me(
   dimensions = available_dimensions(),
-  lang = c("en", "no"),
+  lang = c("no", "en"),
   gender = NULL,
   conditional = TRUE,
   min_age = 0L,
@@ -20,8 +20,11 @@ counterfact_me(
 all available (see \code{\link{available_dimensions}}). Pass a subset to
 draw only some traits.}
 
-\item{lang}{Language for labels where translations exist: \code{"en"}
-(default) or \code{"no"} for Norwegian.}
+\item{lang}{Language for labels: \code{"no"} (default, Norwegian) or
+\code{"en"}. English is partial by design: occupation titles come from
+Statistics Norway's STYRK-98 register, which exists only in Norwegian,
+so \code{lang = "en"} translates the frame but leaves occupations,
+and a few humorous labels, in Norwegian.}
 
 \item{gender}{Force a gender for the first name: \code{"M"}, \code{"F"},
 or \code{NULL} (default) for random.}
@@ -58,7 +61,7 @@ to draw each dimension independently (v0.1 behaviour).
 }
 \examples{
 counterfact_me()
-counterfact_me(lang = "no")
+counterfact_me(lang = "en")  # partial: yrker forblir norske
 counterfact_me(dimensions = c("name", "occupation", "municipality"))
 counterfact_me(conditional = FALSE)  # independent draws
 counterfact_me(min_age = 0)          # include children

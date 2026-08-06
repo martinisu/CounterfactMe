@@ -54,3 +54,39 @@ test_that("print method runs without error", {
   x <- counterfact_me(lang = "no")
   expect_output(print(x), "Ditt kontrafaktiske liv")
 })
+
+test_that("default language is Norwegian", {
+  x <- counterfact_me()
+  expect_equal(x$lang, "no")
+  expect_output(print(x), "Ditt kontrafaktiske liv")
+})
+
+test_that("gendered occupation titles match ego's gender", {
+  # FOSTERMOR/FOSTERFAR and similar pairs live in the same STYRK-08 group,
+  # so the detail draw used to be blind to gender.
+  male_only   <- c("Fosterfar", "Internathusfar", "Byssegutt",
+                   "Lugargutt", "Messegutt", "Stallgutt")
+  female_only <- c("Fostermor", "Internathusmor", "Byssepike",
+                   "Lugarpike", "Messepike", "Stallpike")
+  set.seed(11)
+  for (i in 1:150) {
+    x <- counterfact_me(gender = "F", min_age = 25, max_age = 60)
+    expect_false(isTRUE(x$occupation %in% male_only))
+  }
+  set.seed(12)
+  for (i in 1:150) {
+    x <- counterfact_me(gender = "M", min_age = 25, max_age = 60)
+    expect_false(isTRUE(x$occupation %in% female_only))
+  }
+})
+
+test_that("customer-gendered titles are NOT filtered", {
+  # DAMEFRISOR/HERREFRISOR and DAMESKREDDER/HERRESKREDDER describe the
+  # CUSTOMER's gender, not the worker's -- a damefrisor can be a man.
+  # This guards against a future over-eager MOR/FAR sweep of the register.
+  tbl <- CounterfactMe:::.gendered_yrke_titles
+  expect_length(tbl$female, 6)
+  expect_length(tbl$male, 6)
+  expect_false(any(grepl("FRIS", c(tbl$female, tbl$male))))
+  expect_false(any(grepl("SKREDDER", c(tbl$female, tbl$male))))
+})

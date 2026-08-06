@@ -15,11 +15,22 @@ occupation, income, family, housing, wealth, religion, party preference, and
 more — sampled from real population distributions and conditional on each
 other in sociologically realistic ways.
 
+## Språk
+
+Standard er norsk. `lang = "en"` oversetter rammeverket, men er delvis med
+vilje: yrkestitlene kommer fra SSBs STYRK-98-register, som bare finnes på
+norsk, så yrker (og noen humoristiske merkelapper) forblir norske.
+
+```r
+counterfact_me()              # norsk
+counterfact_me(lang = "en")   # engelsk ramme, norske yrker
+```
+
 ## Installation
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.29.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.30.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
 remotes::install_github("martinisungset/CounterfactMe")
