@@ -6,6 +6,22 @@
 # R CMD check and a hand-written smoke test, and were found by a user
 # simply calling counterfact_me() with no arguments.
 
+# One shared predicate, because getting this wrong is easy and quiet.
+#
+# "Absent" has three shapes in this package:
+#   NULL   -- dimension not drawn at all
+#   NA     -- drawn but not applicable (gated survey fields)
+#   FALSE  -- prevalence flags such as has_chronic / has_disability, which
+#             are FALSE rather than NA when the person does not have it
+#
+# An is.na() check treats FALSE as *present*, so a test written that way
+# passes even when the field is fully gated. That mistake is why the
+# age-floor test below reported 240 failures against correct code.
+.absent <- function(v) {
+  is.null(v) || identical(v, FALSE) || all(is.na(v))
+}
+.present <- function(v) !.absent(v)
+
 # ---------------------------------------------------------------
 # 1. Gendered labels must not contradict the drawn gender.
 #    Systematic sweep over output strings, not a fixed list -- a new
@@ -64,13 +80,8 @@ test_that("core dimensions are populated at plausible rates", {
   n <- 300L
   draws <- lapply(seq_len(n), function(i) counterfact_me(min_age = 25, max_age = 70))
 
-  filled <- function(field) {
-    v <- vapply(draws, function(d) {
-      x <- d[[field]]
-      !is.null(x) && length(x) >= 1 && !all(is.na(x))
-    }, logical(1))
-    mean(v)
-  }
+  filled <- function(field) mean(vapply(draws, function(d) .present(d[[field]]),
+                                        logical(1)))
 
   # field -> minimum share of draws that must have it
   expectations <- list(
@@ -208,7 +219,7 @@ test_that("survey dimensions are suppressed below their age floor", {
     for (f in names(floors)) {
       if (x$age >= floors[[f]]) next
       v <- x[[f]]
-      expect_true(is.null(v) || all(is.na(v)),
+      expect_true(.absent(v),
                   label = sprintf("%s present at age %d (floor %d): %s",
                                   f, x$age, floors[[f]],
                                   paste(as.character(v), collapse = ",")))
@@ -227,9 +238,7 @@ test_that("the same dimensions ARE present for adults", {
   set.seed(109)
   draws <- lapply(1:200, function(i) counterfact_me(min_age = 30, max_age = 60))
 
-  present <- function(f) mean(vapply(draws, function(d) {
-    v <- d[[f]]; !is.null(v) && !all(is.na(v)) && !identical(v, FALSE)
-  }, logical(1)))
+  present <- function(f) mean(vapply(draws, function(d) .present(d[[f]]), logical(1)))
 
   # Value-bearing fields: essentially everyone should have one
   for (f in c("trust", "loneliness", "close_friends", "self_rated_health",
@@ -255,9 +264,7 @@ test_that("children keep only sourced or plainly-written fields", {
   set.seed(110)
   draws <- lapply(1:200, function(i) counterfact_me(min_age = 0, max_age = 15))
 
-  share <- function(f) mean(vapply(draws, function(d) {
-    v <- d[[f]]; !is.null(v) && !all(is.na(v)) && !identical(v, FALSE)
-  }, logical(1)))
+  share <- function(f) mean(vapply(draws, function(d) .present(d[[f]]), logical(1)))
 
   # Estimates without provenance -- must be gone
   for (f in c("sleep_hours", "media_tv_hours", "has_chronic",

@@ -1,3 +1,15 @@
+# CounterfactMe 0.9.33
+
+## Tests
+- Rettet aldersgate-testen, som meldte 240 feil mot korrekt kode.
+  `has_chronic` og `has_disability` er `FALSE` for barn, ikke `NA`, og
+  predikatet `is.null(v) || all(is.na(v))` regnet `FALSE` som til stede.
+  120 trekninger x 2 felt = 240.
+- Innfort ett felles `.absent()`/`.present()`-predikat i testfila. "Fravaer"
+  har tre former her -- `NULL`, `NA` og `FALSE` -- og a skrive sjekken pa
+  nytt for hver test var det som skapte feilen. Samme feil var allerede
+  rettet i nabotesten en time for.
+
 # CounterfactMe 0.9.32
 
 ## Data provenance
