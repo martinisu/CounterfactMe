@@ -26,11 +26,39 @@ counterfact_me()              # norsk
 counterfact_me(lang = "en")   # engelsk ramme, norske yrker
 ```
 
+## Datakilder
+
+Ikke alle tallene i pakken er like godt sporet. Noen er hentet fra SSBs
+API av et skript i `data-raw/` og kan reproduseres ved å kjøre det på
+nytt; andre er skrevet inn for hånd, og for de fleste av dem ble aldri
+den opprinnelige tabellen notert.
+
+Det skillet var usynlig fram til nå — et anslag lå i samme katalog som
+et registertall og så like autoritativt ut. `data_sources()` viser hva
+som faktisk er kjent:
+
+```r
+data_sources()              # alle 50 filer
+data_sources("untraced")    # de som mangler kildehenvisning
+table(data_sources()$status)
+```
+
+| status | betyr |
+|---|---|
+| `ssb_api` | Hentet fra SSBs API av et skript i `data-raw/`. Reproduserbar. |
+| `ssb_cited` | SSB-tabell sitert i R-koden, men tallene er skrevet inn for hånd. |
+| `untraced` | Verken skript eller kildehenvisning funnet i pakken. |
+| `authored` | Bevisst forfattet innhold, som de humoristiske merkelappene. |
+
+`untraced` betyr ikke «oppdiktet». Det betyr at opphavet ikke er
+etablert — tallet kan være korrekt avlest fra en publisert tabell, eller
+det kan være et anslag. Å avklare hvilket er arbeid som gjenstår.
+
 ## Installation
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.35.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.36.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
 remotes::install_github("martinisungset/CounterfactMe")

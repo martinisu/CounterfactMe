@@ -1,3 +1,25 @@
+# CounterfactMe 0.9.36
+
+## Data provenance
+- Nytt manifest `inst/extdata/SOURCES.csv` og ny funksjon `data_sources()`
+  som viser hvor hver av de 50 datafilene kommer fra. Fram til na la et
+  anslag i samme katalog som et registertall og sa like autoritativt ut.
+
+  Fordelingen er verdt a vite om: 9 filer hentes fra SSBs API av et
+  skript i `data-raw/` og kan reproduseres; 5 siterer en SSB-tabell i
+  R-koden men er skrevet inn for hand; 3 er bevisst forfattet (humor);
+  og 33 har verken skript eller kildehenvisning.
+
+  `untraced` betyr ikke "oppdiktet" -- bare at opphavet ikke er etablert.
+  Tallet kan vaere korrekt avlest fra en publisert tabell. A avklare
+  hvilke som er hva gjenstar.
+
+- Tester holder manifestet i takt med katalogen: en ny CSV uten
+  provenans feiler, et skript oppfort i manifestet ma finnes i
+  `data-raw/`, og en sitert tabell ma faktisk vaere sitert i kilden.
+  Kjernefilene som baerer pakkens hovedpastand -- kommuner, fylker,
+  alder, navn, utdanning, yrkeslonn -- er lasi til `ssb_api`.
+
 # CounterfactMe 0.9.35
 
 ## Bug fixes

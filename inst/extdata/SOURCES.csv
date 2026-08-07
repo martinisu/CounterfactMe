@@ -1,0 +1,51 @@
+file,status,ssb_table,script,note
+age_distribution.csv,ssb_api,07459,fetch_pop.py,
+alcohol_patterns.csv,untraced,,,
+chronic_illness_prob.csv,untraced,,,0-15-raden var uten kilde og er fjernet (0.9.32)
+counties.csv,ssb_api,07459,fetch_pop.py,
+crime_safety_feeling.csv,untraced,,,
+crime_victimization.csv,untraced,,,
+diet_patterns.csv,untraced,,,
+disability_by_age.csv,ssb_api,11715,fetch_extra.py,"Uforetrygd, ikke funksjonsnedsettelse"
+education_by_age.csv,ssb_api,08921,fetch_extra.py,
+education_levels.csv,untraced,,,
+first_names.csv,ssb_api,10467,first_names.R,Aggregat over alle kohorter
+first_names_cohort.csv,ssb_api,10467,first_names.R,Navn etter fodselskohort
+fylke_index_region.csv,untraced,,,
+hobbies.csv,untraced,,,
+household_types.csv,untraced,,,
+housing_price_index.csv,untraced,,,Boligprisindeks; tabell ikke dokumentert i pakken
+housing_prices.csv,untraced,,,Boligpriser; tabell ikke dokumentert i pakken
+immigrant_country_dist.csv,ssb_cited,09817,,Sitert i R/conditional.R
+immigration_start_year.csv,untraced,,,
+income_deciles.csv,untraced,,,
+kommune_price_multiplier.csv,untraced,,,
+kommune_sentralitet.csv,untraced,,,"Antatt SSB Klass 128, ikke verifisert"
+marital_status.csv,untraced,,,
+material_deprivation.csv,ssb_cited,,,"EU-SILC-indikatorer, sitert i R/conditional.R"
+media_papers.csv,untraced,,,
+minor_offences.csv,authored,,,Delvis humoristisk; ratene er anslag
+municipalities.csv,ssb_api,07459,fetch_pop.py,
+n_children_by_cohort.csv,untraced,,,
+names_by_region.csv,untraced,,,
+nus_by_styrk.csv,untraced,,,
+nus_detail_by_styrk.csv,untraced,,,
+nus_detailed.csv,untraced,,,
+nus_fields.csv,untraced,,,
+occupations.csv,ssb_api,,fetch_extra.py,STYRK-98 yrkestitler
+occupations_gender.csv,untraced,,,
+occupations_salary.csv,ssb_api,11418,fetch_extra.py,
+party_baseline.csv,untraced,,,Valgresultat; kilde ikke dokumentert
+party_humor.csv,authored,,,Humoristiske merkelapper
+podcast_activity.csv,untraced,,,
+religion_baseline.csv,untraced,,,Trossamfunnsmedlemskap; kilde ikke dokumentert
+religion_by_region.csv,untraced,,,
+religion_humor.csv,authored,,,Humoristiske merkelapper
+self_rated_health.csv,untraced,,,Levekar 16+; 0-15-raden var uten kilde og er fjernet (0.9.32)
+sleep_hours.csv,untraced,,,0-15-raden var uten kilde og er fjernet (0.9.32)
+social_isolation.csv,untraced,,,Levekar 16+; 0-15-raden var uten kilde og er fjernet (0.9.32)
+social_media_use.csv,untraced,,,
+styrk98_to_styrk08.csv,ssb_cited,,,"SSB Klass 145 -> Klass 7, sitert i R/conditional.R"
+tv_hours.csv,untraced,,,0-15-raden var uten kilde og er fjernet (0.9.32)
+wealth_by_age.csv,ssb_cited,08589,,Sitert i R/conditional.R
+wealth_deciles.csv,ssb_cited,10318,,Sitert i R/conditional.R
