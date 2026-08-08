@@ -21,15 +21,15 @@ from, so that register figures can be told apart from estimates.
 \details{
 The \code{status} column takes four values:
 \describe{
-  \item{\code{ssb_api}}{Fetched from Statistics Norway's API by a
-    script in \code{data-raw/}. Reproducible by re-running it.}
-  \item{\code{ssb_cited}}{An SSB table is cited in the R source, but
-    the figures were transcribed by hand rather than fetched.}
-  \item{\code{untraced}}{No generating script and no citation found in
-    the package. This is not a claim that the figures are invented --
-    only that their origin has not been established.}
-  \item{\code{authored}}{Deliberately written content, such as the
-    humorous labels. Not data, and not presented as such.}
+\item{\code{ssb_api}}{Fetched from Statistics Norway's API by a
+script in \code{data-raw/}. Reproducible by re-running it.}
+\item{\code{ssb_cited}}{An SSB table is cited in the R source, but
+the figures were transcribed by hand rather than fetched.}
+\item{\code{untraced}}{No generating script and no citation found in
+the package. This is not a claim that the figures are invented --
+only that their origin has not been established.}
+\item{\code{authored}}{Deliberately written content, such as the
+humorous labels. Not data, and not presented as such.}
 }
 }
 \examples{
