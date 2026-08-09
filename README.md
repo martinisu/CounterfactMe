@@ -3,7 +3,7 @@
 > *What if you had been someone else?*
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/martinisungset/CounterfactMe/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/martinisungset/CounterfactMe/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/martinisu/CounterfactMe/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/martinisu/CounterfactMe/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
@@ -58,10 +58,10 @@ det kan være et anslag. Å avklare hvilket er arbeid som gjenstår.
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.36.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.37.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
-remotes::install_github("martinisungset/CounterfactMe")
+remotes::install_github("martinisu/CounterfactMe")
 ```
 
 ## Quick start
@@ -182,4 +182,4 @@ If you use CounterfactMe in research or writing, please cite:
 
 > Isungset, M. A. (2026). *CounterfactMe: Counterfactual Norwegian Lives
 > from SSB Open Data*. R package version 0.7.0.
-> https://github.com/martinisungset/CounterfactMe
+> https://github.com/martinisu/CounterfactMe

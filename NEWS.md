@@ -1,3 +1,15 @@
+# CounterfactMe 0.9.37
+
+## Fixes
+- Rettet GitHub-brukernavnet fra `martinisungset` til `martinisu` i
+  DESCRIPTION, README-badges, CITATION.cff, inst/CITATION og
+  pakkedokumentasjonen. Jeg antok brukernavnet ut fra e-postadressen; det
+  stemte ikke, og alle lenkene pekte til et repo som ikke finnes.
+- Fjernet ORCID-en fra CITATION.cff. Den var oppdiktet. En ORCID
+  identifiserer en bestemt person, sa et gjettet nummer i en siteringsfil
+  kunne tilskrevet arbeidet til en annen forsker. Feltet star na som en
+  utkommentert plassholder.
+
 # CounterfactMe 0.9.36
 
 ## Data provenance

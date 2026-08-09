@@ -1,6 +1,6 @@
 Package: CounterfactMe
 Title: Generate Random Counterfactual Lives Based on Norwegian Open Data
-Version: 0.9.36
+Version: 0.9.37
 Authors@R:
     person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"))
 Description: What if you had been someone else? CounterfactMe generates random
@@ -27,7 +27,7 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 LazyData: true
-URL: https://github.com/martinisungset/CounterfactMe
-BugReports: https://github.com/martinisungset/CounterfactMe/issues
+URL: https://github.com/martinisu/CounterfactMe
+BugReports: https://github.com/martinisu/CounterfactMe/issues
 Language: en-US
 Config/roxygen2/version: 8.0.0

@@ -5,12 +5,12 @@ authors:
   - family-names: Isungset
     given-names: Martin Arstad
     email: martinisungset@gmail.com
-    orcid: "https://orcid.org/0000-0002-6903-6807"
-version: 0.9.36
+    # orcid: "https://orcid.org/XXXX-XXXX-XXXX-XXXX"  # legg inn din egen
+version: 0.9.37
 date-released: "2026-08-04"
 license: MIT
-repository-code: "https://github.com/martinisungset/CounterfactMe"
-url: "https://github.com/martinisungset/CounterfactMe"
+repository-code: "https://github.com/martinisu/CounterfactMe"
+url: "https://github.com/martinisu/CounterfactMe"
 type: software
 keywords:
   - sociology

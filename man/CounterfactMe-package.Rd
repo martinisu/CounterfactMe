@@ -11,8 +11,8 @@ What if you had been someone else? CounterfactMe generates random counterfactual
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/martinisungset/CounterfactMe}
-  \item Report bugs at \url{https://github.com/martinisungset/CounterfactMe/issues}
+  \item \url{https://github.com/martinisu/CounterfactMe}
+  \item Report bugs at \url{https://github.com/martinisu/CounterfactMe/issues}
 }
 
 }
