@@ -2,14 +2,20 @@
 # otherwise it becomes a stale document that is worse than none: it would
 # imply every file has been accounted for when some had not.
 
-# Is this a source checkout, or an installed/checked package?
+# These tests check the repository, not the package: version numbers
+# agreeing across files, README counts matching the code, no test that
+# skips without counting. They read the source tree, so they are correct
+# only in a source checkout -- and they were breaking R CMD check and
+# covr, which run against an installed package.
 #
-# `dir.exists("../../R")` is not the answer: an installed package has an
-# R/ directory too, holding .rdb binaries rather than source. The guard
-# has to look for actual .R files, or readLines() ends up parsing a
-# database and every content check silently finds nothing.
-.is_source_tree <- function() {
-  length(list.files("../../R", pattern = "\\.[Rr]$")) > 0
+# They are therefore opt-in. Run them with:
+#
+#   Sys.setenv(CFM_SOURCE_CHECKS = "true"); devtools::test()
+#
+# or via the source-checks job in CI.
+skip_unless_source_checks <- function() {
+  skip_if_not(nzchar(Sys.getenv("CFM_SOURCE_CHECKS")),
+              "set CFM_SOURCE_CHECKS to run repository checks")
 }
 
 test_that("every shipped CSV appears in the manifest, and vice versa", {
@@ -33,8 +39,7 @@ test_that("manifest fields are internally consistent", {
 
   # And that script must exist in the source tree. data-raw/ is excluded
   # from the built package, so this only runs from a source checkout.
-  skip_if_not(.is_source_tree() && dir.exists("../../data-raw"),
-              "data-raw/ not present")
+  skip_unless_source_checks()
   for (s in unique(api$script)) {
     expect_true(file.exists(file.path("../../data-raw", s)),
                 label = sprintf("data-raw/%s named in SOURCES.csv", s))
@@ -47,7 +52,7 @@ test_that("ssb_cited tables really are cited in the R source", {
   # numbers may live only in data-raw/, which .Rbuildignore strips from
   # the built package. Checking both against R/ conflated the two and
   # failed on 07459, which appears only in data-raw/fetch_pop.py.
-  skip_if_not(.is_source_tree(), "not a source checkout")
+  skip_unless_source_checks()
   src <- paste(unlist(lapply(list.files("../../R", pattern = "\\.[Rr]$",
                                         full.names = TRUE),
                              readLines, warn = FALSE)), collapse = "\n")
@@ -65,8 +70,7 @@ test_that("ssb_cited tables really are cited in the R source", {
 
 test_that("ssb_api tables are traceable to their fetching script", {
   # data-raw/ is not in the built package, so this only runs from source.
-  skip_if_not(.is_source_tree() && dir.exists("../../data-raw"),
-              "data-raw/ not present")
+  skip_unless_source_checks()
   dr <- paste(unlist(lapply(
     Filter(function(f) !dir.exists(f),
            list.files("../../data-raw", full.names = TRUE)),

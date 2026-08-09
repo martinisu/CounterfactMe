@@ -1,3 +1,22 @@
+# CounterfactMe 0.9.42
+
+## Tests
+- The repository checks -- version numbers agreeing across files, README
+  counts matching the code, SSB tables cited in the docs, tests that skip
+  without counting -- are now opt-in behind `CFM_SOURCE_CHECKS`. They
+  examine the source tree rather than the package, so they cannot run
+  against an installed one, and they were the cause of the CI failures
+  rather than anything wrong with the package.
+
+  Run them with:
+
+  ```r
+  Sys.setenv(CFM_SOURCE_CHECKS = "true"); devtools::test()
+  ```
+
+- A separate `source-checks` job in CI runs them once per push, from the
+  checkout, where they are meaningful.
+
 # CounterfactMe 0.9.41
 
 ## Bug fixes
