@@ -36,3 +36,20 @@ jobs:
           )
           print(cov)
         shell: Rscript {0}
+
+      # covr reports only that testthat.R failed, not which expectation.
+      # Without this the log says nothing useful and the failure has to be
+      # reproduced locally to be seen at all.
+      - name: Show testthat output on failure
+        if: failure()
+        run: |
+          find "${RUNNER_TEMP}/package" -name '*.Rout.fail' -exec \
+            sh -c 'echo "===== $1 ====="; cat "$1"' _ {} \;
+        shell: bash
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-test-failures
+          path: ${{ runner.temp }}/package

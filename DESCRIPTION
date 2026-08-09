@@ -1,6 +1,6 @@
 Package: CounterfactMe
 Title: Generate Random Counterfactual Lives Based on Norwegian Open Data
-Version: 0.9.40
+Version: 0.9.41
 Authors@R:
     person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9316-3279"))

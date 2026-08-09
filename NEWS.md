@@ -1,3 +1,24 @@
+# CounterfactMe 0.9.41
+
+## Bug fixes
+- Two tests read the package source through `../../R` and guarded that
+  with `dir.exists("../../R")`. An installed package has an `R/`
+  directory too, holding `.rdb` binaries rather than source, so the guard
+  never fired under `R CMD check` or `covr`: `readLines()` parsed a
+  database, found no table references, and the tests failed. Guards now
+  require actual `.R` files, and reads are filtered to them.
+- Split the SSB-citation test in two. `ssb_cited` entries claim the R
+  source as their evidence; `ssb_api` entries claim a fetching script,
+  whose table numbers may appear only in `data-raw/`, which
+  `.Rbuildignore` strips from the built package. Checking both against
+  `R/` conflated them and would have failed on 07459 regardless.
+
+## CI
+- The coverage workflow now prints `testthat.Rout.fail` and uploads it as
+  an artifact when tests fail. The previous log reported only that
+  `testthat.R` failed, without naming the expectation, so a CI failure
+  could not be diagnosed from the log at all.
+
 # CounterfactMe 0.9.40
 
 ## Tests

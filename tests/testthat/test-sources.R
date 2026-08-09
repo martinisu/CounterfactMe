@@ -2,6 +2,16 @@
 # otherwise it becomes a stale document that is worse than none: it would
 # imply every file has been accounted for when some had not.
 
+# Is this a source checkout, or an installed/checked package?
+#
+# `dir.exists("../../R")` is not the answer: an installed package has an
+# R/ directory too, holding .rdb binaries rather than source. The guard
+# has to look for actual .R files, or readLines() ends up parsing a
+# database and every content check silently finds nothing.
+.is_source_tree <- function() {
+  length(list.files("../../R", pattern = "\\.[Rr]$")) > 0
+}
+
 test_that("every shipped CSV appears in the manifest, and vice versa", {
   ed <- system.file("extdata", package = "CounterfactMe")
   on_disk <- setdiff(list.files(ed, pattern = "\\.csv$"), "SOURCES.csv")
@@ -23,33 +33,52 @@ test_that("manifest fields are internally consistent", {
 
   # And that script must exist in the source tree. data-raw/ is excluded
   # from the built package, so this only runs from a source checkout.
-  skip_if_not(dir.exists("../../data-raw"), "data-raw/ not present")
+  skip_if_not(.is_source_tree() && dir.exists("../../data-raw"),
+              "data-raw/ not present")
   for (s in unique(api$script)) {
     expect_true(file.exists(file.path("../../data-raw", s)),
                 label = sprintf("data-raw/%s named in SOURCES.csv", s))
   }
 })
 
-test_that("cited SSB tables are actually cited somewhere in the source", {
-  # Guards against a table number being recorded in the manifest but
-  # nowhere in the code, which would make it unverifiable.
-  skip_if_not(dir.exists("../../R"), "R/ not present")
-  src <- paste(unlist(lapply(list.files("../../R", full.names = TRUE),
+test_that("ssb_cited tables really are cited in the R source", {
+  # Only `ssb_cited` claims the R source as its evidence. For `ssb_api`
+  # the evidence is the fetching script, checked above -- and those table
+  # numbers may live only in data-raw/, which .Rbuildignore strips from
+  # the built package. Checking both against R/ conflated the two and
+  # failed on 07459, which appears only in data-raw/fetch_pop.py.
+  skip_if_not(.is_source_tree(), "not a source checkout")
+  src <- paste(unlist(lapply(list.files("../../R", pattern = "\\.[Rr]$",
+                                        full.names = TRUE),
                              readLines, warn = FALSE)), collapse = "\n")
   cited <- data_sources()
-  cited <- cited[cited$status %in% c("ssb_api", "ssb_cited") &
+  cited <- cited[cited$status == "ssb_cited" &
                  nzchar(as.character(cited$ssb_table)), ]
+  expect_gt(nrow(cited), 0L)
   for (i in seq_len(nrow(cited))) {
     tab <- as.character(cited$ssb_table[i])
-    found <- grepl(tab, src, fixed = TRUE) ||
-             any(vapply(list.files("../../data-raw", full.names = TRUE),
-                        function(f) grepl(tab, paste(readLines(f, warn = FALSE),
-                                                     collapse = "\n"),
-                                          fixed = TRUE),
-                        logical(1)))
-    expect_true(found,
-                label = sprintf("SSB %s (%s) cited in the source",
+    expect_true(grepl(tab, src, fixed = TRUE),
+                label = sprintf("SSB %s (%s) cited in R/",
                                 tab, cited$file[i]))
+  }
+})
+
+test_that("ssb_api tables are traceable to their fetching script", {
+  # data-raw/ is not in the built package, so this only runs from source.
+  skip_if_not(.is_source_tree() && dir.exists("../../data-raw"),
+              "data-raw/ not present")
+  dr <- paste(unlist(lapply(
+    Filter(function(f) !dir.exists(f),
+           list.files("../../data-raw", full.names = TRUE)),
+    readLines, warn = FALSE)), collapse = "\n")
+  api <- data_sources()
+  api <- api[api$status == "ssb_api" & nzchar(as.character(api$ssb_table)), ]
+  expect_gt(nrow(api), 0L)
+  for (i in seq_len(nrow(api))) {
+    tab <- as.character(api$ssb_table[i])
+    expect_true(grepl(tab, dr, fixed = TRUE),
+                label = sprintf("SSB %s (%s) appears in data-raw/",
+                                tab, api$file[i]))
   }
 })
 

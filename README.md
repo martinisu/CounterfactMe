@@ -169,7 +169,7 @@ audit_plausibility(N = 5000)   # combinations that are possible but too frequent
 
 `counterfact_me()` already rejects and redraws lives containing hard
 impossibilities, so `find_impossibilities()` is normally empty; it exists to
-catch regressions. The package's own test suite runs 72 tests, including
+catch regressions. The package's own test suite runs 73 tests, including
 property-based invariants and regression guards for previously fixed bugs.
 
 ## Status
@@ -191,5 +191,5 @@ citation("CounterfactMe")
 ```
 
 > Isungset, M. A. (2026). *CounterfactMe: Generate Random Counterfactual
-> Lives Based on Norwegian Open Data*. R package version 0.9.40.
+> Lives Based on Norwegian Open Data*. R package version 0.9.41.
 > https://github.com/martinisu/CounterfactMe

@@ -10,8 +10,12 @@
 # These tests only run from a source checkout, since the built package
 # does not ship README.md or data-raw/.
 
+# An installed package also has an R/ directory -- of .rdb binaries, not
+# source -- so the guard must look for real .R files.
 skip_if_no_source <- function() {
-  skip_if_not(file.exists("../../README.md"), "not a source checkout")
+  skip_if_not(file.exists("../../README.md") &&
+                length(list.files("../../R", pattern = "\\.[Rr]$")) > 0,
+              "not a source checkout")
 }
 
 read_file <- function(p) paste(readLines(p, warn = FALSE), collapse = "\n")
@@ -73,10 +77,10 @@ test_that("no SSB table is cited in the docs that the package cannot back", {
   known <- unique(c(
     as.character(data_sources()$ssb_table),
     unlist(regmatches(
-      paste(vapply(list.files("../../R", full.names = TRUE), read_file,
+      paste(vapply(list.files("../../R", pattern = "\\.[Rr]$", full.names = TRUE), read_file,
                    character(1)), collapse = "\n"),
       gregexpr("\\b[01][0-9]{4}\\b",
-               paste(vapply(list.files("../../R", full.names = TRUE), read_file,
+               paste(vapply(list.files("../../R", pattern = "\\.[Rr]$", full.names = TRUE), read_file,
                             character(1)), collapse = "\n"))))
   ))
   known <- known[nzchar(known)]
