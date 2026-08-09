@@ -59,7 +59,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      CFM_SOURCE_CHECKS: "true"
 
     steps:
       - uses: actions/checkout@v4
@@ -70,11 +69,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::testthat, any::devtools
+          extra-packages: any::testthat, any::pkgload
           needs: check
 
       - name: Run repository checks
-        run: |
-          devtools::load_all(".")
-          res <- testthat::test_dir("tests/testthat", stop_on_failure = TRUE)
-        shell: Rscript {0}
+        run: Rscript dev/run-repo-tests.R
+        shell: bash

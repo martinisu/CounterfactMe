@@ -1,37 +1,22 @@
-# Documentation and metadata consistency.
+# Repository checks: version numbers agreeing across files, README counts
+# matching the code, SSB tables cited in the docs, every export
+# documented, and no test that skips without counting what it inspected.
 #
-# Written after a round of avoidable errors: a README describing a version
-# five releases old, SSB table numbers cited for data the package cannot
-# trace, a fabricated ORCID, a GitHub username inferred from an email
-# address, and tests that passed while checking nothing.
+# Written after a round of avoidable errors: a README describing a
+# version five releases old, SSB table numbers cited for data the
+# package cannot trace, a fabricated ORCID, and a GitHub username
+# inferred from an email address. None of these fail R CMD check. They
+# fail a reader.
 #
-# None of these fail R CMD check. They fail a reader.
+# These examine the repository, not the package. They read the source
+# tree, so they cannot run against an installed one -- which is why they
+# live here rather than in tests/.
 #
-# These tests only run from a source checkout, since the built package
-# does not ship README.md or data-raw/.
-
-# An installed package also has an R/ directory -- of .rdb binaries, not
-# source -- so the guard must look for real .R files.
-# These tests check the repository, not the package: version numbers
-# agreeing across files, README counts matching the code, no test that
-# skips without counting. They read the source tree, so they are correct
-# only in a source checkout -- and they were breaking R CMD check and
-# covr, which run against an installed package.
-#
-# They are therefore opt-in. Run them with:
-#
-#   Sys.setenv(CFM_SOURCE_CHECKS = "true"); devtools::test()
-#
-# or via the source-checks job in CI.
-skip_unless_source_checks <- function() {
-  skip_if_not(nzchar(Sys.getenv("CFM_SOURCE_CHECKS")),
-              "set CFM_SOURCE_CHECKS to run repository checks")
-}
+# Run them with:  Rscript dev/run-repo-tests.R
 
 read_file <- function(p) paste(readLines(p, warn = FALSE), collapse = "\n")
 
 test_that("the version is the same everywhere it appears", {
-  skip_unless_source_checks()
   ver <- read.dcf("../../DESCRIPTION", "Version")[[1]]
 
   cff <- read_file("../../CITATION.cff")
@@ -48,7 +33,6 @@ test_that("the version is the same everywhere it appears", {
 })
 
 test_that("the README's counts match the package", {
-  skip_unless_source_checks()
   rme <- read_file("../../README.md")
 
   expect_true(grepl(sprintf("%d dimensions", length(available_dimensions())), rme))
@@ -67,7 +51,6 @@ test_that("the README's counts match the package", {
 })
 
 test_that("the README's provenance table matches SOURCES.csv", {
-  skip_unless_source_checks()
   rme <- read_file("../../README.md")
   tab <- table(data_sources()$status)
   for (st in names(tab)) {
@@ -82,7 +65,6 @@ test_that("no SSB table is cited in the docs that the package cannot back", {
   # This is the specific failure: the README cited 06035, 07230 and 06929
   # for files recorded as untraced. A citation the package cannot support
   # is worse than none, because it looks checkable.
-  skip_unless_source_checks()
 
   known <- unique(c(
     as.character(data_sources()$ssb_table),
@@ -112,8 +94,7 @@ test_that("every exported function is documented and defined", {
   for (e in exported) {
     expect_true(exists(e, where = asNamespace("CounterfactMe")),
                 label = sprintf("%s is defined", e))
-    skip_unless_source_checks()
-    expect_true(file.exists(file.path("../../man", paste0(e, ".Rd"))),
+      expect_true(file.exists(file.path("../../man", paste0(e, ".Rd"))),
                 label = sprintf("%s.Rd exists", e))
   }
 })
@@ -121,7 +102,6 @@ test_that("every exported function is documented and defined", {
 test_that("no test can pass without checking something", {
   # Two tests written in this project passed while every draw hit a
   # `next`. A loop that may skip has to say how much it looked at.
-  skip_unless_source_checks()
   for (f in list.files("../testthat", pattern = "^test-.*\\.R$", full.names = TRUE)) {
     txt <- read_file(f)
     blocks <- strsplit(txt, "\ntest_that(", fixed = TRUE)[[1]][-1]

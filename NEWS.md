@@ -1,3 +1,25 @@
+# CounterfactMe 0.9.43
+
+## Bug fixes
+- `R CMD check` failed on every platform. The test
+  `every exported function is documented and defined` called
+  `readLines("../../NAMESPACE")` before its skip guard, and under
+  `R CMD check` that path does not exist -- so it raised an error rather
+  than skipping, and an error fails the check outright.
+
+## Tests
+- Moved the repository checks out of `tests/` entirely, into
+  `dev/repo-tests/`, run by `Rscript dev/run-repo-tests.R` and by a
+  separate CI job. They examine the repository rather than the package
+  and read the source tree, so `R CMD check` and `covr` -- which run
+  against an installed package -- had no business running them. Three
+  attempts to make them detect their own environment each failed in a
+  new way; removing them from the test suite removes the class of
+  problem rather than the instance.
+
+  `tests/` now reads package data only through `system.file()`, and
+  nothing in it depends on the source tree being present.
+
 # CounterfactMe 0.9.42
 
 ## Tests
