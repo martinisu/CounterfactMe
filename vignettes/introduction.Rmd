@@ -57,5 +57,20 @@ result$summary
 
 # Data sources
 
-All distributions are derived from open SSB tables. See the README for a
-full list with table IDs.
+The packaged data is not uniformly traceable, and the package records
+which parts are:
+
+```{r sources, eval=FALSE}
+data_sources()             # all 50 files
+data_sources("untraced")   # those without a recorded origin
+table(data_sources()$status)
+```
+
+Nine files are fetched from Statistics Norway's API by a script in
+`data-raw/` and can be reproduced by running it again. Five cite an SSB
+table in the R source but were transcribed by hand. Three are authored
+content. The remaining 33 have neither a script nor a citation.
+
+`untraced` does not mean invented: the figure may be an accurate
+transcription of a published table. It means the origin has not been
+established, which is work still to be done.
