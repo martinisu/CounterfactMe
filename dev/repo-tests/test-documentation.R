@@ -43,7 +43,7 @@ test_that("the README's counts match the package", {
   expect_true(grepl("Fifty CSV files", rme))
 
   n_tests <- sum(vapply(
-    list.files("../testthat", pattern = "^test-.*\\.R$", full.names = TRUE),
+    list.files("../../tests/testthat", pattern = "^test-.*\\.R$", full.names = TRUE),
     function(f) length(gregexpr("test_that(", read_file(f), fixed = TRUE)[[1]]),
     integer(1)))
   expect_true(grepl(sprintf("%d tests", n_tests), rme),
@@ -102,7 +102,11 @@ test_that("every exported function is documented and defined", {
 test_that("no test can pass without checking something", {
   # Two tests written in this project passed while every draw hit a
   # `next`. A loop that may skip has to say how much it looked at.
-  for (f in list.files("../testthat", pattern = "^test-.*\\.R$", full.names = TRUE)) {
+  files <- c(list.files("../../tests/testthat", pattern = "^test-.*\\.R$",
+                        full.names = TRUE),
+             list.files(".", pattern = "^test-.*\\.R$", full.names = TRUE))
+  expect_gt(length(files), 5L)   # or the glob found nothing and proved nothing
+  for (f in files) {
     txt <- read_file(f)
     blocks <- strsplit(txt, "\ntest_that(", fixed = TRUE)[[1]][-1]
     for (b in blocks) {

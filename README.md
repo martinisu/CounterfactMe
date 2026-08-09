@@ -194,5 +194,5 @@ citation("CounterfactMe")
 ```
 
 > Isungset, M. A. (2026). *CounterfactMe: Generate Random Counterfactual
-> Lives Based on Norwegian Open Data*. R package version 0.9.43.
+> Lives Based on Norwegian Open Data*. R package version 0.9.44.
 > https://github.com/martinisu/CounterfactMe

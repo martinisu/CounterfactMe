@@ -1,3 +1,20 @@
+# CounterfactMe 0.9.44
+
+## Bug fixes
+- Three faults in the repository checks, all introduced by me and all
+  now visible because the checks finally ran somewhere they could report:
+  - The test-count and meta-tests looked for `../testthat`, which was
+    right when the file lived in `tests/testthat/` and wrong once it
+    moved to `dev/repo-tests/`. They found no files and concluded the
+    README should claim zero tests.
+  - `nzchar(NA)` returns `TRUE`, so entries with an empty `ssb_table` --
+    `material_deprivation.csv`, `styrk98_to_styrk08.csv`,
+    `occupations.csv` -- survived the filter and were then searched for
+    as the literal string `NA`. The filter now tests `!is.na()` first.
+  - The meta-test now also scans `dev/repo-tests/` itself, and asserts
+    that the file glob matched something, so it cannot again pass by
+    finding nothing.
+
 # CounterfactMe 0.9.43
 
 ## Bug fixes

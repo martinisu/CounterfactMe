@@ -36,8 +36,9 @@ test_that("ssb_cited tables really are cited in the R source", {
                                         full.names = TRUE),
                              readLines, warn = FALSE)), collapse = "\n")
   cited <- data_sources()
+  tab <- as.character(cited$ssb_table)
   cited <- cited[cited$status == "ssb_cited" &
-                 nzchar(as.character(cited$ssb_table)), ]
+                 !is.na(tab) & nzchar(tab), ]
   expect_gt(nrow(cited), 0L)
   for (i in seq_len(nrow(cited))) {
     tab <- as.character(cited$ssb_table[i])
@@ -54,7 +55,8 @@ test_that("ssb_api tables are traceable to their fetching script", {
            list.files("../../data-raw", full.names = TRUE)),
     readLines, warn = FALSE)), collapse = "\n")
   api <- data_sources()
-  api <- api[api$status == "ssb_api" & nzchar(as.character(api$ssb_table)), ]
+  tab <- as.character(api$ssb_table)
+  api <- api[api$status == "ssb_api" & !is.na(tab) & nzchar(tab), ]
   expect_gt(nrow(api), 0L)
   for (i in seq_len(nrow(api))) {
     tab <- as.character(api$ssb_table[i])
