@@ -39,33 +39,39 @@ test_that("no output string carries a gender morpheme contradicting ego", {
   # Fields that describe ego (not relatives, whose gender differs).
   ego_fields <- c("occupation", "household")
 
+  # Returns both the hits and how many field values were actually looked
+  # at. Without the second number this test would pass unchanged if the
+  # occupation field ever went empty -- checking nothing, reporting green.
   check_one <- function(g, forbidden, n = 250L) {
-    hits <- character(0)
+    hits <- character(0); inspected <- 0L
     for (i in seq_len(n)) {
       x <- counterfact_me(gender = g, min_age = 20, max_age = 67)
       for (f in ego_fields) {
         v <- x[[f]]
         if (is.null(v) || length(v) != 1 || is.na(v)) next
+        inspected <- inspected + 1L
         v <- as.character(v)
         for (p in forbidden) {
           if (grepl(p, tolower(v))) hits <- c(hits, sprintf("%s=%s", f, v))
         }
       }
     }
-    unique(hits)
+    list(hits = unique(hits), inspected = inspected)
   }
 
   set.seed(101)
-  f_hits <- check_one("F", male_morph)
-  expect_equal(f_hits, character(0),
+  f <- check_one("F", male_morph)
+  expect_gt(f$inspected, 300L)
+  expect_equal(f$hits, character(0),
                info = paste("female ego, male-gendered label:",
-                            paste(f_hits, collapse = "; ")))
+                            paste(f$hits, collapse = "; ")))
 
   set.seed(102)
-  m_hits <- check_one("M", female_morph)
-  expect_equal(m_hits, character(0),
+  m <- check_one("M", female_morph)
+  expect_gt(m$inspected, 300L)
+  expect_equal(m$hits, character(0),
                info = paste("male ego, female-gendered label:",
-                            paste(m_hits, collapse = "; ")))
+                            paste(m$hits, collapse = "; ")))
 })
 
 # ---------------------------------------------------------------
@@ -182,22 +188,27 @@ test_that("language does not alter the underlying draw", {
 
 test_that("generational birth years are ordered", {
   set.seed(107)
+  checked <- 0L
   for (i in 1:120) {
     x <- counterfact_me(min_age = 18)
     ego_birth <- 2026L - x$age
     for (p in c("mother", "father")) {
       if (is.null(x[[p]]$birth_year)) next
+      checked <- checked + 1L
       expect_lt(x[[p]]$birth_year, ego_birth - 13L)
     }
     for (gp in c("mormor", "morfar")) {
       if (is.null(x[[gp]]$birth_year) || is.null(x$mother$birth_year)) next
+      checked <- checked + 1L
       expect_lt(x[[gp]]$birth_year, x$mother$birth_year - 13L)
     }
     for (gp in c("farmor", "farfar")) {
       if (is.null(x[[gp]]$birth_year) || is.null(x$father$birth_year)) next
+      checked <- checked + 1L
       expect_lt(x[[gp]]$birth_year, x$father$birth_year - 13L)
     }
   }
+  expect_gt(checked, 300L)
 })
 
 # ---------------------------------------------------------------
@@ -214,10 +225,12 @@ test_that("generational birth years are ordered", {
 test_that("survey dimensions are suppressed below their age floor", {
   floors <- CounterfactMe:::.dimension_min_age
   set.seed(108)
+  checked <- 0L
   for (i in 1:120) {
     x <- counterfact_me(min_age = 0, max_age = 15)
     for (f in names(floors)) {
       if (x$age >= floors[[f]]) next
+      checked <- checked + 1L
       v <- x[[f]]
       expect_true(.absent(v),
                   label = sprintf("%s present at age %d (floor %d): %s",
@@ -225,6 +238,7 @@ test_that("survey dimensions are suppressed below their age floor", {
                                   paste(as.character(v), collapse = ",")))
     }
   }
+  expect_gt(checked, 500L)   # or the loop skipped everything
 })
 
 test_that("the same dimensions ARE present for adults", {

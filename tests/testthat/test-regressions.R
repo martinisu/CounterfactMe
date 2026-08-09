@@ -185,33 +185,33 @@ test_that("an opened field of study keeps its broad field", {
 
 test_that("very large fortunes do not overflow", {
   set.seed(208)
-  # Draw enough to reach the top tiers several times over.
+  checked <- 0L
   for (i in 1:400) {
     x <- counterfact_me(min_age = 40, max_age = 80)
     nw <- x$net_wealth_nok
     if (is.null(nw)) next
+    checked <- checked + 1L
     expect_false(is.na(nw))
     expect_true(is.finite(nw))
   }
+  expect_gt(checked, 300L)
 })
 
 test_that("wealth fields are numeric and survive above integer.max", {
   set.seed(209)
-  seen_large <- FALSE
+  checked <- 0L
   for (i in 1:500) {
     x <- counterfact_me(min_age = 45, max_age = 75)
     for (f in c("net_wealth_nok", "financial_assets_nok",
                 "business_equity_nok", "inheritance_nok")) {
       v <- x[[f]]
       if (is.null(v) || is.na(v)) next
+      checked <- checked + 1L
       expect_true(is.numeric(v))
       expect_true(is.finite(v))
-      if (abs(v) > .Machine$integer.max) seen_large <- TRUE
     }
   }
-  # Not asserted as required -- the top tier is rare enough that a given
-  # seed may miss it -- but recorded so the intent is visible.
-  expect_true(is.logical(seen_large))
+  expect_gt(checked, 400L)
 })
 
 test_that("the wealth guard survives a forced top-tier draw", {

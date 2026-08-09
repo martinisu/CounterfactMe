@@ -6,12 +6,12 @@ bibentry(
   author   = person("Martin", "Isungset", email = "martinisungset@gmail.com",
                     comment = c(ORCID = "0000-0001-9316-3279")),
   year     = "2026",
-  note     = "R package version 0.9.39",
+  note     = "R package version 0.9.40",
   url      = "https://github.com/martinisu/CounterfactMe",
   textVersion = paste(
     "Isungset, Martin (2026).",
     "CounterfactMe: Generate Random Counterfactual Lives Based on Norwegian Open Data.",
-    "R package version 0.9.39.",
+    "R package version 0.9.40.",
     "https://github.com/martinisu/CounterfactMe"
   )
 )

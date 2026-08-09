@@ -1,3 +1,26 @@
+# CounterfactMe 0.9.40
+
+## Tests
+- Five tests could pass while checking nothing: they loop over draws with
+  a `next`, and if the field they inspect ever went missing, every
+  iteration would skip and the test would report green. Affected
+  `very large fortunes do not overflow`, `wealth fields are numeric`,
+  `no output string carries a gender morpheme`,
+  `generational birth years are ordered` and
+  `survey dimensions are suppressed below their age floor`. Each now
+  counts what it inspected and asserts a floor.
+- Removed an assertion that was true by construction
+  (`expect_true(is.logical(seen_large))`).
+- New `test-documentation.R`: version consistency across DESCRIPTION,
+  CITATION.cff, inst/CITATION and README; README counts against the
+  package; the provenance table against `SOURCES.csv`; no SSB table cited
+  in the docs that the package cannot back; every export documented and
+  defined; and no test that skips without counting coverage.
+
+  These check the class of error that R CMD check passes over: a README
+  describing an older version, a citation the package cannot support, a
+  test that asserts nothing. They run only from a source checkout.
+
 # CounterfactMe 0.9.39
 
 ## Documentation
