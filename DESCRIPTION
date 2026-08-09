@@ -1,8 +1,9 @@
 Package: CounterfactMe
 Title: Generate Random Counterfactual Lives Based on Norwegian Open Data
-Version: 0.9.37
+Version: 0.9.38
 Authors@R:
-    person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"))
+    person("Martin", "Isungset", , "martinisungset@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9316-3279"))
 Description: What if you had been someone else? CounterfactMe generates random
     counterfactual Norwegian lives from open SSB data. Each call to
     counterfact_me() returns a coherent life across 33 dimensions — name,

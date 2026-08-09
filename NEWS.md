@@ -1,3 +1,10 @@
+# CounterfactMe 0.9.38
+
+## Metadata
+- Lagt inn ORCID 0000-0001-9316-3279 i DESCRIPTION, CITATION.cff og
+  inst/CITATION. Verifisert mot ORCID-registerets egen oppforing og mot
+  at nummeret star pa de to PNAS-artiklene som er listet pa UiO-profilen.
+
 # CounterfactMe 0.9.37
 
 ## Fixes

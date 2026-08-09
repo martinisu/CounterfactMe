@@ -58,7 +58,7 @@ det kan være et anslag. Å avklare hvilket er arbeid som gjenstår.
 
 ```r
 # From a local source build
-install.packages("CounterfactMe_0.9.37.tar.gz", repos = NULL, type = "source")
+install.packages("CounterfactMe_0.9.38.tar.gz", repos = NULL, type = "source")
 
 # From GitHub
 remotes::install_github("martinisu/CounterfactMe")
