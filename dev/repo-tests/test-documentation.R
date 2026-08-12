@@ -32,6 +32,16 @@ test_that("the version is the same everywhere it appears", {
   expect_equal(stale, character(0))
 })
 
+test_that("DESCRIPTION's dimension count matches the code", {
+  # DESCRIPTION is the first thing a reader sees, on GitHub and on CRAN.
+  # It said 33 for four months while available_dimensions() returned 32,
+  # because the version check below only ever read the Version field.
+  d <- paste(readLines("../../DESCRIPTION", warn = FALSE), collapse = " ")
+  n <- length(available_dimensions())
+  stated <- regmatches(d, regexpr("[0-9]+ dimensions", d))
+  expect_equal(stated, sprintf("%d dimensions", n))
+})
+
 test_that("the README's counts match the package", {
   rme <- read_file("../../README.md")
 

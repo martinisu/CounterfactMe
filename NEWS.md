@@ -1,3 +1,13 @@
+# CounterfactMe 0.9.45
+
+## Fixes
+- DESCRIPTION claimed 33 dimensions; there are 32. The figure was wrong
+  from 0.9.27 and went unnoticed because the repository check read only
+  the Version field from DESCRIPTION, never its prose. It is the first
+  sentence anyone reads, on GitHub and on CRAN.
+- The repository checks now compare DESCRIPTION's dimension count against
+  `available_dimensions()`.
+
 # CounterfactMe 0.9.44
 
 ## Bug fixes
