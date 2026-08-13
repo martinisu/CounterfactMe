@@ -4254,8 +4254,28 @@
                 "3-5 close friends", "6+ close friends")
   friends <- if (no) bands_no[k] else bands_en[k]
 
+  # A confidant need not be a friend. For most people it is a partner, a
+  # sibling or an adult child, which is why Levekar asks the two
+  # questions separately. So "no close friends" and "has a confidant" is
+  # a real combination -- but only if there is somebody in the household.
+  # Living alone with no close friends and still having someone to
+  # confide in is possible and rare; the flat 0.35 here ignored the
+  # household entirely, and `household` was accepted but never used.
+  # Enumerating the cohabiting categories is brittle -- it missed both
+  # "Enslig mor/far med voksne barn" and "Flerfamiliehusholdning" on the
+  # first attempt. Only living alone is unambiguous, so test for that.
+  lives_with_others <- TRUE
+  if (!is.null(household) && !is.na(household)) {
+    hh <- tolower(as.character(household))
+    lives_with_others <- !grepl("aleneboende|enslig$|living alone|^single$", hh)
+  }
+
   p_conf <- if (lonely_often) 0.45 else if (lonely_some) 0.80 else 0.90
-  if (k == 1L) p_conf <- min(p_conf, 0.35)
+  if (k == 1L) {
+    p_conf <- if (lives_with_others) min(p_conf, 0.55) else min(p_conf, 0.12)
+  } else if (!lives_with_others) {
+    p_conf <- p_conf * 0.9
+  }
   has_conf <- stats::runif(1) < p_conf
 
   list(close_friends = friends, n_band = k, has_confidant = has_conf)

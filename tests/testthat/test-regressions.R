@@ -226,3 +226,48 @@ test_that("the wealth guard survives a forced top-tier draw", {
     expect_true(is.finite(w$net_wealth_nok))
   }
 })
+
+# ---------------------------------------------------------------
+# A confidant without close friends must depend on the household.
+#
+# Reported from output: "Ingen naere venner" alongside "Fortrolig venn:
+# ja". That combination is real -- for most people the confidant is a
+# partner, a sibling or an adult child, which is why Levekar asks the
+# two questions separately -- but it was drawn at a flat 35% regardless
+# of whether anyone else lived there. `.cond_social_support()` accepted
+# a `household` argument and never used it.
+# ---------------------------------------------------------------
+
+test_that("a confidant without close friends is rare for people living alone", {
+  rate <- function(hh, n = 400L) {
+    got <- vapply(seq_len(n), function(i) {
+      s <- CounterfactMe:::.cond_social_support(
+        age = 45L, loneliness = NA_character_, household = hh, lang = "no")
+      if (!identical(s$n_band, 1L)) return(NA)
+      isTRUE(s$has_confidant)
+    }, logical(1))
+    got <- got[!is.na(got)]
+    list(rate = mean(got), n = length(got))
+  }
+
+  set.seed(401)
+  alone <- rate("Aleneboende")
+  with_others <- rate("Par med barn 6-17 \u{00e5}r")
+
+  # Both arms must actually have produced draws with no close friends,
+  # or the comparison below compares nothing.
+  expect_gt(alone$n, 5L)
+  expect_gt(with_others$n, 5L)
+
+  expect_lt(alone$rate, 0.30)
+  expect_gt(with_others$rate, alone$rate)
+})
+
+test_that("household is not ignored by social support", {
+  # The parameter was declared and never read. This fails if that
+  # returns.
+  body_txt <- paste(deparse(CounterfactMe:::.cond_social_support),
+                    collapse = "\n")
+  expect_true(grepl("household", body_txt))
+  expect_true(grepl("lives_with_others", body_txt))
+})

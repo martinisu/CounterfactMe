@@ -1,3 +1,21 @@
+# CounterfactMe 0.9.46
+
+## Bug fixes
+- A person could be given "no close friends" and "has a confidant" at
+  once, with nothing to explain it. The combination is real -- for most
+  people the confidant is a partner, a sibling or an adult child, which
+  is why Levekar asks the two questions separately -- but it was drawn
+  at a flat 35% whether or not anyone else lived in the household.
+  `.cond_social_support()` accepted a `household` argument and never
+  read it.
+
+  With no close friends, a confidant is now likely for someone living
+  with others (they have one at hand) and rare for someone living alone.
+
+  The first fix enumerated the cohabiting household types and missed two
+  of them; the test now checks only for living alone, which is the one
+  unambiguous case.
+
 # CounterfactMe 0.9.45
 
 ## Fixes
