@@ -1,3 +1,17 @@
+# CounterfactMe 0.9.48
+
+## Tests
+- Both failures in 0.9.47 were in the new tests, not the code.
+  - The pronoun check flagged `han|hun|ham|henne` alike, but only the
+    subject forms are the fault being guarded against. "endte det med
+    videregaende for henne" is correct -- object case after a
+    preposition -- and those sentences appear at all only because
+    `.mobility()` now works.
+  - The abroad-marker check searched for "en bodde i", which also
+    matches the corrected sentence "Den ene forelder**en bodde i**
+    Serbia". It now matches the marker only where a job title was
+    expected, and additionally asserts the country keeps its capital.
+
 # CounterfactMe 0.9.47
 
 ## Bug fixes (narration)

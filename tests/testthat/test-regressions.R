@@ -290,7 +290,11 @@ test_that("no narrated sentence ends with a subject pronoun", {
       sentences <- unlist(strsplit(txt, "(?<=[.!?])\\s+", perl = TRUE))
       sentences <- sentences[nzchar(trimws(sentences))]
       checked <- checked + length(sentences)
-      trailing <- grepl("\\b(han|hun|ham|henne)\\s*[.!?]\\s*$", sentences)
+      # Only the subject forms. "... for henne." and "... enn ham." are
+      # correct -- object case after a preposition -- and they appear in
+      # the mobility sentences, which became reachable only once
+      # .mobility() was fixed.
+      trailing <- grepl("\\b(han|hun)\\s*[.!?]\\s*$", sentences)
       expect_equal(sentences[trailing], character(0))
     }
   }
@@ -340,10 +344,18 @@ test_that("the abroad marker is not narrated as a job title", {
     m <- if (is.null(m) || is.na(m)) "" else as.character(m)
     if (!CounterfactMe:::.is_abroad_label(m)) next
     checked <- checked + 1L
-    txt <- as.character(narrate_life(x, style = "biography"))
-    expect_false(grepl("en bodde i", tolower(txt)))
-    expect_false(grepl("jobbet som bodde i", tolower(txt)))
-    expect_false(grepl("av bodde i", tolower(txt)))
+    txt <- tolower(as.character(narrate_life(x, style = "biography")))
+    # Match the marker only where a job title was expected. Plain
+    # "en bodde i" also matches the correct sentence "Den ene
+    # forelderen bodde i Serbia", which is the fix, not the fault.
+    expect_false(grepl("var det en bodde i", txt))
+    expect_false(grepl("og en bodde i", txt))
+    expect_false(grepl("jobbet som bodde i", txt))
+    expect_false(grepl("som var bodde i", txt))
+    expect_false(grepl(" av bodde i", txt))
+    # and the country never loses its capital
+    expect_false(grepl("bodde i [a-z\u{00e6}\u{00f8}\u{00e5}]",
+                       as.character(narrate_life(x, style = "biography"))))
   }
   expect_gt(checked, 3L)
 })
