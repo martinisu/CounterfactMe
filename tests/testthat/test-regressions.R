@@ -271,3 +271,93 @@ test_that("household is not ignored by social support", {
   expect_true(grepl("household", body_txt))
   expect_true(grepl("lives_with_others", body_txt))
 })
+
+# ---------------------------------------------------------------
+# Narration faults reported from the webR app.
+# ---------------------------------------------------------------
+
+test_that("no narrated sentence ends with a subject pronoun", {
+  # Norwegian is V2: after a fronted adverbial the verb comes second and
+  # the subject follows it. The party clause was assembled as
+  # "Politisk" + "stemmer SV" + pronoun, giving
+  # "Politisk stemmer Sosialistisk Venstreparti hun."
+  set.seed(501)
+  checked <- 0L
+  for (i in 1:40) {
+    x <- counterfact_me(min_age = 18)
+    for (st in c("biography", "compact")) {
+      txt <- as.character(narrate_life(x, style = st))
+      sentences <- unlist(strsplit(txt, "(?<=[.!?])\\s+", perl = TRUE))
+      sentences <- sentences[nzchar(trimws(sentences))]
+      checked <- checked + length(sentences)
+      trailing <- grepl("\\b(han|hun|ham|henne)\\s*[.!?]\\s*$", sentences)
+      expect_equal(sentences[trailing], character(0))
+    }
+  }
+  expect_gt(checked, 100L)
+})
+
+test_that("register education terms never reach the prose", {
+  # "Universitets- og hogskoleutdanning kort/lang" is a classification,
+  # not something anyone says. .edu_prose() renders it as
+  # bachelorgrad/mastergrad in narration only; the labels in
+  # education_levels.csv and every other output stay as they are.
+  set.seed(502)
+  checked <- 0L
+  for (i in 1:40) {
+    x <- counterfact_me(min_age = 25)
+    for (st in c("biography", "compact", "obituary")) {
+      txt <- tolower(as.character(narrate_life(x, style = st)))
+      checked <- checked + 1L
+      expect_false(grepl("utdanning kort|utdanning lang", txt))
+      expect_false(grepl("h\u{00f8}gskoleutdanning", txt))
+    }
+  }
+  expect_gt(checked, 100L)
+
+  # and the source labels are untouched
+  el <- utils::read.csv(
+    system.file("extdata", "education_levels.csv", package = "CounterfactMe"),
+    stringsAsFactors = FALSE, encoding = "UTF-8")
+  expect_true(any(grepl("kort$", el$level_no)))
+  expect_true(any(grepl("lang$", el$level_no)))
+})
+
+test_that("the abroad marker is not narrated as a job title", {
+  # .cond_parents() puts "Bodde i <land>" in the occupation field for a
+  # parent who was not in Norway during their working life. Narration
+  # treated it as a job title and lowercased it: "Hjemme var det en
+  # bodde i serbia og en bodde i serbia som forsorget familien."
+  expect_true(CounterfactMe:::.is_abroad_label("Bodde i Serbia"))
+  expect_true(CounterfactMe:::.is_abroad_label("Lived in Serbia"))
+  expect_false(CounterfactMe:::.is_abroad_label("Sykepleier"))
+
+  set.seed(503)
+  checked <- 0L
+  for (i in 1:200) {
+    x <- counterfact_me(min_age = 25)
+    m <- x$mother$occupation
+    m <- if (is.null(m) || is.na(m)) "" else as.character(m)
+    if (!CounterfactMe:::.is_abroad_label(m)) next
+    checked <- checked + 1L
+    txt <- as.character(narrate_life(x, style = "biography"))
+    expect_false(grepl("en bodde i", tolower(txt)))
+    expect_false(grepl("jobbet som bodde i", tolower(txt)))
+    expect_false(grepl("av bodde i", tolower(txt)))
+  }
+  expect_gt(checked, 3L)
+})
+
+test_that("educational mobility is actually narrated", {
+  # .mobility() read x$edu_code, x$mother_edu_code and x$father_edu_code.
+  # None of those fields exist, so it always returned NULL and this
+  # entire strand of the biography never appeared in any output.
+  set.seed(504)
+  got <- 0L
+  for (i in 1:120) {
+    x <- counterfact_me(min_age = 30, max_age = 60)
+    m <- CounterfactMe:::.mobility(x)
+    if (!is.null(m)) got <- got + 1L
+  }
+  expect_gt(got, 40L)
+})

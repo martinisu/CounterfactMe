@@ -1,3 +1,32 @@
+# CounterfactMe 0.9.47
+
+## Bug fixes (narration)
+- V2 inversion in `.narrate_cultural()`. The party sentence was built as
+  "Politisk" + a ready-made verb phrase + the pronoun, giving
+  "Politisk stemmer Sosialistisk Venstreparti hun." Norwegian puts the
+  finite verb second and the subject straight after it. The conjoined
+  form was worse: "..., og religiost tilhorer Den norske kirke" had no
+  subject at all. The party clause is now the object alone, so the
+  pronoun can be placed where it belongs.
+- Register education terms appeared verbatim in prose. New `.edu_prose()`
+  renders "Universitets- og hogskoleutdanning kort/lang" as
+  bachelorgrad/mastergrad, and "Forskerutdanning" as doktorgrad, in
+  narration only. It maps label to code to prose, reusing
+  `.edu_level_label_no()` so there is one vocabulary rather than two.
+  `education_levels.csv` and every other output are untouched.
+- A parent who lived their working life abroad carries the marker
+  "Bodde i <land>" in the occupation field. Narration treated it as a job
+  title and lowercased it: "Hjemme var det en bodde i serbia og en bodde
+  i serbia som forsorget familien." The marker is now recognised, the
+  country keeps its capital, and the repeated case is said once.
+- `.mobility()` read `x$edu_code`, `x$mother_edu_code` and
+  `x$father_edu_code`. None of those fields exist -- the ego carries only
+  the education label, and the parents' codes are nested. It therefore
+  always returned NULL, and the educational-mobility strand of the
+  biography ("Der foreldrene stoppet ved videregaende, gikk hun videre
+  til mastergrad") had never appeared in any output. Removed the now
+  unused `.edu_level()`, which was what received the missing fields.
+
 # CounterfactMe 0.9.46
 
 ## Bug fixes

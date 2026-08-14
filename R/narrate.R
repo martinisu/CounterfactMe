@@ -118,9 +118,37 @@ print.counterfactme_narrative <- function(x, ...) {
   paste0(paste(v[-n], collapse = ", "), " og ", v[n])
 }
 
-.edu_level <- function(code) {
-  if (is.null(code) || all(is.na(code))) return(NA_integer_)
-  suppressWarnings(as.integer(substr(as.character(code)[1], 1, 1)))
+
+# SSB's register terms are exact but unreadable in prose:
+# "Universitets- og hogskoleutdanning kort/lang" is a classification, not
+# something anyone says. These map a register label to the everyday word
+# for the same thing, for narration only. The labels in
+# education_levels.csv and every other output are untouched.
+#
+# The mapping goes label -> code -> prose, reusing .edu_level_label_no()
+# so there is one vocabulary rather than two that can drift apart.
+.edu_code_from_label <- function(lbl) {
+  if (is.null(lbl) || all(is.na(lbl)) || !nzchar(as.character(lbl)[1]))
+    return(NA_integer_)
+  .load_data()
+  el <- .cfm_env$education
+  if (is.null(el)) return(NA_integer_)
+  target <- tolower(trimws(as.character(lbl)[1]))
+  for (col in c("level_no", "level")) {
+    if (!col %in% names(el)) next
+    hit <- which(tolower(trimws(el[[col]])) == target)
+    if (length(hit)) return(as.integer(el$code[hit[1]]))
+  }
+  NA_integer_
+}
+
+.edu_prose <- function(lbl) {
+  if (is.null(lbl) || all(is.na(lbl))) return(NA_character_)
+  code <- .edu_code_from_label(lbl)
+  if (is.na(code)) return(tolower(as.character(lbl)[1]))   # unknown: pass through
+  if (code == 9L) return(NA_character_)                    # "Uoppgitt": say nothing
+  out <- .edu_level_label_no(code)
+  if (is.na(out)) tolower(as.character(lbl)[1]) else out
 }
 
 .edu_level_label_no <- function(l) {
@@ -162,12 +190,23 @@ print.counterfactme_narrative <- function(x, ...) {
 
 # educational mobility relative to parents (adults only)
 .mobility <- function(x) {
+  # This read x$edu_code, x$mother_edu_code and x$father_edu_code. None
+  # of those fields exist: the ego carries only the education label, and
+  # the parents' codes are nested under x$mother / x$father. So
+  # .edu_level() always got NULL, the function always returned NULL, and
+  # the whole educational-mobility strand of the biography -- "Der
+  # foreldrene stoppet ved videregaende, gikk hun videre til
+  # mastergrad" -- never once appeared in any output.
   age <- x$age
   if (is.null(age) || is.na(age) || age < 25) return(NULL)
-  ego <- .edu_level(x$edu_code)
+  ego <- .edu_code_from_label(x$education)
   if (is.na(ego)) return(NULL)
-  par <- suppressWarnings(max(c(.edu_level(x$mother_edu_code),
-                                .edu_level(x$father_edu_code)), na.rm = TRUE))
+  if (ego == 9L) return(NULL)          # "Uoppgitt" is not a level
+  par_codes <- suppressWarnings(as.integer(c(
+    x$mother$education_code %||% NA, x$father$education_code %||% NA)))
+  par_codes <- par_codes[!is.na(par_codes) & par_codes != 9L]
+  if (!length(par_codes)) return(NULL)
+  par <- max(par_codes)
   if (!is.finite(par)) return(NULL)
   d <- ego - par
   dir <- if (d >= 2) "sterk_opp" else if (d == 1) "opp" else if (d == 0) "lik"
@@ -275,20 +314,58 @@ print.counterfactme_narrative <- function(x, ...) {
 
 # ---- origins: parents, siblings, mobility -----------------------------
 
+# .cond_parents() stores "Bodde i <land>" / "Lived in <country>" in the
+# occupation field for parents who were not in Norway during their
+# working life. It is a marker, not a job title.
+.is_abroad_label <- function(s) {
+  if (is.null(s) || length(s) != 1 || is.na(s) || !nzchar(s)) return(FALSE)
+  grepl("^bodde i |^lived in ", tolower(s))
+}
+
 .narrate_origins <- function(x) {
   if (is.null(x$mother) && is.null(x$father)) return(NA_character_)
   g <- x$gender
   pron <- .pronouns(g, "subj")
   child_noun <- if (identical(g, "M")) "s\u{00f8}nn" else "datter"
 
-  m_occ <- tolower(x$mother$occupation %||% "")
-  f_occ <- tolower(x$father$occupation %||% "")
+  # For parents who lived their working life in the country of origin,
+  # .cond_parents() deliberately replaces the STYRK title with a marker
+  # like "Bodde i Serbia" -- we do not know what they did. The narration
+  # treated that marker as a job title and lowercased it, producing
+  # "Hjemme var det en bodde i serbia og en bodde i serbia som forsorget
+  # familien." Detect the marker and say the thing it actually means.
+  m_raw <- as.character(x$mother$occupation %||% "")
+  f_raw <- as.character(x$father$occupation %||% "")
+  if (is.na(m_raw)) m_raw <- ""
+  if (is.na(f_raw)) f_raw <- ""
+  m_abroad <- .is_abroad_label(m_raw)
+  f_abroad <- .is_abroad_label(f_raw)
+
+  # Job titles are common nouns and belong in lower case; the abroad
+  # marker contains a country name and must keep its capital.
+  m_occ <- if (m_abroad) m_raw else tolower(m_raw)
+  f_occ <- if (f_abroad) f_raw else tolower(f_raw)
   m_name <- x$mother$name %||% "moren"
   f_name <- x$father$name %||% "faren"
 
   parts <- character(0)
   if (nzchar(m_occ) || nzchar(f_occ)) {
-    if (nzchar(m_occ) && nzchar(f_occ)) {
+    if (m_abroad && f_abroad) {
+      # Same marker twice reads as a stutter; say it once.
+      where <- sub("^[Bb]odde i ", "", m_occ)
+      parts <- c(parts, .pick(c(
+        sprintf("Foreldrene bodde i %s mens de var i arbeidsf\u{00f8}r alder.", where),
+        sprintf("Begge foreldrene levde arbeidslivet sitt i %s.", where))))
+    } else if (m_abroad || f_abroad) {
+      abroad_occ <- if (m_abroad) m_occ else f_occ
+      home_occ   <- if (m_abroad) f_occ else m_occ
+      where <- sub("^[Bb]odde i ", "", abroad_occ)
+      parts <- c(parts, if (nzchar(home_occ)) {
+        sprintf("Den ene forelderen bodde i %s, den andre var %s.", where, home_occ)
+      } else {
+        sprintf("Foreldrene bodde i %s.", where)
+      })
+    } else if (nzchar(m_occ) && nzchar(f_occ)) {
       parts <- c(parts, .pick(c(
         sprintf("%s vokste opp som %s av %s og %s.", .cap(pron), child_noun, m_occ, f_occ),
         sprintf("Moren %s jobbet som %s, faren %s som %s.", m_name, m_occ, f_name, f_occ),
@@ -382,7 +459,7 @@ print.counterfactme_narrative <- function(x, ...) {
   occ <- x$occupation
   income <- x$income_nok
 
-  edu_str  <- if (!is.null(edu) && !is.na(edu)) tolower(edu) else NA
+  edu_str  <- .edu_prose(edu)
   field_str <- if (!is.null(field) && !is.na(field)) tolower(field) else NA
   fd_str   <- if (!is.null(field_d) && !is.na(field_d)) tolower(field_d) else NA
   occ_str  <- if (!is.null(occ) && !is.na(occ)) occ else NA
@@ -550,14 +627,29 @@ print.counterfactme_narrative <- function(x, ...) {
       party_clause <- NA_character_  # handled as standalone below
       parts <- c(parts, paste0(.cap(party), "."))
     } else {
-      party_clause <- sprintf("stemmer %s", party)
+      party_clause <- party
     }
   }
 
+  # Norwegian is V2: after a fronted adverbial the finite verb comes
+  # second and the subject follows it. The old template appended the
+  # pronoun to a ready-made verb phrase --
+  #   sprintf("Politisk %s %s.", "stemmer SV", "hun")
+  # -- which put the subject after the object: "Politisk stemmer SV hun."
+  # The conjoined form was worse still, leaving the second clause with no
+  # subject at all: "..., og religiost tilhorer Den norske kirke."
+  #
+  # The party clause is now the object alone, so the pronoun can be
+  # placed where it belongs.
   if (!is.na(party_clause) && !is.na(rel_clause)) {
-    parts <- c(parts, sprintf("Politisk %s %s, og religi\u{00f8}st %s.", party_clause, pron, rel_clause))
+    parts <- c(parts, .pick(c(
+      sprintf("%s stemmer %s og %s.", .cap(pron), party_clause, rel_clause),
+      sprintf("Politisk stemmer %s %s, og %s %s.",
+              pron, party_clause, pron, rel_clause))))
   } else if (!is.na(party_clause)) {
-    parts <- c(parts, sprintf("Politisk %s %s.", party_clause, pron))
+    parts <- c(parts, .pick(c(
+      sprintf("%s stemmer %s.", .cap(pron), party_clause),
+      sprintf("Politisk stemmer %s %s.", pron, party_clause))))
   } else if (!is.na(rel_clause)) {
     parts <- c(parts, sprintf("%s %s.", .cap(pron), rel_clause))
   }
@@ -649,8 +741,8 @@ print.counterfactme_narrative <- function(x, ...) {
   } else {
     if (!is.null(x$occupation) && !is.na(x$occupation))
       pieces <- c(pieces, sprintf("Jobber som %s.", tolower(x$occupation)))
-    if (!is.null(x$education) && !is.na(x$education))
-      pieces <- c(pieces, sprintf("Har %s.", tolower(x$education)))
+    edu_c <- .edu_prose(x$education)
+    if (!is.na(edu_c)) pieces <- c(pieces, sprintf("Har %s.", edu_c))
   }
   if (!is.null(x$marital_status) && !is.na(x$marital_status) &&
       !grepl("^ugift", tolower(x$marital_status)))
