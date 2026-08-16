@@ -126,8 +126,14 @@ test_that("no test can pass without checking something", {
       expect_true(grepl("expect_", b, fixed = TRUE),
                   label = sprintf("%s: '%s' asserts something", basename(f), nm))
       if (grepl("\\bnext\\b", b)) {
-        expect_true(grepl("checked|inspected", b),
-                    label = sprintf("%s: '%s' counts what it inspected",
+        # The rule is that a loop which may skip must assert a lower
+        # bound on how much it actually looked at. Match the assertion,
+        # not the variable name -- the first version required the counter
+        # to be called "checked" or "inspected", which is a naming
+        # convention rather than the property in question, and it failed
+        # a test that counted correctly in a variable called "seen".
+        expect_true(grepl("expect_gte?\\(", b),
+                    label = sprintf("%s: '%s' asserts how much it inspected",
                                     basename(f), nm))
       }
     }

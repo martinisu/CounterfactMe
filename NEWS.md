@@ -1,3 +1,16 @@
+# CounterfactMe 0.9.50
+
+## Tests
+- The repository check that guards against tests skipping without
+  counting required the counter to be named `checked` or `inspected`.
+  That is a naming convention, not the property in question, and it
+  failed a test in 0.9.49 which counted correctly in a variable called
+  `seen`. It now matches the assertion -- `expect_gt()` / `expect_gte()`
+  -- rather than the variable name.
+
+  All five R CMD check platforms passed on 0.9.49; only this check
+  failed, and on its own rule rather than on the package.
+
 # CounterfactMe 0.9.49
 
 ## Bug fixes
