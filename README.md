@@ -105,11 +105,11 @@ fabricated number next to register figures.
 
 ## Data provenance
 
-Fifty CSV files ship in `inst/extdata/`. They are not equally well traced,
+51 CSV files ship in `inst/extdata/`. They are not equally well traced,
 and the package says which is which:
 
 ```r
-data_sources()             # all 50 files
+data_sources()             # all 51 files
 data_sources("untraced")   # those without a recorded origin
 table(data_sources()$status)
 ```
@@ -118,7 +118,7 @@ table(data_sources()$status)
 |---|---|---|
 | `ssb_api` | Fetched from Statistics Norway's API by a script in `data-raw/`. Reproducible. | 9 |
 | `ssb_cited` | An SSB table is cited in the R source; figures transcribed by hand. | 5 |
-| `untraced` | No script and no citation found in the package. | 33 |
+| `untraced` | No script and no citation found in the package. | 34 |
 | `authored` | Deliberately written content, such as the humorous labels. | 3 |
 
 `untraced` does not mean invented. It means the origin has not been
@@ -169,7 +169,7 @@ audit_plausibility(N = 5000)   # combinations that are possible but too frequent
 
 `counterfact_me()` already rejects and redraws lives containing hard
 impossibilities, so `find_impossibilities()` is normally empty; it exists to
-catch regressions. The package's own test suite runs 68 tests, including property-based
+catch regressions. The package's own test suite runs 73 tests, including property-based
 invariants and regression guards for previously fixed bugs. A further
 set of repository checks -- version numbers agreeing across files,
 README counts matching the code, no undocumented export -- lives in
@@ -194,5 +194,5 @@ citation("CounterfactMe")
 ```
 
 > Isungset, M. A. (2026). *CounterfactMe: Generate Random Counterfactual
-> Lives Based on Norwegian Open Data*. R package version 0.9.48.
+> Lives Based on Norwegian Open Data*. R package version 0.9.49.
 > https://github.com/martinisu/CounterfactMe

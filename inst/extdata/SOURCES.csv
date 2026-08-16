@@ -39,6 +39,7 @@ party_baseline.csv,untraced,,,Valgresultat; kilde ikke dokumentert
 party_humor.csv,authored,,,Humoristiske merkelapper
 podcast_activity.csv,untraced,,,
 religion_baseline.csv,untraced,,,Trossamfunnsmedlemskap; kilde ikke dokumentert
+religion_by_country.csv,untraced,,,"Anslag for nasjonal religionssammensetning, lett justert for norsk migrasjonskontekst. Ingen enkeltkilde nedtegnet."
 religion_by_region.csv,untraced,,,
 religion_humor.csv,authored,,,Humoristiske merkelapper
 self_rated_health.csv,untraced,,,Levekar 16+; 0-15-raden var uten kilde og er fjernet (0.9.32)

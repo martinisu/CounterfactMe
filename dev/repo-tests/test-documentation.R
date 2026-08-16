@@ -47,10 +47,12 @@ test_that("the README's counts match the package", {
 
   expect_true(grepl(sprintf("%d dimensions", length(available_dimensions())), rme))
 
+  # Derive the count rather than hardcode it: the literal 50 went stale
+  # the first time a data file was added.
   ed <- system.file("extdata", package = "CounterfactMe")
   n_csv <- length(setdiff(list.files(ed, pattern = "\\.csv$"), "SOURCES.csv"))
-  expect_equal(n_csv, 50)   # README says "Fifty CSV files"
-  expect_true(grepl("Fifty CSV files", rme))
+  expect_true(grepl(sprintf("%d CSV files ship", n_csv), rme),
+              label = sprintf("README should say %d CSV files", n_csv))
 
   n_tests <- sum(vapply(
     list.files("../../tests/testthat", pattern = "^test-.*\\.R$", full.names = TRUE),

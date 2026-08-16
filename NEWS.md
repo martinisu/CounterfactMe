@@ -1,3 +1,36 @@
+# CounterfactMe 0.9.49
+
+## Bug fixes
+- Religion is now conditioned on the country of origin when it is known,
+  with the regional distribution as fallback.
+
+  `religion_by_region.csv` groups Morocco to Nepal in one `mena_sor_asia`
+  row, so its 8 % Hindu share -- which comes from India, Nepal and Sri
+  Lanka -- was applied to Lebanon, Syria, Iraq and the rest. `afrika_sub`
+  carries 55 % Islam, which made Ethiopia, Eritrea, Kenya, Uganda,
+  Ghana, Rwanda and Angola Muslim-majority; all of them are
+  Christian-majority. Algeria sits in that region too, and is not
+  sub-Saharan at all.
+
+  New `religion_by_country.csv` covers the 35 countries in those two
+  regions, and `.religion_country_weights()` in `conditional.R` reads it.
+  `.cond_religion()` takes a `country_label` argument and
+  `counterfact_me.R` passes `bg$country_label`.
+
+  The region taxonomy is deliberately untouched: `name_region` is the key
+  into `names_by_region.csv` and drives the income, occupation and
+  turnout adjustments. Only religion is conditioned on the country.
+
+  The new figures are approximations of national religious composition,
+  lightly adjusted for a Norwegian migrant context. They are recorded as
+  `untraced` in the provenance manifest, because no single source was
+  written down.
+
+## Tests
+- The README's data-file count is now derived in the repository check
+  rather than hardcoded; the literal 50 went stale the moment a file was
+  added.
+
 # CounterfactMe 0.9.48
 
 ## Tests

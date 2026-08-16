@@ -157,6 +157,12 @@
     stringsAsFactors = FALSE, encoding = "UTF-8"
   )
 
+  .cfm_env$religion_by_country <- read.csv(
+    file.path(extdata, "religion_by_country.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(code = "character")
+  )
+
   .cfm_env$party_baseline <- read.csv(
     file.path(extdata, "party_baseline.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8"

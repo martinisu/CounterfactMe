@@ -373,3 +373,94 @@ test_that("educational mobility is actually narrated", {
   }
   expect_gt(got, 40L)
 })
+
+# ---------------------------------------------------------------
+# Religion conditioned on country, not region.
+#
+# `mena_sor_asia` spans Morocco to Nepal, so its 8% Hindu share -- which
+# comes from India, Nepal and Sri Lanka -- was applied to Lebanon, giving
+# "11-aring fra Libanon, tilhorer hinduisme". `afrika_sub` carries 55%
+# Islam, which made Ethiopia, Eritrea, Kenya, Uganda, Ghana, Rwanda and
+# Angola Muslim-majority; every one of them is Christian-majority.
+#
+# The region taxonomy is untouched: name_region keys names_by_region.csv
+# and drives the income, occupation and turnout adjustments.
+# ---------------------------------------------------------------
+
+test_that("Muslim-majority origins do not draw Hinduism", {
+  muslim_majority <- c("Libanon", "Syria", "Irak", "Iran", "Tyrkia",
+                       "Marokko", "Egypt", "Afghanistan")
+  for (cty in muslim_majority) {
+    w <- CounterfactMe:::.religion_country_weights(cty)
+    expect_false(is.null(w), label = sprintf("%s has country weights", cty))
+    expect_equal(unname(w[["HIN"]]), 0,
+                 label = sprintf("Hindu share for %s", cty))
+  }
+  # Pakistan keeps a small real Hindu minority, so it is not zero --
+  # but nowhere near the regional 8%.
+  wp <- CounterfactMe:::.religion_country_weights("Pakistan")
+  expect_lt(wp[["HIN"]], 0.05)
+})
+
+test_that("Ethiopia and Eritrea come out Christian-majority", {
+  for (cty in c("Etiopia", "Eritrea", "Kenya", "Uganda", "Ghana", "Rwanda")) {
+    w <- CounterfactMe:::.religion_country_weights(cty)
+    expect_false(is.null(w))
+    christian <- w[["KAT"]] + w[["ANN_KRIS"]]
+    expect_gt(christian, w[["ISL"]],
+              label = sprintf("%s: Christian %.2f vs Muslim %.2f",
+                              cty, christian, w[["ISL"]]))
+  }
+  # Somalia is genuinely Muslim-majority and must stay that way.
+  ws <- CounterfactMe:::.religion_country_weights("Somalia")
+  expect_gt(ws[["ISL"]], 0.9)
+})
+
+test_that("country weights fall back to region for unknown countries", {
+  expect_null(CounterfactMe:::.religion_country_weights("Atlantis"))
+  expect_null(CounterfactMe:::.religion_country_weights(NA_character_))
+  expect_null(CounterfactMe:::.religion_country_weights(NULL))
+  # and .cond_religion still returns something sensible without a country
+  r <- CounterfactMe:::.cond_religion(40L, name_region = "mena_sor_asia",
+                                      background = "first_gen", lang = "no")
+  expect_true(!is.na(r$code))
+})
+
+test_that("every country weight row is a distribution", {
+  rbc <- utils::read.csv(
+    system.file("extdata", "religion_by_country.csv", package = "CounterfactMe"),
+    stringsAsFactors = FALSE, encoding = "UTF-8")
+  cols <- setdiff(names(rbc), c("code", "label"))
+  for (i in seq_len(nrow(rbc))) {
+    s <- sum(as.numeric(rbc[i, cols]))
+    expect_equal(s, 1, tolerance = 0.01,
+                 label = sprintf("%s sums to %.3f", rbc$label[i], s))
+  }
+  expect_gt(nrow(rbc), 30L)
+})
+
+test_that("drawn religion matches the country of origin", {
+  # End to end: no Lebanese Hindus, no Muslim-majority Ethiopians.
+  set.seed(601)
+  seen <- 0L; hindu_mena <- 0L
+  eth <- c(christian = 0L, muslim = 0L)
+  for (i in 1:400) {
+    x <- counterfact_me(min_age = 10)
+    cb <- x$country_background
+    if (is.null(cb) || is.na(cb)) next
+    rel <- x$religion
+    rel <- if (is.null(rel) || is.na(rel)) "" else tolower(as.character(rel))
+    if (cb %in% c("Libanon", "Syria", "Irak", "Iran", "Tyrkia", "Marokko",
+                  "Egypt", "Afghanistan", "Pakistan")) {
+      seen <- seen + 1L
+      if (grepl("hindu", rel)) hindu_mena <- hindu_mena + 1L
+    }
+    if (cb %in% c("Etiopia", "Eritrea")) {
+      if (grepl("krist|katol|ortodoks", rel)) eth[["christian"]] <- eth[["christian"]] + 1L
+      if (grepl("islam|muslim", rel))        eth[["muslim"]]    <- eth[["muslim"]] + 1L
+    }
+  }
+  expect_gt(seen, 10L)
+  expect_equal(hindu_mena, 0L)
+  if (sum(eth) >= 6L) expect_gte(eth[["christian"]], eth[["muslim"]])
+})

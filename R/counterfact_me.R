@@ -345,7 +345,8 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   # 9c. Religion
   rel <- .cond_religion(age, name_region = bg$name_region,
-                       background = bg$background, gender = gender_draw, lang = lang)
+                       background = bg$background, gender = gender_draw,
+                       country_label = bg$country_label, lang = lang)
   if ("religion" %in% dimensions) {
     result$religion <- rel$label
   }

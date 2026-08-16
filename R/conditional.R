@@ -2661,24 +2661,55 @@
 
 # --- Religion ------------------------------------------------------------
 # Trekker fra region-betinget fordeling hvis ikke majority, ellers baseline.
-.cond_religion <- function(age, name_region = NULL, background = "majority", gender = NULL, lang = "en") {
+# Religion weights for a specific country of origin.
+#
+# The region taxonomy is too coarse for this one purpose. `mena_sor_asia`
+# runs from Morocco to Nepal, so its 8 % Hindu share -- which comes from
+# India, Nepal and Sri Lanka -- was being applied to Lebanon. And
+# `afrika_sub` carries 55 % Islam, which makes Ethiopia, Eritrea, Kenya,
+# Uganda, Ghana, Rwanda and Angola Muslim-majority when every one of them
+# is Christian-majority.
+#
+# The taxonomy itself is deliberately left alone: `name_region` is the key
+# into names_by_region.csv and drives the income, occupation and turnout
+# adjustments. Only religion is conditioned on the country, and only when
+# the country is known; otherwise the region distribution still applies.
+.religion_country_weights <- function(country_label) {
+  if (is.null(country_label) || length(country_label) != 1 ||
+      is.na(country_label) || !nzchar(country_label)) return(NULL)
+  .load_data()
+  rbc <- .cfm_env$religion_by_country
+  if (is.null(rbc) || !nrow(rbc)) return(NULL)
+  hit <- which(tolower(trimws(rbc$label)) == tolower(trimws(country_label)))
+  if (!length(hit)) return(NULL)
+  codes <- setdiff(names(rbc), c("code", "label"))
+  w <- as.numeric(rbc[hit[1], codes])
+  names(w) <- codes
+  if (!any(is.finite(w)) || sum(w, na.rm = TRUE) <= 0) return(NULL)
+  w
+}
+
+.cond_religion <- function(age, name_region = NULL, background = "majority",
+                           gender = NULL, country_label = NULL, lang = "en") {
   .load_data()
   rb <- .cfm_env$religion_baseline
   rbr <- .cfm_env$religion_by_region
   if (is.null(rb)) return(list(code = NA_character_, label = NA_character_))
 
-  # Pick weights
+  # Pick weights: country when we know it, region when we do not,
+  # majority baseline otherwise.
   w <- NULL
-  if (!identical(background, "majority") &&
-      !is.null(name_region) && !is.na(name_region) &&
-      !is.null(rbr) && name_region %in% rbr$region) {
-    row <- rbr[rbr$region == name_region, , drop = FALSE]
-    codes <- setdiff(names(row), "region")
-    w <- as.numeric(row[1, codes])
-    names(w) <- codes
-  } else {
-    w <- setNames(rb$share_majority, rb$code)
+  if (!identical(background, "majority")) {
+    w <- .religion_country_weights(country_label)
+    if (is.null(w) && !is.null(name_region) && !is.na(name_region) &&
+        !is.null(rbr) && name_region %in% rbr$region) {
+      row <- rbr[rbr$region == name_region, , drop = FALSE]
+      codes <- setdiff(names(row), "region")
+      w <- as.numeric(row[1, codes])
+      names(w) <- codes
+    }
   }
+  if (is.null(w)) w <- setNames(rb$share_majority, rb$code)
 
   # Age effect: younger more secular
   birth_year <- .cfm_env$ref_year - age
