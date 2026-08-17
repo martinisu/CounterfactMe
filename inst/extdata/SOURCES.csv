@@ -17,7 +17,7 @@ household_types.csv,untraced,,,
 housing_price_index.csv,untraced,,,Boligprisindeks; tabell ikke dokumentert i pakken
 housing_prices.csv,untraced,,,Boligpriser; tabell ikke dokumentert i pakken
 immigrant_country_dist.csv,ssb_cited,09817,,Sitert i R/conditional.R
-immigration_start_year.csv,untraced,,,
+immigration_start_year.csv,untraced,,,"start_year/peak_year + arrival_profile (labour/mixed/refugee). Profilen er satt etter norsk innvandringshistorie per land, ikke fra en enkeltkilde."
 income_deciles.csv,untraced,,,
 kommune_price_multiplier.csv,untraced,,,
 kommune_sentralitet.csv,untraced,,,"Antatt SSB Klass 128, ikke verifisert"

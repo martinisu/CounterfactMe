@@ -1,3 +1,30 @@
+# CounterfactMe 0.9.53
+
+## Bug fixes
+- Arrival age is now drawn first and residence length derived from it,
+  rather than the other way round. Drawing residence from the country's
+  peak year and checking arrival age afterwards meant the check could
+  only clamp: Pakistani first-generation immigrants piled up on the
+  floor of the window at exactly 15, with 55 % arriving as children.
+- The flow type moved from the region to the country, in a new
+  `arrival_profile` column in `immigration_start_year.csv`.
+  `mena_sor_asia` holds both 1960s labour migration (Pakistan, Turkey,
+  Morocco) and refugee movements (Syria, Iraq, Afghanistan), so no
+  single regional rule fits it.
+
+    * `labour` -- young adults, a fifth arriving as accompanied children
+    * `mixed` -- labour wave first, then family reunification, which
+      brought spouses and teenagers but few small children
+    * `refugee` -- whole families, infants to middle age
+
+  Simulated against the shipped data, median arrival age is now 22-30
+  across all origins, against 11-15 for Pakistan, Turkey, Morocco,
+  Vietnam, Iran and Chile before.
+
+- `peak_year` no longer shapes the draw. The hard constraint that
+  matters -- nobody can have lived here longer than the flow has existed
+  -- is carried by `max_botid`. The column is kept in the data.
+
 # CounterfactMe 0.9.52
 
 ## Bug fixes

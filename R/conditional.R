@@ -2421,45 +2421,72 @@
   yrs_in_norway <- NA_integer_
   if (identical(bg, "first_gen")) {
     ref_year <- .cfm_env$ref_year
-    # Determine plausible botid window from country's start_year + peak_year
+    # start_year bounds how long anyone can have been here.
     sy_row <- if (!is.null(.cfm_env$immigration_start_year))
                 .cfm_env$immigration_start_year[
                   .cfm_env$immigration_start_year$code == country_code, , drop = FALSE]
               else NULL
     start_year <- if (!is.null(sy_row) && nrow(sy_row) > 0)
                     as.integer(sy_row$start_year[1]) else 1970L
-    peak_year  <- if (!is.null(sy_row) && nrow(sy_row) > 0 && "peak_year" %in% names(sy_row))
-                    as.integer(sy_row$peak_year[1]) else as.integer((start_year + ref_year) / 2)
 
     # Botid bounded by min(age, ref_year - start_year)
     max_botid <- min(as.integer(age), ref_year - start_year)
     if (max_botid < 1) max_botid <- 1L
-    # Center on (ref_year - peak_year), with spread proportional to (ref_year - start_year)
-    center_botid <- ref_year - peak_year
-    spread <- max(3L, as.integer((ref_year - start_year) / 4))
-    # Centring on the peak year alone ignores how old the person would
-    # have been on arrival. Lithuania peaks in 2010, so a 65-year-old was
-    # given roughly 16 years of residence -- an arrival at 49. Baltic and
-    # Polish migration to Norway is labour migration, which happens at
-    # 18-40; refugee and family flows span a wider range and include
-    # children.
-    labour_regions <- c("norden", "vesteuropa", "ost_europa")
-    arr_lo <- if (name_region %in% labour_regions) 18L else 0L
-    arr_hi <- if (name_region %in% labour_regions) 40L else 45L
-    # A minority of labour migrants bring children along.
-    if (name_region %in% labour_regions && stats::runif(1) < 0.18) arr_lo <- 0L
+    # peak_year is no longer used to centre the draw. It shaped residence
+    # length directly, which is what forced implausible arrival ages; the
+    # hard constraint that matters -- nobody can have lived here longer
+    # than the flow has existed -- is already carried by max_botid.
+    # Arrival age is the quantity that has to be plausible; residence
+    # length follows from it. The earlier version drew residence from the
+    # country's peak year and checked arrival age afterwards, which meant
+    # the check could only clamp -- Pakistani first-gen piled up on the
+    # floor of the window at exactly 15.
+    #
+    # The flow is a property of the country, not the region:
+    # mena_sor_asia holds both 1960s labour migration (Pakistan, Turkey,
+    # Morocco) and refugee movements (Syria, Iraq, Afghanistan).
+    #
+    #   labour   young adults, a fifth arriving as accompanied children
+    #   mixed    labour wave first, then family reunification, which
+    #            brought spouses and teenagers but few small children
+    #   refugee  whole families, infants to middle age
+    profile <- if (!is.null(sy_row) && nrow(sy_row) > 0 &&
+                   "arrival_profile" %in% names(sy_row)) {
+      as.character(sy_row$arrival_profile[1])
+    } else if (name_region %in% c("norden", "vesteuropa", "ost_europa")) {
+      "labour"
+    } else "refugee"
+
+    .draw_arrival_age <- function() {
+      if (identical(profile, "labour")) {
+        if (stats::runif(1) < 0.18) {
+          max(0L, as.integer(round(stats::rnorm(1, 10, 6))))
+        } else {
+          min(40L, max(18L, as.integer(round(stats::rnorm(1, 27, 6)))))
+        }
+      } else if (identical(profile, "mixed")) {
+        if (stats::runif(1) < 0.55) {
+          min(40L, max(18L, as.integer(round(stats::rnorm(1, 26, 6)))))
+        } else {
+          min(40L, max(0L, as.integer(round(stats::rnorm(1, 14, 7)))))
+        }
+      } else {
+        min(45L, max(0L, as.integer(round(stats::rnorm(1, 24, 12)))))
+      }
+    }
 
     age_i <- as.integer(age)
-    botid_lo <- max(1L, age_i - arr_hi)
-    botid_hi <- min(max_botid, max(1L, age_i - arr_lo))
-    if (botid_lo > botid_hi) {
-      # No arrival age satisfies both the country's flow history and the
-      # plausible window -- take the nearest feasible residence length
-      # rather than an absurd arrival age.
-      yrs_in_norway <- as.integer(max(1L, min(max_botid, botid_lo)))
-    } else {
-      raw <- round(stats::rnorm(1, mean = center_botid, sd = spread))
-      yrs_in_norway <- as.integer(max(botid_lo, min(botid_hi, raw)))
+    yrs_in_norway <- NA_integer_
+    for (attempt in seq_len(12L)) {
+      cand <- age_i - .draw_arrival_age()
+      if (cand >= 1L && cand <= max_botid) { yrs_in_norway <- as.integer(cand); break }
+    }
+    if (is.na(yrs_in_norway)) {
+      # No arrival age satisfies both the window and the country's flow
+      # history. Take the nearest feasible residence length rather than
+      # an implausible arrival age.
+      cand <- age_i - .draw_arrival_age()
+      yrs_in_norway <- as.integer(max(1L, min(max_botid, cand)))
     }
   }
 

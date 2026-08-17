@@ -590,3 +590,42 @@ test_that("refugee-origin flows still admit child arrivals", {
   expect_gt(checked, 15L)
   expect_gt(child_arrivals, 0L)
 })
+
+test_that("arrival profile is set for every country with a start year", {
+  isy <- utils::read.csv(
+    system.file("extdata", "immigration_start_year.csv", package = "CounterfactMe"),
+    stringsAsFactors = FALSE, encoding = "UTF-8")
+  expect_true("arrival_profile" %in% names(isy))
+  expect_true(all(nzchar(isy$arrival_profile)))
+  expect_true(all(isy$arrival_profile %in% c("labour", "mixed", "refugee")))
+
+  # The three countries whose Norwegian history is labour migration
+  # followed by family reunification, and which the region taxonomy got
+  # wrong because they sit in mena_sor_asia.
+  for (cty in c("Pakistan", "Tyrkia", "Marokko")) {
+    expect_equal(isy$arrival_profile[isy$label == cty], "mixed",
+                 label = sprintf("%s profile", cty))
+  }
+  expect_equal(isy$arrival_profile[isy$label == "Polen"], "labour")
+  expect_equal(isy$arrival_profile[isy$label == "Syria"], "refugee")
+})
+
+test_that("mixed-profile origins are not dominated by child arrivals", {
+  # Before the country-level profile, Pakistani first-gen arrived as
+  # children in over half of draws, which erased the labour wave.
+  set.seed(804)
+  arr <- integer(0)
+  for (i in 1:900) {
+    x <- counterfact_me(min_age = 25, max_age = 85)
+    if (!identical(x$background, "first_gen")) next
+    cb <- x$country_background
+    if (is.null(cb) || is.na(cb)) next
+    if (!(cb %in% c("Pakistan", "Tyrkia", "Marokko"))) next
+    y <- x$years_in_norway
+    if (is.null(y) || is.na(y)) next
+    arr <- c(arr, as.integer(x$age) - as.integer(y))
+  }
+  expect_gt(length(arr), 15L)
+  expect_lt(mean(arr < 18), 0.45)   # was ~0.55
+  expect_gt(stats::median(arr), 17)
+})
