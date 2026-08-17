@@ -522,3 +522,71 @@ test_that("working-age people are still described as working", {
   }
   expect_gt(employed, 40L)
 })
+
+# ---------------------------------------------------------------
+# Arrival age must be plausible, not just consistent with the country's
+# migration history.
+#
+# Residence length was centred on the country's peak year without
+# checking how old the person would have been on arrival. Lithuania
+# peaks in 2010, so a 65-year-old got roughly 16 years of residence --
+# an arrival at 49. Baltic and Polish migration to Norway is labour
+# migration, which happens at 18-40.
+# ---------------------------------------------------------------
+
+test_that("eastern European first-gen arrive at working age", {
+  set.seed(801)
+  arr <- integer(0)
+  for (i in 1:600) {
+    x <- counterfact_me(min_age = 20, max_age = 85)
+    if (!identical(x$background, "first_gen")) next
+    y <- x$years_in_norway
+    if (is.null(y) || is.na(y)) next
+    cb <- x$country_background
+    if (is.null(cb) || is.na(cb)) next
+    if (!(cb %in% c("Polen", "Litauen", "Latvia", "Estland", "Romania"))) next
+    arr <- c(arr, as.integer(x$age) - as.integer(y))
+  }
+  expect_gt(length(arr), 20L)
+  expect_gte(mean(arr >= 18 & arr <= 40), 0.75)
+  # and never absurd in either direction
+  expect_true(all(arr >= 0))
+  expect_true(all(arr <= 45))
+})
+
+test_that("nobody arrives after 45, whatever the origin", {
+  set.seed(802)
+  checked <- 0L
+  for (i in 1:500) {
+    x <- counterfact_me(min_age = 18)
+    if (!identical(x$background, "first_gen")) next
+    y <- x$years_in_norway
+    if (is.null(y) || is.na(y)) next
+    checked <- checked + 1L
+    arrival_age <- as.integer(x$age) - as.integer(y)
+    expect_gte(arrival_age, 0L)
+    expect_lte(arrival_age, 45L)
+  }
+  expect_gt(checked, 30L)
+})
+
+test_that("refugee-origin flows still admit child arrivals", {
+  # The 18-40 window applies to labour migration only. Somali or Syrian
+  # first-gen who came as children must remain possible, or the fix has
+  # been applied too broadly.
+  set.seed(803)
+  child_arrivals <- 0L; checked <- 0L
+  for (i in 1:600) {
+    x <- counterfact_me(min_age = 18)
+    if (!identical(x$background, "first_gen")) next
+    cb <- x$country_background
+    if (is.null(cb) || is.na(cb)) next
+    if (!(cb %in% c("Somalia", "Syria", "Irak", "Afghanistan", "Eritrea"))) next
+    y <- x$years_in_norway
+    if (is.null(y) || is.na(y)) next
+    checked <- checked + 1L
+    if ((as.integer(x$age) - as.integer(y)) < 18L) child_arrivals <- child_arrivals + 1L
+  }
+  expect_gt(checked, 15L)
+  expect_gt(child_arrivals, 0L)
+})

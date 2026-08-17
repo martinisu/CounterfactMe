@@ -2388,16 +2388,18 @@
       sy_row <- isy[isy$code == cc, , drop = FALSE]
       sy <- if (nrow(sy_row) > 0) as.integer(sy_row$start_year[1]) else 1900L
       if (identical(bg, "first_gen")) {
-        # Ego must have been able to arrive in [sy, ref_year], at age 0-50.
-        # Earliest possible arrival = max(sy, ego_birth_year).
-        # Latest plausible arrival = ref_year - 1.
-        # Arrival age = arrival_year - ego_birth_year, must be in [0, 60].
+        # Ego must have been able to arrive in [sy, ref_year] at a
+        # plausible age. Earliest possible arrival = max(sy, ego_birth_year),
+        # latest = ref_year - 1. Arrival age must fall in [0, 45]: migration
+        # after the mid-forties is rare enough that allowing it up to 60
+        # produced people who "immigrated" at 49 from countries whose flow
+        # to Norway only began in the 2000s.
         earliest_arrival <- max(sy, ego_birth_year)
         latest_arrival <- ref_year - 1L
         if (earliest_arrival > latest_arrival) return(FALSE)
         # Arrival age constraint
         earliest_age <- max(0L, earliest_arrival - ego_birth_year)
-        if (earliest_age > 60L) return(FALSE)
+        if (earliest_age > 45L) return(FALSE)
         return(TRUE)
       } else {  # second_gen — parents arrived >= start_year, ego born in Norway
         # Ego (born in Norway) must have been born after parents arrived.
@@ -2435,9 +2437,30 @@
     # Center on (ref_year - peak_year), with spread proportional to (ref_year - start_year)
     center_botid <- ref_year - peak_year
     spread <- max(3L, as.integer((ref_year - start_year) / 4))
-    # Triangular-like via normal sample, clipped to [1, max_botid]
-    raw <- round(stats::rnorm(1, mean = center_botid, sd = spread))
-    yrs_in_norway <- as.integer(max(1L, min(max_botid, raw)))
+    # Centring on the peak year alone ignores how old the person would
+    # have been on arrival. Lithuania peaks in 2010, so a 65-year-old was
+    # given roughly 16 years of residence -- an arrival at 49. Baltic and
+    # Polish migration to Norway is labour migration, which happens at
+    # 18-40; refugee and family flows span a wider range and include
+    # children.
+    labour_regions <- c("norden", "vesteuropa", "ost_europa")
+    arr_lo <- if (name_region %in% labour_regions) 18L else 0L
+    arr_hi <- if (name_region %in% labour_regions) 40L else 45L
+    # A minority of labour migrants bring children along.
+    if (name_region %in% labour_regions && stats::runif(1) < 0.18) arr_lo <- 0L
+
+    age_i <- as.integer(age)
+    botid_lo <- max(1L, age_i - arr_hi)
+    botid_hi <- min(max_botid, max(1L, age_i - arr_lo))
+    if (botid_lo > botid_hi) {
+      # No arrival age satisfies both the country's flow history and the
+      # plausible window -- take the nearest feasible residence length
+      # rather than an absurd arrival age.
+      yrs_in_norway <- as.integer(max(1L, min(max_botid, botid_lo)))
+    } else {
+      raw <- round(stats::rnorm(1, mean = center_botid, sd = spread))
+      yrs_in_norway <- as.integer(max(botid_lo, min(botid_hi, raw)))
+    }
   }
 
   list(

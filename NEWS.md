@@ -1,3 +1,16 @@
+# CounterfactMe 0.9.52
+
+## Bug fixes
+- Residence length for first-generation immigrants was centred on the
+  country's peak migration year without checking how old the person
+  would have been on arrival. Lithuania peaks in 2010, so a 65-year-old
+  was given about 16 years of residence -- an arrival at 49. Baltic and
+  Polish migration to Norway is labour migration, concentrated at 18-40;
+  refugee and family flows span a wider range and include children.
+  `.cond_immigrant_background()` now derives a plausible arrival-age
+  window per region and clips residence length to it.
+- Tightened the qualifying filter from an arrival age of 60 to 45.
+
 # CounterfactMe 0.9.51
 
 ## Bug fixes
