@@ -464,3 +464,61 @@ test_that("drawn religion matches the country of origin", {
   expect_equal(hindu_mena, 0L)
   if (sum(eth) >= 6L) expect_gte(eth[["christian"]], eth[["muslim"]])
 })
+
+# ---------------------------------------------------------------
+# Retirees are not described as being in work.
+#
+# Reported from output: an 89-year-old "tok veien til jobben som
+# hyttebokforfatter og har i dag en arsinntekt pa ...". The pastime
+# labels in .PENSJONIST_LABELS are not jobs, and the income is a pension.
+# ---------------------------------------------------------------
+
+test_that("retirees are narrated as retired, not employed", {
+  work_verbs <- c("veien til jobben", "jobber som", "arbeider som",
+                  "\u{00e5}rsinntekt")
+  set.seed(701)
+  checked <- 0L
+  for (i in 1:60) {
+    x <- counterfact_me(min_age = 70, max_age = 95)
+    for (st in c("biography", "compact")) {
+      txt <- tolower(as.character(narrate_life(x, style = st)))
+      checked <- checked + 1L
+      for (v in work_verbs) {
+        expect_false(grepl(v, txt),
+                     label = sprintf("'%s' in %s for age %d", v, st, x$age))
+      }
+    }
+  }
+  expect_gt(checked, 100L)
+})
+
+test_that("a pastime label is never called a job", {
+  # Someone under 67 can still draw a pensjonist label; the branch keys
+  # on the label as well as on age.
+  set.seed(702)
+  checked <- 0L
+  for (i in 1:250) {
+    x <- counterfact_me(min_age = 60)
+    occ <- x$occupation
+    if (is.null(occ) || is.na(occ)) next
+    if (!(occ %in% CounterfactMe:::.PENSJONIST_LABELS)) next
+    checked <- checked + 1L
+    txt <- tolower(as.character(narrate_life(x, style = "biography")))
+    expect_false(grepl(sprintf("jobben som %s", tolower(occ)), txt))
+    expect_false(grepl(sprintf("jobber som %s", tolower(occ)), txt))
+  }
+  expect_gt(checked, 3L)
+})
+
+test_that("working-age people are still described as working", {
+  # Guards the opposite failure: a branch that swallows everyone.
+  set.seed(703)
+  employed <- 0L
+  for (i in 1:80) {
+    x <- counterfact_me(min_age = 30, max_age = 55)
+    txt <- tolower(as.character(narrate_life(x, style = "compact")))
+    if (grepl("jobber som|er pensjonist", txt)) employed <- employed + 1L
+    expect_false(grepl("er pensjonist", txt))
+  }
+  expect_gt(employed, 40L)
+})

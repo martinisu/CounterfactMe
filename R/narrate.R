@@ -471,6 +471,36 @@ print.counterfactme_narrative <- function(x, ...) {
     else edu_str
   } else NA
 
+  # Retirees: the "occupation" is a pastime label, not a job, and the
+  # income is a pension. Without this a 89-year-old was described as
+  # having "tok veien til jobben som hyttebokforfatter og har i dag en
+  # arsinntekt pa ...".
+  is_pens <- (!is.na(age_n) && age_n >= 67) ||
+             (!is.na(occ_str) && occ_str %in% .PENSJONIST_LABELS)
+  if (isTRUE(is_pens)) {
+    if (!is.na(edu_full)) {
+      parts <- c(parts, .pick(c(
+        sprintf("Yrkeslivet ligger bak %s; utdanningen var %s.",
+                .pronouns(g, "obj"), edu_full),
+        sprintf("%s har %s bak seg, og er n\u{00e5} pensjonist.", .cap(pron), edu_full))))
+    } else {
+      parts <- c(parts, sprintf("%s er pensjonist.", .cap(pron)))
+    }
+    if (!is.na(occ_str) && occ_str %in% .PENSJONIST_LABELS) {
+      parts <- c(parts, .pick(c(
+        sprintf("Dagene g\u{00e5}r med til rollen som %s.", tolower(occ_str)),
+        sprintf("I n\u{00e6}rmilj\u{00f8}et er %s kjent som %s.", pron, tolower(occ_str)))))
+    } else if (!is.na(occ_str)) {
+      parts <- c(parts, sprintf("Yrket var %s.", tolower(occ_str)))
+    }
+    if (!is.null(income) && !is.na(income) && income >= 50000) {
+      r <- round(income / 10000) * 10000
+      parts <- c(parts, sprintf("Pensjonen ligger p\u{00e5} rundt %s kroner i \u{00e5}ret.",
+                                formatC(r, format = "d", big.mark = " ")))
+    }
+    return(paste(parts, collapse = " "))
+  }
+
   if (!is.na(edu_full) && !is.na(occ_str)) {
     inc <- if (!is.na(age_n) && age_n < 19) NA_character_
            else .income_phrase(income, neet = isTRUE(x$neet))
@@ -738,6 +768,14 @@ print.counterfactme_narrative <- function(x, ...) {
     pieces <- c(pieces, sprintf("G\u{00e5}r %s.", skole))
     if (!is.null(x$occupation) && !is.na(x$occupation))
       pieces <- c(pieces, sprintf("Er %s.", tolower(x$occupation)))
+  } else if ((!is.na(age_n) && age_n >= 67) ||
+             (!is.null(x$occupation) && !is.na(x$occupation) &&
+              x$occupation %in% .PENSJONIST_LABELS)) {
+    pieces <- c(pieces, "Er pensjonist.")
+    if (!is.null(x$occupation) && !is.na(x$occupation))
+      pieces <- c(pieces, sprintf("Kjent som %s.", tolower(x$occupation)))
+    edu_c <- .edu_prose(x$education)
+    if (!is.na(edu_c)) pieces <- c(pieces, sprintf("Har %s.", edu_c))
   } else {
     if (!is.null(x$occupation) && !is.na(x$occupation))
       pieces <- c(pieces, sprintf("Jobber som %s.", tolower(x$occupation)))

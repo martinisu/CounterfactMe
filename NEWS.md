@@ -1,3 +1,14 @@
+# CounterfactMe 0.9.51
+
+## Bug fixes
+- Retirees were narrated as though they were in work: an 89-year-old
+  "tok veien til jobben som hyttebokforfatter og har i dag en
+  arsinntekt pa ...". The labels in `.PENSJONIST_LABELS` are pastimes,
+  not jobs, and the income is a pension. `.narrate_education_career()`
+  and the compact variant now take a retiree branch, keyed on age 67+ or
+  on the label itself, so someone under 67 who draws a pastime label is
+  covered too.
+
 # CounterfactMe 0.9.50
 
 ## Tests
