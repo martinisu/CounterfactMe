@@ -88,9 +88,16 @@ counterfact_me_constrained <- function(givens = list(),
 
     # Compare
     if (is.character(target)) {
+      # grepl() cannot combine fixed = TRUE with ignore.case = TRUE: it
+      # warns and drops ignore.case, so this matched case-sensitively
+      # while claiming otherwise. A constraint of "laerer" therefore
+      # missed "Laerer" and the rejection sampler ran out of attempts.
+      # Fold both sides to lower case instead and keep the literal match,
+      # which is what was meant. It also emitted one warning per
+      # comparison -- 20,508 from twenty parallel-lives calls.
+      hay <- tolower(as.character(actual))
       ok <- any(vapply(target, function(t)
-        any(grepl(t, as.character(actual), fixed = TRUE,
-                   ignore.case = TRUE)), logical(1)))
+        any(grepl(tolower(t), hay, fixed = TRUE)), logical(1)))
       if (!ok) return(FALSE)
     } else if (is.numeric(target)) {
       ok <- any(as.numeric(actual) == as.numeric(target))

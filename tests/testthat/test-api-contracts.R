@@ -157,3 +157,53 @@ test_that("life_factsheet reports only populated fields", {
   # A gated field must be omitted, not reported as NA
   expect_false(grepl("\\bNA\\b", fs))
 })
+
+# ---------------------------------------------------------------
+# Constraint matching is case-insensitive, and silent.
+#
+# .matches_givens() called grepl(fixed = TRUE, ignore.case = TRUE).
+# Those two cannot be combined: R warns and drops ignore.case, so the
+# match was case-sensitive while the documentation said otherwise. A
+# constraint of "laerer" missed "Laerer", the rejection sampler ran out
+# of attempts, and every comparison emitted a warning -- 20,508 from
+# twenty counterfact_parallel_lives() calls.
+# ---------------------------------------------------------------
+
+test_that("constraint matching ignores case", {
+  set.seed(901)
+  x <- counterfact_me(min_age = 30, max_age = 60)
+  occ <- x$occupation
+  skip_if(is.null(occ) || is.na(occ) || !nzchar(occ))
+
+  expect_true(CounterfactMe:::.matches_givens(x, list(occupation = tolower(occ))))
+  expect_true(CounterfactMe:::.matches_givens(x, list(occupation = toupper(occ))))
+  expect_true(CounterfactMe:::.matches_givens(x, list(occupation = occ)))
+  expect_false(CounterfactMe:::.matches_givens(
+    x, list(occupation = "aldeles usannsynlig yrke")))
+})
+
+test_that("constrained draws emit no warnings", {
+  # The warning volume was the symptom that led to the case bug.
+  w <- character(0)
+  withCallingHandlers({
+    set.seed(902)
+    for (i in 1:5) {
+      counterfact_me_constrained(list(age = 40, gender = "F"))
+      counterfact_parallel_lives(givens = list(age = 40, gender = "M"),
+                                 vary_dim = "county", n = 3)
+    }
+  }, warning = function(cond) {
+    w <<- c(w, conditionMessage(cond))
+    invokeRestart("muffleWarning")
+  })
+  expect_false(any(grepl("ignore.case", w, fixed = TRUE)))
+  expect_equal(length(w), 0L, label = sprintf("warnings: %s",
+                                              paste(unique(w), collapse = "; ")))
+})
+
+test_that("a lower-case occupation constraint is honoured", {
+  set.seed(903)
+  x <- counterfact_me_constrained(
+    list(age = 45, gender = "F", occupation = "sykepleier"))
+  expect_true(grepl("sykepleier", tolower(as.character(x$occupation))))
+})

@@ -1,3 +1,21 @@
+# CounterfactMe 0.9.55
+
+## Bug fixes
+- Constraint matching in `counterfact_me_constrained()` was
+  case-sensitive despite intending otherwise. `.matches_givens()` called
+  `grepl(fixed = TRUE, ignore.case = TRUE)`, and those two cannot be
+  combined: R warns and drops `ignore.case`. A constraint of
+  `occupation = "sykepleier"` therefore never matched "Sykepleier", the
+  rejection sampler exhausted its 300 attempts, and the function fell
+  back to direct override -- silently returning a life that did not meet
+  the constraint.
+
+  Both sides are now folded to lower case and the literal match kept.
+
+  This was also the source of the warning volume: one warning per
+  comparison, 20,508 from twenty `counterfact_parallel_lives()` calls,
+  and the 1,562 counted in the test suite.
+
 # CounterfactMe 0.9.54
 
 ## Tests
