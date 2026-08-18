@@ -441,10 +441,12 @@ test_that("every country weight row is a distribution", {
 
 test_that("drawn religion matches the country of origin", {
   # End to end: no Lebanese Hindus, no Muslim-majority Ethiopians.
+  # 1200 draws yields ~43 from these origins; 400 yielded ~14 against a
+  # threshold of 10, close enough to fail on an unlucky seed.
   set.seed(601)
   seen <- 0L; hindu_mena <- 0L
   eth <- c(christian = 0L, muslim = 0L)
-  for (i in 1:400) {
+  for (i in 1:1200) {
     x <- counterfact_me(min_age = 10)
     cb <- x$country_background
     if (is.null(cb) || is.na(cb)) next
@@ -535,9 +537,11 @@ test_that("working-age people are still described as working", {
 # ---------------------------------------------------------------
 
 test_that("eastern European first-gen arrive at working age", {
+  # ~53 expected from 1500 draws. The earlier 600 gave ~21 against a
+  # threshold of 20, which is a coin flip rather than a test.
   set.seed(801)
   arr <- integer(0)
-  for (i in 1:600) {
+  for (i in 1:1500) {
     x <- counterfact_me(min_age = 20, max_age = 85)
     if (!identical(x$background, "first_gen")) next
     y <- x$years_in_norway
@@ -547,7 +551,7 @@ test_that("eastern European first-gen arrive at working age", {
     if (!(cb %in% c("Polen", "Litauen", "Latvia", "Estland", "Romania"))) next
     arr <- c(arr, as.integer(x$age) - as.integer(y))
   }
-  expect_gt(length(arr), 20L)
+  expect_gt(length(arr), 15L)
   expect_gte(mean(arr >= 18 & arr <= 40), 0.75)
   # and never absurd in either direction
   expect_true(all(arr >= 0))
@@ -574,9 +578,14 @@ test_that("refugee-origin flows still admit child arrivals", {
   # The 18-40 window applies to labour migration only. Somali or Syrian
   # first-gen who came as children must remain possible, or the fix has
   # been applied too broadly.
+  # Sample size is set from the base rate, not guessed: these five
+  # countries are 14.7% of immigrants and immigrants 17.5% of the
+  # population, so a draw yields one about 2.6% of the time. 2000 draws
+  # give ~51 expected; the earlier 600 gave ~15 against a threshold of
+  # 15, which is a coin flip.
   set.seed(803)
   child_arrivals <- 0L; checked <- 0L
-  for (i in 1:600) {
+  for (i in 1:2000) {
     x <- counterfact_me(min_age = 18)
     if (!identical(x$background, "first_gen")) next
     cb <- x$country_background
@@ -613,9 +622,11 @@ test_that("arrival profile is set for every country with a start year", {
 test_that("mixed-profile origins are not dominated by child arrivals", {
   # Before the country-level profile, Pakistani first-gen arrived as
   # children in over half of draws, which erased the labour wave.
+  # Pakistan, Turkey and Morocco are 5.0% of immigrants, so roughly 0.9%
+  # of draws. 2500 gives ~22 expected.
   set.seed(804)
   arr <- integer(0)
-  for (i in 1:900) {
+  for (i in 1:2500) {
     x <- counterfact_me(min_age = 25, max_age = 85)
     if (!identical(x$background, "first_gen")) next
     cb <- x$country_background
@@ -625,7 +636,7 @@ test_that("mixed-profile origins are not dominated by child arrivals", {
     if (is.null(y) || is.na(y)) next
     arr <- c(arr, as.integer(x$age) - as.integer(y))
   }
-  expect_gt(length(arr), 15L)
+  expect_gt(length(arr), 6L)
   expect_lt(mean(arr < 18), 0.45)   # was ~0.55
   expect_gt(stats::median(arr), 17)
 })

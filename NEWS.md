@@ -1,3 +1,15 @@
+# CounterfactMe 0.9.54
+
+## Tests
+- Four tests that filter draws by country of origin had sample sizes
+  guessed rather than derived, and two of them failed. The five refugee
+  origins are 14.7 % of immigrants and immigrants 17.5 % of the
+  population, so a draw yields one about 2.6 % of the time: 600 draws
+  give ~15 expected against a threshold of 15, which is a coin flip
+  rather than a test. Draw counts are now set from the base rate, with
+  at least a threefold margin over the threshold, and the arithmetic is
+  recorded next to each.
+
 # CounterfactMe 0.9.53
 
 ## Bug fixes
