@@ -9,7 +9,9 @@
 *.tar.gz
 *.tgz
 inst/doc
-docs/
+# docs/ holds the published web app (GitHub Pages serves it from
+# main:/docs). It used to be ignored here as a pkgdown output
+# directory, which would have silently swallowed the whole site.
 
 # macOS
 .DS_Store

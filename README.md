@@ -21,6 +21,15 @@ income and parental capital shape housing, and so on down the chain. The
 point is a joint distribution that holds together, not a row of unrelated
 random numbers.
 
+## Try it in the browser
+
+**https://martinisu.github.io/CounterfactMe/**
+
+No installation, no R. The package runs in the browser through webR, with
+the data files built into the page. Give it a few seconds on first load:
+a JavaScript approximation answers immediately while the real R package
+downloads and takes over.
+
 ## Installation
 
 ```r
