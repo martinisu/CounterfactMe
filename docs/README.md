@@ -42,3 +42,14 @@ after webR has loaded. The first few seconds show the old behaviour.
 
 Worth knowing when someone reports something odd: ask whether the page
 had finished loading.
+
+## Change log
+
+Only what changed between published versions, since the file is opaque
+to `git diff`:
+
+- **2026-08-18** — removed the mobile reordering in
+  `@media (max-width: 700px)` that placed the action buttons above the
+  passport card. Order now follows source order on phones. No other
+  change: the ten code blocks, the CSVs and the R package inside are
+  byte-identical to the previous build.
