@@ -1217,6 +1217,38 @@
               mother_region = other, father_region = ego_name_region))
 }
 
+# Educational expansion across the twentieth century.
+#
+# education_by_age.csv tops out at "67 aar eller eldre", which describes
+# everyone alive today above that age -- mostly born 1940-1958, and
+# 27.5 % of them hold a tertiary degree. Applying that band to a parent
+# born in 1905 gave a 93-year-old ego two parents with master's degrees.
+# In that cohort a few per cent had any higher education at all.
+#
+# Approximate share with any tertiary education by birth cohort, scaled
+# against the 27.5 % the band implies:
+.edu_cohort_tertiary_mult <- function(birth_year) {
+  if (is.null(birth_year) || is.na(birth_year)) return(1)
+  if (birth_year < 1920) 0.11        # ~3 %
+  else if (birth_year < 1935) 0.22   # ~6 %
+  else if (birth_year < 1945) 0.36   # ~10 %
+  else if (birth_year < 1955) 0.65   # ~18 %
+  else if (birth_year < 1965) 0.91   # ~25 %
+  else 1
+}
+
+# Demote a tertiary code when the cohort makes it implausible. Long
+# degrees (7) and doctorates (8) are cut harder than short ones: the
+# pre-war gap between "some higher education" and "embetseksamen" was
+# wider than it is now.
+.demote_edu_for_cohort <- function(code, birth_year) {
+  if (is.null(code) || is.na(code) || code < 6L) return(code)
+  m <- .edu_cohort_tertiary_mult(birth_year)
+  if (code >= 7L) m <- m * 0.6
+  if (stats::runif(1) < m) return(code)
+  sample(c(2L, 3L, 4L, 5L), 1, prob = c(0.42, 0.20, 0.30, 0.08))
+}
+
 .cond_parents <- function(age, edu_code, styrk_code, gender = NULL, lang = "en",
                           background = "majority", name_region = "norden",
                           country_label = NULL) {
@@ -1289,19 +1321,31 @@
   # --- 3. Education: cohort-appropriate, pulled toward ego.
   #         With prob 0.4, copy ego's edu_code (or one step off). Otherwise
   #         draw independently from parent's age-band.
-  parent_edu <- function(parent_age, gender_str) {
+  parent_edu <- function(parent_age, gender_str, parent_birth_year = NA_integer_) {
+    row <- .cfm_env$education
+    relabel <- function(cd) {
+      lb <- if (identical(lang, "no")) row$level_no[row$code == cd][1]
+            else row$level[row$code == cd][1]
+      list(code = cd, label = lb)
+    }
     # Inheritance only makes sense when ego is adult (>=18). For children,
     # parent edu shouldn't mirror child's grade level.
     if (!is.null(age) && !is.na(age) && age >= 18 &&
         !is.null(edu_code) && !is.na(edu_code) && runif(1) < 0.4) {
       jitter <- sample(c(-1L, 0L, 0L, 0L, 1L), 1)
       code <- max(2L, min(9L, as.integer(edu_code) + jitter))  # min 2 (no adult barneskole only)
-      row <- .cfm_env$education
-      lab <- if (identical(lang, "no")) row$level_no[row$code == code][1] else row$level[row$code == code][1]
-      return(list(code = code, label = lab))
+      # Correlation with the child does not suspend the cohort: an ego
+      # with a master's born in 1933 does not thereby give her parents,
+      # born around 1905, master's degrees of their own.
+      code <- .demote_edu_for_cohort(code, parent_birth_year)
+      return(relabel(code))
     }
     # Draw from parent's own cohort via existing .cond_education.
     e <- .cond_education(parent_age, lang = lang)
+    if (!is.null(e$code) && !is.na(e$code)) {
+      dc <- .demote_edu_for_cohort(as.integer(e$code), parent_birth_year)
+      if (!identical(dc, as.integer(e$code))) e <- relabel(dc)
+    }
     # Floor: adults shouldn't have edu_code = 1 (kun barneskole 1-7)
     if (!is.null(e$code) && !is.na(e$code) && e$code < 2) {
       e$code <- 2L
@@ -1312,8 +1356,8 @@
     e
   }
 
-  mother_edu <- parent_edu(mother_age, "F")
-  father_edu <- parent_edu(father_age, "M")
+  mother_edu <- parent_edu(mother_age, "F", mother_birth_year)
+  father_edu <- parent_edu(father_age, "M", father_birth_year)
 
   # --- Decide couple type early (used for parent_occupation gender) ---
   couple <- .draw_couple_type(age, background, name_region, .cfm_env$ref_year)

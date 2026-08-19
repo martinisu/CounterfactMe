@@ -1,3 +1,23 @@
+# CounterfactMe 0.9.56
+
+## Bug fixes
+- Parent education ignored the parent's cohort. A 93-year-old was given
+  two parents with master's degrees; born in 1933, her parents arrived
+  around 1905, when a few per cent of Norwegians had any higher
+  education at all.
+
+  `education_by_age.csv` tops out at "67 aar eller eldre", which
+  describes everyone alive today above that age -- mostly born 1940-1958,
+  27.5 % of them holding a degree. That band was applied to every parent
+  regardless of birth year, and the inheritance path, which copies the
+  ego's level with jitter 40 % of the time, ignored the cohort entirely.
+
+  `.demote_edu_for_cohort()` now scales tertiary attainment against the
+  birth cohort, with long degrees cut harder than short ones. Simulated
+  against the shipped data, parents of a 93-year-old go from 27.5 % to
+  2.6 % with any tertiary education and 7.3 % to 0.5 % with a long
+  degree; parents of a 30-year-old stay near 24 %.
+
 # CounterfactMe 0.9.55
 
 ## Bug fixes

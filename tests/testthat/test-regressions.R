@@ -640,3 +640,72 @@ test_that("mixed-profile origins are not dominated by child arrivals", {
   expect_lt(mean(arr < 18), 0.45)   # was ~0.55
   expect_gt(stats::median(arr), 17)
 })
+
+# ---------------------------------------------------------------
+# Parent education follows the parent's cohort, not today's.
+#
+# Reported from output: Elsa, 93, with two master's-educated parents.
+# Born in 1933, her parents arrived around 1905, when a few per cent of
+# Norwegians had any higher education. education_by_age.csv tops out at
+# "67 aar eller eldre" -- everyone alive today above that age, mostly
+# born 1940-1958, of whom 27.5% hold a degree. That band was being
+# applied to every parent regardless of when they were born, and the
+# inheritance path ignored the cohort entirely.
+# ---------------------------------------------------------------
+
+test_that("the cohort multiplier rises with birth year and is bounded", {
+  m <- CounterfactMe:::.edu_cohort_tertiary_mult
+  years <- c(1900, 1925, 1940, 1950, 1960, 1975, 2000)
+  vals <- vapply(years, m, numeric(1))
+  expect_true(all(vals > 0 & vals <= 1))
+  expect_false(is.unsorted(vals))          # monotonically non-decreasing
+  expect_equal(m(1990), 1)
+  expect_lt(m(1905), 0.2)
+  expect_equal(m(NA_integer_), 1)          # unknown cohort: no adjustment
+})
+
+test_that("demotion never promotes, and leaves non-tertiary alone", {
+  d <- CounterfactMe:::.demote_edu_for_cohort
+  set.seed(1001)
+  for (code in 0:5) {
+    for (i in 1:20) expect_equal(d(code, 1905), code)
+  }
+  for (i in 1:200) {
+    out <- d(7L, 1905)
+    expect_lte(out, 7L)
+  }
+})
+
+test_that("parents of the very old rarely hold degrees", {
+  set.seed(1002)
+  ter <- 0L; n <- 0L
+  for (i in 1:150) {
+    x <- counterfact_me(min_age = 88, max_age = 96)
+    for (p in c("mother", "father")) {
+      code <- x[[p]]$education_code
+      if (is.null(code) || is.na(code)) next
+      n <- n + 1L
+      if (as.integer(code) >= 6L) ter <- ter + 1L
+    }
+  }
+  expect_gt(n, 150L)
+  # ~3% historically; the band alone would have given 27.5%
+  expect_lt(ter / n, 0.12)
+})
+
+test_that("parents of the young still commonly hold degrees", {
+  # The opposite failure: a cohort adjustment applied to everyone.
+  set.seed(1003)
+  ter <- 0L; n <- 0L
+  for (i in 1:150) {
+    x <- counterfact_me(min_age = 28, max_age = 38)
+    for (p in c("mother", "father")) {
+      code <- x[[p]]$education_code
+      if (is.null(code) || is.na(code)) next
+      n <- n + 1L
+      if (as.integer(code) >= 6L) ter <- ter + 1L
+    }
+  }
+  expect_gt(n, 150L)
+  expect_gt(ter / n, 0.12)
+})
