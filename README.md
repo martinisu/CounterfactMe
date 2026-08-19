@@ -25,10 +25,13 @@ random numbers.
 
 **https://martinisu.github.io/CounterfactMe/**
 
-No installation, no R. The package runs in the browser through webR, with
-the data files built into the page. Give it a few seconds on first load:
-a JavaScript approximation answers immediately while the real R package
-downloads and takes over.
+No installation, no R. The package itself runs in the browser through
+webR, with the R sources and all 52 data files built into the page.
+Give it a few seconds on first load: a JavaScript approximation answers
+immediately while the real package downloads and takes over.
+
+The published build is `docs/index.html`, a single self-contained file.
+Its source is in `web/`; see `docs/README.md` before touching either.
 
 ## Installation
 

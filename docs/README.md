@@ -43,6 +43,15 @@ after webR has loaded. The first few seconds show the old behaviour.
 Worth knowing when someone reports something odd: ask whether the page
 had finished loading.
 
+## Source
+
+The unbundled source lives in `web/` at the repository root: `app.jsx`,
+`sampler.js`, `cfm-webr.js`, `cfm-bootstrap.R`, `cfm-reroll.R` and the
+generated `cfm-assets.js`. Build there, replace `index.html` whole.
+
+`.nojekyll` stops GitHub Pages running the file through Jekyll, which
+would otherwise try to process it.
+
 ## Change log
 
 Only what changed between published versions, since the file is opaque
@@ -53,3 +62,8 @@ to `git diff`:
   passport card. Order now follows source order on phones. No other
   change: the ten code blocks, the CSVs and the R package inside are
   byte-identical to the previous build.
+- **2026-08-19** — rebuilt against CounterfactMe 0.9.59: religion by
+  country, survey age gates, plausible immigrant arrival ages, retirees
+  no longer described as employed, parent education and occupation
+  following the parent's cohort, and housing priced back to 1920.
+  `web/` and `docs/.nojekyll` added to the repository.
