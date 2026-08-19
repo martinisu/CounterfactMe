@@ -6,7 +6,7 @@ authors:
     given-names: Martin Arstad
     email: martinisungset@gmail.com
     orcid: "https://orcid.org/0000-0001-9316-3279"
-version: 0.9.59
+version: 0.9.60
 date-released: "2026-08-04"
 license: MIT
 repository-code: "https://github.com/martinisu/CounterfactMe"

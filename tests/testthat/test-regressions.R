@@ -855,3 +855,37 @@ test_that("purchase price stays below current value", {
   }
   expect_gt(checked, 30L)
 })
+
+# ---------------------------------------------------------------
+# Comma before "men".
+#
+# Norwegian puts a comma before "men" when it joins two clauses. Four
+# humour labels shipped without one -- "Synes Stoere er kjedelig men
+# trygg" -- and they go straight into the narration, so the error showed
+# up in the biography rather than in any template.
+# ---------------------------------------------------------------
+
+test_that("no shipped label joins clauses with an uncommaed men", {
+  ed <- system.file("extdata", package = "CounterfactMe")
+  offenders <- character(0)
+  for (f in list.files(ed, pattern = "\\.csv$", full.names = TRUE)) {
+    d <- utils::read.csv(f, stringsAsFactors = FALSE, encoding = "UTF-8",
+                         colClasses = "character")
+    for (col in names(d)) {
+      v <- d[[col]]
+      v <- v[!is.na(v) & nzchar(v)]
+      bad <- v[grepl("[^,]\\s+men\\s+", v)]
+      if (length(bad)) offenders <- c(offenders,
+                                      sprintf("%s$%s: %s", basename(f), col, bad))
+    }
+  }
+  expect_equal(offenders, character(0))
+})
+
+test_that("narration templates put the comma in themselves", {
+  skip_if_not(file.exists("../../R/narrate.R"), "not a source checkout")
+  src <- paste(readLines("../../R/narrate.R", warn = FALSE), collapse = "\n")
+  lits <- regmatches(src, gregexpr('"[^"]{10,200}"', src))[[1]]
+  bad <- lits[grepl("[^,]\\s+men\\s+", lits)]
+  expect_equal(bad, character(0))
+})

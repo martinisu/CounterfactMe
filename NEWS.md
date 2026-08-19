@@ -1,3 +1,15 @@
+# CounterfactMe 0.9.60
+
+## Fixes
+- Four humour labels joined two clauses with "men" and no comma --
+  "Synes Stoere er kjedelig men trygg", "Stemmer SV men graater litt
+  over Audun", "Sympatiserer med MDG men kjoerer diesel-Audi", and one
+  in religion_humor.csv. They are substituted straight into the
+  narration, so the error surfaced in the biography while every template
+  in narrate.R was correct.
+- Two tests now guard it: no shipped label may join clauses with an
+  uncommaed "men", and neither may a template.
+
 # CounterfactMe 0.9.59
 
 ## Tests
