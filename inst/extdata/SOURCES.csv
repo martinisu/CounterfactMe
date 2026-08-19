@@ -14,6 +14,7 @@ first_names_cohort.csv,ssb_api,10467,first_names.R,Navn etter fodselskohort
 fylke_index_region.csv,untraced,,,
 hobbies.csv,untraced,,,
 household_types.csv,untraced,,,
+housing_index_prewar.csv,ssb_cited,08981,fetch_cpi.py,Konsumprisindeks 1920- hentes fra SSB 08981 av skriptet og er reproduserbar. Kolonnen real_factor er et ANSLAG for reell boligprisutvikling: SSB har ingen boligprisindeks for 1992.
 housing_price_index.csv,untraced,,,Boligprisindeks; tabell ikke dokumentert i pakken
 housing_prices.csv,untraced,,,Boligpriser; tabell ikke dokumentert i pakken
 immigrant_country_dist.csv,ssb_cited,09817,,Sitert i R/conditional.R

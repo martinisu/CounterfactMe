@@ -2020,8 +2020,37 @@
     il <- sub$index_2015[sub$year == lo][1]; iu <- sub$index_2015[sub$year == hi][1]
     il + (iu - il) * (y - lo) / (hi - lo)
   }
-  i_from <- idx_of(from_year)
-  i_to   <- idx_of(to_year)
+  # Before 1992 SSB has no house price index -- 07230 starts there. For
+  # earlier years we splice on housing_index_prewar.csv, which is the
+  # consumer price index (SSB 08981, real, back to 1920) multiplied by an
+  # estimated real house price level. The estimate is the documented
+  # shape of the series, not a transcription of one: flat-to-falling
+  # through the war, slow postwar growth, the deregulation boom peaking
+  # around 1987 and the banking-crisis trough in 1992.
+  #
+  # Deflating by CPI alone would have been wrong in a knowable
+  # direction. A house worth 5 MNOK today comes out at about 123,000 in
+  # 1965 with the real adjustment and 367,000 without; the 1965 figure
+  # was nearer 100,000.
+  first_year <- min(years)
+  prewar_ratio <- function(y) {
+    pw <- .cfm_env$housing_index_prewar
+    if (is.null(pw) || !nrow(pw)) return(NA_real_)
+    if (y >= first_year) return(1.0)
+    v_y <- pw$nominal_index_1992_100[pw$year == max(min(pw$year), y)]
+    v_b <- pw$nominal_index_1992_100[pw$year == max(pw$year)]
+    if (!length(v_y) || !length(v_b) || v_b <= 0) return(NA_real_)
+    v_y[1] / v_b[1]
+  }
+  idx_or_prewar <- function(y) {
+    if (y >= first_year) return(idx_of(y))
+    r <- prewar_ratio(y)
+    if (is.na(r)) return(idx_of(first_year))
+    idx_of(first_year) * r
+  }
+
+  i_from <- idx_or_prewar(from_year)
+  i_to   <- idx_or_prewar(to_year)
   if (is.na(i_from) || i_from <= 0) return(1.0)
   if (is.na(i_to) || i_to <= 0) return(1.0)
   i_to / i_from
@@ -2038,8 +2067,10 @@
                 else if (age < 70) stats::runif(1, 5, min(35, age - 25))
                 else                stats::runif(1, 10, min(45, age - 30))
   py <- ref_year - round(years_held)
-  # Don't allow purchase before 1992 (no index data)
-  max(1992L, as.integer(py))
+  # The floor used to be 1992, which is where SSB's index starts -- so a
+  # 93-year-old "bought" at 59. housing_index_prewar.csv now reaches back
+  # to 1920, so the year can be what the holding period implies.
+  max(1920L, as.integer(py))
 }
 
 .initial_ltv <- function(age_at_purchase, parents_capital = NULL, luxury = FALSE) {

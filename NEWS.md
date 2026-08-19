@@ -1,3 +1,22 @@
+# CounterfactMe 0.9.58
+
+## Housing before 1992
+- Purchase years were floored at 1992, where SSB's house price index
+  (07230) begins, so a 93-year-old owner bought at 59 or later. New
+  `housing_index_prewar.csv` reaches back to 1920 and the floor moves
+  with it.
+- The file has two components, deliberately kept apart. `cpi_index` is
+  the consumer price index from SSB 08981, fetched by
+  `data-raw/fetch_cpi.py` and reproducible. `real_factor` is an estimate
+  of the real house price level, because Norway has no official index
+  before 1992: flat-to-falling through the war, slow postwar growth, the
+  deregulation boom peaking around 1987, the banking-crisis trough in
+  1992.
+- Deflating by CPI alone would have been wrong in a knowable direction.
+  A home worth 5 MNOK today comes out around 123,000 kroner in 1965 with
+  the real adjustment and 367,000 without; the 1965 figure was nearer
+  100,000.
+
 # CounterfactMe 0.9.57
 
 ## Bug fixes

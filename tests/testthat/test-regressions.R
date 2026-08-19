@@ -784,3 +784,68 @@ test_that("the young are not forced into the Church of Norway", {
   expect_gt(n, 80L)
   expect_lt(dnk / n, 0.75)
 })
+
+# ---------------------------------------------------------------
+# Housing before 1992.
+#
+# SSB's house price index (07230) starts in 1992, so purchase years were
+# floored there: a 93-year-old "bought" at 59. housing_index_prewar.csv
+# splices CPI (SSB 08981, real, from 1920) onto an estimated real house
+# price level, which is enough to date and price an older purchase.
+# ---------------------------------------------------------------
+
+test_that("the pre-1992 index spans the period and is anchored at 1992", {
+  pw <- utils::read.csv(
+    system.file("extdata", "housing_index_prewar.csv", package = "CounterfactMe"),
+    stringsAsFactors = FALSE)
+  expect_true(all(c("year", "cpi_index", "real_factor",
+                    "nominal_index_1992_100") %in% names(pw)))
+  expect_lte(min(pw$year), 1925)
+  expect_equal(max(pw$year), 1992)
+  expect_equal(pw$nominal_index_1992_100[pw$year == 1992], 100)
+  expect_true(all(pw$nominal_index_1992_100 > 0))
+  # nominal prices rose over the century, even if real prices wobbled
+  expect_lt(pw$nominal_index_1992_100[pw$year == 1950],
+            pw$nominal_index_1992_100[pw$year == 1985])
+})
+
+test_that("older purchases are cheaper than the same home today", {
+  # CPI alone would have put a 5 MNOK home at ~367,000 in 1965; the real
+  # adjustment brings it to ~123,000, which is the right order.
+  f <- CounterfactMe:::.housing_index_factor
+  r1965 <- f("Oslo", "01", from_year = 1965L, to_year = 2025L)
+  r1985 <- f("Oslo", "01", from_year = 1985L, to_year = 2025L)
+  expect_gt(r1965, 10)     # a home is worth many times its 1965 price
+  expect_gt(r1965, r1985)  # and more so the further back you go
+  expect_equal(f("Oslo", "01", 2000L, 2000L), 1)
+})
+
+test_that("very old owners can have bought before 1992", {
+  set.seed(1201)
+  years <- integer(0)
+  for (i in 1:200) {
+    x <- counterfact_me(min_age = 82, max_age = 96)
+    py <- x$housing_purchase_year
+    if (is.null(py) || is.na(py)) next
+    years <- c(years, as.integer(py))
+  }
+  expect_gt(length(years), 20L)
+  expect_true(any(years < 1992L))
+  expect_true(all(years >= 1920L))
+  # and nobody bought before they were plausibly adult
+  expect_true(all(years <= 2026L))
+})
+
+test_that("purchase price stays below current value", {
+  set.seed(1202)
+  checked <- 0L
+  for (i in 1:250) {
+    x <- counterfact_me(min_age = 40, max_age = 96)
+    v <- x$housing_value_nok; p <- x$housing_purchase_price_nok
+    if (is.null(v) || is.null(p) || is.na(v) || is.na(p) || v <= 0) next
+    checked <- checked + 1L
+    expect_lt(p, v * 1.5)
+    expect_gt(p, 0)
+  }
+  expect_gt(checked, 30L)
+})

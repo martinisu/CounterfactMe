@@ -116,6 +116,11 @@
     colClasses = c(region_code = "character", boligtype_code = "character")
   )
 
+  .cfm_env$housing_index_prewar <- read.csv(
+    file.path(extdata, "housing_index_prewar.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8"
+  )
+
   .cfm_env$fylke_index_region <- read.csv(
     file.path(extdata, "fylke_index_region.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8",
