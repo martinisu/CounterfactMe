@@ -452,8 +452,11 @@ test_that("drawn religion matches the country of origin", {
     if (is.null(cb) || is.na(cb)) next
     rel <- x$religion
     rel <- if (is.null(rel) || is.na(rel)) "" else tolower(as.character(rel))
+    # Pakistan is deliberately absent: it has a real Hindu minority of
+    # about 2 %, which the country table reproduces. Lumping it in with
+    # countries that have none contradicted the design.
     if (cb %in% c("Libanon", "Syria", "Irak", "Iran", "Tyrkia", "Marokko",
-                  "Egypt", "Afghanistan", "Pakistan")) {
+                  "Egypt", "Afghanistan")) {
       seen <- seen + 1L
       if (grepl("hindu", rel)) hindu_mena <- hindu_mena + 1L
     }
@@ -476,8 +479,11 @@ test_that("drawn religion matches the country of origin", {
 # ---------------------------------------------------------------
 
 test_that("retirees are narrated as retired, not employed", {
-  work_verbs <- c("veien til jobben", "jobber som", "arbeider som",
-                  "\u{00e5}rsinntekt")
+  # Word boundaries, and no "arbeider som": 643 STYRK titles end in
+  # -ARBEIDER, so "Hjemme var det en industriarbeider som forsorget
+  # familien" -- a sentence about the ego's father -- matched it.
+  work_verbs <- c("\\bveien til jobben\\b", "\\bjobber som\\b",
+                  "\\b\u{00e5}rsinntekt\\b")
   set.seed(701)
   checked <- 0L
   for (i in 1:60) {

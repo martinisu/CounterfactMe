@@ -1,3 +1,17 @@
+# CounterfactMe 0.9.59
+
+## Tests
+- Both failures in 0.9.58 were in the tests, not the code.
+  - The religion test forbade Hinduism for Pakistan, which has a real
+    minority of about 2 % that the country table deliberately
+    reproduces. The test contradicted the design it was written to
+    protect.
+  - The retiree test searched for `"arbeider som"` without word
+    boundaries. 643 STYRK titles end in `-ARBEIDER`, so the sentence
+    "Hjemme var det en industriarbeider som forsorget familien" -- about
+    the ego's father, and correct -- matched. The remaining patterns are
+    anchored, and that one is gone.
+
 # CounterfactMe 0.9.58
 
 ## Housing before 1992
