@@ -237,8 +237,40 @@
   }
 }
 
+# Occupational structure over time.
+#
+# .cond_occupation() weights STYRK major groups by today's headcounts,
+# which is right for the ego and wrong for a parent who worked in 1955.
+# Norway had roughly a quarter of employment in primary industry in 1950
+# and has about 2 % now; professional occupations went the other way.
+# Without this a parent born in 1905 drew from the 2020s labour market.
+#
+# Multipliers are relative to the present, keyed on STYRK-08 major group
+# and applied at the midpoint of the parent's working life. They are
+# approximations of the sectoral shift, not a series -- enough to stop
+# the anachronism, not enough to read off as history.
+.styrk_cohort_mult <- function(work_year) {
+  base <- setNames(rep(1, 10), as.character(0:9))
+  if (is.null(work_year) || is.na(work_year) || work_year >= 2005) return(base)
+  # anchors: 1955 and 1980; interpolate, flat before 1955
+  m1955 <- c("0"=1.2,"1"=0.7,"2"=0.25,"3"=0.5,"4"=0.8,
+             "5"=0.6,"6"=8.0,"7"=2.5,"8"=2.0,"9"=2.0)
+  m1980 <- c("0"=1.1,"1"=0.85,"2"=0.55,"3"=0.75,"4"=1.1,
+             "5"=0.8,"6"=3.0,"7"=1.6,"8"=1.5,"9"=1.4)
+  y <- max(1955, min(2005, work_year))
+  if (y <= 1980) {
+    f <- (y - 1955) / 25
+    out <- m1955 * (1 - f) + m1980 * f
+  } else {
+    f <- (y - 1980) / 25
+    out <- m1980 * (1 - f) + base * f
+  }
+  setNames(as.numeric(out), names(base))
+}
+
 .cond_occupation <- function(age, edu_code, mun_pop = NULL, gender = NULL,
-                             disabled = NULL, severity = NULL) {
+                             disabled = NULL, severity = NULL,
+                             work_year = NA_integer_) {
   .load_data()
 
   .wrap <- function(label, kind) {
@@ -361,7 +393,12 @@
     # Avoid zero-weights (allow rare crossovers)
     gender_w <- pmax(gender_w, 0.02)
   }
-  w <- major_w * bosted_w * gender_w * tbl$headcount
+  # Era-conditioning: today's headcounts describe today's labour market.
+  cohort_w <- if (!is.na(work_year)) {
+    cm <- .styrk_cohort_mult(work_year)
+    v <- unname(cm[first_digit]); v[is.na(v)] <- 1; v
+  } else rep(1, length(first_digit))
+  w <- major_w * bosted_w * gender_w * cohort_w * tbl$headcount
   if (sum(w) == 0) w <- tbl$headcount
 
   idx  <- sample.int(nrow(tbl), 1, prob = w)
@@ -1566,10 +1603,15 @@
     lbl <- if (!is.null(o$label)) as.character(o$label) else ""
     grepl("^AAP|^Sosialhjelp|^Dagpenger|^Uforetrygdet|^Uf\u{00f8}retrygdet", lbl)
   }
-  occ <- .cond_occupation(age = 50L, edu_code = edu_code, gender = gender)
+  # Midpoint of the parent's working life, not today.
+  wy <- if (!is.null(parent_birth_year) && !is.na(parent_birth_year))
+          as.integer(parent_birth_year) + 40L else NA_integer_
+  occ <- .cond_occupation(age = 50L, edu_code = edu_code, gender = gender,
+                          work_year = wy)
   for (i in seq_len(8)) {
     if (!.is_benefit(occ)) break
-    occ <- .cond_occupation(age = 50L, edu_code = edu_code, gender = gender)
+    occ <- .cond_occupation(age = 50L, edu_code = edu_code,
+                            gender = gender, work_year = wy)
   }
   occ
 }
@@ -2810,9 +2852,17 @@
   if (birth_year >= 2000) {
     if ("INGEN" %in% names(w)) w["INGEN"] <- w["INGEN"] * 1.6
     if ("DnK" %in% names(w))   w["DnK"]   <- w["DnK"] * 0.7
+  } else if (birth_year < 1940) {
+    # Church of Norway membership was close to universal in the pre-war
+    # cohorts. x1.2 against a ~50 % baseline gave 60 %, which made a
+    # 93-year-old look like a 2020s Norwegian.
+    if ("DnK" %in% names(w))   w["DnK"]   <- w["DnK"] * 6.0
+    if ("INGEN" %in% names(w)) w["INGEN"] <- w["INGEN"] * 0.12
+    if ("HUM" %in% names(w))   w["HUM"]   <- w["HUM"] * 0.2
   } else if (birth_year < 1955) {
-    if ("DnK" %in% names(w))   w["DnK"]   <- w["DnK"] * 1.2
-    if ("INGEN" %in% names(w)) w["INGEN"] <- w["INGEN"] * 0.5
+    if ("DnK" %in% names(w))   w["DnK"]   <- w["DnK"] * 2.6
+    if ("INGEN" %in% names(w)) w["INGEN"] <- w["INGEN"] * 0.3
+    if ("HUM" %in% names(w))   w["HUM"]   <- w["HUM"] * 0.5
   }
   # Kjønn: kvinner litt oftere religiøst tilknyttet, menn oftere uten.
   if (!is.null(gender) && !is.na(gender)) {

@@ -709,3 +709,78 @@ test_that("parents of the young still commonly hold degrees", {
   expect_gt(n, 150L)
   expect_gt(ter / n, 0.12)
 })
+
+# ---------------------------------------------------------------
+# Anachronism sweep: distributions measured on today's population
+# applied to people who lived in a different Norway.
+#
+# The parent-education bug was one instance. These cover the two others
+# found by going through every .cond_* function and asking what it uses
+# the birth year for.
+# ---------------------------------------------------------------
+
+test_that("the occupational-structure multiplier shifts with the era", {
+  m <- CounterfactMe:::.styrk_cohort_mult
+  now <- m(2020)
+  expect_true(all(abs(now - 1) < 1e-9))
+  old <- m(1955)
+  expect_gt(old[["6"]], 4)      # primary industry far larger then
+  expect_lt(old[["2"]], 0.5)    # professionals far smaller
+  # monotone between the anchors
+  expect_gt(m(1955)[["6"]], m(1980)[["6"]])
+  expect_gt(m(1980)[["6"]], m(2005)[["6"]])
+  expect_equal(unname(m(NA_integer_)), rep(1, 10))
+})
+
+test_that("parents of the very old worked in an older labour market", {
+  primary <- function(min_a, max_a, n = 120L) {
+    set.seed(1101 + min_a)
+    hit <- 0L; tot <- 0L
+    for (i in seq_len(n)) {
+      x <- counterfact_me(min_age = min_a, max_age = max_a)
+      for (p in c("mother", "father")) {
+        sk <- x[[p]]$styrk_code
+        if (is.null(sk) || is.na(sk) || !nzchar(as.character(sk))) next
+        tot <- tot + 1L
+        if (substr(as.character(sk), 1, 1) == "6") hit <- hit + 1L
+      }
+    }
+    list(share = if (tot) hit / tot else NA_real_, n = tot)
+  }
+  old <- primary(88L, 96L)
+  young <- primary(28L, 38L)
+  expect_gt(old$n, 100L)
+  expect_gt(young$n, 100L)
+  expect_gt(old$share, young$share)
+})
+
+test_that("pre-war cohorts are overwhelmingly Church of Norway", {
+  set.seed(1102)
+  dnk <- 0L; n <- 0L
+  for (i in 1:150) {
+    x <- counterfact_me(min_age = 88, max_age = 96)
+    if (!identical(x$background, "majority")) next
+    rel <- x$religion
+    if (is.null(rel) || is.na(rel)) next
+    n <- n + 1L
+    if (grepl("norske kirke|Den norske", as.character(rel))) dnk <- dnk + 1L
+  }
+  expect_gt(n, 40L)
+  expect_gt(dnk / n, 0.65)
+})
+
+test_that("the young are not forced into the Church of Norway", {
+  # Guards the opposite failure.
+  set.seed(1103)
+  dnk <- 0L; n <- 0L
+  for (i in 1:200) {
+    x <- counterfact_me(min_age = 20, max_age = 30)
+    if (!identical(x$background, "majority")) next
+    rel <- x$religion
+    if (is.null(rel) || is.na(rel)) next
+    n <- n + 1L
+    if (grepl("norske kirke|Den norske", as.character(rel))) dnk <- dnk + 1L
+  }
+  expect_gt(n, 80L)
+  expect_lt(dnk / n, 0.75)
+})

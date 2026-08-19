@@ -1,3 +1,32 @@
+# CounterfactMe 0.9.57
+
+## Bug fixes
+Two more instances of the fault behind the parent-education bug in
+0.9.56: a distribution measured on today's population applied to someone
+who lived in a different Norway. Found by going through every `.cond_*`
+function and asking what it does with the birth year.
+
+- **Parent occupation.** `.cond_occupation()` weights STYRK major groups
+  by today's headcounts, which is right for the ego and wrong for a
+  parent who worked in 1955. Norway had roughly a quarter of employment
+  in primary industry in 1950 and has about 2 % now. A parent born in
+  1905 was drawing from the 2020s labour market: 1.0 % primary industry
+  and 26.4 % professional occupations. With `.styrk_cohort_mult()`
+  applied at the midpoint of the parent's working life, that becomes
+  8.8 % and 7.2 %.
+
+- **Religion by cohort.** Membership of the Church of Norway was close to
+  universal before the war. The adjustment was `x1.2` against a ~50 %
+  baseline, giving 60 % -- a 93-year-old came out looking like a 2020s
+  Norwegian. Pre-1940 cohorts now reach 97.6 %, and 1940-54 about 92 %,
+  against 48.6 % for those born in 2005.
+
+## Known limitation
+- `.draw_purchase_year()` floors purchase years at 1992 because
+  `housing_price_index.csv` starts there. A 93-year-old owner therefore
+  bought at 59 or later. Fixing it needs either pre-1992 index data or a
+  decision to report the purchase price as unknown for older owners.
+
 # CounterfactMe 0.9.56
 
 ## Bug fixes
