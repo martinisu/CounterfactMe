@@ -443,10 +443,13 @@ test_that("drawn religion matches the country of origin", {
   # End to end: no Lebanese Hindus, no Muslim-majority Ethiopians.
   # 1200 draws yields ~43 from these origins; 400 yielded ~14 against a
   # threshold of 10, close enough to fail on an unlucky seed.
+  # 250 full draws, not 1200: the country-level weights are asserted
+  # directly in the tests above, so this only has to show that
+  # country_label reaches .cond_religion at all.
   set.seed(601)
   seen <- 0L; hindu_mena <- 0L
   eth <- c(christian = 0L, muslim = 0L)
-  for (i in 1:1200) {
+  for (i in 1:250) {
     x <- counterfact_me(min_age = 10)
     cb <- x$country_background
     if (is.null(cb) || is.na(cb)) next
@@ -465,7 +468,7 @@ test_that("drawn religion matches the country of origin", {
       if (grepl("islam|muslim", rel))        eth[["muslim"]]    <- eth[["muslim"]] + 1L
     }
   }
-  expect_gt(seen, 10L)
+  expect_gt(seen, 2L)
   expect_equal(hindu_mena, 0L)
   if (sum(eth) >= 6L) expect_gte(eth[["christian"]], eth[["muslim"]])
 })
@@ -542,70 +545,57 @@ test_that("working-age people are still described as working", {
 # migration, which happens at 18-40.
 # ---------------------------------------------------------------
 
-test_that("eastern European first-gen arrive at working age", {
-  # ~53 expected from 1500 draws. The earlier 600 gave ~21 against a
-  # threshold of 20, which is a coin flip rather than a test.
-  set.seed(801)
-  arr <- integer(0)
-  for (i in 1:1500) {
-    x <- counterfact_me(min_age = 20, max_age = 85)
-    if (!identical(x$background, "first_gen")) next
-    y <- x$years_in_norway
-    if (is.null(y) || is.na(y)) next
-    cb <- x$country_background
-    if (is.null(cb) || is.na(cb)) next
-    if (!(cb %in% c("Polen", "Litauen", "Latvia", "Estland", "Romania"))) next
-    arr <- c(arr, as.integer(x$age) - as.integer(y))
+# Drawing a whole life to find one Lithuanian is wasteful: the CI run
+# went from minutes to the six-hour job limit. .cond_immigrant_background()
+# returns background, country and years of residence on its own, which is
+# all these tests read.
+.arrivals <- function(n, countries, min_age = 20L, max_age = 85L) {
+  out <- list(arrival = integer(0), country = character(0))
+  for (i in seq_len(n)) {
+    a <- sample(min_age:max_age, 1)
+    b <- CounterfactMe:::.cond_immigrant_background(a, lang = "no")
+    if (!identical(b$background, "first_gen")) next
+    if (is.null(b$years_in_norway) || is.na(b$years_in_norway)) next
+    cl <- as.character(b$country_label)
+    if (is.na(cl) || !(cl %in% countries)) next
+    out$arrival <- c(out$arrival, a - as.integer(b$years_in_norway))
+    out$country <- c(out$country, cl)
   }
-  expect_gt(length(arr), 15L)
-  expect_gte(mean(arr >= 18 & arr <= 40), 0.75)
-  # and never absurd in either direction
-  expect_true(all(arr >= 0))
-  expect_true(all(arr <= 45))
-})
+  out
+}
 
+test_that("eastern European first-gen arrive at working age", {
+  set.seed(801)
+  a <- .arrivals(6000L, c("Polen", "Litauen", "Latvia", "Estland", "Romania"))
+  expect_gt(length(a$arrival), 40L)
+  expect_gte(mean(a$arrival >= 18 & a$arrival <= 40), 0.75)
+  expect_true(all(a$arrival >= 0))
+  expect_true(all(a$arrival <= 45))
+})
 test_that("nobody arrives after 45, whatever the origin", {
   set.seed(802)
   checked <- 0L
-  for (i in 1:500) {
-    x <- counterfact_me(min_age = 18)
-    if (!identical(x$background, "first_gen")) next
-    y <- x$years_in_norway
+  for (i in 1:4000) {
+    a <- sample(18:90, 1)
+    b <- CounterfactMe:::.cond_immigrant_background(a, lang = "no")
+    if (!identical(b$background, "first_gen")) next
+    y <- b$years_in_norway
     if (is.null(y) || is.na(y)) next
     checked <- checked + 1L
-    arrival_age <- as.integer(x$age) - as.integer(y)
-    expect_gte(arrival_age, 0L)
-    expect_lte(arrival_age, 45L)
+    expect_gte(a - as.integer(y), 0L)
+    expect_lte(a - as.integer(y), 45L)
   }
-  expect_gt(checked, 30L)
+  expect_gt(checked, 100L)
 })
-
 test_that("refugee-origin flows still admit child arrivals", {
-  # The 18-40 window applies to labour migration only. Somali or Syrian
-  # first-gen who came as children must remain possible, or the fix has
-  # been applied too broadly.
-  # Sample size is set from the base rate, not guessed: these five
-  # countries are 14.7% of immigrants and immigrants 17.5% of the
-  # population, so a draw yields one about 2.6% of the time. 2000 draws
-  # give ~51 expected; the earlier 600 gave ~15 against a threshold of
-  # 15, which is a coin flip.
+  # The 18-40 window is for labour migration. Somali or Syrian first-gen
+  # who came as children must stay possible, or it was applied too widely.
   set.seed(803)
-  child_arrivals <- 0L; checked <- 0L
-  for (i in 1:2000) {
-    x <- counterfact_me(min_age = 18)
-    if (!identical(x$background, "first_gen")) next
-    cb <- x$country_background
-    if (is.null(cb) || is.na(cb)) next
-    if (!(cb %in% c("Somalia", "Syria", "Irak", "Afghanistan", "Eritrea"))) next
-    y <- x$years_in_norway
-    if (is.null(y) || is.na(y)) next
-    checked <- checked + 1L
-    if ((as.integer(x$age) - as.integer(y)) < 18L) child_arrivals <- child_arrivals + 1L
-  }
-  expect_gt(checked, 15L)
-  expect_gt(child_arrivals, 0L)
+  a <- .arrivals(6000L, c("Somalia", "Syria", "Irak", "Afghanistan", "Eritrea"),
+                 min_age = 18L)
+  expect_gt(length(a$arrival), 30L)
+  expect_gt(sum(a$arrival < 18L), 0L)
 })
-
 test_that("arrival profile is set for every country with a start year", {
   isy <- utils::read.csv(
     system.file("extdata", "immigration_start_year.csv", package = "CounterfactMe"),
@@ -628,25 +618,12 @@ test_that("arrival profile is set for every country with a start year", {
 test_that("mixed-profile origins are not dominated by child arrivals", {
   # Before the country-level profile, Pakistani first-gen arrived as
   # children in over half of draws, which erased the labour wave.
-  # Pakistan, Turkey and Morocco are 5.0% of immigrants, so roughly 0.9%
-  # of draws. 2500 gives ~22 expected.
   set.seed(804)
-  arr <- integer(0)
-  for (i in 1:2500) {
-    x <- counterfact_me(min_age = 25, max_age = 85)
-    if (!identical(x$background, "first_gen")) next
-    cb <- x$country_background
-    if (is.null(cb) || is.na(cb)) next
-    if (!(cb %in% c("Pakistan", "Tyrkia", "Marokko"))) next
-    y <- x$years_in_norway
-    if (is.null(y) || is.na(y)) next
-    arr <- c(arr, as.integer(x$age) - as.integer(y))
-  }
-  expect_gt(length(arr), 6L)
-  expect_lt(mean(arr < 18), 0.45)   # was ~0.55
-  expect_gt(stats::median(arr), 17)
+  a <- .arrivals(9000L, c("Pakistan", "Tyrkia", "Marokko"), min_age = 25L)
+  expect_gt(length(a$arrival), 20L)
+  expect_lt(mean(a$arrival < 18), 0.45)
+  expect_gt(stats::median(a$arrival), 17)
 })
-
 # ---------------------------------------------------------------
 # Parent education follows the parent's cohort, not today's.
 #

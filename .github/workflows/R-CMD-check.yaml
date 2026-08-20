@@ -13,6 +13,7 @@ permissions: read-all
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 40
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
@@ -57,6 +58,7 @@ jobs:
   # They run here instead, once, from the checkout.
   source-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 

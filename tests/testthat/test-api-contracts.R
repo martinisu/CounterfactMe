@@ -1,3 +1,11 @@
+# Note on cost: counterfact_parallel_lives() makes up to
+# max_attempts_each full draws per life, and for vary_dim = "occupation"
+# the constraint is one label out of ~7000, so it exhausts the budget
+# every time. At the default 300 these nine calls alone are tens of
+# thousands of draws, which is what pushed CI into its six-hour job
+# limit. The contract being tested does not depend on the budget, so the
+# tests set it low.
+
 # Contracts for the exported functions that had no tests at all:
 # counterfact_me_constrained(), counterfact_parallel_lives(), and the
 # narration entry points. These are the package's headline features, so
@@ -10,7 +18,7 @@
 test_that("numeric and categorical constraints are honoured", {
   set.seed(301)
   for (i in 1:20) {
-    x <- counterfact_me_constrained(list(age = 42, gender = "M"))
+    x <- counterfact_me_constrained(list(age = 42, gender = "M"), max_attempts = 40L)
     expect_equal(as.integer(x$age), 42L)
     expect_equal(x$gender, "M")
   }
@@ -19,7 +27,7 @@ test_that("numeric and categorical constraints are honoured", {
 test_that("a geographic constraint is honoured", {
   set.seed(302)
   for (i in 1:15) {
-    x <- counterfact_me_constrained(list(county = "Oslo", age = 40))
+    x <- counterfact_me_constrained(list(county = "Oslo", age = 40), max_attempts = 40L)
     expect_true(grepl("Oslo", paste(x$county, x$municipality)))
   }
 })
@@ -29,7 +37,7 @@ test_that("constrained draws still fill the unconstrained dimensions", {
   # the rest.
   set.seed(303)
   draws <- lapply(1:40, function(i)
-    counterfact_me_constrained(list(age = 45, gender = "F")))
+    counterfact_me_constrained(list(age = 45, gender = "F"), max_attempts = 40L))
   for (f in c("name", "municipality", "occupation", "education",
               "household", "mother", "father")) {
     share <- mean(vapply(draws, function(d) {
@@ -41,14 +49,14 @@ test_that("constrained draws still fill the unconstrained dimensions", {
 
 test_that("constrained returns a counterfactme object that prints", {
   set.seed(304)
-  x <- counterfact_me_constrained(list(age = 30, gender = "F"))
+  x <- counterfact_me_constrained(list(age = 30, gender = "F"), max_attempts = 40L)
   expect_s3_class(x, "counterfactme")
   expect_output(print(x), "Ditt kontrafaktiske liv")
 })
 
 test_that("an empty constraint list behaves like counterfact_me", {
   set.seed(305)
-  x <- counterfact_me_constrained(list())
+  x <- counterfact_me_constrained(list(), max_attempts = 40L)
   expect_s3_class(x, "counterfactme")
   expect_true(!is.null(x$age))
 })
@@ -60,7 +68,7 @@ test_that("an empty constraint list behaves like counterfact_me", {
 test_that("parallel lives returns n lives and varies the chosen dimension", {
   set.seed(306)
   lives <- counterfact_parallel_lives(
-    givens = list(age = 45, gender = "M"), vary_dim = "county", n = 5)
+    givens = list(age = 45, gender = "M"), vary_dim = "county", n = 5, max_attempts_each = 25L)
   expect_length(lives, 5)
   expect_s3_class(lives, "counterfact_parallel")
   counties <- vapply(lives, function(l) as.character(l$county %||% NA),
@@ -72,7 +80,7 @@ test_that("parallel lives hold the givens fixed across all lives", {
   # Varying one dimension is only meaningful if the rest stay put.
   set.seed(307)
   lives <- counterfact_parallel_lives(
-    givens = list(age = 38, gender = "F"), vary_dim = "county", n = 5)
+    givens = list(age = 38, gender = "F"), vary_dim = "county", n = 5, max_attempts_each = 25L)
   expect_true(all(vapply(lives, function(l) as.integer(l$age), integer(1)) == 38L))
   expect_true(all(vapply(lives, function(l) l$gender, character(1)) == "F"))
 })
@@ -82,7 +90,7 @@ test_that("explicit vary_values are used", {
   lives <- counterfact_parallel_lives(
     givens = list(age = 30, gender = "F"),
     vary_dim = "background",
-    vary_values = c("majority", "first_gen"), n = 2)
+    vary_values = c("majority", "first_gen"), n = 2, max_attempts_each = 25L)
   expect_length(lives, 2)
   bg <- vapply(lives, function(l) as.character(l$background %||% NA),
                character(1))
@@ -95,7 +103,7 @@ test_that("every vary_dim option runs", {
   for (vd in c("county", "occupation", "education", "background",
                "religion", "party")) {
     lives <- counterfact_parallel_lives(
-      givens = list(age = 40, gender = "M"), vary_dim = vd, n = 2)
+      givens = list(age = 40, gender = "M"), vary_dim = vd, n = 2, max_attempts_each = 25L)
     expect_length(lives, 2)
     expect_s3_class(lives[[1]], "counterfactme")
   }
@@ -104,7 +112,7 @@ test_that("every vary_dim option runs", {
 test_that("the parallel print method runs", {
   set.seed(310)
   lives <- counterfact_parallel_lives(
-    givens = list(age = 50, gender = "M"), vary_dim = "county", n = 2)
+    givens = list(age = 50, gender = "M"), vary_dim = "county", n = 2, max_attempts_each = 25L)
   expect_output(print(lives), "parallelle liv")
 })
 
@@ -188,9 +196,13 @@ test_that("constrained draws emit no warnings", {
   withCallingHandlers({
     set.seed(902)
     for (i in 1:5) {
-      counterfact_me_constrained(list(age = 40, gender = "F"))
+      counterfact_me_constrained(list(age = 40, gender = "F"), max_attempts = 40L)
+      # Higher budget here on purpose: this test asserts no warnings, and
+      # a sparsely populated county needs more than 25 tries before
+      # counterfact_me_constrained() gives up and says so.
       counterfact_parallel_lives(givens = list(age = 40, gender = "M"),
-                                 vary_dim = "county", n = 3)
+                                 vary_dim = "county", n = 3,
+                                 max_attempts_each = 200L)
     }
   }, warning = function(cond) {
     w <<- c(w, conditionMessage(cond))

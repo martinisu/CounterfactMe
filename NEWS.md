@@ -1,3 +1,36 @@
+# CounterfactMe 0.9.61
+
+## CI
+- `R-CMD-check` was being killed at GitHub's six-hour job limit rather
+  than failing. Two causes, both in the tests.
+
+  The country-filtered tests drew whole lives and threw nearly all of
+  them away -- 9000 draws to find twenty Pakistani first-generation
+  immigrants. They now call `.cond_immigrant_background()`, which
+  returns background, country and years of residence on its own.
+
+  More important, `counterfact_parallel_lives()` makes up to
+  `max_attempts_each` full draws *per life*, and for
+  `vary_dim = "occupation"` the constraint is one label out of roughly
+  7000, so it exhausts the budget every time. Nine such calls at the
+  default 300 come to tens of thousands of draws. The contract under
+  test does not depend on the budget, so the tests set it low -- except
+  the one asserting no warnings, which needs enough attempts that a
+  sparse county does not trip the fallback.
+
+  Worst-case cost is now about 6,600 draws, from something in the tens
+  of thousands.
+
+- Added `timeout-minutes` to every CI job: 40 for the check matrix, 20
+  for the repository checks, 60 for coverage. A hang should fail in
+  minutes and say so, not consume six hours and report a grey circle.
+
+## Known
+- `counterfact_parallel_lives(vary_dim = "occupation")` almost never
+  satisfies its constraint and falls back to direct override. That is a
+  usability problem in the feature rather than a test artefact, and it
+  is not addressed here.
+
 # CounterfactMe 0.9.60
 
 ## Fixes
