@@ -1,3 +1,18 @@
+# CounterfactMe 0.9.62
+
+## Web assets
+- `web/cfm-assets.js` was still built from 0.9.59 while the package had
+  moved to 0.9.61, so the comma fix in 0.9.60 was missing from anything
+  built out of this repository.
+- New `web/build-assets.py` regenerates it from the package: 11 R files
+  (`llm.R` stays out, as `cfm-bootstrap.R` documents) and all 53 data
+  files, with the version read from DESCRIPTION rather than typed in.
+- A repository check now compares that version against DESCRIPTION, so
+  the drift is caught rather than noticed.
+
+`docs/index.html` is unchanged. The published bundle inlines React,
+Babel and the fonts, which happens in the app's own build, not here.
+
 # CounterfactMe 0.9.61
 
 ## CI

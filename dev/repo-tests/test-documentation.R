@@ -139,3 +139,19 @@ test_that("no test can pass without checking something", {
     }
   }
 })
+
+test_that("web/cfm-assets.js is built from the current package", {
+  # The published bundle is built elsewhere, but cfm-assets.js -- the R
+  # sources and data the browser runs -- lives here and can drift behind
+  # DESCRIPTION without anything saying so. Regenerate it with
+  # python3 web/build-assets.py
+  skip_if_not(file.exists("../../web/cfm-assets.js"), "web/ not present")
+  ver <- read.dcf("../../DESCRIPTION", "Version")[[1]]
+  js <- readLines("../../web/cfm-assets.js", n = 1, warn = FALSE)
+  expect_true(grepl(sprintf("CounterfactMe %s", ver), js, fixed = TRUE),
+              label = sprintf("cfm-assets.js header names %s", ver))
+
+  body <- paste(readLines("../../web/cfm-assets.js", warn = FALSE),
+                collapse = "\n")
+  expect_true(grepl(sprintf('"version":"%s"', ver), body, fixed = TRUE))
+})
