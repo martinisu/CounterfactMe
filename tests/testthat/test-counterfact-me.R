@@ -64,10 +64,16 @@ test_that("default language is Norwegian", {
 test_that("gendered occupation titles match ego's gender", {
   # FOSTERMOR/FOSTERFAR and similar pairs live in the same STYRK-08 group,
   # so the detail draw used to be blind to gender.
-  male_only   <- c("Fosterfar", "Internathusfar", "Byssegutt",
-                   "Lugargutt", "Messegutt", "Stallgutt")
-  female_only <- c("Fostermor", "Internathusmor", "Byssepike",
-                   "Lugarpike", "Messepike", "Stallpike")
+  # Utledes fra kilden, ikke skrevet av. Hardkodede kopier drifter: da
+  # DEKKSGUTT og HOTELLGAARDSGUTT kom inn i .gendered_yrke_titles ble disse
+  # listene stille utdaterte, og testen sluttet aa dekke de nye titlene.
+  # Output gaar gjennom .titlecase_yrke(), saa samme funksjon brukes her.
+  tc <- function(v) vapply(v, CounterfactMe:::.titlecase_yrke, character(1),
+                           USE.NAMES = FALSE)
+  male_only   <- tc(CounterfactMe:::.gendered_yrke_titles$male)
+  female_only <- tc(CounterfactMe:::.gendered_yrke_titles$female)
+  expect_gt(length(male_only), 5L)
+  expect_gt(length(female_only), 5L)
   set.seed(11)
   for (i in 1:150) {
     x <- counterfact_me(gender = "F", min_age = 25, max_age = 60)
@@ -85,8 +91,26 @@ test_that("customer-gendered titles are NOT filtered", {
   # CUSTOMER's gender, not the worker's -- a damefrisor can be a man.
   # This guards against a future over-eager MOR/FAR sweep of the register.
   tbl <- CounterfactMe:::.gendered_yrke_titles
-  expect_length(tbl$female, 6)
-  expect_length(tbl$male, 6)
-  expect_false(any(grepl("FRIS", c(tbl$female, tbl$male))))
-  expect_false(any(grepl("SKREDDER", c(tbl$female, tbl$male))))
+  alle <- c(tbl$female, tbl$male)
+
+  # Listene hadde hardkodet lengde 6 her. Det var en lat proxy for egenskapen
+  # testen faktisk handler om, og den feilet to ganger paa en dag da
+  # legitime titler ble lagt til (DEKKSGUTT, HOTELLGAARDSGUTT, deretter
+  # STUEPIKE, HUSMORVIKAR). Nivaaet er ikke poenget -- fravaeret er.
+  expect_gt(length(tbl$female), 0L)
+  expect_gt(length(tbl$male), 0L)
+
+  # De fire kundekjoennede titlene i registeret, navngitt eksplisitt. En
+  # prefiksregel paa "HERRE" ville tatt feil: HERREDSRETTSDOMMER,
+  # HERREDSKASSERER og tre andre HERREDS-titler kommer av "herred",
+  # gammelt ord for landkommune, og er ikke kundekjoennede.
+  kundekjoennet <- c("DAMEFRIS\u{00d8}R", "HERREFRIS\u{00d8}R",
+                     "DAMESKREDDER", "HERRESKREDDER")
+  for (k in kundekjoennet) {
+    expect_false(k %in% toupper(alle),
+                 info = paste(k, "beskriver kundens kjoenn, ikke arbeiderens,",
+                              "og skal ikke filtreres"))
+  }
+  expect_false(any(grepl("FRIS", toupper(alle))))
+  expect_false(any(grepl("SKREDDER", toupper(alle))))
 })

@@ -27,3 +27,8 @@ cran-comments.md
 
 # roxygen (regenerated files)
 # — keep man/ tracked, but ignore drafts
+
+# Testoutput og loggfiler — aldri kildekode
+testlog.txt
+*.Rout
+dev/commit-melding.txt

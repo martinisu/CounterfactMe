@@ -128,6 +128,18 @@
   )
 
 
+  .cfm_env$wealth_tail_person <- read.csv(
+    file.path(extdata, "wealth_tail_person.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(age_band = "character")
+  )
+
+  .cfm_env$wealth_class_person <- read.csv(
+    file.path(extdata, "wealth_class_person.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(class = "character")
+  )
+
   .cfm_env$wealth_deciles <- read.csv(
     file.path(extdata, "wealth_deciles.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8"

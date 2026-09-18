@@ -28,12 +28,87 @@
 #    gendered title entering the register should fail here.
 # ---------------------------------------------------------------
 
+test_that("hele yrkesregisteret er skannet for kjoennsmorfemer", {
+  # Deterministisk motstykke til den seedede testen under.
+  #
+  # Den seedede varianten trekker 250 liv mot ~7000 yrker og fanger bare det
+  # seeden tilfeldigvis treffer. DEKKSGUTT laa i registeret hele tiden og
+  # dukket foerst opp da .demote_edu_for_cohort() sluttet aa kalle runif() i
+  # en gren og forskjoev hele den tilfeldige stroemmen. Konsekvensen er at
+  # ENHVER endring i en samplingsfunksjon kan velte urelaterte seedede
+  # tester -- og at nye gendrede titler kan ligge uoppdaget i aarevis.
+  #
+  # Denne testen trekker ingenting. Den gaar gjennom hver eneste tittel i
+  # registeret, og krever at alle med et kjoennsmorfem enten staar i
+  # drop-lista eller er eksplisitt erklaert kjoennsnoeytrale nedenfor.
+  occ <- CounterfactMe:::.cfm_env$occupations
+  expect_false(is.null(occ))
+  titles <- unique(toupper(occ$name[!is.na(occ$name) & nzchar(occ$name)]))
+  expect_gt(length(titles), 6000L)
+
+  male_morph   <- c("FAR\\b", "GUTT\\b", "BROR\\b")
+  female_morph <- c("MOR\\b", "PIKE\\b", "S\u{00d8}STER\\b", "HUSMOR")
+
+  # Titler som baerer et morfem men er kjoennsnoeytrale i faktisk bruk.
+  # Samme argument i begge tilfeller: dette er offisielle stillingstitler
+  # som brukes om menn, slik -MANN (raadmann, sysselmann) er noeytral.
+  #   - jordmor: offisiell tittel, brukes om menn. Besluttet holdt noeytral.
+  #   - helsesoester: erstattet av "helsesykepleier" i 2019, og registeret
+  #     baerer BEGGE formene i samme streng ("HELSESOESTER/HELSESYKEPLEIER"),
+  #     saa den noeytrale lesningen er tilgjengelig i selve tittelen.
+  noeytrale <- c("JORDMOR", "HELSES\u{00d8}STER")
+
+  er_noeytral <- function(t) any(vapply(noeytrale, function(p) grepl(p, t, fixed = TRUE),
+                                       logical(1)))
+
+  sjekk <- function(morphemes, drop_liste, merke) {
+    treff <- titles[vapply(titles, function(t)
+      any(vapply(morphemes, function(p) grepl(p, t), logical(1))), logical(1))]
+    uhaandtert <- treff[!(treff %in% drop_liste) & !vapply(treff, er_noeytral, logical(1))]
+    expect_equal(as.character(uhaandtert), character(0),
+                 info = paste0(merke, " -- tittel med kjoennsmorfem som verken staar i ",
+                               ".gendered_yrke_titles eller er erklaert noeytral: ",
+                               paste(uhaandtert, collapse = "; ")))
+  }
+  sjekk(male_morph, CounterfactMe:::.gendered_yrke_titles$male, "mannlig morfem")
+  sjekk(female_morph, CounterfactMe:::.gendered_yrke_titles$female, "kvinnelig morfem")
+})
+
+test_that("drop-lista inneholder ingen titler som ikke finnes i registeret", {
+  # Motsatt retning: en tittel som forsvinner fra registeret skal ikke ligge
+  # igjen i drop-lista og gi falsk trygghet.
+  occ <- CounterfactMe:::.cfm_env$occupations
+  titles <- unique(toupper(occ$name[!is.na(occ$name)]))
+  for (side in c("male", "female")) {
+    liste <- CounterfactMe:::.gendered_yrke_titles[[side]]
+    mangler <- liste[!(liste %in% titles)]
+    expect_equal(as.character(mangler), character(0),
+                 info = paste("drop-liste", side,
+                              "viser til titler som ikke finnes i registeret:",
+                              paste(mangler, collapse = "; ")))
+  }
+})
+
 test_that("no output string carries a gender morpheme contradicting ego", {
+  # Beholdt ved siden av den deterministiske skanningen over, men med en annen
+  # jobb: skanningen sjekker at registeret og drop-lista er i takt, denne
+  # sjekker at filteret faktisk NAAR output -- altsaa roerlegginga gjennom
+  # .draw_detail_yrke(). Den kan fortsatt gi falske alarmer naar stroemmen
+  # forskyves; skanningen kan ikke.
+  #
   # Morphemes that denote the *bearer's* gender in Norwegian job titles.
   # Deliberately excludes DAME*/HERRE* (describes the customer: a
   # damefrisor may be a man) and -MANN (raadmann, sysselmann etc. are
   # gender-neutral titles in modern usage).
-  male_morph   <- c("far\\b", "gutt\\b", "bror\\b", "husfar")
+  # "husfar" ble fjernet 2026-09-18. Den hadde ETT unikt treff i registeret,
+  # SYKEHUSFARMASOEYT, altsaa en falsk positiv -- og "far\\b" dekker allerede
+  # INTERNATHUSFAR og FOSTERFAR. Aa legge til ordgrense ("\\bhusfar") ville
+  # gjort nettet svakere, ikke sterkere: da slutter den ogsaa aa treffe
+  # INTERNATHUSFAR, fordi HUS staar foran.
+  #
+  # "husmor" staar derimot, fordi den gjoer reelt arbeid: "mor\\b" dekker
+  # INTERNATHUSMOR, men bare "husmor" fanger HUSMORVIKAR.
+  male_morph   <- c("far\\b", "gutt\\b", "bror\\b")
   female_morph <- c("mor\\b", "pike\\b", "s\u{00f8}ster\\b", "husmor")
 
   # Fields that describe ego (not relatives, whose gender differs).

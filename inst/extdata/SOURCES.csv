@@ -49,5 +49,8 @@ social_isolation.csv,untraced,,,Levekar 16+; 0-15-raden var uten kilde og er fje
 social_media_use.csv,untraced,,,
 styrk98_to_styrk08.csv,ssb_cited,,,"SSB Klass 145 -> Klass 7, sitert i R/conditional.R"
 tv_hours.csv,untraced,,,0-15-raden var uten kilde og er fjernet (0.9.32)
-wealth_by_age.csv,ssb_cited,08589,,Sitert i R/conditional.R
-wealth_deciles.csv,ssb_cited,10318,,Sitert i R/conditional.R
+wealth_by_age.csv,ssb_cited,08589,,"Personniva 17+, SSB 08589. Kroppen av formuesfordelingen."
+wealth_deciles.csv,ssb_cited,10318,,HUSHOLDNINGSTABELL. Brukt til 2026-09-18 for a eskalere toppbracketen i en personbasert sampler - feil analyseenhet. Erstattet av wealth_tail_person.csv. Beholdes for referanse.
+wealth_tail_person.csv,ssb_api,08589,,Personniva 17+ fra SSB 08589 (antall og SumNetto for intervall 2M+). Pareto-alfa lost slik at trunkert snitt = SSBs snitt. Se data-raw/fetch_wealth_tail.py
+wealth_class_person.csv,ssb_api,08589,,"Personniva grenser for topp 5/1/0,1 pst, avledet av samme 08589-tall. Erstatter husholdningstersklene fra 10318"
+policy_parameters.csv,authored,,,"Politikkparametere med kunnskapsgrad. 18 verifisert mot primaerkilde, 9 tomme"

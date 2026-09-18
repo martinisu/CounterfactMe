@@ -1,0 +1,4 @@
+class,percentile,cut_nok,share_at_or_above_xm,national_mean_nok,national_alpha
+top5,0.05,4008127,0.131117,7028013,1.3868
+top1,0.01,12792647,0.131117,7028013,1.3868
+top01,0.001,67305180,0.131117,7028013,1.3868

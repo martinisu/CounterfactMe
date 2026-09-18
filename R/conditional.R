@@ -1281,6 +1281,11 @@
 .demote_edu_for_cohort <- function(code, birth_year) {
   if (is.null(code) || is.na(code) || code < 6L) return(code)
   m <- .edu_cohort_tertiary_mult(birth_year)
+  # Fra 1965-kohorten er multiplikatoren 1: baandet er allerede riktig for
+  # disse aargangene, og ingen nedjustering skal skje. Uten denne vakten slo
+  # 0.6-faktoren under inn ogsaa her, og degraderte 40 pct av kode 7-8 til
+  # 2-5 -- ogsaa for foreldre foedt etter 1965 via .cond_parents().
+  if (m >= 1) return(code)
   if (code >= 7L) m <- m * 0.6
   if (stats::runif(1) < m) return(code)
   sample(c(2L, 3L, 4L, 5L), 1, prob = c(0.42, 0.20, 0.30, 0.08))
@@ -2287,29 +2292,44 @@
   bracket_range <- .wealth_bracket_range(bracket)
   lo <- bracket_range[1]; hi <- bracket_range[2]
 
-  # 3. If top bracket "10+" (2M+), escalate to top 5/1/0.1 % using 10318
+  # 3. If top bracket "10+" (2M+), draw the tail directly from a person-level
+  #    Pareto. Until 2026-09-18 this escalated through four tiers whose
+  #    probabilities were marked "stylized" in this comment and whose
+  #    cut-points came from SSB 10318 -- a HOUSEHOLD table. Households pool
+  #    wealth, so the whole tail was measured with the wrong yardstick, and
+  #    the entire wealth tax lives in it.
+  #
+  #    alpha is solved per age band so the Pareto's truncated mean equals
+  #    SSB 08589's person-level mean above 2 MNOK exactly. One parameter from
+  #    data, replacing four stylised ones. See data-raw/fetch_wealth_tail.py.
+  #
+  #    No income or inheritance tilt is applied WITHIN the tail. Income
+  #    already shifts the probability of landing in the 2M+ bracket at all
+  #    (step 1 above), and tilting again here would break the mean anchor
+  #    unless the tilt were made mean-preserving. That is not done, and the
+  #    cost is a weaker correlation between very high income and very high
+  #    wealth inside the tail.
   wealth_class <- bracket
+  nw_direct <- NA_real_
   if (identical(bracket, "10+")) {
-    # Probability of being in each top tier given bracket 10+:
-    # In 67+ band, 28.9% are 2M+; top 1% of all is 1% so within 2M+ ~3.5%.
-    # We use a stylized escalation:
-    # 50% stay in 2M-12M (top 10-5%), 35% in 12-28M (top 5-1%),
-    # 12% in 28-133M (top 1-0.1%), 3% in 133M+ (top 0.1%)
-    tier_p <- c(rest = 0.68, top5 = 0.25, top1 = 0.05, top01 = 0.007)
-    # Income/pc shift (smaller bumps)
-    if (inc > 1.5e6) { tier_p["top5"] <- tier_p["top5"] + 0.03; tier_p["top1"] <- tier_p["top1"] + 0.015 }
-    if (inc > 3e6)   { tier_p["top1"] <- tier_p["top1"] + 0.03; tier_p["top01"] <- tier_p["top01"] + 0.008 }
-    if (pc > 25e6)   { tier_p["top1"] <- tier_p["top1"] + 0.03; tier_p["top01"] <- tier_p["top01"] + 0.015 }
-    if (pc > 100e6)  { tier_p["top01"] <- tier_p["top01"] + 0.07 }
-    tier_p <- tier_p / sum(tier_p)
-    tier <- sample(names(tier_p), 1, prob = tier_p)
-    wealth_class <- tier
-    cuts <- .wealth_top_tier(tier)
-    lo <- cuts[1]; hi <- cuts[2]
+    tp <- .cfm_env$wealth_tail_person
+    trow <- if (is.null(tp)) NULL else tp[tp$age_band == band, , drop = FALSE]
+    if (!is.null(trow) && nrow(trow) == 1L) {
+      a_t <- as.numeric(trow$pareto_alpha[1])
+      x0  <- as.numeric(trow$pareto_xm[1])
+      cap_t <- as.numeric(trow$pareto_cap[1])
+      nw_direct <- min(x0 / (stats::runif(1)^(1 / a_t)), cap_t)
+      cls <- .wealth_class_from_nok(nw_direct)
+      wealth_class <- if (is.na(cls)) "rest" else cls
+    } else {
+      lo <- 2e6; hi <- 12e6
+    }
   }
 
   # Lognormal within range, parameterized so mode sits ~0.3-0.4 through range
-  if (identical(bracket, "00-")) {
+  if (!is.na(nw_direct)) {
+    nw <- nw_direct          # person-level Pareto tail, already drawn
+  } else if (identical(bracket, "00-")) {
     nw <- NA_real_  # negativ formue: settes i egen blokk nedenfor
   } else if (is.finite(hi)) {
     # Truncated lognormal-ish: just sample uniformly in log space
@@ -2376,9 +2396,13 @@
     financial <- financial + inheritance
     net_wealth <- round(net_wealth + inheritance)
     # Inheritance can push ego into a higher wealth class
-    if (net_wealth >= 133e6) wealth_class <- "top01"
-    else if (net_wealth >= 28e6 && !(wealth_class %in% c("top01"))) wealth_class <- "top1"
-    else if (net_wealth >= 12e6 && !(wealth_class %in% c("top1", "top01"))) wealth_class <- "top5"
+    # Person-level cut-points; see .wealth_class_from_nok().
+    reclass <- .wealth_class_from_nok(net_wealth)
+    if (!is.na(reclass)) {
+      rank_of <- c(top5 = 1L, top1 = 2L, top01 = 3L)
+      cur <- if (wealth_class %in% names(rank_of)) rank_of[[wealth_class]] else 0L
+      if (rank_of[[reclass]] > cur) wealth_class <- reclass
+    }
   }
 
   # Top-tier business equity: most of the wealth is næringsformue
@@ -2445,15 +2469,33 @@
   )
 }
 
-.wealth_top_tier <- function(tier) {
-  switch(tier,
-    "rest"  = c(2e6, 12.14e6),       # top 10-5 %
-    "top5"  = c(12.14e6, 28.25e6),   # top 5-1 %
-    "top1"  = c(28.25e6, 133.4e6),   # top 1-0.1 %
-    "top01" = c(133.4e6, Inf),       # top 0.1 %
-    c(2e6, 12e6)
-  )
+# Person-level wealth class from a net-wealth amount.
+#
+# Replaces hard-coded 12e6/28e6/133e6, which were the top-5/top-1 LOWER BOUNDS
+# from SSB 10318 -- a HOUSEHOLD table. Households pool wealth, so those demanded
+# 2-3x too much before a person counted as top-tier: the top 5 % of persons
+# starts near 4.0 MNOK, not 12.1, and the top 1 % near 12.8, not 28.3.
+# Cut-points now come from inst/extdata/wealth_class_person.csv, derived in
+# data-raw/fetch_wealth_tail.py from SSB 08589's person-level figures.
+.wealth_class_from_nok <- function(nw) {
+  if (is.null(nw) || is.na(nw)) return(NA_character_)
+  wc <- .cfm_env$wealth_class_person
+  if (is.null(wc) || !nrow(wc)) return(NA_character_)
+  cut <- function(k) {
+    v <- wc$cut_nok[wc$class == k]
+    if (length(v)) as.numeric(v[1]) else Inf
+  }
+  if (nw >= cut("top01")) "top01"
+  else if (nw >= cut("top1")) "top1"
+  else if (nw >= cut("top5")) "top5"
+  else NA_character_
 }
+
+# .wealth_top_tier() removed 2026-09-18. It returned the top-tier wealth ranges
+# as [12.14e6, 28.25e6, 133.4e6], which are the Top5/Top1 lower bounds from SSB
+# 10318 -- a HOUSEHOLD table -- applied to a person-level sampler. The tail is
+# now drawn from a person-level Pareto; see .wealth_class_from_nok() and
+# data-raw/fetch_wealth_tail.py. dev/repo-tests/ guards against reintroduction.
 
 # --- Immigrant background + country -------------------------------------
 # Returns list(background, country, country_label, name_region, years_in_norway).
@@ -3871,9 +3913,11 @@
 # ville innfort en ny feil mens det fikset denne.
 .gendered_yrke_titles <- list(
   female = c("FOSTERMOR", "INTERNATHUSMOR", "BYSSEPIKE",
-             "LUGARPIKE", "MESSEPIKE", "STALLPIKE"),
+             "LUGARPIKE", "MESSEPIKE", "STALLPIKE",
+             "STUEPIKE", "HUSMORVIKAR"),
   male   = c("FOSTERFAR", "INTERNATHUSFAR", "BYSSEGUTT",
-             "LUGARGUTT", "MESSEGUTT", "STALLGUTT")
+             "LUGARGUTT", "MESSEGUTT", "STALLGUTT",
+             "DEKKSGUTT", "HOTELLGÅRDSGUTT")
 )
 
 .draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL) {
