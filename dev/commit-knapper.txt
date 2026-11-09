@@ -1,0 +1,10 @@
+AlternaLiv: fjern filterpanelet, tydeligere knapper
+
+Filterpanelet (kjoenn, fylke, alder) er fjernet fra venstre kolonne.
+Trekkene bruker standardfiltrene: hele Norge, alle aldre, begge kjoenn.
+app.jsx hopper over oppkoblingen naar elementene ikke finnes.
+
+"Trekk et nytt liv" fyller naa hele bredden som hovedknapp: stoerre
+tekst, gullflate, skygge og trykk-effekt. Lagre, Sammenlign og Del ligger
+i en rad under, like brede, som lyse knapper med kant i stedet for
+gjennomsiktige etiketter.

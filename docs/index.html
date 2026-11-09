@@ -819,27 +819,56 @@
   }
   .toast.show { opacity: 1; }
 
-  /* ---- Footer / draw button ---- */
+  /* ---- Handlingsknapper ----
+     "Trekk et nytt liv" er hovedhandlingen og fyller hele bredden.
+     De tre andre ligger i en rad under, like brede, og ser ut som knapper:
+     lys flate, tydelig kant, avrundet, med trykk-effekt. */
   .actions {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     width: 100%; max-width: 1120px;
-    display: flex; gap: 8px; align-items: stretch;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
   .btn {
-    background: var(--gold); color: var(--cover-2);
-    border: 1px solid var(--gold-2);
-    padding: 14px 20px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 700;
     cursor: pointer;
-    flex: 1;
-    transition: background 120ms, color 120ms;
+    border-radius: 8px;
+    transition: transform 100ms, box-shadow 120ms, background 120ms, color 120ms;
   }
-  .btn:hover { background: var(--gold-2); color: var(--cover-2); }
-  .btn.ghost { background: rgba(168, 134, 46, 0.08); color: var(--gold-2); border-color: rgba(168, 134, 46, 0.5); }
-  .btn.ghost:hover { background: var(--gold); color: var(--cover-2); }
-  .btn.small { flex: 0 0 auto; padding: 14px 16px; }
+  .btn:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+  .btn:active { transform: translateY(1px); }
+
+  /* Hovedknapp */
+  #btn-draw {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, var(--gold-2) 0%, var(--gold) 100%);
+    color: var(--cover-2);
+    border: 2px solid #e6cf86;
+    padding: 20px 28px;
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 0 #7a5f1c, 0 10px 24px rgba(0, 0, 0, 0.35);
+  }
+  #btn-draw::before { content: "\21BB"; margin-right: 12px; font-size: 22px; vertical-align: -1px; }
+  #btn-draw:hover { filter: brightness(1.06); transform: translateY(-1px);
+    box-shadow: 0 5px 0 #7a5f1c, 0 14px 28px rgba(0, 0, 0, 0.4); }
+  #btn-draw:active { transform: translateY(3px);
+    box-shadow: 0 1px 0 #7a5f1c, 0 4px 10px rgba(0, 0, 0, 0.3); }
+
+  /* Sekundaerknapper */
+  .btn.ghost {
+    background: var(--paper);
+    color: var(--accent);
+    border: 2px solid var(--gold);
+    padding: 14px 12px;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 3px 0 var(--paper-3), 0 6px 14px rgba(0, 0, 0, 0.25);
+  }
+  .btn.ghost:hover { background: #fffaf0; transform: translateY(-1px); }
+  .btn.ghost:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--paper-3); }
 
   /* ---- Right panel: probability + sources + saved ---- */
   .prob-card {
@@ -1014,9 +1043,9 @@
     .story-text { font-size: 20px; line-height: 1.55; hyphens: none; }
     .story-hero::before { font-size: 120px; top: -40px; left: 2px; }
     .story-body { font-size: 16px; }
-    .actions { gap: 6px; }
-    .btn { min-height: 48px; padding: 14px 12px; flex: 1 1 100%; font-size: 10px; letter-spacing: 0.16em; }
-    .btn.small { flex: 1 1 auto; }
+    .actions { gap: 8px; }
+    #btn-draw { font-size: 17px; padding: 18px 16px; }
+    .btn.ghost { font-size: 13px; padding: 12px 6px; min-height: 48px; }
     .filter-row select, .filter-row input { min-height: 44px; font-size: 16px; }
     .prob-num { font-size: 38px; }
     .prob-note { font-size: 16px; }
@@ -1064,32 +1093,6 @@
 
   <!-- LEFT: Frame switcher + filters -->
   <aside class="left">
-
-    <div class="panel-section">
-      <div class="panel-title">Filter</div>
-      <div class="filter-row">
-        <label>Kjønn</label>
-        <select id="f-gender">
-          <option value="any">Tilfeldig</option>
-          <option value="F">Kvinne</option>
-          <option value="M">Mann</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <label>Fylke</label>
-        <select id="f-county">
-          <option value="all">Hele Norge</option>
-        </select>
-      </div>
-      <div class="filter-row">
-        <label>Alder</label>
-        <div class="row">
-          <input type="number" id="f-age-min" min="0" max="99" value="0">
-          <span class="mono" style="font-size:11px; color: var(--ink-3);">–</span>
-          <input type="number" id="f-age-max" min="0" max="99" value="99">
-        </div>
-      </div>
-    </div>
 
     <div class="panel-section">
       <div class="panel-title">Hvordan</div>

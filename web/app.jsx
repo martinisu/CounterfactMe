@@ -54,6 +54,9 @@ const STATE = {
 // ---- Render counties ----
 function renderCounties() {
   const sel = document.getElementById("f-county");
+  // Filterpanelet er fjernet fra siden (nov. 2026). Trekkene bruker da
+  // standardfiltrene i STATE.filters: hele Norge, alle aldre, begge kjoenn.
+  if (!sel) return;
   CFM_DATA.counties.forEach(c => {
     const o = document.createElement("option");
     o.value = c.name;
@@ -64,6 +67,7 @@ function renderCounties() {
 
 // ---- Filter wiring ----
 function wireFilters() {
+  if (!document.getElementById("f-gender")) return;  // panelet er fjernet
   document.getElementById("f-gender").addEventListener("change", e => {
     STATE.filters.gender = e.target.value; drawAndRender();
   });
