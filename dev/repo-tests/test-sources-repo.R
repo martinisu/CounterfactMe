@@ -11,7 +11,7 @@ test_that("manifest fields are internally consistent", {
   d <- data_sources()
 
   expect_true(all(d$status %in%
-                  c("ssb_api", "ssb_cited", "untraced", "authored")))
+                  c("ssb_api", "ssb_cited", "untraced", "authored", "superseded")))
 
   # A file claimed as API-fetched must name the script that fetches it,
   # or the claim cannot be checked by anyone.

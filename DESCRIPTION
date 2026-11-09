@@ -27,7 +27,6 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-LazyData: true
 URL: https://martinisu.github.io/CounterfactMe/,
     https://github.com/martinisu/CounterfactMe
 BugReports: https://github.com/martinisu/CounterfactMe/issues

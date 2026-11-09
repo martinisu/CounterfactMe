@@ -19,7 +19,7 @@ Returns a table describing where each CSV in \code{inst/extdata} came
 from, so that register figures can be told apart from estimates.
 }
 \details{
-The \code{status} column takes four values:
+The \code{status} column takes five values:
 \describe{
 \item{\code{ssb_api}}{Fetched from Statistics Norway's API by a
 script in \code{data-raw/}. Reproducible by re-running it.}
@@ -30,6 +30,8 @@ the package. This is not a claim that the figures are invented --
 only that their origin has not been established.}
 \item{\code{authored}}{Deliberately written content, such as the
 humorous labels. Not data, and not presented as such.}
+\item{\code{superseded}}{Replaced by a better-sourced file and no
+longer read by the sampler. Kept for reference.}
 }
 }
 \examples{

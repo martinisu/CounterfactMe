@@ -10,7 +10,7 @@
 \item{x}{Numeric vector. NAs are dropped.}
 }
 \value{
-Gini in \link{0, 1}, or NA if fewer than two values remain.
+Gini between 0 and 1, or NA if fewer than two values remain.
 }
 \description{
 Gini coefficient

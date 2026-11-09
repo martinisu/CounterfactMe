@@ -13,7 +13,7 @@
 #' Gini coefficient
 #'
 #' @param x Numeric vector. NAs are dropped.
-#' @return Gini in [0, 1], or NA if fewer than two values remain.
+#' @return Gini between 0 and 1, or NA if fewer than two values remain.
 #' @keywords internal
 .gini <- function(x) {
   x <- as.numeric(x[!is.na(x)])

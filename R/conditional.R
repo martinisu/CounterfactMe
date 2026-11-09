@@ -3937,7 +3937,7 @@
              "STUEPIKE", "HUSMORVIKAR"),
   male   = c("FOSTERFAR", "INTERNATHUSFAR", "BYSSEGUTT",
              "LUGARGUTT", "MESSEGUTT", "STALLGUTT",
-             "DEKKSGUTT", "HOTELLGÅRDSGUTT")
+             "DEKKSGUTT", "HOTELLG\u00c5RDSGUTT")
 )
 
 .draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL) {

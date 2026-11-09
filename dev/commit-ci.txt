@@ -1,0 +1,37 @@
+Faa R-CMD-check groenn igjen (roed siden v0.9.67)
+
+R-CMD-check og repo-sjekkene har feilet paa hver push siden 18. september.
+test-coverage har vaert groenn hele tida, saa testene selv er i orden;
+det er sjekkene rundt som stoppet.
+
+Repo-sjekkene (dev/run-repo-tests.R):
+  Hovedaarsaken: test-no-household-wealth-thresholds.R (lagt til i v0.9.67)
+  leste "R/conditional.R" relativt til pakkeroten, mens test_dir() kjoerer
+  fra dev/repo-tests/. Fila ble aldri funnet, og den stod som loes kode
+  utenfor test_that(). Skrevet om som en ordentlig test med ../../.
+
+  Seks filer var merket ssb_api uten aa navngi skriptet som henter dem
+  (wealth_tail_person, wealth_class_person, income_by_age,
+  income_tail_person, income_none_share, life_expectancy). En slik
+  paastand kan ingen sjekke, og testen sier akkurat det. Skriptene finnes
+  i data-raw/ og er naa ført inn.
+
+  Statusen "superseded" (income_deciles.csv) var ikke blant de tillatte i
+  test-sources-repo.R. Lagt til der og i dokumentasjonen av
+  data_sources(), som sa "four values".
+
+R CMD check:
+  "HOTELLGÅRDSGUTT" var en ikke-ASCII-streng i R-koden. Det gir WARNING,
+  og check-r-package feiler paa warnings. Naa Å.
+
+  @return-teksten for .gini() hadde "[0, 1]", som roxygen leste som en
+  markdown-lenke til et emne som heter "0, 1".
+
+DESCRIPTION: LazyData fjernet; pakken har ingen data/-mappe, og R CMD
+build fjernet feltet uansett.
+
+Windows- og macOS-jobbene feilet i setup-pandoc og setup-r, foer pakken
+ble roert. Det er runner-infrastruktur, ikke denne koden.
+
+Verifisert lokalt: dev/run-repo-tests.R rent, og R CMD check
+(--no-tests, error_on = "warning") gir 0 errors, 0 warnings, 0 notes.
