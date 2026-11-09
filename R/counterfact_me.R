@@ -216,7 +216,10 @@ counterfact_me <- function(dimensions = available_dimensions(),
     }
   }
   if ("occupation" %in% dimensions) {
-    result$occupation <- if (!is.null(occ$schedule) && identical(occ$schedule, "part"))
+    # "(deltid)" describes a job. AAP and dagpenger carry the schedule of
+    # the job they replaced, which produced "Dagpenger (tidl. X) (deltid)".
+    is_job <- is.null(occ$kind) || identical(occ$kind, "worker")
+    result$occupation <- if (is_job && !is.null(occ$schedule) && identical(occ$schedule, "part"))
                           paste0(occ$label, " (deltid)") else occ$label
   }
   # Consistency: uføretrygd implies some funksjonsnedsettelse

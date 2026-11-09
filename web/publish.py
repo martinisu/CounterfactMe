@@ -128,6 +128,35 @@ def main():
     else:
         print(f"   CSV       {len(assets['csv'])}")
 
+    # Struktur: de tre kolonnene maa ligge INNE i .stage. En overfloedig
+    # </div> lukket .stage foer tid (nov. 2026): venstre kolonne sto alene,
+    # og kortet havnet under. Nettleseren sier ingenting om slikt.
+    from html.parser import HTMLParser
+    class _Stage(HTMLParser):
+        def __init__(self):
+            super().__init__(); self.stack = []; self.found = {}
+        def handle_starttag(self, tag, attrs):
+            if tag in ("div", "aside", "main", "section"):
+                cls = dict(attrs).get("class", "") or ""
+                self.stack.append((tag, cls))
+                for want in ("left", "center", "right"):
+                    if want in cls.split() and tag in ("aside", "main"):
+                        self.found[want] = any("stage" in c.split() for _, c in self.stack[:-1])
+        def handle_endtag(self, tag):
+            for i in range(len(self.stack) - 1, -1, -1):
+                if self.stack[i][0] == tag:
+                    del self.stack[i:]; break
+    html_src = (DOCS / "index.html").read_text(encoding="utf-8")
+    body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<template\b.*?</template>",
+                  "", html_src, flags=re.S)
+    st = _Stage(); st.feed(body)
+    bad_cols = [k for k in ("left", "center", "right") if not st.found.get(k)]
+    if bad_cols:
+        print(f"   AVVIK: kolonner utenfor .stage: {bad_cols} (ubalansert </div>?)")
+        ok = False
+    else:
+        print("   struktur  venstre, midten og hoeyre ligger i .stage")
+
     # Alle filer index.html refererer til lokalt skal finnes i docs/.
     html = (DOCS / "index.html").read_text(encoding="utf-8")
     refs = set(re.findall(r'(?:src|href)="([^":#?]+\.(?:js|jsx|R|svg|png|xml))"', html))

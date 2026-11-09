@@ -1,0 +1,12 @@
+Ikke "(deltid)" etter dagpenger og AAP
+
+Sett paa sida etter forrige push: "Dagpenger (tidl. Avdelingshjelp)
+(deltid)". AAP og dagpenger arvet stillingsandelen til jobben de
+erstattet, og fikk "(deltid)" lagt til. Fortellerlaget kjente da ikke
+igjen stoenadsetiketten og skrev den som en jobbtittel. Naa legges
+"(deltid)" bare til jobber, og .occ_parse() taaler etiketten uansett.
+
+Og: en overfloedig </div> i venstre kolonne (fra byttet av "Hvordan" til
+"Om AlternaLiv") lukket .stage foer tid, saa venstre kolonne sto alene og
+kortet havnet under. Rettet, og web/publish.py sjekker naa at de tre
+kolonnene ligger inne i .stage foer den sier "Publisert".

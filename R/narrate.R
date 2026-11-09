@@ -238,6 +238,9 @@ print.counterfactme_narrative <- function(x, ...) {
 .occ_parse <- function(occ) {
   if (is.null(occ) || is.na(occ) || !nzchar(occ)) return(NULL)
   o <- trimws(as.character(occ))
+  # Older labels could carry "(deltid)" after a benefit; strip it first.
+  o_nopart <- sub(" \\(deltid\\)$", "", o)
+  if (grepl("^(AAP|Dagpenger) \\(tidl\\.", o_nopart, ignore.case = TRUE)) o <- o_nopart
   m <- regmatches(o, regexec("^(AAP|Dagpenger) \\(tidl\\. (.*)\\)$", o,
                              ignore.case = TRUE))[[1]]
   if (length(m) == 3L) {

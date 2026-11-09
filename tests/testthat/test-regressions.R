@@ -880,6 +880,8 @@ test_that("labels are turned into prose, not pasted into it", {
     ", som går på dagpenger etter å ha jobbet som lektor (universitet og høyskole)")
   expect_equal(ns$.occ_relative_clause("Revisormedarbeider (deltid)"),
                ", som jobber deltid som revisormedarbeider")
+  # Seen on the live site: a benefit label with "(deltid)" after it.
+  expect_equal(ns$.occ_parse("Dagpenger (tidl. Avdelingshjelp) (deltid)")$kind, "dagpenger")
   expect_equal(ns$.housing_np("Småhus"), "et småhus")
   expect_equal(ns$.housing_np("Enebolig"), "en enebolig")
   expect_equal(ns$.mill_no(4.2e6), "4,2")
