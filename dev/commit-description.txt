@@ -1,0 +1,7 @@
+DESCRIPTION: fjern doble URL- og BugReports-felt
+
+Forrige commit la til URL og BugReports oeverst uten aa se at begge
+allerede stod lenger ned. Doble felt gjoer DESCRIPTION uleselig for
+read.dcf(), saa setup-r-dependencies stoppet foer en eneste test kjoerte
+(R-CMD-check og test-coverage paa 612ed12). Naa ett av hvert, med
+Pages-adressen foerst i URL.

@@ -12,9 +12,6 @@ Description: What if you had been someone else? CounterfactMe generates random
     immigrant background, religion, party preference, and a Bourdieu-style
     class profile. Dimensions are conditionally sampled in sociologically
     realistic order.
-URL: https://martinisu.github.io/CounterfactMe/,
-    https://github.com/martinisu/CounterfactMe
-BugReports: https://github.com/martinisu/CounterfactMe/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -31,7 +28,8 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 LazyData: true
-URL: https://github.com/martinisu/CounterfactMe
+URL: https://martinisu.github.io/CounterfactMe/,
+    https://github.com/martinisu/CounterfactMe
 BugReports: https://github.com/martinisu/CounterfactMe/issues
 Language: en-US
 Config/roxygen2/version: 8.0.0
