@@ -312,7 +312,7 @@
 
 # Build the worker record for row `idx` of the weight table: schedule,
 # monthly wage and a detailed 7-digit title within the 4-digit code.
-.occupation_worker <- function(tbl, idx, gender = NULL) {
+.occupation_worker <- function(tbl, idx, gender = NULL, age = NA_integer_) {
   os <- .cfm_env$occupations_salary
   code <- tbl$code[idx]
 
@@ -334,9 +334,24 @@
     as.integer(tbl$median_nok[idx])
   }
 
-  # Trekk en spesifikk 7-sifret yrkesbetegnelse innenfor STYRK-08 group
+  # Trekk en spesifikk 7-sifret yrkesbetegnelse innenfor STYRK-08 group.
+  #
+  # Loennen kommer fra 4-sifret kode, men tittelen trekkes jevnt blant de
+  # 7-sifrede titlene i koden. Det ga "Laerervikar (grunnskole)" med full
+  # grunnskolelaererloenn: en 52-aaring med mastergrad og 820 000 i aaret.
+  # Hver femtende grunnskolelaerer ble vikar, uansett alder og utdanning.
+  # Titler som betegner en midlertidig eller laerende stilling, gis derfor
+  # bare der loennen passer: vikar bare ved deltid, laerling/elev/aspirant/
+  # praktikant/trainee bare ved deltid eller alder under 30. Ingen nye
+  # tall; deltidsandelen og deltidsloennen er SSBs (11418).
   styrk08_label <- tbl$label[idx]
-  detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender)
+  part <- identical(schedule, "part")
+  young <- !is.na(age) && age < 30
+  drop <- c(if (!part) "VIKAR",
+            if (!part && !young) c("L\u00c6RLING", "PRAKTIKANT", "ASPIRANT",
+                                   "TRAINEE", "\\bELEV\\b"))
+  detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender,
+                                    drop_re = if (length(drop)) paste(drop, collapse = "|") else NULL)
 
   list(
     label = detail_label,
@@ -377,7 +392,7 @@
     rows <- which(inn)
     pw <- if (sum(w_in) > 0) w_in else ow$tbl$headcount[inn]
     idx <- rows[sample.int(length(rows), 1, prob = pw)]
-    worker <- .occupation_worker(ow$tbl, idx, gender)
+    worker <- .occupation_worker(ow$tbl, idx, gender, age)
     worker$weight <- weight
     return(worker)
   }
@@ -478,7 +493,7 @@
   # -- Working-age adults: SSB-driven draw --
   ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
   idx <- sample.int(nrow(ow$tbl), 1, prob = ow$w)
-  worker <- .occupation_worker(ow$tbl, idx, gender)
+  worker <- .occupation_worker(ow$tbl, idx, gender, age)
 
   # -- Roll for AAP / dagpenger / sosialhjelp (19-67, not students) --
   if (age >= 19 && age <= 67) {
@@ -3985,7 +4000,8 @@
              "DEKKSGUTT", "HOTELLG\u00c5RDSGUTT")
 )
 
-.draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL) {
+.draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL,
+                              drop_re = NULL) {
   if (is.null(styrk4_code) || is.na(styrk4_code) || !nzchar(styrk4_code)) {
     return(fallback_label)
   }
@@ -4011,6 +4027,11 @@
       .gendered_yrke_titles$female
     }
     keep <- !(toupper(cand$name) %in% drop)
+    if (any(keep)) cand <- cand[keep, , drop = FALSE]
+  }
+  # Titler som ikke passer loennen og stillingsandelen (se .occupation_worker).
+  if (!is.null(drop_re)) {
+    keep <- !grepl(drop_re, toupper(cand$name), perl = TRUE)
     if (any(keep)) cand <- cand[keep, , drop = FALSE]
   }
 

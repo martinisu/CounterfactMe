@@ -1,0 +1,44 @@
+Fortellingen: etiketter blir prosa, ikke limt inn i den
+
+En biografi fra den publiserte sida:
+
+  Han er gift med Hege, som er dagpenger (tidl. lektor (universitet og
+  hoyskole)) ... Han eier en smahus verdt rundt 4.2 millioner. Eier en
+  Tesla og to leiligheter -- derfor H. Han tilhorer Annet kristent
+  trossamfunn. ... Kostholdet er fleksitarianer ... Mangler en fortrolig
+  a snakke med.
+
+Seks feil, samme aarsak: registeretiketter og humoretiketter satt rett
+inn i setninger. Etikettene er riktige paa kortet og er ikke roert; det
+er fortellerlaget (R/narrate.R) som naa oversetter dem.
+
+  - Stoenadsetiketter ("Dagpenger (tidl. X)", "AAP (tidl. X)",
+    "Sosialhjelp", "Ufoeretrygdet") og "(deltid)" blir egne
+    formuleringer, baade for ego og partner.
+  - Riktig kjoenn paa boligtype: et smaahus, en enebolig.
+  - Desimalkomma: 4,2 millioner.
+  - Humoretiketter for parti blir partinavnet. Humoren staar fortsatt
+    paa kortet, men i prosa kunne den motsi livet: Tesla og to
+    leiligheter hos en mann med ett smaahus og 270 000 i aaret.
+  - Religion blir verbfraser: er katolikk, er muslim, tilhoerer et
+    annet kristent trossamfunn. Ogsaa humoretikettene, som tidligere
+    ble skrevet ut som "tilhoerer Konfirmert i 1986, ...".
+  - Kosthold: "Han er fleksitarianer", ikke "Kostholdet er
+    fleksitarianer".
+  - Setningene om helse og ensomhet har faatt subjekt, og "Helsen er
+    god. Lever med psykisk lidelse." er blitt "Helsen oppleves som god,
+    selv om hun lever med en psykisk lidelse."
+  - "Med mastergrad med fordypning i filosofi" er blitt "Med mastergrad
+    i filosofi". For ikke-grader staar "med fordypning i" igjen, og
+    setningen begynner da med "Etter" i stedet for "Med".
+  - "Samlet sett: betydelig formue." er blitt "Hun har betydelig
+    formue."
+
+Barn som bor med levende foreldre beskrives i presens: "Moren jobber
+som sykepleier", "Han er enebarn", ikke "jobbet" og "var". Foreldre
+med stoenadsetikett faar egne formuleringer i stedet for "jobber som
+dagpenger (tidl. ...)".
+
+Tre nye tester i test-regressions.R: hjelpefunksjonene gir riktig
+tekst for eksemplene over, og ingen av konstruksjonene dukker opp i 80
+trukne biografier, og barn med levende foreldre faar presens.

@@ -219,6 +219,129 @@ print.counterfactme_narrative <- function(x, ...) {
   grepl("ingen|ateis|ikke|sekul|livssyn|human", tolower(rel %||% ""))
 }
 
+# ---- labels -> prose ---------------------------------------------------
+#
+# The data carry SSB register labels and authored humour labels. Those are
+# right on the card, but dropped verbatim into a sentence they break it:
+#   "Hege, som er dagpenger (tidl. lektor (universitet og hoyskole))"
+#   "Han eier en smahus"            (smahus is neuter)
+#   "Eier en Tesla og to leiligheter -- derfor H."   (humour label, and it
+#                                    contradicted the life it was printed in)
+#   "Han tilhorer Annet kristent trossamfunn."
+#   "Kostholdet er fleksitarianer"
+# These helpers turn a label into prose. The labels themselves are not
+# touched.
+
+# Occupation label -> its parts. Recognises the forms .cond_occupation()
+# produces: "X (deltid)", "AAP (tidl. X)", "Dagpenger (tidl. X)",
+# "Sosialhjelp", "Uføretrygdet".
+.occ_parse <- function(occ) {
+  if (is.null(occ) || is.na(occ) || !nzchar(occ)) return(NULL)
+  o <- trimws(as.character(occ))
+  m <- regmatches(o, regexec("^(AAP|Dagpenger) \\(tidl\\. (.*)\\)$", o,
+                             ignore.case = TRUE))[[1]]
+  if (length(m) == 3L) {
+    return(list(kind = if (tolower(m[2]) == "aap") "aap" else "dagpenger",
+                prev = tolower(m[3])))
+  }
+  if (grepl("^sosialhjelp$", o, ignore.case = TRUE))
+    return(list(kind = "sosialhjelp"))
+  if (grepl("^uf\u00f8retrygd", o, ignore.case = TRUE))
+    return(list(kind = "ufor"))
+  part <- grepl(" \\(deltid\\)$", o)
+  list(kind = "job", job = tolower(sub(" \\(deltid\\)$", "", o)), part = part)
+}
+
+# ", som er sykepleier" / ", som jobber deltid som ..." / ", som gar pa
+# dagpenger etter a ha vaert ..." -- for a partner.
+.occ_relative_clause <- function(occ) {
+  o <- .occ_parse(occ)
+  if (is.null(o)) return("")
+  switch(o$kind,
+    aap = sprintf(", som mottar arbeidsavklaringspenger etter \u00e5 ha jobbet som %s", o$prev),
+    dagpenger = sprintf(", som g\u00e5r p\u00e5 dagpenger etter \u00e5 ha jobbet som %s", o$prev),
+    sosialhjelp = ", som mottar sosialhjelp",
+    ufor = ", som er uf\u00f8retrygdet",
+    job = if (isTRUE(o$part)) sprintf(", som jobber deltid som %s", o$job)
+          else sprintf(", som er %s", o$job))
+}
+
+# Housing type with the right indefinite article.
+.housing_np <- function(htype) {
+  t <- if (!is.null(htype) && !is.na(htype)) tolower(htype) else "bolig"
+  art <- if (grepl("hus$", t)) "et" else "en"
+  paste(art, t)
+}
+
+# "4.2" -> "4,2": Norwegian decimal comma.
+.mill_no <- function(v) sub(".", ",", sprintf("%.1f", v / 1e6), fixed = TRUE)
+
+# Party label (plain or humour) -> the party's name, or NA for non-voters
+# and anything unrecognised. The humour label stays on the card.
+.party_name <- function(label) {
+  if (is.null(label) || is.na(label)) return(NA_character_)
+  .load_data()
+  pb <- .cfm_env$party_baseline
+  if (!is.null(pb) && label %in% pb$label) {
+    return(if (identical(pb$code[pb$label == label][1], "ANDRE")) "p\u00e5 et sm\u00e5parti" else label)
+  }
+  ph <- .cfm_env$party_humor
+  if (!is.null(ph) && !is.null(pb) && label %in% ph$label) {
+    cd <- ph$code[ph$label == label][1]
+    if (cd %in% pb$code) {
+      return(if (identical(cd, "ANDRE")) "p\u00e5 et sm\u00e5parti" else pb$label[pb$code == cd][1])
+    }
+    return(NA_character_)
+  }
+  # Unknown and sentence-like: do not print it as if it were a party.
+  if (grepl(" ", label) && nchar(label) > 18) return(NA_character_)
+  label
+}
+
+# Religion label (plain or humour) -> a verb phrase, or NA.
+.religion_clause <- function(label) {
+  if (is.null(label) || is.na(label)) return(NA_character_)
+  .load_data()
+  rb <- .cfm_env$religion_baseline
+  code <- NA_character_
+  if (!is.null(rb) && label %in% rb$label_no) code <- rb$code[rb$label_no == label][1]
+  rh <- .cfm_env$religion_humor
+  if (is.na(code) && !is.null(rh) && label %in% rh$label) code <- rh$code[rh$label == label][1]
+  if (is.na(code)) {
+    if (.is_not_religious(label)) return("regner seg ikke som troende")
+    if (grepl("uoppgi|na$|udefiner", tolower(label))) return(NA_character_)
+    if (grepl(" ", label) && nchar(label) > 25) return(NA_character_)
+    l <- if (grepl("^Den ", label)) label else .decap(label)
+    return(sprintf("tilh\u00f8rer %s", l))
+  }
+  switch(code,
+    DnK = "er medlem av Den norske kirke",
+    KAT = "er katolikk",
+    ANN_KRIS = "tilh\u00f8rer et annet kristent trossamfunn",
+    ISL = "er muslim",
+    BUD = "er buddhist",
+    HIN = "er hindu",
+    JOD = "er j\u00f8de",
+    ANN = "tilh\u00f8rer et annet tros- eller livssynssamfunn",
+    HUM = "regner seg ikke som troende",
+    INGEN = "regner seg ikke som troende",
+    NA_character_)
+}
+
+# Diet label -> sentence.
+.diet_sentence <- function(diet, pron) {
+  d <- tolower(diet)
+  P <- .cap(pron)
+  if (grepl("^fleksitarianer|^vegetarianer|^pescetarianer", d))
+    return(sprintf("%s er %s.", P, d))
+  if (grepl("^vegan", d)) return(sprintf("%s er veganer.", P))
+  if (grepl("lavkarbo|keto", d)) return(sprintf("%s spiser lavkarbo.", P))
+  if (grepl("glutenfri", d)) return(sprintf("%s spiser glutenfritt.", P))
+  if (grepl("^tradisjonell norsk", d))
+    return("Kostholdet er tradisjonelt norsk og kj\u00f8ttrikt.")
+  sprintf("Kostholdet er %s.", d)
+}
+
 # ---- salient lead (the hook) ------------------------------------------
 
 .narrate_lead <- function(x) {
@@ -348,6 +471,41 @@ print.counterfactme_narrative <- function(x, ...) {
   m_name <- x$mother$name %||% "moren"
   f_name <- x$father$name %||% "faren"
 
+  # A child who still lives with living parents is described in the
+  # present tense. "Moren jobbet som sykepleier" about a six-year-old's
+  # mother reads as if she were dead or retired. Every .pick() below keeps
+  # the same number of alternatives in both tenses, so the random stream
+  # is unchanged.
+  age_n <- if (!is.null(x$age) && !is.na(x$age)) as.integer(x$age) else NA_integer_
+  alive <- function(p) is.null(p) || is.null(p$death_year) || is.na(p$death_year)
+  lost <- !is.null(x$parents_relationship) && !is.na(x$parents_relationship) &&
+          grepl("mistet|lost", tolower(x$parents_relationship))
+  young <- !is.na(age_n) && age_n < 18 && alive(x$mother) && alive(x$father) && !lost
+
+  # Parents' occupation labels can be benefit labels ("Dagpenger (tidl.
+  # lektor)") or carry "(deltid)". As nouns they only work for jobs.
+  m_p <- if (m_abroad) NULL else .occ_parse(m_raw)
+  f_p <- if (f_abroad) NULL else .occ_parse(f_raw)
+  as_noun <- function(p, fallback) {
+    if (is.null(p) || p$kind != "job") return(fallback)
+    if (isTRUE(p$part)) paste(p$job, "p\u{00e5} deltid") else p$job
+  }
+  m_occ <- as_noun(m_p, m_occ)
+  f_occ <- as_noun(f_p, f_occ)
+  as_clause <- function(p) {
+    k <- p$kind
+    if (k == "job") {
+      j <- if (isTRUE(p$part)) paste(p$job, "p\u{00e5} deltid") else p$job
+      return(sprintf(if (young) "jobber som %s" else "jobbet som %s", j))
+    }
+    switch(k,
+      aap = if (young) "mottar arbeidsavklaringspenger" else "mottok arbeidsavklaringspenger",
+      dagpenger = if (young) "g\u{00e5}r p\u{00e5} dagpenger" else "gikk p\u{00e5} dagpenger",
+      sosialhjelp = if (young) "mottar sosialhjelp" else "mottok sosialhjelp",
+      ufor = if (young) "er uf\u{00f8}retrygdet" else "var uf\u{00f8}retrygdet")
+  }
+  nonjob <- (!is.null(m_p) && m_p$kind != "job") || (!is.null(f_p) && f_p$kind != "job")
+
   parts <- character(0)
   if (nzchar(m_occ) || nzchar(f_occ)) {
     if (m_abroad && f_abroad) {
@@ -365,26 +523,47 @@ print.counterfactme_narrative <- function(x, ...) {
       } else {
         sprintf("Foreldrene bodde i %s.", where)
       })
+    } else if (nzchar(m_occ) && nzchar(f_occ) && nonjob) {
+      sent <- sprintf("Moren %s %s, og faren %s %s.",
+                      m_name, as_clause(m_p), f_name, as_clause(f_p))
+      parts <- c(parts, .pick(rep(sent, 3L)))
     } else if (nzchar(m_occ) && nzchar(f_occ)) {
-      parts <- c(parts, .pick(c(
+      parts <- c(parts, .pick(if (young) c(
+        sprintf("%s vokser opp som %s av %s og %s.", .cap(pron), child_noun, m_occ, f_occ),
+        sprintf("Moren %s jobber som %s, faren %s som %s.", m_name, m_occ, f_name, f_occ),
+        sprintf("Hjemme er det en %s og en %s som fors\u{00f8}rger familien.", m_occ, f_occ))
+      else c(
         sprintf("%s vokste opp som %s av %s og %s.", .cap(pron), child_noun, m_occ, f_occ),
         sprintf("Moren %s jobbet som %s, faren %s som %s.", m_name, m_occ, f_name, f_occ),
         sprintf("Hjemme var det en %s og en %s som fors\u{00f8}rget familien.", m_occ, f_occ))))
     } else {
       one <- if (nzchar(m_occ)) m_occ else f_occ
-      parts <- c(parts, sprintf("%s vokste opp med en forelder som var %s.", .cap(pron), one))
+      one_p <- if (nzchar(m_occ)) m_p else f_p
+      parts <- c(parts, if (!is.null(one_p) && one_p$kind != "job")
+        sprintf("%s %s opp med en forelder som %s.", .cap(pron),
+                if (young) "vokser" else "vokste", as_clause(one_p))
+      else if (young)
+        sprintf("%s vokser opp med en forelder som er %s.", .cap(pron), one)
+      else
+        sprintf("%s vokste opp med en forelder som var %s.", .cap(pron), one))
     }
   }
 
   nsib <- .nsiblings(x)
   if (!is.na(nsib)) {
     if (nsib == 0L) {
-      parts <- c(parts, .pick(c(
+      parts <- c(parts, .pick(if (young) c(
+        sprintf("%s er enebarn.", .cap(pron)),
+        sprintf("%s har ingen s\u{00f8}sken.", .cap(pron)))
+      else c(
         sprintf("%s var enebarn.", .cap(pron)),
         "S\u{00f8}sken ble det ikke.")))
     } else {
       total <- nsib + 1L
-      parts <- c(parts, .pick(c(
+      parts <- c(parts, .pick(if (young) c(
+        sprintf("%s er ett av %s barn.", .cap(pron), .no_count(total)),
+        sprintf("S\u{00f8}skenflokken teller %s.", .no_count(total)))
+      else c(
         sprintf("%s var ett av %s barn.", .cap(pron), .no_count(total)),
         sprintf("S\u{00f8}skenflokken talte %s.", .no_count(total)))))
     }
@@ -392,7 +571,10 @@ print.counterfactme_narrative <- function(x, ...) {
 
   # parental relationship
   if (isTRUE(x$parents_divorced)) {
-    parts <- c(parts, .pick(c(
+    parts <- c(parts, .pick(if (young) c(
+      "Foreldrene er skilt.",
+      sprintf("%s vokser opp mellom to hjem etter at foreldrene gikk fra hverandre.", .cap(pron)))
+    else c(
       "Foreldrene skilte seg.",
       sprintf("%s vokste opp mellom to hjem etter at foreldrene gikk fra hverandre.", .cap(pron)))))
   } else if (!is.null(x$parents_relationship) && !is.na(x$parents_relationship) &&
@@ -466,7 +648,10 @@ print.counterfactme_narrative <- function(x, ...) {
 
   # combined education + first job arc
   edu_full <- if (!is.na(edu_str)) {
-    if (!is.na(fd_str)) sprintf("%s med fordypning i %s", edu_str, fd_str)
+    # "mastergrad i filosofi" is what people say; "med fordypning i" stays
+    # for levels that are not degrees ("videregaende med fordypning i ...").
+    if (!is.na(fd_str) && grepl("grad$", edu_str)) sprintf("%s i %s", edu_str, fd_str)
+    else if (!is.na(fd_str)) sprintf("%s med fordypning i %s", edu_str, fd_str)
     else if (!is.na(field_str)) sprintf("%s innen %s", edu_str, field_str)
     else edu_str
   } else NA
@@ -501,22 +686,48 @@ print.counterfactme_narrative <- function(x, ...) {
     return(paste(parts, collapse = " "))
   }
 
+  # Benefit and part-time labels from .cond_occupation() ("Dagpenger (tidl.
+  # lektor)", "revisormedarbeider (deltid)") read badly after "jobben som".
+  op <- .occ_parse(occ_str)
+  if (!is.null(op) && op$kind != "job") {
+    P <- .cap(pron)
+    now <- switch(op$kind,
+      aap = "mottar n\u{00e5} arbeidsavklaringspenger",
+      dagpenger = "g\u{00e5}r n\u{00e5} p\u{00e5} dagpenger",
+      sosialhjelp = "mottar n\u{00e5} sosialhjelp",
+      ufor = "er uf\u{00f8}retrygdet")
+    worked <- if (!is.null(op$prev)) sprintf("jobbet som %s", op$prev) else NA_character_
+    s1 <- if (!is.na(edu_full) && !is.na(worked)) sprintf("%s har %s og %s, men %s.", P, edu_full, worked, now)
+          else if (!is.na(edu_full)) sprintf("%s har %s, men %s.", P, edu_full, now)
+          else if (!is.na(worked)) sprintf("%s %s, men %s.", P, worked, now)
+          else sprintf("%s %s.", P, sub("^(mottar|g\u{00e5}r) n\u{00e5}", "\\1", now))
+    parts <- c(parts, s1)
+    inc <- .income_phrase(income, neet = isTRUE(x$neet))
+    if (!is.na(inc) && !grepl("utenfor", inc)) parts <- c(parts, sprintf("%s har %s.", P, inc))
+    return(paste(parts, collapse = " "))
+  }
+  occ_disp <- if (is.null(op)) NA_character_
+              else if (isTRUE(op$part)) paste(op$job, "p\u{00e5} deltid") else op$job
+
   if (!is.na(edu_full) && !is.na(occ_str)) {
     inc <- if (!is.na(age_n) && age_n < 19) NA_character_
            else .income_phrase(income, neet = isTRUE(x$neet))
     if (!is.na(inc) && !grepl("utenfor", inc)) {
       parts <- c(parts, .pick(c(
-        sprintf("Med %s tok %s veien til jobben som %s, og har i dag %s.",
-                edu_full, pron, tolower(occ_str), inc),
+        # "Med videregaende med fordypning i ..." doubles the "med".
+        sprintf("%s %s tok %s veien til jobben som %s, og har i dag %s.",
+                if (grepl(" med ", edu_full)) "Etter" else "Med",
+                edu_full, pron, occ_disp, inc),
         sprintf("Etter %s jobber %s som %s \u{2014} %s.",
-                edu_full, pron, tolower(occ_str), inc))))
+                edu_full, pron, occ_disp, inc))))
     } else if (!is.na(inc) && grepl("utenfor", inc)) {
       parts <- c(parts, sprintf("%s har %s, men %s for tiden.",
                                 .cap(pron), edu_full, inc))
     } else {
       parts <- c(parts, .pick(c(
-        sprintf("Med %s i bagasjen er %s %s.", edu_full, pron, tolower(occ_str)),
-        sprintf("%s har %s og jobber som %s.", .cap(pron), edu_full, tolower(occ_str)))))
+        if (grepl(" med ", edu_full)) sprintf("Etter %s er %s %s.", edu_full, pron, occ_disp)
+        else sprintf("Med %s i bagasjen er %s %s.", edu_full, pron, occ_disp),
+        sprintf("%s har %s og jobber som %s.", .cap(pron), edu_full, occ_disp))))
     }
   } else if (!is.na(edu_full)) {
     parts <- c(parts, sprintf("%s har %s.", .cap(pron), edu_full))
@@ -525,9 +736,9 @@ print.counterfactme_narrative <- function(x, ...) {
            else .income_phrase(income, neet = isTRUE(x$neet))
     if (!is.na(inc) && !grepl("utenfor", inc)) {
       parts <- c(parts, sprintf("%s jobber som %s og har %s.",
-                                .cap(pron), tolower(occ_str), inc))
+                                .cap(pron), occ_disp, inc))
     } else {
-      parts <- c(parts, sprintf("%s jobber som %s.", .cap(pron), tolower(occ_str)))
+      parts <- c(parts, sprintf("%s jobber som %s.", .cap(pron), occ_disp))
     }
   }
 
@@ -558,8 +769,7 @@ print.counterfactme_narrative <- function(x, ...) {
       ptn <- x$partner
       if (!is.null(ptn)) {
         pname <- ptn$name %||% (if (marital == "gift") "ektefellen" else "samboeren")
-        pocc <- if (!is.null(ptn$occupation) && !is.na(ptn$occupation))
-                  sprintf(", som er %s", tolower(ptn$occupation)) else ""
+        pocc <- .occ_relative_clause(ptn$occupation)
         verb <- if (marital == "gift") "er gift med" else "bor sammen med"
         base <- sprintf("%s %s %s%s", .cap(pron), verb, pname, pocc)
         part <- if (has_kids) sprintf("%s, og sammen har de %s.", base, kids_str)
@@ -611,13 +821,13 @@ print.counterfactme_narrative <- function(x, ...) {
 
   part <- NA_character_
   if (grepl("^Eier|^Owns|eier", ht, ignore.case = TRUE)) {
-    type_str <- if (!is.null(htype) && !is.na(htype)) tolower(htype) else "bolig"
+    type_np <- .housing_np(htype)
     val_str <- if (!is.null(hval) && !is.na(hval) && hval > 0)
-                 sprintf(" verdt rundt %.1f millioner", hval / 1e6) else ""
+                 sprintf(" verdt rundt %s millioner", .mill_no(hval)) else ""
     part <- if (hytte)
-      sprintf("Familien eier en %s%s, og har i tillegg hytte.", type_str, val_str)
+      sprintf("Familien eier %s%s, og har i tillegg hytte.", type_np, val_str)
     else
-      sprintf("%s eier en %s%s.", .cap(pron), type_str, val_str)
+      sprintf("%s eier %s%s.", .cap(pron), type_np, val_str)
   } else if (grepl("^Leier|^Rents|leier", ht, ignore.case = TRUE)) {
     part <- if (hytte) sprintf("%s leier bolig, men har hytte.", .cap(pron))
             else sprintf("%s leier bolig.", .cap(pron))
@@ -627,7 +837,8 @@ print.counterfactme_narrative <- function(x, ...) {
 
   wq <- .qualitative_wealth(nw)
   wpart <- if (!is.na(wq) && wq %in% c("betydelig formue", "stor formue", "negativ formue"))
-             sprintf("Samlet sett: %s.", wq) else NA
+             (if (wq == "negativ formue") sprintf("%s har mer gjeld enn formue.", .cap(pron))
+              else sprintf("%s har %s.", .cap(pron), wq)) else NA
 
   paste(c(part, wpart)[!is.na(c(part, wpart))], collapse = " ")
 }
@@ -640,25 +851,17 @@ print.counterfactme_narrative <- function(x, ...) {
   parts <- character(0)
 
   # religion + party, combined where possible
-  rel <- x$religion
-  rel_clause <- NA_character_
-  if (!is.null(rel) && !is.na(rel)) {
-    if (.is_not_religious(rel)) rel_clause <- "regner seg ikke som troende"
-    else if (!grepl("uoppgi|na$|udefiner", tolower(rel)))
-      rel_clause <- sprintf("tilh\u{00f8}rer %s", rel)
-  }
+  rel_clause <- .religion_clause(x$religion)
 
+  # Humour labels used to be printed as a standalone sentence. They read
+  # well on the card, but in prose they could contradict the life ("Eier
+  # en Tesla og to leiligheter -- derfor H." for a man with one small
+  # house and 270 000 a year). The prose now names the party.
   party <- x$party
   party_clause <- NA_character_
   if (!is.null(party) && !is.na(party) &&
       !grepl("stemmer ikke|sofa|ikke stemme|stemte ikke|fyllesyk|glemte", tolower(party))) {
-    is_sentence <- grepl("[a-z\u{00e6}\u{00f8}\u{00e5}] [a-z\u{00e6}\u{00f8}\u{00e5}]", party) && nchar(party) > 18
-    if (is_sentence) {
-      party_clause <- NA_character_  # handled as standalone below
-      parts <- c(parts, paste0(.cap(party), "."))
-    } else {
-      party_clause <- party
-    }
+    party_clause <- .party_name(party)
   }
 
   # Norwegian is V2: after a fronted adverbial the finite verb comes
@@ -717,7 +920,7 @@ print.counterfactme_narrative <- function(x, ...) {
   # diet only when distinctive
   if (!is.null(x$diet) && !is.na(x$diet) &&
       !grepl("blandet|vanlig|alminnel|servert hjemme|served at home", tolower(x$diet))) {
-    parts <- c(parts, sprintf("Kostholdet er %s.", tolower(x$diet)))
+    parts <- c(parts, .diet_sentence(x$diet, pron))
   }
 
   paste(parts, collapse = " ")
@@ -727,27 +930,40 @@ print.counterfactme_narrative <- function(x, ...) {
 
 .narrate_wellbeing <- function(x) {
   parts <- character(0)
+  P <- .cap(.pronouns(x$gender, "subj"))
+  # "Helsen er god. Lever med psykisk lidelse." read as two claims that
+  # contradict each other. Self-rated good health alongside a chronic
+  # condition is common and real; the sentence now says so.
+  chronic <- NA_character_
+  if (isTRUE(x$has_chronic) && !is.null(x$chronic_type) && !is.na(x$chronic_type)) {
+    ct <- tolower(x$chronic_type)
+    chronic <- if (grepl("(lidelse|sykdom)$", ct) && !grepl("^(en|ei|et) ", ct)) paste("en", ct) else ct
+  }
+  good <- FALSE
   if (!is.null(x$self_rated_health) && !is.na(x$self_rated_health)) {
     h <- tolower(x$self_rated_health)
+    good <- grepl("meget god|excellent", h)
     if (grepl("daarlig|d\u{00e5}rlig|poor", h)) parts <- c(parts, sprintf("Helsen oppleves som %s.", h))
-    else if (grepl("meget god|excellent", h)) parts <- c(parts, "Helsen er god.")
+    else if (good && is.na(chronic)) parts <- c(parts, "Helsen er god.")
   }
-  if (isTRUE(x$has_chronic) && !is.null(x$chronic_type) && !is.na(x$chronic_type)) {
-    parts <- c(parts, sprintf("Lever med %s.", tolower(x$chronic_type)))
+  if (!is.na(chronic)) {
+    parts <- c(parts, if (good)
+      sprintf("Helsen oppleves som god, selv om %s lever med %s.", tolower(P), chronic)
+    else sprintf("%s lever med %s.", P, chronic))
   }
   if (isTRUE(x$has_disability) && !is.null(x$disability) && !is.na(x$disability)) {
-    parts <- c(parts, sprintf("Har en funksjonsnedsettelse (%s).", tolower(x$disability)))
+    parts <- c(parts, sprintf("%s har en funksjonsnedsettelse (%s).", P, tolower(x$disability)))
   }
   if (!is.null(x$close_friends) && !is.na(x$close_friends) &&
       grepl("ingen", tolower(x$close_friends))) {
-    parts <- c(parts, "Har ingen n\u{00e6}re venner.")
+    parts <- c(parts, sprintf("%s har ingen n\u{00e6}re venner.", P))
   }
   if (identical(x$has_confidant, FALSE)) {
-    parts <- c(parts, "Mangler en fortrolig \u{00e5} snakke med.")
+    parts <- c(parts, sprintf("%s mangler en fortrolig \u{00e5} snakke med.", P))
   }
   if (!is.null(x$loneliness) && !is.na(x$loneliness) &&
       grepl("ofte|often", tolower(x$loneliness))) {
-    parts <- c(parts, "F\u{00f8}ler seg ofte ensom.")
+    parts <- c(parts, sprintf("%s f\u{00f8}ler seg ofte ensom.", P))
   }
   if (!is.null(x$deprivation_count) && !is.na(x$deprivation_count) &&
       x$deprivation_count >= 4L) {

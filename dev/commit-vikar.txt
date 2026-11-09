@@ -1,0 +1,18 @@
+Vikar- og laerlingtitler bare der loennen passer
+
+En biografi fra sida: 52 aar, mastergrad, "laerervikar (grunnskole)",
+820 000 i aaret. Loennen var riktig for koden (2341 Grunnskolelaerere,
+median 58 750 i maaneden), men tittelen ble trukket jevnt blant kodens
+15 detaljtitler. Hver femtende grunnskolelaerer ble dermed vikar, med
+full laererloenn, uansett alder og utdanning. Det samme gjaldt alle
+koder med vikar-, laerling-, elev-, aspirant-, praktikant- og
+trainee-titler (457 titler totalt).
+
+Naa gis slike titler bare der loennen og stillingsandelen passer:
+vikar bare ved deltid, laerling/elev/aspirant/praktikant/trainee bare
+ved deltid eller alder under 30. Ingen nye tall: deltidsandelen og
+deltidsloennen er SSBs (11418). Gjelder ogsaa foreldrenes yrker.
+
+Kjent begrensning: deltidsloennen er bred (45-80 pst av heltid, tak 85
+pst), saa en vikar paa deltid kan fortsatt havne hoeyt. Det hoerer til
+kalibreringen av inntekt, ikke titlene.

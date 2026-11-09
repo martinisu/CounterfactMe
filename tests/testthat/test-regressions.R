@@ -866,3 +866,86 @@ test_that("narration templates put the comma in themselves", {
   bad <- lits[grepl("[^,]\\s+men\\s+", lits)]
   expect_equal(bad, character(0))
 })
+
+test_that("labels are turned into prose, not pasted into it", {
+  # A biography from the live site, November 2026:
+  #   "Han er gift med Hege, som er dagpenger (tidl. lektor (universitet og
+  #    hoyskole))" ... "Han eier en smahus verdt rundt 4.2 millioner."
+  #   "Eier en Tesla og to leiligheter -- derfor H. Han tilhorer Annet
+  #    kristent trossamfunn." ... "Kostholdet er fleksitarianer"
+  #   "Mangler en fortrolig a snakke med."
+  ns <- asNamespace("CounterfactMe")
+  expect_equal(
+    ns$.occ_relative_clause("Dagpenger (tidl. Lektor (universitet og høyskole))"),
+    ", som går på dagpenger etter å ha jobbet som lektor (universitet og høyskole)")
+  expect_equal(ns$.occ_relative_clause("Revisormedarbeider (deltid)"),
+               ", som jobber deltid som revisormedarbeider")
+  expect_equal(ns$.housing_np("Småhus"), "et småhus")
+  expect_equal(ns$.housing_np("Enebolig"), "en enebolig")
+  expect_equal(ns$.mill_no(4.2e6), "4,2")
+  expect_equal(ns$.party_name("Eier en Tesla og to leiligheter — derfor H"), "Høyre")
+  expect_equal(ns$.religion_clause("Annet kristent trossamfunn"),
+               "tilhører et annet kristent trossamfunn")
+  expect_equal(ns$.diet_sentence("Fleksitarianer (mest planter med litt kjøtt)", "han"),
+               "Han er fleksitarianer (mest planter med litt kjøtt).")
+})
+
+test_that("the broken constructions do not appear in drawn biographies", {
+  set.seed(503)
+  checked <- 0L
+  bad <- character(0)
+  pat <- paste(c("som er dagpenger", "som er aap", "en småhus",
+                 "kostholdet er fleksitarianer", "kostholdet er vegetarianer",
+                 "tilhører annet", "derfor h\\.", "\\d\\.\\d millioner",
+                 "(^|\\. )mangler en fortrolig"), collapse = "|")
+  for (i in 1:80) {
+    x <- counterfact_me(min_age = 25)
+    txt <- tolower(as.character(narrate_life(x, style = "biography")))
+    checked <- checked + 1L
+    if (grepl(pat, txt)) bad <- c(bad, txt)
+  }
+  expect_gte(checked, 80L)
+  expect_equal(bad, character(0))
+})
+
+test_that("children with living parents are described in the present tense", {
+  # "Moren jobbet som sykepleier" about a six-year-old's mother reads as if
+  # she were dead or retired.
+  set.seed(504)
+  checked <- 0L
+  bad <- character(0)
+  past <- "jobbet som|vokste opp|var enebarn|søskenflokken talte|forsørget familien|foreldrene skilte seg"
+  for (i in 1:60) {
+    x <- counterfact_me(min_age = 2L, max_age = 12L)
+    alive <- function(p) is.null(p) || is.null(p$death_year) || is.na(p$death_year)
+    if (!(alive(x$mother) && alive(x$father))) next
+    checked <- checked + 1L
+    txt <- tolower(as.character(narrate_life(x, style = "biography")))
+    if (grepl(past, txt) || grepl("jobber som (dagpenger|aap)", txt)) bad <- c(bad, txt)
+  }
+  expect_gte(checked, 40L)
+  expect_equal(bad, character(0))
+})
+
+test_that("temporary and trainee titles only appear where the pay fits", {
+  # The wage comes from the 4-digit STYRK code; the title was drawn
+  # uniformly among the 7-digit titles in it. That made one grunnskolelaerer
+  # in fifteen a "Laerervikar (grunnskole)" on full teacher pay, at any age
+  # and education -- a 52-year-old with a master's degree on 820 000 a year.
+  set.seed(505)
+  checked <- 0L
+  bad <- character(0)
+  for (i in 1:400) {
+    x <- counterfact_me(min_age = 30L, max_age = 66L)
+    occ <- x$occupation
+    if (is.null(occ) || is.na(occ)) next
+    checked <- checked + 1L
+    if (grepl("vikar", occ, ignore.case = TRUE) && !grepl("\\(deltid\\)", occ))
+      bad <- c(bad, occ)
+    if (grepl("lærling|praktikant|aspirant|trainee|\\belev\\b", occ,
+              ignore.case = TRUE, perl = TRUE) && !grepl("\\(deltid\\)", occ))
+      bad <- c(bad, occ)
+  }
+  expect_gte(checked, 300L)
+  expect_equal(bad, character(0))
+})
