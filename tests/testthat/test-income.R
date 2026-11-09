@@ -80,3 +80,29 @@ test_that("alderskondisjonering endrer fordelingen", {
   # 17-24-baandet har langt lavere inntekt enn 45-54.
   expect_lt(stats::median(ung$nok), stats::median(voksen$nok))
 })
+
+test_that("part-time position size follows SSB 12542, per occupation", {
+  # The stillingsandel used to be runif(0.45, 0.80), capped at 85 pct, for
+  # every occupation. Nobody below 45 pct existed. 12542 (4th quarter 2025)
+  # puts 29.6 pct of female part-time grunnskolelaerere (2341) below 40 pct
+  # and 25.8 pct at 80-99 pct.
+  CounterfactMe:::.load_data()
+  set.seed(601)
+  n <- 4000L
+  a <- vapply(seq_len(n), function(i)
+    CounterfactMe:::.draw_stillingsandel("2341", "F"), numeric(1))
+  expect_length(a, n)
+  # SE of a share near 0.3 with n = 4000 is 0.007; 0.03 is over 4 SE.
+  expect_lt(abs(mean(a < 0.40) - 0.296), 0.03)
+  expect_lt(abs(mean(a >= 0.80) - 0.258), 0.03)
+  expect_true(all(a > 0 & a < 1))
+
+  # Occupations differ: part-time helsefagarbeidere (5321) have larger
+  # positions than part-time teachers (expected mean 0.62 against 0.56).
+  b <- vapply(seq_len(n), function(i)
+    CounterfactMe:::.draw_stillingsandel("5321", "A"), numeric(1))
+  expect_gt(mean(b), mean(a))
+
+  # Unknown code falls back to the all-occupation distribution, not an error.
+  expect_true(is.finite(CounterfactMe:::.draw_stillingsandel("9999", "M")))
+})

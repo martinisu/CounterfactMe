@@ -541,7 +541,35 @@
 # workers below median, mid-career above). Part-time incidence is not yet
 # modelled here (see TODO: "Full yrke x alder x utdanning x deltid").
 
-.cond_income <- function(age, edu_code, occupation, lang = "en") {
+# Stillingsandel for a part-time worker, from SSB 12542: how part-time
+# employees in this 4-digit occupation and sex spread over 0-19, 20-39,
+# 40-59, 60-79 and 80-99 pct positions. Uniform within the group. Falls back
+# to both sexes, then to all occupations, when fewer than 30 part-timers
+# are counted (SSB rounds small cells). See data-raw/fetch_part_time.py.
+.draw_stillingsandel <- function(code, gender = NULL) {
+  tab <- .cfm_env$part_time_by_occupation
+  grp <- c("p00_19", "p20_39", "p40_59", "p60_79", "p80_99")
+  lo <- c(0.05, 0.20, 0.40, 0.60, 0.80)
+  hi <- c(0.20, 0.40, 0.60, 0.80, 0.99)
+  g <- if (!is.null(gender) && toupper(gender) %in% c("M", "F")) toupper(gender) else "A"
+  pick_row <- function(cd, gg) {
+    r <- tab[tab$code == cd & tab$gender == gg, , drop = FALSE]
+    if (nrow(r) && r$deltid[1] >= 30) r[1, ] else NULL
+  }
+  row <- NULL
+  if (!is.null(tab) && !is.null(code) && !is.na(code)) {
+    row <- pick_row(code, g)
+    if (is.null(row) && g != "A") row <- pick_row(code, "A")
+  }
+  if (is.null(row) && !is.null(tab)) row <- pick_row("0-9", g)
+  if (is.null(row) && !is.null(tab)) row <- pick_row("0-9", "A")
+  if (is.null(row)) return(stats::runif(1, 0.40, 0.80))
+  w <- as.numeric(unlist(row[grp]))
+  k <- sample.int(5L, 1L, prob = w)
+  stats::runif(1, lo[k], hi[k])
+}
+
+.cond_income <- function(age, edu_code, occupation, lang = "en", gender = NULL) {
   .load_data()
   inc <- .cfm_env$income
 
@@ -739,17 +767,16 @@
                 else if (age <= 54) stats::runif(1, 1.00, 1.20)
                 else if (age <= 66) stats::runif(1, 0.95, 1.15)
                 else                stats::runif(1, 0.70, 1.00)
+    # Stillingsandel for part-time workers from SSB 12542, per occupation
+    # and sex. It replaced runif(0.45, 0.80) with a cap at 85 pct: three
+    # hand-set numbers, the same for every job, and nobody below 45 pct.
+    occ_code <- if (is.list(occupation)) occupation$styrk_code else NA_character_
     schedule_mult <- if (identical(occ_schedule, "part"))
-                       stats::runif(1, 0.45, 0.80) else 1
+                       .draw_stillingsandel(occ_code, gender) else 1
     # Smaler noise for deltid (mindre rom for over-betaling enn fast-tids)
     noise_sd <- if (identical(occ_schedule, "part")) 0.15 else 0.25
     noise <- exp(stats::rnorm(1, 0, noise_sd))
     nok_raw <- annual_median * age_mult * schedule_mult * noise
-    # Cap deltids-inntekt: kan ikke overstige 85% av FTE-aldersjustert median
-    if (identical(occ_schedule, "part")) {
-      cap <- annual_median * age_mult * 0.85
-      if (nok_raw > cap) nok_raw <- cap
-    }
     nok <- as.integer(round(nok_raw, -3))
     if (nok < 0) nok <- 0L
     return(list(bracket = .bracket_of(nok), nok = nok))

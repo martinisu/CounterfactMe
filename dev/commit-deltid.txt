@@ -1,0 +1,23 @@
+Deltidsloenn fra SSB 12542; Om-tekst i venstre kolonne
+
+Deltid: .cond_income() regnet en deltidsansatts heltidsloenn om til
+aarsinntekt med en stillingsandel trukket jevnt mellom 45 og 80 pst, med
+tak paa 85 pst. Tre haandsatte tall, like for alle yrker, og ingen under
+45 pst. Det ga blant annet laerervikarer paa deltid opp mot 700 000.
+
+Stillingsandelen trekkes naa fra SSB 12542: hvordan deltidsansatte i
+samme 4-sifrede yrke og kjoenn fordeler seg paa 0-19, 20-39, 40-59, 60-79
+og 80-99 pst stilling (4. kvartal 2025), jevnt innenfor gruppen. For
+kvinnelige grunnskolelaerere paa deltid ligger 29.6 pst under 40 pst;
+for helsefagarbeidere er stillingene stoerre. Yrker med under 30
+deltidsansatte (SSB runder smaa celler) faller tilbake paa fordelingen
+for alle yrker. Taket paa 85 pst er fjernet; det var en lapp paa en
+gjetning. Om noen er deltid i det hele tatt, kommer fortsatt fra 11418.
+
+  data-raw/fetch_part_time.py           ny
+  inst/extdata/part_time_by_occupation.csv  ny, ssb_api i SOURCES.csv
+  tests/testthat/test-income.R          trekket treffer 12542-andelene
+
+Nettsida: "Hvordan" i venstre kolonne er erstattet med en kort versjon av
+Om-seksjonen nederst (hva AlternaLiv er, hvorfor, hvordan man laaser og
+trekker paa nytt), med lenke ned til hele teksten.

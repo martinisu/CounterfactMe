@@ -147,6 +147,12 @@
     colClasses = c(age_band = "character", bracket_code = "character")
   )
 
+  .cfm_env$part_time_by_occupation <- read.csv(
+    file.path(extdata, "part_time_by_occupation.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(code = "character", gender = "character")
+  )
+
   .cfm_env$income_tail_person <- read.csv(
     file.path(extdata, "income_tail_person.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8",

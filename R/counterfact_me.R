@@ -300,7 +300,7 @@ counterfact_me <- function(dimensions = available_dimensions(),
   }
 
   # 7. Income (conditional on age + education + occupation, modulated by background)
-  inc <- .cond_income(age, edu$code, occ, lang = lang)
+  inc <- .cond_income(age, edu$code, occ, lang = lang, gender = gender_draw)
   if (!is.null(inc$nok) && !is.na(inc$nok) && inc$nok > 0) {
     bg_factor <- .background_income_factor(bg$background, bg$name_region,
                                             bg$years_in_norway)

@@ -75,3 +75,10 @@ R-ruten og det ligger en melding i konsollen (`[CFM] R draw failed`).
   `00-`-overstyringen, kapitalinntekt inn i `.cond_income()` **før** inntekt settes
 - Geografisk betinging av formuehalen (44 % av topp 1 % bor i Oslo + Asker/Bærum)
 - Commit + push av v0.9.73 (meldingen ligger i `dev/commit-melding.txt`)
+
+## Neste gang (notert 2026-11-09)
+
+- Fortelling: "Etter et samlivsbrudd har hun to barn" -> "Hun er skilt og har
+  to barn" (R/narrate.R, grenen marital == "skilt").
+- Synlighet: Google Search Console og Bing er satt opp 2026-11-09. Sjekk om
+  "AlternaLiv" gir treff i soek etter en til to uker.
