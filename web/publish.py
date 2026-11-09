@@ -54,6 +54,12 @@ RUNTIME = [
     # Synlighet: ikon, delingsbilde, sitemap. Uten disse i lista ville
     # metadataen i index.html pekt paa filer som ikke finnes paa sida.
     "favicon.svg", "apple-touch-icon.png", "og-image.png", "sitemap.xml",
+    # IndexNow-noekkel (Bing, Yandex m.fl.). Fila maa ligge paa sida for at
+    # varsler om nye/endrede sider skal godtas. Ikke hemmelig.
+    "099f8c1cfe9f8b58d653db5eaf062b82.txt",
+    # Google Search Console-bekreftelse. Maa bli liggende, ellers mister
+    # eiendommen bekreftelsen.
+    "google2eab145b52a95185.html",
 ]
 
 

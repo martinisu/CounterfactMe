@@ -1,0 +1,9 @@
+IndexNow-noekkel for varsling av soekemotorer
+
+Bing, Yandex, Seznam og Naver godtar varsler om nye og endrede sider
+gjennom IndexNow, men bare hvis nettstedet har en noekkelfil som
+beviser eierskap. Fila publiseres via web/publish.py. Noekkelen er ikke
+hemmelig; den beviser bare at varselet kommer fra den som styrer sida.
+
+Og google2eab145b52a95185.html, bekreftelsesfila for Google Search
+Console. Den maa bli liggende for at eiendommen skal forbli bekreftet.
