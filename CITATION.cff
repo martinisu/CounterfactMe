@@ -6,11 +6,11 @@ authors:
     given-names: Martin Arstad
     email: martinisungset@gmail.com
     orcid: "https://orcid.org/0000-0001-9316-3279"
-version: 0.9.62
-date-released: "2026-08-04"
+version: 0.9.73
+date-released: "2026-11-09"
 license: MIT
 repository-code: "https://github.com/martinisu/CounterfactMe"
-url: "https://github.com/martinisu/CounterfactMe"
+url: "https://martinisu.github.io/CounterfactMe/"
 type: software
 keywords:
   - sociology
@@ -20,10 +20,14 @@ keywords:
   - Norway
   - SSB
   - R-package
+  - AlternaLiv
+  - webR
+  - inequality
 abstract: >
   CounterfactMe generates random but plausible counterfactual Norwegian
   lives from open Statistics Norway (SSB) data. Each call to
-  counterfact_me() returns a coherent life across 33+ dimensions
+  counterfact_me() returns a coherent life across 32 dimensions
   (name, age, education, occupation, income, family structure, housing,
   wealth, religion, party, class profile, health, hobbies, and more),
-  conditionally sampled in sociologically realistic order.
+  conditionally sampled in sociologically realistic order. It runs in the
+  browser as AlternaLiv (https://martinisu.github.io/CounterfactMe/).

@@ -16,6 +16,12 @@
 
 read_file <- function(p) paste(readLines(p, warn = FALSE), collapse = "\n")
 
+# Filer som ligger lokalt men bevisst ikke er i repoet (politikk-katalogen er
+# i testfase). README beskriver repoet, saa de telles ikke med her. Uten
+# dette feiler testene lokalt med 1 i differanse og passerer i repoet.
+UNPUBLISHED <- "policy_parameters.csv"
+
+
 test_that("the version is the same everywhere it appears", {
   ver <- read.dcf("../../DESCRIPTION", "Version")[[1]]
 
@@ -50,7 +56,7 @@ test_that("the README's counts match the package", {
   # Derive the count rather than hardcode it: the literal 50 went stale
   # the first time a data file was added.
   ed <- system.file("extdata", package = "CounterfactMe")
-  n_csv <- length(setdiff(list.files(ed, pattern = "\\.csv$"), "SOURCES.csv"))
+  n_csv <- length(setdiff(list.files(ed, pattern = "\\.csv$"), c("SOURCES.csv", UNPUBLISHED)))
   expect_true(grepl(sprintf("%d CSV files ship", n_csv), rme),
               label = sprintf("README should say %d CSV files", n_csv))
 
@@ -64,7 +70,8 @@ test_that("the README's counts match the package", {
 
 test_that("the README's provenance table matches SOURCES.csv", {
   rme <- read_file("../../README.md")
-  tab <- table(data_sources()$status)
+  ds <- data_sources()
+  tab <- table(ds$status[!ds$file %in% UNPUBLISHED])
   for (st in names(tab)) {
     expect_true(grepl(sprintf("`%s`", st), rme, fixed = TRUE),
                 label = sprintf("README mentions status '%s'", st))

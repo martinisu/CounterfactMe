@@ -1,0 +1,33 @@
+AlternaLiv synlig for soek og deling
+
+Siden hadde en <title> og ingenting annet. Teksten Google saa uten
+JavaScript var knappeetiketter ("PASS AlternaLiv KONGERIKET NORGE ...
+Filter Kjoenn Tilfeldig"), og verken CounterfactMe, SSB eller hva siden
+gjoer stod noe sted. Ingen beskrivelse, ingen delingskort, ingen ikon
+(favicon ga 404), ingen sitemap. GitHub-repoet hadde ingen beskrivelse.
+
+web/index.html
+  Meta-beskrivelse, canonical, Open Graph og Twitter-kort med eget
+  delingsbilde (og-image.png, 1200x630), JSON-LD (WebApplication med
+  forfatter, ORCID og kildekode), favicon og apple-touch-icon.
+  Statisk Om-seksjon nederst: hva AlternaLiv er, hvordan den brukes,
+  data og metode, hvem som har laget den. Indekserbar tekst gikk fra
+  1161 til 3159 tegn. SSB-lista paa siden manglet tabellene for inntekt
+  (06655), formue paa personnivaa (08589) og levealder (14569).
+
+web/publish.py
+  Ny runtime-filer, skriver sitemap.xml med dagens dato, og sjekker at
+  alle filer index.html peker paa faktisk finnes i docs/.
+
+  Ingen robots.txt: den leses bare paa vertsroten (martinisu.github.io),
+  som en prosjektside ikke styrer.
+
+README, DESCRIPTION, CITATION
+  README sa 52 datafiler (59), 98 tester (144), versjon 0.9.62, og at
+  docs/ var en enkeltfil med JS-tilnaerming som svarer foerst. Statusen
+  "superseded" manglet i proveniensstabellen. DESCRIPTION faar URL og
+  BugReports. docs/README.md og web/README.md beskrev den gamle bundlede
+  fila og er skrevet om.
+
+  dev/repo-tests teller ikke policy_parameters.csv, som ligger lokalt
+  men ikke i repoet. Ellers feilet de lokalt med 1 i differanse.

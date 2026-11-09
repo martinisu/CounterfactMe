@@ -2,8 +2,74 @@
 <html lang="nb">
 <head>
 <meta charset="utf-8">
-<title>AlternaLiv — Ditt alternative liv</title>
+<title>AlternaLiv – hvem kunne du ha vært? Tilfeldige norske liv fra SSB-data</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Trekk et tilfeldig, realistisk norsk liv – bosted, utdanning, yrke, inntekt, familie og formue – bygget fra SSB-statistikk. Se hvor ulikt livet kunne blitt.">
+<meta name="author" content="Martin Arstad Isungset">
+<meta name="theme-color" content="#6c1318">
+<link rel="canonical" href="https://martinisu.github.io/CounterfactMe/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Delingskort (Facebook, LinkedIn, Slack, Messenger, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AlternaLiv">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:url" content="https://martinisu.github.io/CounterfactMe/">
+<meta property="og:title" content="AlternaLiv – hvem kunne du ha vært?">
+<meta property="og:description" content="Trekk et tilfeldig, realistisk norsk liv – bosted, utdanning, yrke, inntekt, familie og formue – bygget fra SSB-statistikk. Se hvor ulikt livet kunne blitt.">
+<meta property="og:image" content="https://martinisu.github.io/CounterfactMe/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AlternaLiv: Hvem kunne du ha vært? Et tilfeldig, realistisk norsk liv trukket fra SSB-statistikk.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AlternaLiv – hvem kunne du ha vært?">
+<meta name="twitter:description" content="Trekk et tilfeldig, realistisk norsk liv – bosted, utdanning, yrke, inntekt, familie og formue – bygget fra SSB-statistikk. Se hvor ulikt livet kunne blitt.">
+<meta name="twitter:image" content="https://martinisu.github.io/CounterfactMe/og-image.png">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AlternaLiv",
+ "alternateName": [
+  "CounterfactMe",
+  "Ditt alternative liv"
+ ],
+ "url": "https://martinisu.github.io/CounterfactMe/",
+ "description": "Trekk et tilfeldig, realistisk norsk liv – bosted, utdanning, yrke, inntekt, familie og formue – bygget fra SSB-statistikk. Se hvor ulikt livet kunne blitt.",
+ "inLanguage": "nb",
+ "image": "https://martinisu.github.io/CounterfactMe/og-image.png",
+ "applicationCategory": "EducationalApplication",
+ "operatingSystem": "Nettleser",
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "NOK"
+ },
+ "keywords": "alternativt liv, kontrafaktisk liv, hvem kunne jeg vært, tilfeldig liv, SSB, statistikk, ulikhet, sosial mobilitet, Norge, sosiologi",
+ "author": {
+  "@type": "Person",
+  "name": "Martin Arstad Isungset",
+  "sameAs": [
+   "https://orcid.org/0000-0001-9316-3279",
+   "https://github.com/martinisu"
+  ],
+  "affiliation": {
+   "@type": "CollegeOrUniversity",
+   "name": "Universitetet i Oslo"
+  }
+ },
+ "isBasedOn": {
+  "@type": "SoftwareSourceCode",
+  "name": "CounterfactMe",
+  "codeRepository": "https://github.com/martinisu/CounterfactMe",
+  "programmingLanguage": "R",
+  "license": "https://opensource.org/licenses/MIT"
+ }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -873,6 +939,38 @@
   /* Tweaks */
   .cfm-tweaks-portal { z-index: 150; }
 
+
+  /* Om-seksjonen: statisk tekst som forklarer siden. Den er det Google,
+     delingskort og skjermlesere ser foer R har lastet -- uten den bestod
+     den indekserbare teksten av knappeetiketter. */
+  .about {
+    background: var(--paper);
+    color: var(--ink);
+    border-top: 3px solid var(--gold);
+    padding: 56px 24px 64px;
+  }
+  .about-inner { max-width: 760px; margin: 0 auto; }
+  .about h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 600; color: var(--accent);
+    margin: 0 0 18px; line-height: 1.15;
+  }
+  .about h3 {
+    font-family: "JetBrains Mono", Menlo, monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-3); margin: 34px 0 10px; font-weight: 500;
+  }
+  .about p, .about li {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 20px; line-height: 1.55; color: var(--ink-2); margin: 0 0 14px;
+  }
+  .about ul { padding-left: 22px; margin: 0 0 14px; }
+  .about a { color: var(--accent); }
+  .about .about-sig {
+    margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--paper-3);
+    font-family: "JetBrains Mono", Menlo, monospace; font-size: 11px;
+    letter-spacing: 0.06em; color: var(--ink-3); line-height: 1.7;
+  }
   @media (max-width: 1100px) {
     .stage { grid-template-columns: 1fr; }
     .left, .right { border-right: none; border-left: none; border-bottom: 1px solid var(--rule); }
@@ -1063,7 +1161,10 @@
         <div><span class="src-id">11715</span> · Uføretrygd × alder</div>
         <div><span class="src-id">06265</span> · Bolig­forhold</div>
         <div><span class="src-id">03365</span> · Boligprisindeks</div>
+        <div><span class="src-id">06655</span> · Inntekt, personnivå</div>
+        <div><span class="src-id">08589</span> · Formue, personnivå</div>
         <div><span class="src-id">12558</span> · Formue, individnivå</div>
+        <div><span class="src-id">14569</span> · Forventet levealder</div>
         <div><span class="src-id">09817</span> · Innvandrere</div>
         <div><span class="src-id">FHI</span> · Selv­rapportert helse</div>
         <div><span class="src-id">EU-SILC</span> · Materiell deprivasjon</div>
@@ -1073,6 +1174,67 @@
   </aside>
 
 </div>
+
+
+<!-- OM -->
+<section class="about" id="om" aria-labelledby="om-tittel">
+  <div class="about-inner">
+    <h2 id="om-tittel">Hvem kunne du ha vært?</h2>
+    <p>
+      AlternaLiv trekker et tilfeldig, men realistisk liv blant dem som bor i
+      Norge. Livet bygges trinn for trinn fra offentlig statistikk: først alder,
+      kjønn og bosted, så utdanning, yrke og inntekt, deretter familie, bolig,
+      formue, tro og partipreferanse. Hvert trinn er betinget på dem som kom
+      før, slik at en 24-åring i Vardø og en 58-åring i Bærum får liv som
+      henger sammen med hvem de er.
+    </p>
+    <p>
+      Poenget er ikke å spå hvem noen blir. Det er å vise fordelingen: hvor
+      mange ulike liv som er mulige, og hvor skjevt sjansene er fordelt etter
+      når og hvor man blir født, og hvem man blir født av.
+    </p>
+
+    <h3>Slik bruker du den</h3>
+    <ul>
+      <li>Trykk <strong>«Trekk et nytt liv»</strong> for å få et nytt, tilfeldig liv.</li>
+      <li><strong>Lås</strong> det du vil holde fast, for eksempel bosted eller
+        utdanning, og trekk på nytt. Resten endrer seg, men betinget på det
+        du låste.</li>
+      <li>Trekk <strong>én dimensjon</strong> på nytt og se hva som følger med.
+        Bytt yrke, og inntekt, formue og bolig flytter seg.</li>
+      <li><strong>Lagre</strong> og <strong>sammenlign</strong> liv side om side,
+        eller del et liv med en lenke.</li>
+    </ul>
+
+    <h3>Data og metode</h3>
+    <p>
+      Fordelingene kommer fra Statistisk sentralbyrå (SSB): befolkning per
+      kommune, fornavn per fødselskull, utdanning etter alder, lønn per yrke,
+      inntekt og formue på personnivå, og forventet levealder etter kjønn og
+      bosted. Helse, levekår og tillit er hentet fra FHI, EU-SILC og European
+      Social Survey. Hver datafil er merket med hvor den kommer fra, eller
+      med at opphavet ikke er sporet ennå.
+    </p>
+    <p>
+      Beregningene gjøres av R-pakken
+      <a href="https://github.com/martinisu/CounterfactMe">CounterfactMe</a>,
+      som kjører direkte i nettleseren din. Livene trekkes på din maskin og
+      sendes ikke til noen server. Kildekoden er åpen (MIT-lisens).
+    </p>
+    <p>
+      Et liv her er en trekning fra en fordeling, ikke en beskrivelse av en
+      ekte person. Usannsynlige kombinasjoner kan forekomme, fordi de
+      forekommer i virkeligheten. Umulige blir silt bort.
+    </p>
+
+    <div class="about-sig">
+      Laget av Martin Arstad Isungset, sosiolog ved Universitetet i Oslo ·
+      <a href="https://orcid.org/0000-0001-9316-3279">ORCID</a> ·
+      <a href="https://github.com/martinisu/CounterfactMe">Kildekode på GitHub</a> ·
+      <a href="https://github.com/martinisu/CounterfactMe/issues">Meld fra om feil</a>
+    </div>
+  </div>
+</section>
 
 <!-- Compare overlay -->
 <div class="compare-grid" id="compare">

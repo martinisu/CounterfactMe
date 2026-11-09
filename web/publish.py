@@ -51,6 +51,9 @@ RUNTIME = [
     "index.html", "app.jsx", "tweaks-panel.jsx",
     "data.js", "sampler.js", "cfm-translate.js", "cfm-webr.js",
     "cfm-assets.js", "cfm-bootstrap.R", "cfm-reroll.R",
+    # Synlighet: ikon, delingsbilde, sitemap. Uten disse i lista ville
+    # metadataen i index.html pekt paa filer som ikke finnes paa sida.
+    "favicon.svg", "apple-touch-icon.png", "og-image.png", "sitemap.xml",
 ]
 
 
@@ -61,6 +64,18 @@ def main():
     if r.returncode != 0:
         print(r.stdout); print(r.stderr); sys.exit(1)
     print("   " + (r.stdout.strip().splitlines() or ["ok"])[-1])
+
+    # sitemap.xml med lastmod = i dag. Bare en URL: alt annet er hash-lenker
+    # (#l=...) som soekemotorer uansett behandler som samme side.
+    import datetime
+    (WEB / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '  <url>\n'
+        '    <loc>https://martinisu.github.io/CounterfactMe/</loc>\n'
+        f'    <lastmod>{datetime.date.today().isoformat()}</lastmod>\n'
+        '  </url>\n'
+        '</urlset>\n', encoding="utf-8")
 
     print("\n2. Kopierer runtime-filer til docs/")
     DOCS.mkdir(exist_ok=True)
@@ -106,6 +121,18 @@ def main():
         ok = False
     else:
         print(f"   CSV       {len(assets['csv'])}")
+
+    # Alle filer index.html refererer til lokalt skal finnes i docs/.
+    html = (DOCS / "index.html").read_text(encoding="utf-8")
+    refs = set(re.findall(r'(?:src|href)="([^":#?]+\.(?:js|jsx|R|svg|png|xml))"', html))
+    refs |= {u.rsplit("/", 1)[-1] for u in re.findall(
+        r'content="https://martinisu\.github\.io/CounterfactMe/([^"]+)"', html)}
+    missing = sorted(r for r in refs if not (DOCS / r).exists())
+    if missing:
+        print(f"   AVVIK: index.html peker paa filer som mangler: {missing}")
+        ok = False
+    else:
+        print(f"   lenker   alle {len(refs)} lokale referanser finnes")
 
     total = sum((DOCS / f).stat().st_size for f in RUNTIME)
     print(f"   docs/ totalt {total/1048576:.1f} MB")

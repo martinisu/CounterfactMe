@@ -1,7 +1,10 @@
 #!/bin/sh
-# Committer v0.9.73 uten politikk-katalogen. Kjoeres fra hvor som helst.
+# Committer alt unntatt politikk-katalogen. Kjoeres fra hvor som helst.
+# Bruk: sh dev/commit.sh [meldingsfil]   (standard: dev/commit-melding.txt)
 set -e
 cd "$(dirname "$0")/.."
+MSG="${1:-dev/commit-melding.txt}"
+[ -f "$MSG" ] || { echo "STOPP: finner ikke $MSG"; exit 1; }
 
 if [ -e .git/index.lock ]; then
   echo "STOPP: .git/index.lock finnes. Fjern den og kjoer igjen."
@@ -33,7 +36,7 @@ echo "Holdt utenfor (skal bare vaere politikk-filene + lokal SOURCES.csv):"
 git status --short | grep -v '^[MADR] ' || true
 echo
 
-git commit -q -F dev/commit-melding.txt
+git commit -q -F "$MSG"
 git log --oneline -1
 echo
 echo "Ser det riktig ut? Da: git push"
