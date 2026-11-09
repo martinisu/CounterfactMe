@@ -140,6 +140,16 @@ counterfact_me <- function(dimensions = available_dimensions(),
   if ("sentralitet" %in% dimensions) {
     result$sentralitet <- sentr$score
     result$sentralitet_label <- sentr$label
+
+    # Forventet gjenstaaende levetid, SSB 14569: alder x kjonn x sentralitet.
+    # Rent oppslag, ingen antakelse. Dette er en MARGINAL sammenheng -- hva
+    # folk med disse kjennetegnene lever i gjennomsnitt -- ikke en prediksjon
+    # for individet og ikke en aarsakspaastand. Utdanning og inntekt inngaar
+    # ikke; SSB publiserer ingen slik tabell. Se R/mortality.R.
+    le <- .life_expectancy(age, gender_draw, sentr$score)
+    result$life_expectancy_remaining <- if (is.na(le)) NA_real_ else round(le, 1)
+    result$life_expectancy_at <- if (is.na(le)) NA_real_ else round(age + le, 1)
+    result$life_expectancy_baseline <- result$life_expectancy_at
   }
   if ("municipality" %in% dimensions) {
     result$municipality <- mun$name[mun_idx]
@@ -291,6 +301,31 @@ counterfact_me <- function(dimensions = available_dimensions(),
     result$income_bracket <- inc$bracket
     result$income_nok <- inc$nok
     if (!is.null(inc$ukepenger)) result$ukepenger <- inc$ukepenger
+  }
+
+  # Inntektsgradienten i forventet levetid (Kinge et al., JAMA 2019).
+  # Legges paa HER, ikke ved sentralitet, fordi inntekt maa vaere trukket
+  # foerst. Inntekt er en proxy for hele den sosiookonomiske bunten -- ikke
+  # en paastand om at penger i seg selv forlenger liv -- og det er derfor
+  # NOEYAKTIG EN gradient, ikke ett ledd per variabel. Helse og alkohol
+  # legges ikke paa: .cond_health() og .cond_alcohol() betinger begge paa
+  # utdanning, saa de ville talt samme utdanning om igjen.
+  #
+  # VIKTIG: sammenhengen gaar begge veier. Kinges forfattere peker paa at
+  # kronisk sykdom forklarer mye av gapet -- de fattigste har delvis lav
+  # inntekt FORDI de er syke. Dette er en marginal sammenheng, ikke en
+  # aarsakspaastand og ikke en spaadom for individet.
+  if (!is.null(result$life_expectancy_remaining) &&
+      !is.na(result$life_expectancy_remaining)) {
+    off <- .mortality_income_offset(result$income_nok, gender_draw, age)
+    if (!is.na(off) && off != 0) {
+      rem <- max(0.5, result$life_expectancy_remaining + off)
+      result$life_expectancy_remaining <- round(rem, 1)
+      result$life_expectancy_at <- round(age + rem, 1)
+      result$life_expectancy_income_offset <- round(off, 1)
+    } else {
+      result$life_expectancy_income_offset <- 0
+    }
   }
 
   # NEET-override: hvis ego er NEET, sett inntekten til AAP/sosialhjelp-niva

@@ -112,26 +112,110 @@ sample_education <- function(n = 1, lang = c("en", "no")) {
 
 #' Sample a random income bracket
 #'
-#' Draws an income decile from the Norwegian gross income distribution.
-#' Each decile is equally likely (10 % each). Returns both the bracket
-#' label and a random NOK amount within that bracket.
+#' Draws a gross income from SSB 06655, the person-level distribution for
+#' residents 17+ (2024). Brackets are drawn with their real population
+#' weights -- they are SSB's own intervals, not deciles, so they are NOT
+#' equally likely. Within a bracket the draw reproduces that bracket's mean
+#' rather than assuming a flat rectangle, the open top bracket is a Pareto
+#' anchored on SSB's mean above 2 MNOK, and the share with no gross income
+#' at all is carried explicitly.
+#'
+#' This replaced income_deciles.csv, which was "untraced" in SOURCES.csv and
+#' turned out to be the 2022 distribution with a uniform bottom and a
+#' uniform top capped at 2 MNOK. See data-raw/fetch_income.py.
 #'
 #' @param n Number of draws. Default 1.
+#' @param age Optional age. When given, the income distribution for that
+#'   age band is used; otherwise the national distribution.
 #' @return A list with two elements: \code{bracket} (character vector of
 #'   labels) and \code{nok} (integer vector of NOK amounts).
 #' @export
 #' @examples
 #' sample_income()
 #' sample_income(5)
-sample_income <- function(n = 1) {
+#' sample_income(3, age = 45)
+sample_income <- function(n = 1, age = NULL) {
   .load_data()
-  inc <- .cfm_env$income
-  idx <- sample(seq_len(nrow(inc)), size = n, replace = TRUE)
-  # Cap top decile at 2 million for realism
-  upper <- pmin(inc$upper_nok[idx], 2000000)
-  lower <- inc$lower_nok[idx]
-  nok <- as.integer(round(stats::runif(n, lower, upper), -3))
-  list(bracket = inc$label[idx], nok = nok)
+  tbl <- .cfm_env$income_by_age
+  if (is.null(tbl)) return(list(bracket = rep(NA_character_, n),
+                                nok = rep(NA_integer_, n)))
+
+  # Age band if given, otherwise the national distribution (sum over bands).
+  band <- if (is.null(age) || is.na(age)) NA_character_ else .wealth_age_band(age)
+  sub <- if (!is.na(band)) tbl[tbl$age_band == band, , drop = FALSE] else tbl
+  if (!nrow(sub)) sub <- tbl
+  # Aggregate by bracket_code alone. An earlier version grouped by
+  # upper_nok too, and the open top bracket carries upper_nok = NA -- formula
+  # aggregation DROPS rows with NA in a grouping variable, so the entire
+  # tail silently vanished: 0 of 40 000 draws landed above 2 MNOK against an
+  # expected 716, and the mean came out 10 pct low. The missing 1.79 pct at
+  # a mean of 3.77 MNOK accounted for almost exactly that gap.
+  codes <- unique(sub$bracket_code)
+  first <- match(codes, sub$bracket_code)
+  agg <- data.frame(
+    bracket_code  = codes,
+    bracket_label = sub$bracket_label[first],
+    lower_nok     = sub$lower_nok[first],
+    upper_nok     = sub$upper_nok[first],
+    count    = vapply(codes, function(k) sum(sub$count[sub$bracket_code == k]), numeric(1)),
+    sum_mill = vapply(codes, function(k) sum(as.numeric(sub$sum_mill[sub$bracket_code == k])), numeric(1)),
+    stringsAsFactors = FALSE
+  )
+  agg$mean_nok <- agg$sum_mill * 1e6 / agg$count
+
+  # Persons with NO gross income at all. 06655 counts only those with an
+  # amount; the rest of the 17+ population has none. Conflating them with
+  # "low income" was one of the errors in the old decile file.
+  p_none <- 0
+  ns <- .cfm_env$income_none_share
+  if (!is.null(ns) && nrow(ns)) {
+    row <- if (!is.na(band)) ns[ns$age_band == band, , drop = FALSE] else ns
+    p_none <- if (nrow(row) == 1) row$share_none[1]
+              else sum(row$none) / sum(row$population)
+  }
+
+  idx <- sample(seq_len(nrow(agg)), size = n, replace = TRUE,
+                prob = agg$count / sum(agg$count))
+  nok <- vapply(seq_len(n), function(i) {
+    if (stats::runif(1) < p_none) return(0)
+    k <- idx[i]
+    lo <- agg$lower_nok[k]; hi <- agg$upper_nok[k]; mu <- agg$mean_nok[k]
+    if (is.na(hi)) return(.income_tail_draw(band))
+    # Draw within the interval so the interval MEAN is reproduced, rather
+    # than assuming a flat rectangle. A triangular density on [lo, hi] with
+    # mode chosen to hit mu does that with one parameter.
+    mode <- pmin(pmax(3 * mu - lo - hi, lo), hi)
+    u <- stats::runif(1)
+    fc <- (mode - lo) / (hi - lo)
+    v <- if (u < fc) lo + sqrt(u * (hi - lo) * (mode - lo))
+         else hi - sqrt((1 - u) * (hi - lo) * (hi - mode))
+    v
+  }, numeric(1))
+
+  list(bracket = agg$bracket_label[idx],
+       nok = as.integer(round(pmin(nok, .Machine$integer.max - 1), -3)))
+}
+
+#' Draw from the person-level income tail
+#'
+#' Pareto above 2 MNOK with alpha solved so the truncated mean equals SSB's
+#' figure for the band. See data-raw/fetch_income.py.
+#'
+#' @param band Age band, or NA for the national tail.
+#' @return Numeric income in NOK.
+#' @keywords internal
+.income_tail_draw <- function(band = NA_character_) {
+  tp <- .cfm_env$income_tail_person
+  if (is.null(tp) || !nrow(tp)) return(2e6)
+  row <- if (!is.na(band)) tp[tp$age_band == band, , drop = FALSE] else tp
+  if (nrow(row) != 1) {
+    # National tail: pool the bands, weighting alpha by headcount.
+    a <- sum(tp$pareto_alpha * tp$n_persons) / sum(tp$n_persons)
+    xm <- tp$pareto_xm[1]; cap <- tp$pareto_cap[1]
+  } else {
+    a <- row$pareto_alpha[1]; xm <- row$pareto_xm[1]; cap <- row$pareto_cap[1]
+  }
+  min(xm / stats::runif(1)^(1 / a), cap)
 }
 
 #' Sample a random household type

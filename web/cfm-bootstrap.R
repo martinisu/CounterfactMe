@@ -24,6 +24,13 @@ system.file <- function(..., package = "base", lib.loc = NULL,
 }
 
 # --- 2. Source pakke-filer i avhengighetsrekkefølge ---
+# Holdes eksplisitt fordi rekkefolgen her er kjent god. Alt annet som ligger
+# i /cfm/R sources automatisk i steg 2b.
+.cfm_sourced <- c(
+  "zzz.R", "samplers.R", "conditional.R", "impossibility.R",
+  "counterfact_me.R", "constrained.R", "narrate.R", "print.R",
+  "sources.R", "audit.R", "verify.R"
+)
 source("/cfm/R/zzz.R")            # .cfm_env + .load_data (bruker system.file)
 source("/cfm/R/samplers.R")       # available_dimensions + uavhengige samplers
 source("/cfm/R/conditional.R")    # .cond_* funksjoner (kjernen)
@@ -35,6 +42,27 @@ source("/cfm/R/print.R")          # print-metoder + `%||%`
 source("/cfm/R/sources.R")        # data_sources() — provenans (0.9.36)
 source("/cfm/R/audit.R")          # audit_plausibility() (0.9.27)
 source("/cfm/R/verify.R")         # verify_consistency()
+
+# --- 2b. Alt annet som er montert, sources automatisk ---
+#
+# Lista over ble aldri vedlikeholdt automatisk, og 15. oktober 2026 kostet
+# det: era.R, mortality.R og population.R kom inn i pakka, bootstrapen
+# sourcet dem ikke, og counterfact_me.R kalte .life_expectancy() fra
+# mortality.R. Appen ble staaende paa "Laster R" uten feilmelding.
+#
+# Samme vane som system.file()-shimmen over loste for CSV-ene: ta det som
+# faktisk ligger der i stedet for aa fore en liste. Rekkefolgen over
+# beholdes der den betyr noe; funksjonsdefinisjoner har ingen innbyrdes
+# rekkefolge saa lenge ingen kalles mens fila sources.
+local({
+  skip <- c("llm.R", "CounterfactMe-package.R", "patch-cond-wealth.R")
+  alt <- setdiff(list.files("/cfm/R", pattern = "[.]R$"),
+                 c(skip, .cfm_sourced))
+  for (f in alt) source(file.path("/cfm/R", f))
+  if (length(alt)) message("bootstrap: sourcet i tillegg: ",
+                           paste(alt, collapse = ", "))
+})
+
 
 # NB: R/llm.R sources bevisst IKKE. Den krever en lokal Ollama-server
 # (narrate_life_llm / ollama_available) som ikke finnes i nettleseren, og

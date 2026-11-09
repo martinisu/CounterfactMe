@@ -128,6 +128,37 @@
   )
 
 
+  .cfm_env$mortality_income_gradient <- read.csv(
+    file.path(extdata, "mortality_income_gradient.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(gender = "character")
+  )
+
+  .cfm_env$life_expectancy <- read.csv(
+    file.path(extdata, "life_expectancy.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(region_code = "character", sentralitet = "character",
+                   gender = "character")
+  )
+
+  .cfm_env$income_by_age <- read.csv(
+    file.path(extdata, "income_by_age.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(age_band = "character", bracket_code = "character")
+  )
+
+  .cfm_env$income_tail_person <- read.csv(
+    file.path(extdata, "income_tail_person.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(age_band = "character")
+  )
+
+  .cfm_env$income_none_share <- read.csv(
+    file.path(extdata, "income_none_share.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(age_band = "character")
+  )
+
   .cfm_env$wealth_tail_person <- read.csv(
     file.path(extdata, "wealth_tail_person.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8",

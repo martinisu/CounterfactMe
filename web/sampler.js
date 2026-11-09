@@ -1,7 +1,19 @@
-// CounterfactMe sampler — JS approximation of R conditional logic
-// Mirrors R-package v0.9.1 (.cond_party, .cond_health, .cond_bourdieu, ...).
-// Frame: structural variants modulate parents→child correlations
-// Frames: "ren_sjanse" | "meritokrati" | "bourdieu" | "rawls" | "funksjonalisme"
+// CounterfactMe sampler — OPPSTARTSRESERVE, ikke hovedmotor.
+//
+// Dette er en JS-tilnærming til den betingede logikken i R-pakken, skrevet
+// mot v0.9.1. Den er IKKE vedlikeholdt i takt med pakken og kjenner ingenting
+// av det som er kommet etter: dødelighet og forventet gjenstående levetid,
+// utdanningsbånd per kohort, person-nivås formuehale, aldersbetinget inntekt.
+// Tall den produserer skal ikke brukes til noe annet enn å ha noe på skjermen.
+//
+// Den kjører bare i to tilfeller:
+//   1. mens webR laster (første trekk, før R-en er klar)
+//   2. hvis R-en feiler
+// Statusindikatoren i topbaren sier "Kilde · JS-fallback" når det skjer.
+//
+// LÅSTE trekk gikk også hit før — det var en feil. R-pakken har pin-
+// maskineriet (cfm_draw_locked_json i cfm-reroll.R), og broen sender nå
+// låsene dit i stedet.
 
 (function() {
   const D = window.CFM_DATA;
@@ -948,7 +960,10 @@
   // --- Top-level draw ---
   function drawLife(opts = {}, locks = {}) {
     const filters = opts.filters || {};
-    const frame = opts.frame || "funksjonalisme";
+    // Rammeverksvelgeren (ren_sjanse/meritokrati/bourdieu/rawls/
+    // funksjonalisme) ble fjernet fra pakken, se dev/design/mechanisms.md.
+    // Vektene under er varianten som sto igjen. Konstant, ikke en valgmulighet.
+    const frame = "funksjonalisme";
 
     let age = locks.age != null ? locks.age : sampleAge(filters.minAge ?? 0, filters.maxAge ?? 99);
     let gender = locks.gender || (filters.gender && filters.gender !== "any" ? filters.gender : (rand() < 0.5 ? "M" : "F"));
@@ -1066,7 +1081,6 @@
       grandparents,
       hytte,
       bourdieu,
-      frame,
       drawn_at: Date.now()
     };
   }

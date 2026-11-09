@@ -19,7 +19,7 @@ housing_price_index.csv,untraced,,,Boligprisindeks; tabell ikke dokumentert i pa
 housing_prices.csv,untraced,,,Boligpriser; tabell ikke dokumentert i pakken
 immigrant_country_dist.csv,ssb_cited,09817,,Sitert i R/conditional.R
 immigration_start_year.csv,untraced,,,"start_year/peak_year + arrival_profile (labour/mixed/refugee). Profilen er satt etter norsk innvandringshistorie per land, ikke fra en enkeltkilde."
-income_deciles.csv,untraced,,,
+income_deciles.csv,superseded,,,"2022-fordelingen, sporet via SSB 09935. Uniform bunn og uniform topp med tak paa 2 mill. Erstattet av income_by_age.csv 2026-09-18. Beholdes for referanse."
 kommune_price_multiplier.csv,untraced,,,
 kommune_sentralitet.csv,untraced,,,"Antatt SSB Klass 128, ikke verifisert"
 marital_status.csv,untraced,,,
@@ -53,4 +53,8 @@ wealth_by_age.csv,ssb_cited,08589,,"Personniva 17+, SSB 08589. Kroppen av formue
 wealth_deciles.csv,ssb_cited,10318,,HUSHOLDNINGSTABELL. Brukt til 2026-09-18 for a eskalere toppbracketen i en personbasert sampler - feil analyseenhet. Erstattet av wealth_tail_person.csv. Beholdes for referanse.
 wealth_tail_person.csv,ssb_api,08589,,Personniva 17+ fra SSB 08589 (antall og SumNetto for intervall 2M+). Pareto-alfa lost slik at trunkert snitt = SSBs snitt. Se data-raw/fetch_wealth_tail.py
 wealth_class_person.csv,ssb_api,08589,,"Personniva grenser for topp 5/1/0,1 pst, avledet av samme 08589-tall. Erstatter husholdningstersklene fra 10318"
-policy_parameters.csv,authored,,,"Politikkparametere med kunnskapsgrad. 18 verifisert mot primaerkilde, 9 tomme"
+income_by_age.csv,ssb_api,06655,,Personniva 17+ fra SSB 06655 (2024). Antall og sum per inntektsintervall per aldersband. Se data-raw/fetch_income.py
+income_tail_person.csv,ssb_api,06655,,"Pareto-alfa for inntekt over 2 mill., lost mot SSBs snitt per aldersband. Samme metode som formueshalen"
+income_none_share.csv,ssb_api,06655,,"Andel 17+ uten bruttoinntekt i det hele tatt, per aldersband. 3.39 pst ved 17-24, 0.62 pst ved 67+"
+life_expectancy.csv,ssb_api,14569,,"Forventet gjenstaende levetid etter alder, kjonn og sentralitet, 2025. Kjonnsgap 3.2 aar, sentralitetsgap 2.2 (menn) og 1.2 (kvinner). Utdanning inngaar IKKE - SSB publiserer ingen slik tabell. Se data-raw/fetch_life_expectancy.py"
+mortality_income_gradient.csv,authored,,,"Relativ inntektsgradient i forventet levetid, forankret paa Kinge et al., JAMA 2019;321(19):1916-1925 (Norge 2005-2015, 40+). Menn 13.9 aar mellom p1 og p99, kvinner 8.4. Null-sum, saa nivaaet forblir SSB 14569. OMVENDT KAUSALITET: kronisk sykdom forklarer mye av gapet. Se data-raw/build_income_mortality.py"

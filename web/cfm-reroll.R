@@ -194,6 +194,13 @@
   list(life = life, ctx_id = id)
 }
 
+# --- Kontekst-oppslag ---
+.cfm_get_ctx <- function(ctx_id) {
+  ctx <- get0(as.character(ctx_id), envir = .cfm_ctx_store, ifnotfound = NULL)
+  if (is.null(ctx)) stop("ukjent ctx_id (", ctx_id, ") \u2014 trekk et nytt liv f\u00f8rst")
+  ctx
+}
+
 # --- JS-bro: trekk et liv ---
 cfm_draw_json <- function(min_age = 0, max_age = 99, gender = NULL,
                           lang = "no") {
@@ -202,35 +209,27 @@ cfm_draw_json <- function(min_age = 0, max_age = 99, gender = NULL,
   .cfm_serialize(out$life, out$ctx_id, lang)
 }
 
-# --- JS-bro: om-trekk én dimensjon betinget på resten ---
-# keep: ekstra pin-nøkler (brukerens harde låser) som IKKE skal om-trekkes
-#       selv om de ligger nedstrøms av målet.
-cfm_reroll_json <- function(dim, ctx_id, keep = character(0), lang = "no") {
-  ctx <- get0(as.character(ctx_id), envir = .cfm_ctx_store, ifnotfound = NULL)
-  if (is.null(ctx)) stop("ukjent ctx_id (", ctx_id, ") — trekk et nytt liv først")
-  redraw <- .cfm_redraw_sets[[dim]]
-  if (is.null(redraw)) stop("ukjent reroll-dimensjon: ", dim)
-  redraw <- setdiff(redraw, keep)
+# --- Felles pin-maskineri ---
+# Pinner et sett interne nøkler til verdiene de hadde i ctx: trekk-funksjonen
+# byttes ut med en som returnerer den lagrede verdien og registrerer den i
+# .cfm_cap, slik at den nye konteksten arver pinnede verdier.
+#
+# Dette ble trukket ut av cfm_reroll_json fordi det er NØYAKTIG samme operasjon
+# som et låst trekk trenger. Forskjellen ligger bare i hvilke nøkler som pinnes:
+#   reroll(dim)  -> pin alt UNNTATT dim og dens nedstrøms-kjegle
+#   låst trekk   -> pin brukerens låser, trekk ALT annet friskt
+# Før dette hadde nettleseren en egen JS-implementasjon for det andre tilfellet
+# (sampler.js, speilet R-pakken v0.9.1) mens R-en satt på maskineriet hele tida.
+#
+# Returnerer teardown som en funksjon; kalleren MÅ registrere den med on.exit.
+.cfm_apply_pins <- function(ctx, pins) {
+  restore <- list()
+  mun_pinned <- FALSE
 
-  pins <- setdiff(.cfm_all_pin_keys(), redraw)
-
-  # pin-funksjon: returnerer lagret verdi OG registrerer den i .cfm_cap,
-  # slik at den nye konteksten arver pinnede verdier.
   pin_fn <- function(k, value) {
     force(k); force(value)
     function(...) { assign(k, value, envir = .cfm_cap); value }
   }
-
-  restore <- list()
-  mun_pinned <- FALSE
-  on.exit({
-    for (fname in names(restore)) assign(fname, restore[[fname]], envir = globalenv())
-    if (mun_pinned && !is.null(.cfm_env$municipalities_full)) {
-      .cfm_env$municipalities <- .cfm_env$municipalities_full
-      .cfm_env$municipalities_full <- NULL
-    }
-  }, add = TRUE)
-
   pin_one <- function(fname, fn) {
     if (!exists(fname, envir = globalenv())) return(invisible(NULL))
     if (is.null(restore[[fname]])) restore[[fname]] <<- get(fname, envir = globalenv())
@@ -270,9 +269,63 @@ cfm_reroll_json <- function(dim, ctx_id, keep = character(0), lang = "no") {
     }
   }
 
+  function() {
+    for (fname in names(restore)) assign(fname, restore[[fname]], envir = globalenv())
+    if (mun_pinned && !is.null(.cfm_env$municipalities_full)) {
+      .cfm_env$municipalities <- .cfm_env$municipalities_full
+      .cfm_env$municipalities_full <- NULL
+    }
+  }
+}
+
+# --- JS-bro: om-trekk én dimensjon betinget på resten ---
+# keep: ekstra pin-nøkler (brukerens harde låser) som IKKE skal om-trekkes
+#       selv om de ligger nedstrøms av målet.
+cfm_reroll_json <- function(dim, ctx_id, keep = character(0), lang = "no") {
+  ctx <- .cfm_get_ctx(ctx_id)
+  redraw <- .cfm_redraw_sets[[dim]]
+  if (is.null(redraw)) stop("ukjent reroll-dimensjon: ", dim)
+  redraw <- setdiff(redraw, keep)
+
+  teardown <- .cfm_apply_pins(ctx, setdiff(.cfm_all_pin_keys(), redraw))
+  on.exit(teardown(), add = TRUE)
+
   out <- .cfm_run_draw(if (is.null(ctx$min_age)) 0L else ctx$min_age,
                        if (is.null(ctx$max_age)) 99L else ctx$max_age,
                        ctx$gender, lang)
+  .cfm_serialize(out$life, out$ctx_id, lang)
+}
+
+# --- JS-bro: nytt trekk med brukerens låser holdt fast ---
+# pin: interne nøkler (fra R_PIN_FOR_LOCK i app.jsx) som skal beholdes fra
+#      ctx_id. ALT annet trekkes friskt, betinget på de pinnede verdiene.
+#
+# Merk at dette ikke er counterfact_me_constrained(): den gjør rejection
+# sampling på ferdige labels og ville aldri truffet en pinnet kroneinntekt.
+# Pinning griper inn i selve den betingede kjeden, som er det låsing betyr.
+#
+# Aldersvinduet og kjønn fra UI-filtrene sendes med som før; pinnene
+# overstyrer dem der de overlapper.
+cfm_draw_locked_json <- function(ctx_id, pin = character(0),
+                                 min_age = 0, max_age = 99,
+                                 gender = NULL, lang = "no") {
+  pin <- intersect(pin, .cfm_all_pin_keys())
+  if (length(pin) == 0) return(cfm_draw_json(min_age, max_age, gender, lang))
+
+  ctx <- .cfm_get_ctx(ctx_id)
+
+  teardown <- .cfm_apply_pins(ctx, pin)
+  on.exit(teardown(), add = TRUE)
+
+  # Alder trenger ingen egen behandling: er den pinnet, er sample_age byttet
+  # ut, og aldersvinduet i argumentene blir uvirksomt av seg selv.
+  #
+  # Kjønn er ikke en pin-nøkkel (det er et argument til counterfact_me), så
+  # når navnet er låst må kjønnet følge med — ellers kan "Kari" bli mann.
+  g <- if (is.null(gender) || identical(gender, "any")) NULL else toupper(gender)
+  if ("name" %in% pin && !is.null(ctx$gender)) g <- ctx$gender
+
+  out <- .cfm_run_draw(min_age, max_age, g, lang)
   .cfm_serialize(out$life, out$ctx_id, lang)
 }
 

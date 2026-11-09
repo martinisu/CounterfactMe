@@ -4,21 +4,34 @@
 \alias{sample_income}
 \title{Sample a random income bracket}
 \usage{
-sample_income(n = 1)
+sample_income(n = 1, age = NULL)
 }
 \arguments{
 \item{n}{Number of draws. Default 1.}
+
+\item{age}{Optional age. When given, the income distribution for that
+age band is used; otherwise the national distribution.}
 }
 \value{
 A list with two elements: \code{bracket} (character vector of
 labels) and \code{nok} (integer vector of NOK amounts).
 }
 \description{
-Draws an income decile from the Norwegian gross income distribution.
-Each decile is equally likely (10 \% each). Returns both the bracket
-label and a random NOK amount within that bracket.
+Draws a gross income from SSB 06655, the person-level distribution for
+residents 17+ (2024). Brackets are drawn with their real population
+weights -- they are SSB's own intervals, not deciles, so they are NOT
+equally likely. Within a bracket the draw reproduces that bracket's mean
+rather than assuming a flat rectangle, the open top bracket is a Pareto
+anchored on SSB's mean above 2 MNOK, and the share with no gross income
+at all is carried explicitly.
+}
+\details{
+This replaced income_deciles.csv, which was "untraced" in SOURCES.csv and
+turned out to be the 2022 distribution with a uniform bottom and a
+uniform top capped at 2 MNOK. See data-raw/fetch_income.py.
 }
 \examples{
 sample_income()
 sample_income(5)
+sample_income(3, age = 45)
 }

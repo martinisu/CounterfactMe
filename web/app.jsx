@@ -82,27 +82,52 @@ function wireFilters() {
 
 // ---- R-bridge state ----
 // Vi prefererer R-pakken når den er klar (cfm-webr.js setter window.CFM_R).
-// Fallback til JS-sampleren (CFM.drawLife) brukes mens R laster, ved feil,
-// eller når brukeren har satt locks (R-pakken støtter ikke locks).
+// Fallback til JS-sampleren (CFM.drawLife) brukes nå BARE mens R laster og
+// ved feil. Tidligere gikk også alle låste trekk dit, fordi R-brua ikke
+// sendte låsene videre — men R-pakken har pin-maskineriet som reroll bruker,
+// og et låst trekk er nøyaktig samme operasjon med et annet nøkkelsett.
+// Se cfm_draw_locked_json() i cfm-reroll.R.
 const RBridge = {
   get ready() { return window.CFM_R && window.CFM_R.status === 'ready'; },
   get loading() { return window.CFM_R && window.CFM_R.status === 'loading'; },
+  // Pin-nøkler for de låsene R faktisk kan holde fast.
+  pinsFor(locks) {
+    return Object.keys(locks || {})
+      .filter(k => locks[k] != null)
+      .map(k => R_PIN_FOR_LOCK[k])
+      .filter(Boolean);
+  },
+  // Kan vi trekke låst i R? Pin-verdiene hentes fra konteksten til det
+  // inneværende livet, så det må være et R-trekk med en gyldig ctx-id.
+  canDrawLocked(locks, life) {
+    return !!(window.CFM_R && window.CFM_R.drawLockedLife &&
+      life && life._fromR && life._ctxId != null &&
+      this.pinsFor(locks).length > 0);
+  },
   // Rejection-sampling: R-pakken aksepterer ikke county-filter, så vi
-  // trekker opptil maxAttempts ganger til county matcher.
-  async draw(filters) {
+  // trekker opptil maxAttempts ganger til county matcher. Er bostedet låst,
+  // er kommunen pinnet og fylket følger av den — ingen grunn til å prøve 40.
+  async draw(filters, locks, life) {
     const opts = {
       min_age: filters.minAge || 0,
       max_age: filters.maxAge || 99,
       gender: filters.gender && filters.gender !== 'any' ? filters.gender : 'any'
     };
+    const pins = this.pinsFor(locks);
+    const locked = this.canDrawLocked(locks, life);
+    const ctxId = locked ? life._ctxId : null;
+    const munPinned = locked && pins.includes('mun');
+
     const wantCounty = filters.county && filters.county !== 'all' ? filters.county : null;
-    const maxAttempts = wantCounty ? 40 : 1;
+    const maxAttempts = (wantCounty && !munPinned) ? 40 : 1;
     let last = null;
     for (let i = 0; i < maxAttempts; i++) {
-      const r = await window.CFM_R.drawLife(opts);
-      const life = window.translateRLife(r);
-      last = life;
-      if (!wantCounty || life.county === wantCounty) return life;
+      const r = locked
+        ? await window.CFM_R.drawLockedLife(ctxId, pins, opts)
+        : await window.CFM_R.drawLife(opts);
+      const l = window.translateRLife(r);
+      last = l;
+      if (!wantCounty || munPinned || l.county === wantCounty) return l;
     }
     return last; // ga opp; vis det vi fikk
   }
@@ -122,6 +147,14 @@ const RBridge = {
   // Initiell tilstand
   const cur = window.CFM_R?.status || 'loading';
   render(cur, window.CFM_R?.statusText);
+  // Indikatoren skal si hva som faktisk lagde livet på skjermen, ikke bare
+  // om R er lastet. Et låst trekk som måtte til JS er fortsatt JS-fallback
+  // selv om R-en står klar ved siden av.
+  window.cfmRenderSource = life => {
+    if (!life) return;
+    if (life._fromR) render('ready', 'Trukket i R-pakken.');
+    else render('error', 'Dette livet er trukket av JS-reserven, ikke R-pakken.');
+  };
   document.addEventListener('cfm-r-status', e => {
     render(e.detail.status, e.detail.text);
     // Når R blir klar, redraw det inneværende livet i R-shape
@@ -133,11 +166,17 @@ const RBridge = {
 
 // ---- Build a draw and put it in STATE.current ----
 async function drawAndRender() {
-  const useR = RBridge.ready && Object.keys(STATE.locks || {}).length === 0;
+  // Låser diskvalifiserer ikke lenger R. Det eneste tilfellet som fortsatt
+  // må til JS er låser satt på et liv som ikke kom fra R (dvs. satt mens R
+  // lastet) — da finnes det ingen R-kontekst å pinne fra.
+  const prev = STATE.current;
+  const hasLocks = Object.keys(STATE.locks || {}).length > 0;
+  const useR = RBridge.ready &&
+    (!hasLocks || RBridge.canDrawLocked(STATE.locks, prev));
   let life;
   if (useR) {
     try {
-      life = await RBridge.draw(STATE.filters);
+      life = await RBridge.draw(STATE.filters, STATE.locks, prev);
       life._fromR = true;
     } catch (e) {
       console.warn('[CFM] R draw failed, falling back to JS sampler', e);
@@ -147,6 +186,7 @@ async function drawAndRender() {
     life = CFM.drawLife({ filters: STATE.filters }, STATE.locks);
   }
   STATE.current = life;
+  if (window.cfmRenderSource) window.cfmRenderSource(life);
   const card = document.getElementById('card');
   if (card) card.classList.remove('just-drawn', 'stamped');
   renderCard();
@@ -329,7 +369,7 @@ function renderCard(targetId) {
     const v = dimValueFor(d.key, life);
     const locked = STATE.locks[lockKeyFor(d.key)] != null;
     // Skjul reroll-knappen for felter som ikke er meningsfullt-låsbare i sampleren.
-    const lockable = lockKeyFor(d.key) && !["wealth","field"].includes(lockKeyFor(d.key));
+    const lockable = isLockable(lockKeyFor(d.key));
     return `
       <div class="dim ${locked ? 'locked' : ''}" data-dim="${d.key}">
         <div class="dim-label">${d.label}</div>
@@ -490,19 +530,30 @@ function escapeHtml(s) {
 function lockKeyFor(dim) {
   return ({ name:"name", age:"age", municipality:"municipality", occupation:"occupation", education:"education", field:"field", income:"income_nok", household:"household", marital:"marital", religion:"religion", party:"party", wealth:"wealth" })[dim];
 }
+// Hvor låseverdien leses fra på livsobjektet, der feltnavnet ikke er
+// identisk med låsenøkkelen. Verdien brukes av JS-fallbacken; R pinner fra
+// trekk-konteksten og trenger den ikke, men den må være satt og ulik null
+// for at feltet skal VISES som låst.
+const LOCK_VALUE_FIELD = { income_nok: "income_nok", wealth: "wealth_class" };
+
+// Formue og studieretning kunne ikke låses i JS-sampleren. R kan pinne dem
+// (nøklene `wealth` og `nus`), så de er låsbare når R er klar.
+const R_ONLY_LOCKS = ["wealth", "field"];
+function lockableInJS(k) { return !R_ONLY_LOCKS.includes(k); }
+function isLockable(k) { return !!k && (lockableInJS(k) || RBridge.ready); }
+
 function toggleLock(dim) {
   const k = lockKeyFor(dim);
-  if (!k) return;
+  if (!isLockable(k)) return;
   if (STATE.locks[k] != null) {
     delete STATE.locks[k];
   } else {
     const life = STATE.current;
-    if (k === "income_nok") STATE.locks[k] = life.income_nok;
-    else if (k === "wealth" || k === "field") {
-      // these aren't directly lockable in sampler — skip gracefully
-      return;
-    }
-    else STATE.locks[k] = life[k];
+    const v = life[LOCK_VALUE_FIELD[k] || k];
+    // Uten en verdi ville feltet aldri vist seg som låst, og brukeren ville
+    // bare se at knappen ikke gjør noe.
+    if (v == null) return;
+    STATE.locks[k] = v;
   }
   renderCard();
 }
@@ -549,9 +600,9 @@ async function rerollExcept(dim) {
   DIM_KEYS.forEach(d => {
     if (d.key === dim) return;
     const k = lockKeyFor(d.key);
-    if (!k || k === "wealth" || k === "field") return;
-    if (k === "income_nok") newLocks[k] = life.income_nok;
-    else newLocks[k] = life[k];
+    if (!k || !lockableInJS(k)) return;
+    const v = life[LOCK_VALUE_FIELD[k] || k];
+    if (v != null) newLocks[k] = v;
   });
   // preserve user-set hard locks too
   const oldLocks = STATE.locks;
@@ -1513,7 +1564,7 @@ function renderSaved() {
     <div class="saved-card" data-idx="${idx}">
       <button class="saved-rm" data-rm="${idx}" title="Fjern">×</button>
       <div class="saved-name">${escapeHtml(l.name)}</div>
-      <div class="saved-meta">${l.age} år · ${escapeHtml(l.municipality)} · ${escapeHtml(l.frame)}</div>
+      <div class="saved-meta">${l.age} år · ${escapeHtml(l.municipality)} · ${escapeHtml(l.occupation || l.education || "—")}</div>
     </div>
   `).join('');
   list.querySelectorAll('.saved-card').forEach(el => {

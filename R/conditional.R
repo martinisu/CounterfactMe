@@ -1332,8 +1332,22 @@
 
   # --- 2. Death year. Uses implied (uncapped) age. For implied_age >= 105
   #         death is certain. Death age sampled triangular over [60, implied_age].
-  .death_year <- function(implied_age, birth_year) {
+  .death_year <- function(implied_age, birth_year, parent_gender = NULL,
+                          parent_income_proxy = NULL) {
     if (implied_age < 65) return(NA_integer_)
+    # Mor og far doede etter identisk skjema fram til 2026-10-15. Kjonnsgapet
+    # i forventet levetid er 3.2 aar (SSB 14569), saa stigen leses na med en
+    # kjonnsjustert alder. Se R/mortality.R.
+    implied_age <- .mortality_adjusted_age(implied_age, parent_gender)
+    # Inntektsgradienten for foreldre bruker yrkets MEDIANLONN som proxy --
+    # foreldre har ingen egen inntekt i pakka. Det komprimerer spredningen:
+    # alle i samme yrke faar samme tall, saa det realiserte spennet blir
+    # mindre enn Kinges. Dokumentert, ikke skjult.
+    if (!is.null(parent_income_proxy) && !is.na(parent_income_proxy)) {
+      off <- .mortality_income_offset(parent_income_proxy, parent_gender,
+                                      implied_age)
+      if (!is.na(off)) implied_age <- implied_age - off
+    }
     p_dead <- if (implied_age >= 105) 1.00
               else if (implied_age >= 95) 0.95
               else if (implied_age >= 90) 0.80
@@ -1353,8 +1367,6 @@
   # birth_year uses UNCAPPED implied age (so very old ego have parents born e.g. 1900)
   mother_birth_year <- .cfm_env$ref_year - mother_age_implied
   father_birth_year <- .cfm_env$ref_year - father_age_implied
-  mother_death_year <- .death_year(mother_age_implied, mother_birth_year)
-  father_death_year <- .death_year(father_age_implied, father_birth_year)
   # mother_age / father_age (used downstream by edu/occ helpers) cap at 99 — ok since
   # we just need a plausible "if alive" age.
   mother_age <- as.integer(min(99L, mother_age_implied))
@@ -1413,6 +1425,14 @@
   mother_occ <- .try_yrkesarv(mother_occ, styrk_code, 50L, mother_edu$code, m_gender_str)
   father_occ <- .parent_occupation(father_birth_year, f_gender_str, father_edu$code)
   father_occ <- .try_yrkesarv(father_occ, styrk_code, 50L, father_edu$code, f_gender_str)
+
+  # Doedstidspunkt trekkes HER, etter at yrke er satt: inntektsgradienten
+  # bruker yrkets medianlonn som proxy, og .death_year() ble tidligere kalt
+  # foer mother_occ fantes.
+  mother_death_year <- .death_year(mother_age_implied, mother_birth_year, "F",
+                                   mother_occ$median_monthly * 12)
+  father_death_year <- .death_year(father_age_implied, father_birth_year, "M",
+                                   father_occ$median_monthly * 12)
 
   # --- Override for parents who likely lived in origin country (not Norway) ---
   # If ego is non-majority and parent's birth_year predates the immigration window

@@ -1,0 +1,1401 @@
+region_code,region_label,sentralitet,gender,age,remaining_years
+0,Hele landet,,M,0,81.61
+0,Hele landet,,M,1,80.83
+0,Hele landet,,M,2,79.85
+0,Hele landet,,M,3,78.86
+0,Hele landet,,M,4,77.87
+0,Hele landet,,M,5,76.87
+0,Hele landet,,M,6,75.88
+0,Hele landet,,M,7,74.88
+0,Hele landet,,M,8,73.89
+0,Hele landet,,M,9,72.9
+0,Hele landet,,M,10,71.9
+0,Hele landet,,M,11,70.91
+0,Hele landet,,M,12,69.91
+0,Hele landet,,M,13,68.91
+0,Hele landet,,M,14,67.92
+0,Hele landet,,M,15,66.93
+0,Hele landet,,M,16,65.94
+0,Hele landet,,M,17,64.96
+0,Hele landet,,M,18,63.98
+0,Hele landet,,M,19,63.02
+0,Hele landet,,M,20,62.04
+0,Hele landet,,M,21,61.06
+0,Hele landet,,M,22,60.09
+0,Hele landet,,M,23,59.12
+0,Hele landet,,M,24,58.14
+0,Hele landet,,M,25,57.16
+0,Hele landet,,M,26,56.2
+0,Hele landet,,M,27,55.24
+0,Hele landet,,M,28,54.27
+0,Hele landet,,M,29,53.3
+0,Hele landet,,M,30,52.33
+0,Hele landet,,M,31,51.37
+0,Hele landet,,M,32,50.41
+0,Hele landet,,M,33,49.44
+0,Hele landet,,M,34,48.48
+0,Hele landet,,M,35,47.5
+0,Hele landet,,M,36,46.54
+0,Hele landet,,M,37,45.57
+0,Hele landet,,M,38,44.61
+0,Hele landet,,M,39,43.65
+0,Hele landet,,M,40,42.67
+0,Hele landet,,M,41,41.73
+0,Hele landet,,M,42,40.76
+0,Hele landet,,M,43,39.81
+0,Hele landet,,M,44,38.86
+0,Hele landet,,M,45,37.9
+0,Hele landet,,M,46,36.94
+0,Hele landet,,M,47,35.99
+0,Hele landet,,M,48,35.04
+0,Hele landet,,M,49,34.1
+0,Hele landet,,M,50,33.16
+0,Hele landet,,M,51,32.22
+0,Hele landet,,M,52,31.28
+0,Hele landet,,M,53,30.35
+0,Hele landet,,M,54,29.43
+0,Hele landet,,M,55,28.52
+0,Hele landet,,M,56,27.59
+0,Hele landet,,M,57,26.69
+0,Hele landet,,M,58,25.79
+0,Hele landet,,M,59,24.89
+0,Hele landet,,M,60,24.02
+0,Hele landet,,M,61,23.14
+0,Hele landet,,M,62,22.27
+0,Hele landet,,M,63,21.43
+0,Hele landet,,M,64,20.59
+0,Hele landet,,M,65,19.73
+0,Hele landet,,M,66,18.91
+0,Hele landet,,M,67,18.09
+0,Hele landet,,M,68,17.28
+0,Hele landet,,M,69,16.48
+0,Hele landet,,M,70,15.7
+0,Hele landet,,M,71,14.92
+0,Hele landet,,M,72,14.16
+0,Hele landet,,M,73,13.44
+0,Hele landet,,M,74,12.72
+0,Hele landet,,M,75,12.01
+0,Hele landet,,M,76,11.33
+0,Hele landet,,M,77,10.64
+0,Hele landet,,M,78,9.96
+0,Hele landet,,M,79,9.33
+0,Hele landet,,M,80,8.75
+0,Hele landet,,M,81,8.14
+0,Hele landet,,M,82,7.57
+0,Hele landet,,M,83,7.04
+0,Hele landet,,M,84,6.54
+0,Hele landet,,M,85,6.04
+0,Hele landet,,M,86,5.58
+0,Hele landet,,M,87,5.11
+0,Hele landet,,M,88,4.72
+0,Hele landet,,M,89,4.36
+0,Hele landet,,M,90,4.0
+0,Hele landet,,M,91,3.66
+0,Hele landet,,M,92,3.39
+0,Hele landet,,M,93,3.13
+0,Hele landet,,M,94,2.85
+0,Hele landet,,M,95,2.66
+0,Hele landet,,M,96,2.49
+0,Hele landet,,M,97,2.38
+0,Hele landet,,M,98,2.34
+0,Hele landet,,M,99,2.1
+0,Hele landet,,F,0,84.85
+0,Hele landet,,F,1,84.03
+0,Hele landet,,F,2,83.04
+0,Hele landet,,F,3,82.04
+0,Hele landet,,F,4,81.05
+0,Hele landet,,F,5,80.05
+0,Hele landet,,F,6,79.05
+0,Hele landet,,F,7,78.06
+0,Hele landet,,F,8,77.07
+0,Hele landet,,F,9,76.07
+0,Hele landet,,F,10,75.07
+0,Hele landet,,F,11,74.07
+0,Hele landet,,F,12,73.08
+0,Hele landet,,F,13,72.08
+0,Hele landet,,F,14,71.08
+0,Hele landet,,F,15,70.09
+0,Hele landet,,F,16,69.09
+0,Hele landet,,F,17,68.1
+0,Hele landet,,F,18,67.11
+0,Hele landet,,F,19,66.13
+0,Hele landet,,F,20,65.14
+0,Hele landet,,F,21,64.15
+0,Hele landet,,F,22,63.16
+0,Hele landet,,F,23,62.17
+0,Hele landet,,F,24,61.18
+0,Hele landet,,F,25,60.19
+0,Hele landet,,F,26,59.2
+0,Hele landet,,F,27,58.21
+0,Hele landet,,F,28,57.23
+0,Hele landet,,F,29,56.24
+0,Hele landet,,F,30,55.25
+0,Hele landet,,F,31,54.27
+0,Hele landet,,F,32,53.29
+0,Hele landet,,F,33,52.31
+0,Hele landet,,F,34,51.33
+0,Hele landet,,F,35,50.34
+0,Hele landet,,F,36,49.36
+0,Hele landet,,F,37,48.39
+0,Hele landet,,F,38,47.41
+0,Hele landet,,F,39,46.42
+0,Hele landet,,F,40,45.45
+0,Hele landet,,F,41,44.48
+0,Hele landet,,F,42,43.5
+0,Hele landet,,F,43,42.51
+0,Hele landet,,F,44,41.55
+0,Hele landet,,F,45,40.58
+0,Hele landet,,F,46,39.61
+0,Hele landet,,F,47,38.65
+0,Hele landet,,F,48,37.69
+0,Hele landet,,F,49,36.73
+0,Hele landet,,F,50,35.77
+0,Hele landet,,F,51,34.8
+0,Hele landet,,F,52,33.85
+0,Hele landet,,F,53,32.91
+0,Hele landet,,F,54,31.96
+0,Hele landet,,F,55,31.03
+0,Hele landet,,F,56,30.09
+0,Hele landet,,F,57,29.15
+0,Hele landet,,F,58,28.22
+0,Hele landet,,F,59,27.29
+0,Hele landet,,F,60,26.37
+0,Hele landet,,F,61,25.48
+0,Hele landet,,F,62,24.58
+0,Hele landet,,F,63,23.66
+0,Hele landet,,F,64,22.79
+0,Hele landet,,F,65,21.91
+0,Hele landet,,F,66,21.02
+0,Hele landet,,F,67,20.17
+0,Hele landet,,F,68,19.32
+0,Hele landet,,F,69,18.47
+0,Hele landet,,F,70,17.65
+0,Hele landet,,F,71,16.82
+0,Hele landet,,F,72,16.02
+0,Hele landet,,F,73,15.22
+0,Hele landet,,F,74,14.44
+0,Hele landet,,F,75,13.68
+0,Hele landet,,F,76,12.92
+0,Hele landet,,F,77,12.17
+0,Hele landet,,F,78,11.46
+0,Hele landet,,F,79,10.75
+0,Hele landet,,F,80,10.08
+0,Hele landet,,F,81,9.41
+0,Hele landet,,F,82,8.8
+0,Hele landet,,F,83,8.19
+0,Hele landet,,F,84,7.62
+0,Hele landet,,F,85,7.02
+0,Hele landet,,F,86,6.47
+0,Hele landet,,F,87,5.97
+0,Hele landet,,F,88,5.47
+0,Hele landet,,F,89,4.98
+0,Hele landet,,F,90,4.57
+0,Hele landet,,F,91,4.19
+0,Hele landet,,F,92,3.87
+0,Hele landet,,F,93,3.51
+0,Hele landet,,F,94,3.17
+0,Hele landet,,F,95,2.93
+0,Hele landet,,F,96,2.69
+0,Hele landet,,F,97,2.52
+0,Hele landet,,F,98,2.37
+0,Hele landet,,F,99,2.2
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,0,82.67
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,1,81.82
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,2,80.85
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,3,79.85
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,4,78.85
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,5,77.86
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,6,76.86
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,7,75.86
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,8,74.86
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,9,73.88
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,10,72.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,11,71.9
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,12,70.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,13,69.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,14,68.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,15,67.93
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,16,66.94
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,17,65.95
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,18,64.95
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,19,63.97
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,20,63.0
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,21,62.03
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,22,61.04
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,23,60.08
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,24,59.1
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,25,58.12
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,26,57.16
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,27,56.17
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,28,55.19
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,29,54.2
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,30,53.22
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,31,52.24
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,32,51.28
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,33,50.31
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,34,49.33
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,35,48.33
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,36,47.35
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,37,46.37
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,38,45.39
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,39,44.42
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,40,43.43
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,41,42.46
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,42,41.48
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,43,40.51
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,44,39.54
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,45,38.58
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,46,37.62
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,47,36.69
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,48,35.71
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,49,34.75
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,50,33.82
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,51,32.87
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,52,31.93
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,53,31.0
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,54,30.06
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,55,29.13
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,56,28.18
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,57,27.26
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,58,26.34
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,59,25.44
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,60,24.55
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,61,23.7
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,62,22.83
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,63,22.03
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,64,21.17
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,65,20.29
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,66,19.46
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,67,18.69
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,68,17.87
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,69,17.07
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,70,16.29
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,71,15.49
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,72,14.74
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,73,14.05
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,74,13.33
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,75,12.6
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,76,11.95
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,77,11.24
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,78,10.58
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,79,9.96
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,80,9.34
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,81,8.7
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,82,8.17
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,83,7.62
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,84,7.09
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,85,6.53
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,86,6.02
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,87,5.48
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,88,5.04
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,89,4.6
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,90,4.16
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,91,3.72
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,92,3.38
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,93,3.38
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,94,2.96
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,95,2.81
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,96,2.71
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,97,2.63
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,98,2.84
+Se01,Mest sentrale kommuner (indeks 925-1000),1,M,99,2.1
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,0,85.75
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,1,84.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,2,83.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,3,82.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,4,81.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,5,80.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,6,79.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,7,78.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,8,77.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,9,76.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,10,75.91
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,11,74.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,12,73.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,13,72.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,14,71.94
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,15,70.95
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,16,69.96
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,17,68.96
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,18,67.98
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,19,66.99
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,20,65.99
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,21,65.0
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,22,64.01
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,23,63.01
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,24,62.01
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,25,61.04
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,26,60.05
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,27,59.06
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,28,58.07
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,29,57.08
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,30,56.09
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,31,55.09
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,32,54.1
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,33,53.12
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,34,52.14
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,35,51.17
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,36,50.18
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,37,49.2
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,38,48.22
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,39,47.24
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,40,46.28
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,41,45.28
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,42,44.29
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,43,43.31
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,44,42.35
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,45,41.38
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,46,40.4
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,47,39.42
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,48,38.45
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,49,37.48
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,50,36.51
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,51,35.54
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,52,34.58
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,53,33.65
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,54,32.7
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,55,31.73
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,56,30.78
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,57,29.81
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,58,28.87
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,59,27.93
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,60,27.02
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,61,26.14
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,62,25.23
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,63,24.32
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,64,23.45
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,65,22.57
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,66,21.68
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,67,20.83
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,68,20.0
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,69,19.18
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,70,18.36
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,71,17.51
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,72,16.74
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,73,15.9
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,74,15.1
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,75,14.31
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,76,13.48
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,77,12.7
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,78,12.02
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,79,11.32
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,80,10.66
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,81,10.01
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,82,9.37
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,83,8.8
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,84,8.16
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,85,7.59
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,86,7.01
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,87,6.49
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,88,5.92
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,89,5.37
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,90,4.89
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,91,4.54
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,92,4.14
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,93,3.72
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,94,3.34
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,95,3.08
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,96,2.83
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,97,2.61
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,98,2.46
+Se01,Mest sentrale kommuner (indeks 925-1000),1,F,99,2.25
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,0,82.12
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,1,81.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,2,80.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,3,79.35
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,4,78.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,5,77.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,6,76.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,7,75.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,8,74.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,9,73.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,10,72.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,11,71.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,12,70.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,13,69.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,14,68.42
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,15,67.42
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,16,66.43
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,17,65.44
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,18,64.46
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,19,63.48
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,20,62.49
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,21,61.52
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,22,60.53
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,23,59.56
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,24,58.57
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,25,57.59
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,26,56.62
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,27,55.67
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,28,54.7
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,29,53.72
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,30,52.74
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,31,51.78
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,32,50.82
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,33,49.85
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,34,48.88
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,35,47.9
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,36,46.93
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,37,46.0
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,38,45.04
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,39,44.11
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,40,43.14
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,41,42.19
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,42,41.21
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,43,40.25
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,44,39.28
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,45,38.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,46,37.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,47,36.42
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,48,35.48
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,49,34.55
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,50,33.62
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,51,32.67
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,52,31.76
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,53,30.81
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,54,29.92
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,55,28.97
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,56,28.05
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,57,27.15
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,58,26.22
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,59,25.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,60,24.45
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,61,23.57
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,62,22.68
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,63,21.81
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,64,20.97
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,65,20.13
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,66,19.3
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,67,18.47
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,68,17.68
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,69,16.85
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,70,16.1
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,71,15.31
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,72,14.57
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,73,13.81
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,74,13.08
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,75,12.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,76,11.66
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,77,10.97
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,78,10.31
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,79,9.7
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,80,9.11
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,81,8.51
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,82,7.92
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,83,7.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,84,6.87
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,85,6.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,86,5.89
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,87,5.47
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,88,5.02
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,89,4.67
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,90,4.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,91,3.97
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,92,3.65
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,93,3.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,94,3.03
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,95,2.73
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,96,2.57
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,97,2.43
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,98,2.24
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,M,99,2.09
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,0,85.19
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,1,84.33
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,2,83.35
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,3,82.36
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,4,81.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,5,80.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,6,79.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,7,78.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,8,77.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,9,76.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,10,75.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,11,74.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,12,73.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,13,72.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,14,71.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,15,70.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,16,69.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,17,68.39
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,18,67.4
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,19,66.42
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,20,65.45
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,21,64.45
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,22,63.47
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,23,62.47
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,24,61.49
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,25,60.49
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,26,59.49
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,27,58.52
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,28,57.53
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,29,56.53
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,30,55.55
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,31,54.56
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,32,53.58
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,33,52.6
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,34,51.62
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,35,50.63
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,36,49.64
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,37,48.68
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,38,47.71
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,39,46.71
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,40,45.75
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,41,44.78
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,42,43.79
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,43,42.81
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,44,41.83
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,45,40.85
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,46,39.9
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,47,38.94
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,48,37.99
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,49,37.01
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,50,36.04
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,51,35.09
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,52,34.12
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,53,33.2
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,54,32.24
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,55,31.29
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,56,30.37
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,57,29.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,58,28.49
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,59,27.56
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,60,26.63
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,61,25.72
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,62,24.83
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,63,23.9
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,64,23.02
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,65,22.13
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,66,21.23
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,67,20.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,68,19.51
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,69,18.66
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,70,17.84
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,71,17.03
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,72,16.25
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,73,15.46
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,74,14.67
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,75,13.9
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,76,13.14
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,77,12.41
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,78,11.69
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,79,10.99
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,80,10.29
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,81,9.64
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,82,9.01
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,83,8.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,84,7.79
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,85,7.21
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,86,6.65
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,87,6.14
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,88,5.63
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,89,5.15
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,90,4.73
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,91,4.38
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,92,4.0
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,93,3.62
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,94,3.29
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,95,3.04
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,96,2.88
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,97,2.74
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,98,2.53
+Se02,Nest mest sentrale kommuner (indeks 870-924),2,F,99,2.17
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,0,81.49
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,1,80.67
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,2,79.69
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,3,78.69
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,4,77.69
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,5,76.7
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,6,75.71
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,7,74.71
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,8,73.72
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,9,72.73
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,10,71.73
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,11,70.73
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,12,69.73
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,13,68.74
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,14,67.74
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,15,66.75
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,16,65.76
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,17,64.77
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,18,63.81
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,19,62.88
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,20,61.9
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,21,60.9
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,22,59.91
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,23,58.93
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,24,57.96
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,25,56.99
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,26,56.04
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,27,55.08
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,28,54.12
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,29,53.17
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,30,52.19
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,31,51.24
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,32,50.3
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,33,49.36
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,34,48.4
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,35,47.43
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,36,46.46
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,37,45.46
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,38,44.54
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,39,43.55
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,40,42.56
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,41,41.61
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,42,40.63
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,43,39.7
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,44,38.78
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,45,37.85
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,46,36.9
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,47,35.95
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,48,34.98
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,49,34.06
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,50,33.11
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,51,32.19
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,52,31.24
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,53,30.29
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,54,29.35
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,55,28.45
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,56,27.56
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,57,26.68
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,58,25.77
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,59,24.88
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,60,23.99
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,61,23.11
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,62,22.25
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,63,21.39
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,64,20.54
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,65,19.7
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,66,18.88
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,67,18.09
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,68,17.28
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,69,16.49
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,70,15.71
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,71,14.96
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,72,14.21
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,73,13.53
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,74,12.79
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,75,12.14
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,76,11.46
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,77,10.78
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,78,10.1
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,79,9.51
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,80,8.9
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,81,8.28
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,82,7.66
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,83,7.1
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,84,6.55
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,85,6.12
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,86,5.65
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,87,5.12
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,88,4.79
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,89,4.45
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,90,4.12
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,91,3.76
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,92,3.48
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,93,3.27
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,94,3.09
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,95,2.85
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,96,2.65
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,97,2.55
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,98,2.51
+Se03,Over middels sentrale kommuner (indeks 775-869),3,M,99,2.08
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,0,84.66
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,1,83.79
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,2,82.8
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,3,81.8
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,4,80.8
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,5,79.81
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,6,78.81
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,7,77.82
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,8,76.83
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,9,75.83
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,10,74.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,11,73.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,12,72.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,13,71.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,14,70.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,15,69.85
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,16,68.86
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,17,67.87
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,18,66.87
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,19,65.91
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,20,64.91
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,21,63.91
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,22,62.92
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,23,61.94
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,24,60.94
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,25,59.95
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,26,58.98
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,27,58.01
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,28,57.01
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,29,56.04
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,30,55.05
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,31,54.08
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,32,53.1
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,33,52.13
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,34,51.15
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,35,50.16
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,36,49.17
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,37,48.19
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,38,47.22
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,39,46.24
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,40,45.26
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,41,44.28
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,42,43.31
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,43,42.34
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,44,41.38
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,45,40.42
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,46,39.45
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,47,38.49
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,48,37.53
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,49,36.58
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,50,35.6
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,51,34.64
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,52,33.68
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,53,32.74
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,54,31.8
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,55,30.9
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,56,29.98
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,57,29.06
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,58,28.13
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,59,27.21
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,60,26.31
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,61,25.45
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,62,24.54
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,63,23.66
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,64,22.79
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,65,21.88
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,66,21.01
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,67,20.16
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,68,19.3
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,69,18.47
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,70,17.66
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,71,16.82
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,72,16.0
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,73,15.2
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,74,14.42
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,75,13.7
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,76,12.97
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,77,12.22
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,78,11.51
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,79,10.84
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,80,10.16
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,81,9.48
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,82,8.88
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,83,8.27
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,84,7.68
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,85,7.08
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,86,6.54
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,87,6.05
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,88,5.59
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,89,5.11
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,90,4.69
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,91,4.23
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,92,3.97
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,93,3.62
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,94,3.28
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,95,3.06
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,96,2.73
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,97,2.55
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,98,2.36
+Se03,Over middels sentrale kommuner (indeks 775-869),3,F,99,2.22
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,0,81.55
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,1,80.69
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,2,79.73
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,3,78.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,4,77.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,5,76.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,6,75.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,7,74.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,8,73.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,9,72.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,10,71.75
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,11,70.76
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,12,69.78
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,13,68.78
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,14,67.79
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,15,66.8
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,16,65.84
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,17,64.85
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,18,63.86
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,19,62.95
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,20,61.97
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,21,60.99
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,22,60.03
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,23,59.05
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,24,58.05
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,25,57.1
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,26,56.16
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,27,55.2
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,28,54.24
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,29,53.27
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,30,52.32
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,31,51.36
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,32,50.4
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,33,49.43
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,34,48.45
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,35,47.5
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,36,46.56
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,37,45.58
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,38,44.62
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,39,43.67
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,40,42.7
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,41,41.77
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,42,40.81
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,43,39.87
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,44,38.89
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,45,37.94
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,46,36.97
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,47,36.01
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,48,35.03
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,49,34.09
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,50,33.15
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,51,32.24
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,52,31.32
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,53,30.39
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,54,29.48
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,55,28.59
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,56,27.65
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,57,26.77
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,58,25.86
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,59,24.97
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,60,24.11
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,61,23.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,62,22.38
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,63,21.54
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,64,20.74
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,65,19.87
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,66,19.06
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,67,18.23
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,68,17.44
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,69,16.66
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,70,15.84
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,71,15.05
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,72,14.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,73,13.53
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,74,12.82
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,75,12.08
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,76,11.42
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,77,10.76
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,78,10.07
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,79,9.39
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,80,8.81
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,81,8.23
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,82,7.64
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,83,7.07
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,84,6.58
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,85,6.06
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,86,5.61
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,87,5.22
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,88,4.81
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,89,4.44
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,90,4.07
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,91,3.73
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,92,3.48
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,93,3.17
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,94,2.87
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,95,2.91
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,96,2.7
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,97,2.5
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,98,2.24
+Se04,Middels sentrale kommuner (indeks 670-774),4,M,99,1.98
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,0,85.14
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,1,84.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,2,83.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,3,82.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,4,81.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,5,80.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,6,79.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,7,78.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,8,77.27
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,9,76.27
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,10,75.27
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,11,74.27
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,12,73.29
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,13,72.29
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,14,71.3
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,15,70.3
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,16,69.3
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,17,68.3
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,18,67.33
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,19,66.36
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,20,65.38
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,21,64.38
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,22,63.4
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,23,62.41
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,24,61.41
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,25,60.41
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,26,59.42
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,27,58.44
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,28,57.45
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,29,56.49
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,30,55.5
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,31,54.55
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,32,53.56
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,33,52.57
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,34,51.6
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,35,50.65
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,36,49.67
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,37,48.68
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,38,47.68
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,39,46.69
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,40,45.73
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,41,44.78
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,42,43.81
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,43,42.81
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,44,41.83
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,45,40.86
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,46,39.87
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,47,38.91
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,48,37.96
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,49,36.99
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,50,36.05
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,51,35.08
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,52,34.16
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,53,33.23
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,54,32.3
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,55,31.37
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,56,30.39
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,57,29.47
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,58,28.52
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,59,27.61
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,60,26.67
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,61,25.76
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,62,24.8
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,63,23.86
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,64,22.98
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,65,22.13
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,66,21.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,67,20.38
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,68,19.52
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,69,18.67
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,70,17.82
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,71,17.01
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,72,16.2
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,73,15.43
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,74,14.62
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,75,13.86
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,76,13.09
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,77,12.39
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,78,11.67
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,79,10.94
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,80,10.21
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,81,9.54
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,82,8.84
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,83,8.22
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,84,7.63
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,85,7.01
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,86,6.49
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,87,5.98
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,88,5.46
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,89,4.99
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,90,4.54
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,91,4.15
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,92,3.89
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,93,3.56
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,94,3.23
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,95,2.95
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,96,2.59
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,97,2.38
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,98,2.25
+Se04,Middels sentrale kommuner (indeks 670-774),4,F,99,2.07
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,0,81.73
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,1,80.83
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,2,79.83
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,3,78.86
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,4,77.86
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,5,76.86
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,6,75.86
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,7,74.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,8,73.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,9,72.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,10,71.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,11,70.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,12,69.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,13,68.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,14,67.91
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,15,66.92
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,16,65.92
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,17,64.98
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,18,64.0
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,19,63.0
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,20,62.01
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,21,61.01
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,22,60.1
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,23,59.15
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,24,58.17
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,25,57.19
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,26,56.22
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,27,55.29
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,28,54.33
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,29,53.38
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,30,52.39
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,31,51.42
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,32,50.47
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,33,49.5
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,34,48.57
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,35,47.61
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,36,46.69
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,37,45.73
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,38,44.74
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,39,43.75
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,40,42.78
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,41,41.85
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,42,40.88
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,43,39.92
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,44,38.98
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,45,37.98
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,46,37.01
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,47,36.04
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,48,35.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,49,34.17
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,50,33.25
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,51,32.26
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,52,31.31
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,53,30.41
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,54,29.49
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,55,28.56
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,56,27.62
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,57,26.71
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,58,25.81
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,59,24.91
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,60,24.05
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,61,23.16
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,62,22.29
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,63,21.47
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,64,20.65
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,65,19.81
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,66,18.96
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,67,18.09
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,68,17.29
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,69,16.47
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,70,15.68
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,71,14.9
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,72,14.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,73,13.38
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,74,12.66
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,75,11.94
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,76,11.31
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,77,10.6
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,78,9.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,79,9.3
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,80,8.71
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,81,8.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,82,7.54
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,83,6.98
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,84,6.46
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,85,6.09
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,86,5.57
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,87,5.07
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,88,4.68
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,89,4.31
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,90,3.91
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,91,3.59
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,92,3.42
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,93,3.22
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,94,2.87
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,95,2.6
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,96,2.4
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,97,2.28
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,98,2.04
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,M,99,1.81
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,0,84.71
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,1,83.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,2,82.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,3,81.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,4,80.92
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,5,79.92
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,6,78.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,7,77.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,8,76.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,9,75.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,10,74.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,11,73.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,12,72.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,13,71.95
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,14,70.97
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,15,69.97
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,16,68.97
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,17,67.99
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,18,66.99
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,19,65.99
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,20,64.99
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,21,64.01
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,22,63.03
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,23,62.03
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,24,61.06
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,25,60.08
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,26,59.08
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,27,58.08
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,28,57.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,29,56.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,30,55.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,31,54.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,32,53.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,33,52.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,34,51.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,35,50.15
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,36,49.18
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,37,48.23
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,38,47.25
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,39,46.28
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,40,45.28
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,41,44.33
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,42,43.35
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,43,42.37
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,44,41.41
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,45,40.44
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,46,39.47
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,47,38.54
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,48,37.56
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,49,36.63
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,50,35.66
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,51,34.7
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,52,33.73
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,53,32.79
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,54,31.86
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,55,30.89
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,56,29.96
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,57,29.06
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,58,28.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,59,27.21
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,60,26.26
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,61,25.33
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,62,24.44
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,63,23.53
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,64,22.67
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,65,21.83
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,66,20.96
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,67,20.12
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,68,19.31
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,69,18.43
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,70,17.64
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,71,16.76
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,72,15.97
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,73,15.15
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,74,14.42
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,75,13.7
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,76,12.96
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,77,12.19
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,78,11.47
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,79,10.75
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,80,10.1
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,81,9.45
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,82,8.83
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,83,8.19
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,84,7.58
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,85,6.97
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,86,6.43
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,87,5.87
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,88,5.34
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,89,4.78
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,90,4.34
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,91,4.04
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,92,3.7
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,93,3.45
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,94,3.13
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,95,2.94
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,96,2.61
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,97,2.45
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,98,2.21
+Se05,Nest minst sentrale kommuner (indeks 565-669),5,F,99,2.17
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,0,80.43
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,1,79.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,2,78.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,3,77.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,4,76.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,5,75.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,6,74.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,7,73.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,8,72.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,9,71.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,10,70.59
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,11,69.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,12,68.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,13,67.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,14,66.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,15,65.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,16,64.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,17,63.71
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,18,62.71
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,19,61.81
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,20,60.81
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,21,59.91
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,22,59.11
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,23,58.16
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,24,57.16
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,25,56.21
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,26,55.21
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,27,54.21
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,28,53.26
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,29,52.39
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,30,51.43
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,31,50.47
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,32,49.47
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,33,48.51
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,34,47.59
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,35,46.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,36,45.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,37,44.66
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,38,43.7
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,39,42.8
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,40,41.91
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,41,41.01
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,42,40.15
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,43,39.38
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,44,38.48
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,45,37.48
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,46,36.54
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,47,35.63
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,48,34.75
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,49,33.75
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,50,32.83
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,51,31.93
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,52,30.93
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,53,30.16
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,54,29.28
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,55,28.41
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,56,27.48
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,57,26.59
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,58,25.73
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,59,24.9
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,60,24.05
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,61,23.21
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,62,22.33
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,63,21.47
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,64,20.63
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,65,19.77
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,66,18.9
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,67,18.04
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,68,17.17
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,69,16.33
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,70,15.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,71,14.82
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,72,14.13
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,73,13.47
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,74,12.65
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,75,11.97
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,76,11.31
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,77,10.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,78,9.94
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,79,9.41
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,80,8.82
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,81,8.24
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,82,7.63
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,83,7.13
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,84,6.65
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,85,6.14
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,86,5.68
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,87,5.15
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,88,4.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,89,4.38
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,90,3.8
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,91,3.64
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,92,3.26
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,93,2.98
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,94,2.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,95,2.49
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,96,2.11
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,97,2.22
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,98,1.69
+Se06,Minst sentrale kommuner (indeks 0-564),6,M,99,1.58
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,0,84.51
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,1,83.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,2,82.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,3,81.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,4,80.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,5,79.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,6,78.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,7,77.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,8,76.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,9,75.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,10,74.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,11,73.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,12,72.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,13,71.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,14,70.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,15,69.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,16,68.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,17,67.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,18,66.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,19,65.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,20,64.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,21,63.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,22,62.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,23,61.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,24,60.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,25,59.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,26,58.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,27,57.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,28,56.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,29,55.67
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,30,54.72
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,31,53.78
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,32,52.78
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,33,51.78
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,34,50.78
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,35,49.78
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,36,48.82
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,37,47.82
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,38,46.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,39,45.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,40,44.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,41,43.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,42,42.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,43,41.86
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,44,40.9
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,45,39.94
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,46,39.01
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,47,38.08
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,48,37.21
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,49,36.31
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,50,35.41
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,51,34.49
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,52,33.51
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,53,32.51
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,54,31.54
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,55,30.58
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,56,29.62
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,57,28.69
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,58,27.77
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,59,26.8
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,60,25.91
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,61,25.1
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,62,24.22
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,63,23.32
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,64,22.41
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,65,21.52
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,66,20.65
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,67,19.76
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,68,18.9
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,69,18.05
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,70,17.2
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,71,16.32
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,72,15.48
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,73,14.67
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,74,13.83
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,75,13.08
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,76,12.38
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,77,11.63
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,78,11.02
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,79,10.28
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,80,9.55
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,81,8.89
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,82,8.27
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,83,7.6
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,84,6.99
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,85,6.53
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,86,5.9
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,87,5.52
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,88,5.02
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,89,4.55
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,90,4.23
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,91,3.87
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,92,3.56
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,93,3.25
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,94,2.97
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,95,2.75
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,96,2.72
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,97,2.54
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,98,2.43
+Se06,Minst sentrale kommuner (indeks 0-564),6,F,99,2.33

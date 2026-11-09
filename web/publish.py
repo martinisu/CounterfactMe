@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Publiser AlternaLiv til docs/ for GitHub Pages.
+
+Hvorfor dette skriptet finnes
+-----------------------------
+docs/index.html var fram til 2026-10-15 en BUNDLET enkeltfil: hver lokal
+ressurs omskrevet til en UUID, payloaden gzippet og base64-kodet inn i
+__bundler/manifest-blokker. Den fila ble laget av et verktoy som ikke finnes
+i repoet -- den kom tilbake som en zip fra en egen designsesjon hver gang noe
+skulle oppdateres. Derfor laa sida elleve pakkeversjoner bak.
+
+Maalingen som avgjorde saken: web/ veier 1.5 MB som den er, den bundlede
+enkeltfila 2.4 MB. Bundlingen gjorde fila STOERRE -- base64 blaaser opp med en
+tredjedel, og gzip tar det ikke igjen. Det eneste enkeltfila ga var at den
+kunne sendes som ett vedlegg, og GitHub Pages trenger ikke det.
+
+Saa: ingen bundling. docs/ serverer filene slik de ligger.
+
+Hva som skjer
+-------------
+1. cfm-assets.js bygges paa nytt fra R/ og inst/extdata/ (build-assets.py
+   globber begge, saa nye filer kommer med av seg selv).
+2. Runtime-filene kopieres til docs/.
+3. .nojekyll beholdes -- uten den ignorerer GitHub Pages filer med understrek.
+4. Verifisering: versjon, antall R-filer og CSV-er mot pakka.
+
+Merk at cfm-webr.js har hardkodede R_FILES- og CSV_FILES-lister. De brukes
+BARE i fallback-stien som henter fra r-pkg/; naar cfm-assets.js finnes
+utledes listene fra Object.keys(). Den publiserte sida treffer derfor aldri
+de listene, men de er utdaterte og en felle for den som en gang skrur av
+bundelen.
+
+Kjor:  python3 web/publish.py
+"""
+
+import json
+import os
+import pathlib
+import re
+import shutil
+import subprocess
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+WEB = ROOT / "web"
+DOCS = ROOT / "docs"
+
+# Filene nettleseren faktisk trenger. build-assets.py og publish.py er
+# byggeverktoy og skal IKKE ut.
+RUNTIME = [
+    "index.html", "app.jsx", "tweaks-panel.jsx",
+    "data.js", "sampler.js", "cfm-translate.js", "cfm-webr.js",
+    "cfm-assets.js", "cfm-bootstrap.R", "cfm-reroll.R",
+]
+
+
+def main():
+    print("1. Bygger cfm-assets.js fra R/ og inst/extdata/")
+    r = subprocess.run([sys.executable, str(WEB / "build-assets.py")],
+                       capture_output=True, text=True, cwd=str(ROOT))
+    if r.returncode != 0:
+        print(r.stdout); print(r.stderr); sys.exit(1)
+    print("   " + (r.stdout.strip().splitlines() or ["ok"])[-1])
+
+    print("\n2. Kopierer runtime-filer til docs/")
+    DOCS.mkdir(exist_ok=True)
+    # Rydd bort den gamle bundlede fila hvis den ligger der.
+    for f in RUNTIME:
+        src = WEB / f
+        if not src.exists():
+            print(f"   MANGLER {f}"); sys.exit(1)
+        shutil.copy2(src, DOCS / f)
+        print(f"   {f:22} {src.stat().st_size:>9,} bytes")
+
+    nojekyll = DOCS / ".nojekyll"
+    if not nojekyll.exists():
+        nojekyll.touch()
+    print("   .nojekyll              ok")
+
+    print("\n3. Verifisering")
+    txt = (DOCS / "cfm-assets.js").read_text(encoding="utf-8")
+    assets = json.loads(txt[txt.index("{"):txt.rindex("}") + 1])
+    desc = (ROOT / "DESCRIPTION").read_text(encoding="utf-8")
+    pkg_version = re.search(r"^Version:\s*(\S+)", desc, re.M).group(1)
+
+    n_r_pkg = len([f for f in os.listdir(ROOT / "R") if f.endswith(".R")])
+    n_csv_pkg = len([f for f in os.listdir(ROOT / "inst/extdata")
+                     if f.endswith(".csv")])
+    ok = True
+    if assets["version"] != pkg_version:
+        print(f"   AVVIK versjon: bundle {assets['version']} mot pakke {pkg_version}")
+        ok = False
+    else:
+        print(f"   versjon   {pkg_version}")
+    # build-assets.py hopper over 2 R-filer (llm.R, CounterfactMe-package.R)
+    if len(assets["r"]) != n_r_pkg - 2:
+        print(f"   AVVIK R-filer: {len(assets['r'])} i bundle mot {n_r_pkg - 2} ventet")
+        ok = False
+    else:
+        print(f"   R-filer   {len(assets['r'])}")
+    # build-assets.py hopper over SKIP_CSV (politikk-katalogen).
+    n_skip_csv = 1
+    if len(assets["csv"]) != n_csv_pkg - n_skip_csv:
+        print(f"   AVVIK CSV: {len(assets['csv'])} i bundle mot "
+              f"{n_csv_pkg - n_skip_csv} ventet")
+        ok = False
+    else:
+        print(f"   CSV       {len(assets['csv'])}")
+
+    total = sum((DOCS / f).stat().st_size for f in RUNTIME)
+    print(f"   docs/ totalt {total/1048576:.1f} MB")
+    print("\n" + ("Publisert." if ok else "FEIL -- se avvikene over."))
+    sys.exit(0 if ok else 1)
+
+
+if __name__ == "__main__":
+    main()

@@ -11,6 +11,7 @@
 //        window.CFM_R.status      — "loading" | "ready" | "error"
 //        window.CFM_R.statusText  — fremgang for UI
 //        window.CFM_R.drawLife({min_age, max_age, gender}) → Promise<Object>
+//        window.CFM_R.drawLockedLife(ctxId, pins, opts)    → Promise<Object>
 //      Plus en CustomEvent på document: "cfm-r-status" når status endrer seg.
 
 (function () {
@@ -22,6 +23,7 @@
     ready: null,
     drawLife: null,
     rerollLife: null,
+    drawLockedLife: null,
     _webR: null,
   };
   window.CFM_R = api;
@@ -143,6 +145,7 @@
     // i app.jsx trigge en redraw før api.drawLife er satt (race → JS-fallback).
     api.drawLife = drawLife;
     api.rerollLife = rerollLife;
+    api.drawLockedLife = drawLockedLife;
     setStatus('ready', 'CounterfactMe (R) klar.');
   }
 
@@ -164,18 +167,42 @@
   // ctxId er et heltall R ga oss; keep er pin-nøkler for brukerens låser.
   const REROLL_DIMS = new Set(['name', 'age', 'municipality', 'education',
     'occupation', 'income', 'marital_status', 'household', 'religion', 'party']);
-  const KEEP_KEYS = new Set(['age', 'bg', 'sentr', 'edu', 'occ', 'nus', 'par',
-    'sib', 'gp', 'inc', 'ms', 'household', 'ori', 'rel', 'party', 'housing',
-    'wealth', 'children', 'name', 'mun', 'neet']);
+  // Pin-nøkler valideres som rene identifikatorer, ikke mot en kopi av
+  // R-sidens liste. En slik kopi ville gått stille ut av takt neste gang en
+  // dimensjon kom til — og den feilen har vi tatt fire ganger i dette
+  // prosjektet alt. R-en gjør den egentlige kontrollen med
+  // intersect(pin, .cfm_all_pin_keys()); her trengs bare injection-vern.
+  const PIN_KEY_RE = /^[a-z_]{2,20}$/;
+  const pinVector = keys => {
+    const ks = [...new Set((keys || []).filter(k => PIN_KEY_RE.test(k)))];
+    return ks.length ? `c(${ks.map(k => `"${k}"`).join(', ')})` : 'character(0)';
+  };
   async function rerollLife(dim, ctxId, keep = []) {
     if (!api._webR) throw new Error('webR not booted');
     if (!REROLL_DIMS.has(dim)) throw new Error('ukjent reroll-dim: ' + dim);
     const id = parseInt(ctxId, 10);
     if (!Number.isFinite(id)) throw new Error('ugyldig ctx_id');
-    const ks = keep.filter(k => KEEP_KEYS.has(k));
-    const keepR = ks.length ? `c(${ks.map(k => `"${k}"`).join(', ')})` : 'character(0)';
     const result = await api._webR.evalRString(
-      `cfm_reroll_json("${dim}", ${id}, keep = ${keepR}, lang = "no")`
+      `cfm_reroll_json("${dim}", ${id}, keep = ${pinVector(keep)}, lang = "no")`
+    );
+    return JSON.parse(result);
+  }
+
+  // Nytt trekk med brukerens låser pinnet. Erstatter JS-sampleren på den
+  // stien: før dette falt ALLE låste trekk ned i sampler.js, som speilet
+  // R-pakken v0.9.1 og ikke kjente dødelighet, utdanningsbånd, formuehale
+  // eller aldersbetinget inntekt.
+  async function drawLockedLife(ctxId, pins = [], opts = {}) {
+    if (!api._webR) throw new Error('webR not booted');
+    const id = parseInt(ctxId, 10);
+    if (!Number.isFinite(id)) throw new Error('ugyldig ctx_id');
+    const { min_age = 0, max_age = 99, gender = 'any' } = opts;
+    const ageMin = Math.max(0, Math.min(99, parseInt(min_age, 10) || 0));
+    const ageMax = Math.max(ageMin, Math.min(99, parseInt(max_age, 10) || 99));
+    const g = gender === 'M' || gender === 'F' ? `"${gender}"` : 'NULL';
+    const result = await api._webR.evalRString(
+      `cfm_draw_locked_json(${id}, pin = ${pinVector(pins)}, ` +
+      `min_age = ${ageMin}, max_age = ${ageMax}, gender = ${g}, lang = "no")`
     );
     return JSON.parse(result);
   }
