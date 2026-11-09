@@ -30,8 +30,17 @@ wage <- function(lbl) {
 n <- 120L
 set.seed(12)
 
+# Etter fiksen (nov. 2026) baerer hvert liv sin 4-sifrede STYRK-kode som
+# attributt. Bruk den: x$occupation er en detaljert 7-sifret tittel som
+# sjelden staar ordrett i loennstabellen, og oppslag paa tittel ga baade
+# skjevt utvalg i A og evige loekker i B.
+wage_code <- function(code) {
+  ix <- which(os$code == code & os$schedule == "all")
+  if (length(ix)) as.numeric(os$median_nok[ix[1]]) else NA_real_
+}
 pair_of <- function(x) {
-  w <- wage(as.character(x$occupation))
+  cd <- attr(x, "occ_styrk")
+  w <- if (!is.null(cd) && !is.na(cd)) wage_code(cd) else wage(as.character(x$occupation))
   inc <- suppressWarnings(as.numeric(x$income_nok))
   if (is.na(w) || is.na(inc) || w <= 0 || inc <= 0) return(NULL)
   c(w, inc)

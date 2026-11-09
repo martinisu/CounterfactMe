@@ -186,9 +186,17 @@ counterfact_me <- function(dimensions = available_dimensions(),
   }
 
   # 6. Occupation (conditional on age + edu + mun + gender, modulated by background)
+  # force_occupation is set only by counterfact_me_constrained(), for the
+  # duration of one call. It is passed explicitly so the parents' own
+  # .cond_occupation() calls further down are never affected.
+  force_occ <- .cfm_env$force_occupation
   occ <- .cond_occupation(age, edu$code, mun_pop = mun_pop, gender = gender_draw,
-                          disabled = dis$has, severity = dis$severity)
-  if (!identical(bg$background, "majority") && !is.null(occ$styrk_code) &&
+                          disabled = dis$has, severity = dis$severity,
+                          force_codes = force_occ)
+  # A forced occupation is not shifted by background: the shift would move
+  # it off the code that was asked for.
+  if (is.null(force_occ) &&
+      !identical(bg$background, "majority") && !is.null(occ$styrk_code) &&
       !is.na(occ$styrk_code) && nzchar(occ$styrk_code)) {
     new_styrk <- .background_occupation_shift(occ$styrk_code, edu$code,
                                               bg$background, bg$name_region)
@@ -281,6 +289,9 @@ counterfact_me <- function(dimensions = available_dimensions(),
   # 6f. NEET-flag (16-29, modifies occupation interpretation)
   if ("neet" %in% dimensions) {
     p_neet <- .cond_neet_prob(age, edu$code, bg$background, bg$name_region)
+    # A forced occupation means the person is in work by construction; a
+    # NEET draw would overwrite the occupation that was asked for.
+    if (!is.null(force_occ)) p_neet <- 0
     result$neet <- (p_neet > 0 && stats::runif(1) < p_neet)
     if (isTRUE(result$neet) && "occupation" %in% dimensions) {
       result$occupation <- if (identical(lang, "no"))
@@ -678,6 +689,11 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   result$lang <- lang
   result$conditional <- TRUE
+  # Ego's 4-digit STYRK code and, for forced draws, the resampling weight.
+  # Attributes rather than fields so print(), narration and the web app
+  # are unaffected.
+  attr(result, "occ_styrk") <- if (!is.null(occ$styrk_code)) occ$styrk_code else NA_character_
+  attr(result, "occ_weight") <- if (!is.null(occ$weight)) occ$weight else NA_real_
   class(result) <- "counterfactme"
   result
 }

@@ -1,0 +1,42 @@
+Yrke som betingelse: vektet gjentrekking i stedet for paaklistret tittel
+
+counterfact_parallel_lives(vary_dim = "occupation") endte i direkte
+overstyring i 40 av 40 forsoek. Maalyrket kom fra SSBs 4-sifrede
+STYRK-titler ("Sykepleiere"), livet fikk en detaljert 7-sifret tittel
+("Intensivsykepleier"), og treffet ble sjekket som tekstlikhet mellom de
+to. De moettes nesten aldri, og fallbacken skrev tittelen inn i et liv
+trukket for et annet yrke. Spearman mellom yrkets loennsnivaa og livets
+inntekt var 0.005 [-0.18, 0.17] for de overstyrte
+(dev/diag-override-yrke.R, n = 120).
+
+Etter fiksen, samme diagnose:
+  vanlige trekk   rho 0.795 [0.728, 0.845]
+  oppgitt yrke    rho 0.664 [0.534, 0.757]
+Oppgitte yrker trekkes jevnt fra alle 362 koder, ogsaa sjeldne, mens
+vanlige trekk er vektet etter antall sysselsatte, saa de to er ikke helt
+sammenliknbare. Et tidligere referansetall paa 0.545 for vanlige trekk
+var en maalefeil: loenn ble slaatt opp paa detaljert tittel, som bare
+traff liv der tittelen tilfeldigvis var lik en STYRK-tittel.
+
+Naa:
+  - Yrket matches mot STYRK-kodene (eksakt tittel, ellers delstreng), og
+    ukjent yrke gir en feil i stedet for et paaklistret liv.
+  - Yrket settes INNE i kjeden (.cond_occupation(force_codes = ...)), saa
+    inntekt, formue, bolig og klasse trekkes betinget paa det. NEET og
+    bakgrunnsforskyvning slaas av for tvungne trekk; begge ville flyttet
+    personen bort fra yrket som ble bedt om. Foreldrenes yrkestrekk
+    beroeres ikke.
+  - Oppstroems tilpasses med sampling-importance-resampling: inntil
+    min(max_attempts, 60) liv trekkes med yrket satt, hvert vektet med
+    P(yrke | alder, kjoenn, utdanning, bosted) slik sampleren selv
+    beregner den, og ett velges proporsjonalt med vekten. En tvunget
+    "Lege" havner dermed hos noen med medisinsk utdanning.
+
+Vektberegningen er trukket ut i .occupation_weights() og
+.occupation_worker(), som det vanlige trekket ogsaa bruker. Rekkefoelgen
+av tilfeldige trekk i det vanlige trekket er uendret.
+
+Begrensning: bakgrunn inngaar ikke i vekten.
+
+tests/testthat/test-occupation-constraint.R: yrket havner i riktig kode
+uten advarsel, ukjent yrke feiler, og inntekten foelger yrket (rho > 0.2).

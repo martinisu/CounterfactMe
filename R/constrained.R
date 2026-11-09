@@ -1,9 +1,23 @@
 #' Generate a counterfactual life with constraints
 #'
 #' Like \code{\link{counterfact_me}} but lets you fix some dimensions to
-#' specific values while letting the rest be drawn conditionally. Uses
-#' rejection sampling with up to \code{max_attempts} tries; if no match is
-#' found, falls back to direct override (with a warning).
+#' specific values while letting the rest be drawn conditionally.
+#'
+#' Most constraints use rejection sampling with up to \code{max_attempts}
+#' tries; if no match is found, it falls back to direct override (with a
+#' warning).
+#'
+#' An \code{occupation} is handled differently, because a single
+#' occupation is too rare for rejection to find. It is matched against the
+#' 4-digit STYRK titles (exact match first, otherwise case-insensitive
+#' substring), and set inside the draw, so income, wealth, housing and class
+#' are drawn conditional on it. Up to \code{min(max_attempts, 60)} such
+#' lives are drawn, each weighted by how likely its age, gender, education
+#' and place of residence were to produce that occupation, and one is
+#' returned with probability proportional to its weight
+#' (sampling-importance-resampling). The result approximates a draw from
+#' the population conditional on the occupation. Background is not part of
+#' the weight.
 #'
 #' @param givens A named list of constraints, e.g.,
 #'   \code{list(age = 42, gender = "M", county = "Oslo")}.
@@ -36,6 +50,11 @@ counterfact_me_constrained <- function(givens = list(),
   # Direct parameters: age, gender
   age_val <- givens$age
   gender_val <- givens$gender
+
+  if (!is.null(givens$occupation)) {
+    return(.constrained_by_occupation(givens, max_attempts, lang, dimensions,
+                                      verbose))
+  }
 
   # All other constraints checked post-hoc
   free_givens <- givens[!(names(givens) %in% c("age", "gender"))]
@@ -73,6 +92,74 @@ counterfact_me_constrained <- function(givens = list(),
       x[[key]] <- free_givens[[key]]
     }
   }
+  x
+}
+
+# Occupation givens: sampling-importance-resampling. See the roxygen block
+# of counterfact_me_constrained() for the reasoning.
+.resolve_occupation_codes <- function(target) {
+  .load_data()
+  os <- .cfm_env$occupations_salary
+  tbl <- os[os$schedule == "all" & !is.na(os$code) & nzchar(os$code) &
+              os$code != "0000" & os$headcount > 0, ]
+  t <- tolower(trimws(as.character(target)))
+  lab <- tolower(tbl$label)
+  hit <- lab %in% t
+  if (!any(hit)) {
+    hit <- Reduce(`|`, lapply(t, function(x) grepl(x, lab, fixed = TRUE)))
+  }
+  codes <- unique(tbl$code[hit])
+  if (!length(codes)) {
+    stop("No occupation matches ", paste(sQuote(target), collapse = ", "),
+         ". Occupations are matched against SSB's 4-digit STYRK titles, ",
+         "e.g. \"Sykepleiere\" or \"Grunnskolel\u00e6rere\".", call. = FALSE)
+  }
+  codes
+}
+
+.constrained_by_occupation <- function(givens, max_attempts, lang, dimensions,
+                                       verbose = FALSE) {
+  codes <- .resolve_occupation_codes(givens$occupation)
+  age_val <- givens$age
+  rest <- givens[!(names(givens) %in% c("age", "gender", "occupation"))]
+
+  .cfm_env$force_occupation <- codes
+  on.exit(.cfm_env$force_occupation <- NULL, add = TRUE)
+
+  k_max <- max(10L, min(as.integer(max_attempts), 60L))
+  cands <- vector("list", k_max)
+  wts <- numeric(k_max)
+  n <- 0L
+  for (k in seq_len(k_max)) {
+    x <- counterfact_me(
+      min_age = if (!is.null(age_val)) as.integer(age_val) else 18L,
+      max_age = if (!is.null(age_val)) as.integer(age_val) else 99L,
+      gender = givens$gender, lang = lang, dimensions = dimensions)
+    if (length(rest) && !.matches_givens(x, rest)) next
+    w <- attr(x, "occ_weight")
+    n <- n + 1L
+    cands[[n]] <- x
+    wts[n] <- if (is.null(w) || is.na(w)) 0 else w
+  }
+  cands <- cands[seq_len(n)]; wts <- wts[seq_len(n)]
+
+  if (n == 0L) {
+    stop("No draw satisfied the other constraints in ", k_max,
+         " attempts.", call. = FALSE)
+  }
+  if (sum(wts) <= 0) {
+    warning("None of the ", n, " draws could plausibly hold this occupation ",
+            "(given age, education and place). Returning one with the ",
+            "occupation imposed inside the draw.", call. = FALSE)
+    pick <- 1L
+  } else {
+    pick <- sample.int(n, 1L, prob = wts)
+  }
+  if (verbose) message("Resampled 1 of ", n, " occupation-forced draws; ",
+                       "effective sample size ",
+                       round(sum(wts)^2 / sum(wts^2), 1))
+  x <- cands[[pick]]
+  attr(x, "occ_codes_requested") <- codes
   x
 }
 

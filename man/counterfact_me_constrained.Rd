@@ -32,9 +32,24 @@ A \code{counterfactme} object with the constraints respected.
 }
 \description{
 Like \code{\link{counterfact_me}} but lets you fix some dimensions to
-specific values while letting the rest be drawn conditionally. Uses
-rejection sampling with up to \code{max_attempts} tries; if no match is
-found, falls back to direct override (with a warning).
+specific values while letting the rest be drawn conditionally.
+}
+\details{
+Most constraints use rejection sampling with up to \code{max_attempts}
+tries; if no match is found, it falls back to direct override (with a
+warning).
+
+An \code{occupation} is handled differently, because a single
+occupation is too rare for rejection to find. It is matched against the
+4-digit STYRK titles (exact match first, otherwise case-insensitive
+substring), and set inside the draw, so income, wealth, housing and class
+are drawn conditional on it. Up to \code{min(max_attempts, 60)} such
+lives are drawn, each weighted by how likely its age, gender, education
+and place of residence were to produce that occupation, and one is
+returned with probability proportional to its weight
+(sampling-importance-resampling). The result approximates a draw from
+the population conditional on the occupation. Background is not part of
+the weight.
 }
 \examples{
 \dontrun{

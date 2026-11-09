@@ -268,10 +268,119 @@
   setNames(as.numeric(out), names(base))
 }
 
+# Weights over 4-digit STYRK codes for a working-age adult. Split out of
+# .cond_occupation() so the forced path (counterfact_me_constrained) uses
+# the same distribution the ordinary draw does: the resampling weight is
+# only correct if it is P(occupation | upstream) as the sampler sees it.
+.occupation_weights <- function(age, edu_code, mun_pop = NULL, gender = NULL,
+                                work_year = NA_integer_) {
+  os <- .cfm_env$occupations_salary
+  tbl <- os[os$schedule == "all" & !is.na(os$code) & nzchar(os$code), ]
+  tbl <- tbl[tbl$code != "0000" & tbl$headcount > 0, ]
+
+  majors <- .edu_to_styrk_majors(edu_code)
+  first_digit <- substr(tbl$code, 1, 1)
+  major_w <- unname(majors[first_digit])
+  major_w[is.na(major_w)] <- 0
+  # Bosted-conditioning: rural/urban multiplier per STYRK major
+  bosted_w <- if (!is.null(mun_pop)) {
+    bm <- .bosted_styrk_mult(mun_pop)
+    unname(bm[first_digit])
+  } else {
+    rep(1, length(first_digit))
+  }
+  bosted_w[is.na(bosted_w)] <- 1
+  # Gender-conditioning: use SSB female_share per yrke
+  gender_w <- rep(1, nrow(tbl))
+  if (!is.null(gender)) {
+    gen <- .cfm_env$occupations_gender
+    fs <- gen$female_share[match(tbl$code, gen$code)]
+    fs[is.na(fs)] <- 0.5  # unknown -> neutral
+    gender_w <- if (toupper(gender) == "F") fs else (1 - fs)
+    # Avoid zero-weights (allow rare crossovers)
+    gender_w <- pmax(gender_w, 0.02)
+  }
+  # Era-conditioning: today's headcounts describe today's labour market.
+  cohort_w <- if (!is.na(work_year)) {
+    cm <- .styrk_cohort_mult(work_year)
+    v <- unname(cm[first_digit]); v[is.na(v)] <- 1; v
+  } else rep(1, length(first_digit))
+  w <- major_w * bosted_w * gender_w * cohort_w * tbl$headcount
+  if (sum(w) == 0) w <- tbl$headcount
+  list(tbl = tbl, w = w)
+}
+
+# Build the worker record for row `idx` of the weight table: schedule,
+# monthly wage and a detailed 7-digit title within the 4-digit code.
+.occupation_worker <- function(tbl, idx, gender = NULL) {
+  os <- .cfm_env$occupations_salary
+  code <- tbl$code[idx]
+
+  # Schedule: use within-yrke headcount ratio deltid/alle as P(deltid)
+  row_full <- os[os$code == code & os$schedule == "full", ]
+  row_part <- os[os$code == code & os$schedule == "part", ]
+  hc_all   <- tbl$headcount[idx]
+  hc_part  <- if (nrow(row_part) == 1) row_part$headcount else 0L
+  part_share <- if (hc_all > 0) min(max(hc_part / hc_all, 0), 0.95) else 0
+
+  schedule <- if (stats::runif(1) < part_share) "part" else "full"
+  monthly <- if (schedule == "part" && nrow(row_part) == 1 &&
+                 !is.na(row_part$median_nok) && row_part$median_nok > 0) {
+    as.integer(row_part$median_nok)
+  } else if (schedule == "full" && nrow(row_full) == 1 &&
+             !is.na(row_full$median_nok) && row_full$median_nok > 0) {
+    as.integer(row_full$median_nok)
+  } else {
+    as.integer(tbl$median_nok[idx])
+  }
+
+  # Trekk en spesifikk 7-sifret yrkesbetegnelse innenfor STYRK-08 group
+  styrk08_label <- tbl$label[idx]
+  detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender)
+
+  list(
+    label = detail_label,
+    styrk_code = code,
+    styrk_label = styrk08_label,
+    median_monthly = monthly,
+    schedule = schedule,
+    kind = "worker"
+  )
+}
+
 .cond_occupation <- function(age, edu_code, mun_pop = NULL, gender = NULL,
                              disabled = NULL, severity = NULL,
-                             work_year = NA_integer_) {
+                             work_year = NA_integer_, force_codes = NULL) {
   .load_data()
+
+  # -- Forced occupation (counterfact_me_constrained with an occupation) --
+  # The occupation is set INSIDE the chain, so income, wealth, housing and
+  # class are drawn conditional on it. The returned `weight` is how likely
+  # this person's age, education, place and gender were to produce one of
+  # the forced codes; counterfact_me_constrained() resamples on it, which
+  # is what makes the upstream fit the occupation too (a forced "Lege"
+  # lands on someone with a medical degree, not on a random draw).
+  #
+  # Before this, an occupation given was matched as text against the
+  # detailed title the chain outputs (.draw_detail_yrke), while the target
+  # came from the 4-digit STYRK labels. The two vocabularies almost never
+  # meet, so every attempt failed and the fallback pasted the title onto an
+  # unrelated life: Spearman rho between the label's wage level and the
+  # life's income was 0.005, against 0.545 for ordinary draws.
+  if (!is.null(force_codes) && length(force_codes) && age >= 18) {
+    ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
+    inn <- ow$tbl$code %in% force_codes
+    if (!any(inn)) stop("force_codes match no occupation in the table")
+    w_in <- ow$w[inn]
+    tot <- sum(ow$w)
+    weight <- if (tot > 0) sum(w_in) / tot else 0
+    rows <- which(inn)
+    pw <- if (sum(w_in) > 0) w_in else ow$tbl$headcount[inn]
+    idx <- rows[sample.int(length(rows), 1, prob = pw)]
+    worker <- .occupation_worker(ow$tbl, idx, gender)
+    worker$weight <- weight
+    return(worker)
+  }
 
   .wrap <- function(label, kind) {
     list(label = label, styrk_code = NA_character_,
@@ -367,73 +476,9 @@
   }
 
   # -- Working-age adults: SSB-driven draw --
-  os <- .cfm_env$occupations_salary
-  tbl <- os[os$schedule == "all" & !is.na(os$code) & nzchar(os$code), ]
-  tbl <- tbl[tbl$code != "0000" & tbl$headcount > 0, ]
-
-  majors <- .edu_to_styrk_majors(edu_code)
-  first_digit <- substr(tbl$code, 1, 1)
-  major_w <- unname(majors[first_digit])
-  major_w[is.na(major_w)] <- 0
-  # Bosted-conditioning: rural/urban multiplier per STYRK major
-  bosted_w <- if (!is.null(mun_pop)) {
-    bm <- .bosted_styrk_mult(mun_pop)
-    unname(bm[first_digit])
-  } else {
-    rep(1, length(first_digit))
-  }
-  bosted_w[is.na(bosted_w)] <- 1
-  # Gender-conditioning: use SSB female_share per yrke
-  gender_w <- rep(1, nrow(tbl))
-  if (!is.null(gender)) {
-    gen <- .cfm_env$occupations_gender
-    fs <- gen$female_share[match(tbl$code, gen$code)]
-    fs[is.na(fs)] <- 0.5  # unknown -> neutral
-    gender_w <- if (toupper(gender) == "F") fs else (1 - fs)
-    # Avoid zero-weights (allow rare crossovers)
-    gender_w <- pmax(gender_w, 0.02)
-  }
-  # Era-conditioning: today's headcounts describe today's labour market.
-  cohort_w <- if (!is.na(work_year)) {
-    cm <- .styrk_cohort_mult(work_year)
-    v <- unname(cm[first_digit]); v[is.na(v)] <- 1; v
-  } else rep(1, length(first_digit))
-  w <- major_w * bosted_w * gender_w * cohort_w * tbl$headcount
-  if (sum(w) == 0) w <- tbl$headcount
-
-  idx  <- sample.int(nrow(tbl), 1, prob = w)
-  code <- tbl$code[idx]
-
-  # Schedule: use within-yrke headcount ratio deltid/alle as P(deltid)
-  row_full <- os[os$code == code & os$schedule == "full", ]
-  row_part <- os[os$code == code & os$schedule == "part", ]
-  hc_all   <- tbl$headcount[idx]
-  hc_part  <- if (nrow(row_part) == 1) row_part$headcount else 0L
-  part_share <- if (hc_all > 0) min(max(hc_part / hc_all, 0), 0.95) else 0
-
-  schedule <- if (stats::runif(1) < part_share) "part" else "full"
-  monthly <- if (schedule == "part" && nrow(row_part) == 1 &&
-                 !is.na(row_part$median_nok) && row_part$median_nok > 0) {
-    as.integer(row_part$median_nok)
-  } else if (schedule == "full" && nrow(row_full) == 1 &&
-             !is.na(row_full$median_nok) && row_full$median_nok > 0) {
-    as.integer(row_full$median_nok)
-  } else {
-    as.integer(tbl$median_nok[idx])
-  }
-
-  # Trekk en spesifikk 7-sifret yrkesbetegnelse innenfor STYRK-08 group
-  styrk08_label <- tbl$label[idx]
-  detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender)
-
-  worker <- list(
-    label = detail_label,
-    styrk_code = code,
-    styrk_label = styrk08_label,
-    median_monthly = monthly,
-    schedule = schedule,
-    kind = "worker"
-  )
+  ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
+  idx <- sample.int(nrow(ow$tbl), 1, prob = ow$w)
+  worker <- .occupation_worker(ow$tbl, idx, gender)
 
   # -- Roll for AAP / dagpenger / sosialhjelp (19-67, not students) --
   if (age >= 19 && age <= 67) {
