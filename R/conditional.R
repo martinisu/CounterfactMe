@@ -114,6 +114,11 @@
     w[lo] <- w[lo] / tert
   }
 
+  # Minimum ages. SSB's youngest band runs to 19, so a 16-year-old could
+  # draw completed videregaaende, and a 21-year-old a finished bachelor.
+  max_code <- .edu_max_code(age)
+  w[edu$code > max_code & edu$code != 9L] <- 0
+
   if (sum(w) == 0) w[edu$code == 0] <- 1
   w <- w / sum(w)
 
@@ -268,6 +273,78 @@
   setNames(as.numeric(out), names(base))
 }
 
+# Labels for 16-18-year-olds. Mostly humour, not jobs: the narration
+# (R/narrate.R) reads this same vector so it never writes "jobber som
+# kassa-veteran". One list, used in both places.
+.TEEN_OCCUPATIONS <- c(
+  "Russeknuter", "Kassa-veteran", "Kino-billettselger",
+  "Barista-in-training", "Gymnasiast", "L\u{00e6}rling",
+  "Festival-frivillig", "Eksamensangst-kjemper",
+  "Kollektivtransport-filosof", "Skolekor-stjerne",
+  "Bensinstasjon-nattvakt"
+)
+
+# Licensed professions: the 2-digit group they sit in is dominated by
+# people with shorter degrees (22 Medisinske yrker is mostly nurses), so
+# the 12849 ratio alone lets a bachelor become "overlege". These require a
+# long degree (education code 7-8) by law or by authorisation.
+.LICENSED_STYRK <- c("2211", "2212",   # leger
+                     "2250",           # veterinaerer
+                     "2261",           # tannleger
+                     "2262",           # farmasoyter
+                     "2611", "2612",   # jurister/advokater, dommere
+                     "2634",           # psykologer
+                     "2636")           # geistlige yrker (prester: master i teologi)
+
+# Authorised health professions with a bachelor as the minimum (HPR):
+# sykepleiere, jordmoedre, vernepleiere, fysio-/ergoterapeuter,
+# ernaeringsfysiologer, audiografer/logopeder, radiografer, bioingenioerer,
+# reseptarer, tannpleiere, optikere. A "spesialbioingenioer" with
+# videregaaende was on the live site.
+.AUTHORISED_BACHELOR_STYRK <- c("2221", "2222", "2223", "2224", "2264", "2265",
+                                "2266", "2267", "3211", "3212", "3213",
+                                "3251", "3254")
+
+# Titles that require a profession degree even where the 4-digit code does
+# not: "Assisterende fylkeslege" sits in 1342 (ledere av helsetjenester).
+.LICENSED_TITLE_RE <- "(?<!KOL)LEGE\\b|PREST\\b|PSYKOLOG\\b|ADVOKAT\\b|DOMMER\\b"
+
+# Highest education code reachable at a given age (see .cond_education).
+.edu_max_code <- function(age) {
+  if (age < 18) 3L else if (age < 21) 5L else if (age < 23) 6L
+  else if (age < 26) 7L else 8L
+}
+
+# Ratio P(2-digit occupation | x) / P(2-digit occupation), x = education
+# level (SSB 12849) or age band (SSB 09793). Half a person (or half a
+# thousand) is added to every cell, so a group that rounds to zero is
+# rare rather than impossible. See data-raw/fetch_occupation_edu_age.py.
+.styrk2_ratio <- function(tab, key_col, key, val_col) {
+  if (is.null(tab) || !nrow(tab)) return(NULL)
+  v <- as.numeric(tab[[val_col]]); v[is.na(v)] <- 0
+  pseudo <- 0.5
+  tot_y <- tapply(v, tab$styrk2, sum) + pseudo
+  sub <- tab[tab[[key_col]] == key, , drop = FALSE]
+  if (!nrow(sub)) return(NULL)
+  vs <- as.numeric(sub[[val_col]]); vs[is.na(vs)] <- 0
+  in_k <- setNames(vs + pseudo, sub$styrk2)
+  in_k <- in_k[names(tot_y)]; in_k[is.na(in_k)] <- pseudo
+  r <- (in_k / sum(in_k)) / (tot_y / sum(tot_y))
+  r
+}
+
+.edu_level_12849 <- function(edu_code) {
+  if (is.null(edu_code) || is.na(edu_code)) return("0+9")
+  e <- as.integer(edu_code)
+  if (e %in% 1:2) "1" else if (e %in% 3:5) "2" else if (e == 6L) "3"
+  else if (e %in% 7:8) "4" else "0+9"
+}
+
+.age_band_09793 <- function(age) {
+  if (is.null(age) || is.na(age)) return(NA_character_)
+  if (age < 25) "15-24" else if (age < 40) "25-39" else if (age < 55) "40-54" else "55-74"
+}
+
 # Weights over 4-digit STYRK codes for a working-age adult. Split out of
 # .cond_occupation() so the forced path (counterfact_me_constrained) uses
 # the same distribution the ordinary draw does: the resampling weight is
@@ -278,10 +355,47 @@
   tbl <- os[os$schedule == "all" & !is.na(os$code) & nzchar(os$code), ]
   tbl <- tbl[tbl$code != "0000" & tbl$headcount > 0, ]
 
-  majors <- .edu_to_styrk_majors(edu_code)
   first_digit <- substr(tbl$code, 1, 1)
-  major_w <- unname(majors[first_digit])
-  major_w[is.na(major_w)] <- 0
+  two_digit <- substr(tbl$code, 1, 2)
+
+  # Education and age -> 2-digit occupation, from SSB 12849 and 09793.
+  # Replaced .edu_to_styrk_majors(): hand-set weights on 1-digit groups,
+  # and no age at all. Falls back to it only if the tables are missing.
+  r_edu <- .styrk2_ratio(.cfm_env$occupation_by_edu, "edu_level",
+                         .edu_level_12849(edu_code), "count")
+  r_age <- .styrk2_ratio(.cfm_env$occupation_by_age, "age_band",
+                         .age_band_09793(age), "thousands")
+  if (!is.null(r_edu)) {
+    major_w <- unname(r_edu[two_digit]); major_w[is.na(major_w)] <- 1
+    if (!is.null(r_age)) {
+      ra <- unname(r_age[two_digit]); ra[is.na(ra)] <- 1
+      major_w <- major_w * ra
+    }
+  } else {
+    majors <- .edu_to_styrk_majors(edu_code)
+    major_w <- unname(majors[first_digit])
+    major_w[is.na(major_w)] <- 0
+  }
+  if (is.null(edu_code) || is.na(edu_code) || as.integer(edu_code) < 7L) {
+    major_w[tbl$code %in% .LICENSED_STYRK] <- 0
+  }
+  if (is.null(edu_code) || is.na(edu_code) || as.integer(edu_code) < 6L) {
+    major_w[tbl$code %in% .AUTHORISED_BACHELOR_STYRK] <- 0
+  }
+  # 12849 puts 2.7 pct of employed master's holders in STYRK 6-9, much of
+  # it immigrants whose degrees are not recognised. That is modelled on its
+  # own, after this draw, by .background_overqualified(). Taking it from
+  # 12849 as well would count it twice and hand it to majority-background
+  # egos too, so the earlier caps stay: bachelor not in 6-8, master and
+  # doctorate not in 6-9 (test-regressions.R, "manual STYRK groups").
+  # Menige (0310) are conscripts. 09793 has no row for the military, so
+  # age said nothing, and a 31-year-old with a master's became "menige".
+  if (!is.na(age) && age > 25) major_w[tbl$code == "0310"] <- 0
+  if (!is.null(edu_code) && !is.na(edu_code)) {
+    ec <- as.integer(edu_code)
+    if (ec == 6L) major_w[first_digit %in% c("6", "7", "8")] <- 0
+    if (ec >= 7L && ec <= 8L) major_w[first_digit %in% c("6", "7", "8", "9")] <- 0
+  }
   # Bosted-conditioning: rural/urban multiplier per STYRK major
   bosted_w <- if (!is.null(mun_pop)) {
     bm <- .bosted_styrk_mult(mun_pop)
@@ -312,7 +426,8 @@
 
 # Build the worker record for row `idx` of the weight table: schedule,
 # monthly wage and a detailed 7-digit title within the 4-digit code.
-.occupation_worker <- function(tbl, idx, gender = NULL, age = NA_integer_) {
+.occupation_worker <- function(tbl, idx, gender = NULL, age = NA_integer_,
+                               edu_code = NA_integer_) {
   os <- .cfm_env$occupations_salary
   code <- tbl$code[idx]
 
@@ -342,14 +457,17 @@
   # Hver femtende grunnskolelaerer ble vikar, uansett alder og utdanning.
   # Titler som betegner en midlertidig eller laerende stilling, gis derfor
   # bare der loennen passer: vikar bare ved deltid, laerling/elev/aspirant/
-  # praktikant/trainee bare ved deltid eller alder under 30. Ingen nye
-  # tall; deltidsandelen og deltidsloennen er SSBs (11418).
+  # praktikant/trainee bare under 30 aar. (Foerste versjon tillot dem ogsaa
+  # paa deltid i alle aldre; det ga en 54-aarig praktikant og foreldre
+  # paa 50 som "vekterlaerling".) Ingen nye tall; deltidsandelen og
+  # deltidsloennen er SSBs.
   styrk08_label <- tbl$label[idx]
   part <- identical(schedule, "part")
   young <- !is.na(age) && age < 30
   drop <- c(if (!part) "VIKAR",
-            if (!part && !young) c("L\u00c6RLING", "PRAKTIKANT", "ASPIRANT",
-                                   "TRAINEE", "\\bELEV\\b"))
+            if (!young) c("L\u00c6RLING", "PRAKTIKANT", "ASPIRANT",
+                          "TRAINEE", "\\bELEV\\b"),
+            if (is.na(edu_code) || as.integer(edu_code) < 7L) .LICENSED_TITLE_RE)
   detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender,
                                     drop_re = if (length(drop)) paste(drop, collapse = "|") else NULL)
 
@@ -392,7 +510,7 @@
     rows <- which(inn)
     pw <- if (sum(w_in) > 0) w_in else ow$tbl$headcount[inn]
     idx <- rows[sample.int(length(rows), 1, prob = pw)]
-    worker <- .occupation_worker(ow$tbl, idx, gender, age)
+    worker <- .occupation_worker(ow$tbl, idx, gender, age, edu_code)
     worker$weight <- weight
     return(worker)
   }
@@ -428,13 +546,7 @@
     ), 1), "teen"))
   }
   if (age >= 16 && age <= 18) {
-    return(.wrap(sample(c(
-      "Russeknuter", "Kassa-veteran", "Kino-billettselger",
-      "Barista-in-training", "Gymnasiast", "L\u{00e6}rling",
-      "Festival-frivillig", "Eksamensangst-kjemper",
-      "Kollektivtransport-filosof", "Skolekor-stjerne",
-      "Bensinstasjon-nattvakt"
-    ), 1), "teen"))
+    return(.wrap(sample(.TEEN_OCCUPATIONS, 1), "teen"))
   }
 
   # Young adults in higher education -- studenter, ofte med deltidsjobb
@@ -446,6 +558,10 @@
         # Student + deltidsjobb -- kombinert label, en streng.
         part <- .draw_student_deltid(gender = gender)
         if (!is.null(part) && !is.null(part$label) && nzchar(part$label)) {
+          # part$label is the 4-digit group label, which is plural
+          # ("butikkmedarbeidere"). Use a 7-digit title within the code.
+          if (!is.null(part$styrk_code) && !is.na(part$styrk_code))
+            part$label <- .draw_detail_yrke(part$styrk_code, part$label, gender = gender)
           combined <- sprintf("Student (deltid: %s)", tolower(part$label))
           return(list(
             label = combined,
@@ -493,7 +609,7 @@
   # -- Working-age adults: SSB-driven draw --
   ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
   idx <- sample.int(nrow(ow$tbl), 1, prob = ow$w)
-  worker <- .occupation_worker(ow$tbl, idx, gender, age)
+  worker <- .occupation_worker(ow$tbl, idx, gender, age, edu_code)
 
   # -- Roll for AAP / dagpenger / sosialhjelp (19-67, not students) --
   if (age >= 19 && age <= 67) {
@@ -713,8 +829,9 @@
   if (identical(occ_kind, "aap")) {
     if (!is.null(occ_median_monthly) && !is.na(occ_median_monthly) &&
         occ_median_monthly > 0) {
-      annual_basis <- occ_median_monthly * 12 * 0.66
-      annual_basis <- min(annual_basis, 711720)  # 6G cap (2024)
+      # 66 pct of a basis capped at 6G. The old order, min(0.66 * lonn, 6G),
+      # let AAP reach 6G itself: a 26-year-old on AAP had 846 000 a year.
+      annual_basis <- 0.66 * min(occ_median_monthly * 12, 711720)  # 6G (2024)
       noise <- exp(stats::rnorm(1, 0, 0.15))
       nok <- as.integer(round(annual_basis * noise, -3))
     } else {
@@ -727,8 +844,7 @@
   if (identical(occ_kind, "dagpenger")) {
     if (!is.null(occ_median_monthly) && !is.na(occ_median_monthly) &&
         occ_median_monthly > 0) {
-      annual_basis <- occ_median_monthly * 12 * 0.624
-      annual_basis <- min(annual_basis, 711720)
+      annual_basis <- 0.624 * min(occ_median_monthly * 12, 711720)  # 6G (2024)
       noise <- exp(stats::rnorm(1, 0, 0.15))
       nok <- as.integer(round(annual_basis * noise, -3))
     } else {
@@ -1912,6 +2028,29 @@
   # purchase_price ~ value * (index_purchase / index_now), with small noise
   purchase_price <- round(value * pidx * stats::runif(1, 0.92, 1.08))
   if (purchase_price < 1) purchase_price <- value  # safety
+
+  # Affordability. Utlaansforskriften caps debt at 5x gross income and
+  # requires 10 pct equity, so a purchase above roughly 5.5x income needs
+  # help. Before this check a 19-year-old owned a 3.8 MNOK flat in Baerum
+  # and a 28-year-old with no income one at 6.0 MNOK in Oslo. Help is
+  # taken as 10 pct of parents' capital plus 300 000 in savings/BSU; both
+  # are assumptions, not data. Not applied from 50 on: current income is
+  # then a poor proxy for income at purchase (pensions, part-time).
+  if (age < 50) {
+    inc_a <- if (is.null(income_nok) || is.na(income_nok)) 0 else max(0, income_nok)
+    pc_a  <- if (is.null(parents_capital) || is.na(parents_capital)) 0 else max(0, parents_capital)
+    if (purchase_price > 5.5 * inc_a + 0.10 * pc_a + 300000) {
+      return(list(
+        owner = FALSE,
+        tenure = if (identical(lang, "no")) "Leier" else "Rents",
+        boligtype = NA_character_, area_m2 = NA_integer_, value_nok = NA_integer_,
+        debt_nok = NA_integer_, equity_nok = NA_integer_,
+        purchase_year = NA_integer_, purchase_price_nok = NA_integer_,
+        luxury = FALSE, has_hytte = FALSE,
+        hytte_type = NA_character_, hytte_value_nok = NA_integer_
+      ))
+    }
+  }
 
   # --- Original LTV: function of age-at-purchase, parents_capital, luxury ---
   age_at_purchase <- age - years_held
@@ -4027,6 +4166,22 @@
              "DEKKSGUTT", "HOTELLG\u00c5RDSGUTT")
 )
 
+# STYRK-08 group labels are plural ("Renholdere i bedrifter", "Menige").
+# When no 7-digit title exists the group label is used, and "jobber som
+# renholdere i bedrifter" followed. Singularise the first word.
+.singular_styrk <- function(label) {
+  if (is.null(label) || is.na(label) || !nzchar(label)) return(label)
+  w <- regmatches(label, regexpr("^[^ ,(]+", label))
+  if (!length(w)) return(label)
+  s <- w
+  if (grepl("\u00f8rer$", s)) s <- sub("er$", "", s)          # operatoerer -> operatoer
+  else if (grepl("erer$", s)) s <- sub("er$", "", s)          # offiserer -> offiser
+  else if (grepl("ere$", s)) s <- sub("e$", "", s)            # renholdere -> renholder
+  else if (grepl("ister$", s)) s <- sub("er$", "", s)         # kjemikere/fysikere handled above
+  else if (grepl("ige$", s)) s <- sub("e$", "", s)            # menige -> menig
+  paste0(s, substring(label, nchar(w) + 1))
+}
+
 .draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL,
                               drop_re = NULL) {
   if (is.null(styrk4_code) || is.na(styrk4_code) || !nzchar(styrk4_code)) {
@@ -4043,7 +4198,7 @@
     # Fallback: prefix-match (gammel STYRK-98 logikk)
     cand <- occ[substr(occ$code, 1, 4) == styrk4_code, , drop = FALSE]
   }
-  if (nrow(cand) == 0) return(fallback_label)
+  if (nrow(cand) == 0) return(.singular_styrk(fallback_label))
 
   # Drop titler som motsier egos kjonn. Faller tilbake pa ufiltrert liste
   # hvis filteret skulle tomme kandidatsettet.

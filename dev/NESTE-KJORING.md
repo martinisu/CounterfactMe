@@ -78,7 +78,24 @@ R-ruten og det ligger en melding i konsollen (`[CFM] R draw failed`).
 
 ## Neste gang (notert 2026-11-09)
 
-- Fortelling: "Etter et samlivsbrudd har hun to barn" -> "Hun er skilt og har
-  to barn" (R/narrate.R, grenen marital == "skilt").
 - Synlighet: Google Search Console og Bing er satt opp 2026-11-09. Sjekk om
   "AlternaLiv" gir treff i soek etter en til to uker.
+
+## Rutine foer publisering (fra 2026-11-09)
+
+1. `devtools::test()` -- inkluderer test-coherence.R
+2. `source("dev/audit-fortellinger.R")` og LES fila den skriver
+3. `devtools::check(args = "--no-tests", error_on = "warning")`
+4. `python3 web/publish.py`, commit, push
+
+## Kjente svakheter, ikke rettet ennaa
+
+- Fagfelt mot yrke: fagfeltet trekkes betinget paa yrke, men kan bomme
+  ("mastergrad i farmasi" -> bedriftssykepleier).
+- Foreldre til svaert gamle personer kan faa moderne yrkestitler
+  (trailersjaafoer for en som er foedt i 1940).
+- Inntektsstoeyen er lognormal med sd 0.25, saa enkelte faar inntekter
+  godt over det typiske for yrket.
+- Sysselsetting 67-71: .cond_occupation gir en ekte jobb i 45 pst av
+  trekkene (55 pst pensjonistetikett), og 10 pst fra 72. SSB ligger
+  trolig paa 20-30 pst for 67-71. Boer forankres i data.

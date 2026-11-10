@@ -443,13 +443,17 @@ test_that("drawn religion matches the country of origin", {
   # End to end: no Lebanese Hindus, no Muslim-majority Ethiopians.
   # 1200 draws yields ~43 from these origins; 400 yielded ~14 against a
   # threshold of 10, close enough to fail on an unlucky seed.
-  # 250 full draws, not 1200: the country-level weights are asserted
+  # 500 full draws, not 1200: the country-level weights are asserted
   # directly in the tests above, so this only has to show that
-  # country_label reaches .cond_religion at all.
+  # country_label reaches .cond_religion at all. 250 was too few: the
+  # expected count of these origins is about 6, so seen > 2 failed on an
+  # unlucky seed (P about 5 pct) after the draw order changed in
+  # November 2026. With 500 the expectation is about 12 and P(seen <= 2)
+  # is below 0.1 pct.
   set.seed(601)
   seen <- 0L; hindu_mena <- 0L
   eth <- c(christian = 0L, muslim = 0L)
-  for (i in 1:250) {
+  for (i in 1:500) {
     x <- counterfact_me(min_age = 10)
     cb <- x$country_background
     if (is.null(cb) || is.na(cb)) next
@@ -487,10 +491,14 @@ test_that("retirees are narrated as retired, not employed", {
   # familien" -- a sentence about the ego's father -- matched it.
   work_verbs <- c("\\bveien til jobben\\b", "\\bjobber som\\b",
                   "\\b\u{00e5}rsinntekt\\b")
+  # From 72, not 70. Since November 2026 a 67-71-year-old whom the sampler
+  # gives a real job and a wage is narrated as working: the old rule called
+  # them retired and printed the part-time wage as "pensjonen" ("Yrkeslivet
+  # ligger bak henne ... Pensjonen ligger paa rundt 60 000").
   set.seed(701)
   checked <- 0L
   for (i in 1:60) {
-    x <- counterfact_me(min_age = 70, max_age = 95)
+    x <- counterfact_me(min_age = 72, max_age = 95)
     for (st in c("biography", "compact")) {
       txt <- tolower(as.character(narrate_life(x, style = st)))
       checked <- checked + 1L

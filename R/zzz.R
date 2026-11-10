@@ -147,6 +147,18 @@
     colClasses = c(age_band = "character", bracket_code = "character")
   )
 
+  .cfm_env$occupation_by_edu <- read.csv(
+    file.path(extdata, "occupation_by_edu.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(styrk2 = "character", edu_level = "character")
+  )
+
+  .cfm_env$occupation_by_age <- read.csv(
+    file.path(extdata, "occupation_by_age.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(styrk2 = "character", age_band = "character")
+  )
+
   .cfm_env$part_time_by_occupation <- read.csv(
     file.path(extdata, "part_time_by_occupation.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8",

@@ -158,8 +158,14 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   # 5. Education (conditional on age, modulated by background)
   edu <- .cond_education(age, gender = gender_draw, lang = lang)
-  if (!identical(bg$background, "majority") && !is.null(edu$code) && !is.na(edu$code)) {
+  # Not for children: a seven-year-old with Pakistani parents had
+  # "ungdomsskoleutdanning" after the shift. And never past what the age
+  # allows (.edu_max_code).
+  if (!identical(bg$background, "majority") && !is.null(edu$code) && !is.na(edu$code) &&
+      age >= 16) {
     new_code <- .background_edu_shift(edu$code, bg$background, bg$name_region, age)
+    if (!is.na(new_code) && as.integer(new_code) != 9L)
+      new_code <- min(as.integer(new_code), .edu_max_code(age))
     if (!identical(new_code, edu$code)) {
       # Re-derive label for the shifted code
       .load_data()
@@ -209,7 +215,10 @@ counterfact_me <- function(dimensions = available_dimensions(),
       cand <- os[substr(os$code, 1, 2) == new_styrk, , drop = FALSE]
       if (nrow(cand) > 0) {
         pick <- cand[sample.int(nrow(cand), 1), ]
-        occ$label <- pick$label
+        # A 7-digit title, as in the ordinary draw. pick$label is the
+        # 4-digit group label, which is plural: immigrants were narrated as
+        # "jobber som murere", "som andre personlige tjenesteytere".
+        occ$label <- .draw_detail_yrke(pick$code, pick$label, gender = gender_draw)
         occ$styrk_code <- pick$code
         occ$median_monthly <- pick$median_nok
       }
@@ -344,7 +353,11 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   # NEET-override: hvis ego er NEET, sett inntekten til AAP/sosialhjelp-niva
   # NB: NEET kan ha AAP, sosialhjelp, foreldrepenger, eller ingenting
-  if (isTRUE(result$neet) && "income" %in% dimensions) {
+  # AAP and sosialhjelp require 18+; a 16-year-old NEET had 229 000.
+  if (isTRUE(result$neet) && "income" %in% dimensions && age < 18) {
+    result$income_nok <- 0L
+    result$income_bracket <- if (identical(lang, "no")) "Ingen inntekt" else "No income"
+  } else if (isTRUE(result$neet) && "income" %in% dimensions) {
     # Trekk realistisk ytelse-inntekt
     sub_type <- sample(c("aap", "sosialhjelp", "ingen"), 1,
                        prob = c(0.35, 0.35, 0.30))

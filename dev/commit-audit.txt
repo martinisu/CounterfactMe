@@ -1,0 +1,109 @@
+Koherens: 48 fortellinger lest, alle funn rettet samlet, ny koherenstest
+
+Forfatteren fant feil i fortellingene ett skjermbilde om gangen. 48 liv
+fra den publiserte sida, jevnt over aldersgrupper, ble lest kritisk.
+
+Logikk
+  - "Leier" inneholder "eier": det uforankrede moensteret gjorde HVER
+    leietaker til eier ("Han eier en bolig"). Gjaldt omtrent halvparten
+    av alle voksne fortellinger.
+  - Den som bor hos foreldrene, eier eller leier ikke boligen selv; ingen
+    boligsetning da. Mindreaarige faar ingen formuesetning ("17 aar, mer
+    gjeld enn formue").
+  - "Familien eier" for aleneboende er blitt "Han eier".
+  - 16-18-aaringer: humoretikettene ("kassa-veteran") ble skrevet som
+    jobb. Naa: "Hun gaar paa videregaaende. Ved siden av skolen er hun
+    kassa-veteran." Listen ligger i .TEEN_OCCUPATIONS og brukes av baade
+    trekket og fortellingen.
+  - Studenter: "jobber som student (deltid: butikkmedarbeidere)" er blitt
+    "har bachelorgrad i X og studerer videre, og jobber deltid som
+    butikkmedarbeider ved siden av". Deltidstittelen er naa en entalls
+    detaljtittel, ikke gruppenavnet i flertall.
+  - Barn: "tilhoerer doept i Den norske kirke" -> "er doept i Den norske
+    kirke"; smaabarn "regner seg ikke som troende" sies ikke lenger.
+  - Foreldre: "jobbet som hjemmevaerende" -> "var hjemmevaerende";
+    "uoppgitt / yrker som ikke kan identifiseres" utelates; "Moren var
+    ufoeretrygdet, og faren var ufoeretrygdet" -> "Baade moren og faren
+    var ufoeretrygdet"; presens ogsaa for voksne som bor hjemme.
+  - Mobilitet og parti sies ikke to ganger naar innledningen alt har
+    sagt det.
+  - Laerling/praktikant/aspirant bare under 30 (foreldre paa 50 var
+    "vekterlaerling", en 54-aaring "praktikant").
+
+Yrke mot utdanning og alder (SSB 12849 og 09793)
+  Yrke var betinget paa utdanning med haandsatte vekter paa 1-siffernivaa,
+  og ikke paa alder i det hele tatt: en 19-aaring med grunnskole ble
+  annenmaskinist paa 626 000. Naa ganges 4-sifret antall med
+    P(2-sifret yrke | utdanningsnivaa) / P(2-sifret yrke)   (12849, 2025)
+    P(2-sifret yrke | aldersgruppe)    / P(2-sifret yrke)   (09793, 2024)
+  under en uttalt antakelse om at utdanning og alder virker uavhengig.
+  Autoriserte yrker (lege, tannlege, veterinaer, farmasoyt, jurist,
+  dommer, psykolog) krever lang utdanning; 2-siffergruppen 22 er ellers
+  dominert av sykepleiere, og en bachelor i medisin ble overlege.
+  De tidligere sperrene for hoeyt utdannede i manuelle yrker (bachelor
+  ikke 6-8, master ikke 6-9) beholdes oppaa SSB-vektene: 12849 har 2,7
+  pst av masterne i 6-9, men den overkvalifiseringen er i stor grad
+  innvandrere og modelleres allerede av .background_overqualified().
+
+Spraak
+  Funksjonsnedsettelse uten nestede parenteser ("har moderat nedsatt
+  bevegelsesevne"), fagfelt uten ", annet", hobbyer som substantiv
+  ("lesing", ikke "lese boeker"), "lokalavisen", "er skilt og har to
+  barn", "og er ufoeretrygdet" i stedet for "men".
+
+Rutine
+  tests/testthat/test-coherence.R trekker 240 liv og sjekker motsigelsene
+  over samlet. dev/audit-fortellinger.R skriver 48 fortellinger til fil
+  for lesing foer hver publisering. Kjente svakheter som ikke er rettet
+  staar i dev/NESTE-KJORING.md.
+
+Runde 2 (dev/audit-fortellinger.R, 48 nye liv lest)
+  - AAP og dagpenger: 66 / 62,4 pst av et grunnlag begrenset til 6G. Den
+    gamle rekkefoelgen begrenset 66 pst av loennen til 6G, saa en 26-aaring
+    paa AAP hadde 846 000. Maks er naa om lag 470 000.
+  - NEET under 18 faar ingen inntekt (AAP og sosialhjelp krever 18+), og
+    "jobber som ikke i utdanning eller arbeid" er blitt "staar utenfor
+    baade utdanning og arbeid".
+  - Minstealder for utdanning: ikke fullfoert videregaaende foer 18,
+    bachelor foer 21, master foer 23, doktorgrad foer 26. SSBs yngste
+    aldersband gaar til 19, saa en 16-aaring kunne trekke "avsluttende".
+  - Flertallstitler ("jobber som renholdere i bedrifter", "som menige")
+    gjoeres til entall naar ingen detaljtittel finnes. Menige bare til 25.
+  - Tittelrester som "(over 9 ansatte)" og "(... - faerre enn 10 ansatte -
+    privat virksomhet)" fjernes i fortellingen.
+  - "Der foreldrene stoppet ved videregaaende, gikk hun videre til
+    videregaaende" (kode 3 og 4 har samme ord) sies ikke.
+  - Spedbarn: "er under ett aar", "har ikke begynt i barnehagen ennaa".
+  - Voksne som bor hjemme: "er datter av", ikke "vokser opp som".
+  - Ingen "religioes aktivitet" som hobby hos den som ikke er troende, og
+    ingen "leier bolig" etter "bor i kollektiv".
+  - Partner med ungdomsetikett: ", som gaar paa videregaaende".
+
+Runde 3 (andre audit-fil)
+  - Betalingsevne for bolig under 50 aar: kjoepesum over 5,5 x inntekt +
+    10 pst av foreldrenes kapital + 300 000 gir leietaker (utlaans-
+    forskriften: gjeld maks 5 x inntekt, 10 pst egenkapital; hjelpen fra
+    foreldre og sparing er antakelser). En 19-aaring eide 3,8 MNOK i
+    Baerum, en 28-aaring uten inntekt 6,0 MNOK i Oslo.
+  - Bakgrunnsjustering av utdanning bare fra 16 aar og aldri over
+    .edu_max_code(): en 7-aaring med pakistanske foreldre hadde
+    ungdomsskoleutdanning.
+  - Prester (2636) krever lang utdanning; autoriserte helseprofesjoner
+    (sykepleier, bioingenioer, fysioterapeut m.fl.) krever bachelor; og
+    titler med "lege", "prest", "psykolog", "advokat", "dommer" krever
+    lang utdanning ogsaa naar koden ikke gjoer det ("Assisterende
+    fylkeslege" ligger i 1342 ledere av helsetjenester).
+  - 67-71-aaringer som fortsatt jobber, fortelles som yrkesaktive, ikke
+    som pensjonister med deltidsloennen som "pensjon". Regresjonstesten
+    for pensjonister gjelder derfor fra 72 aar.
+  - Kortformen bruker samme yrkesformuleringer som den lange, og en siste
+    opprydding fjerner tittelrester og doble mellomrom i all tekst.
+  - Religionstesten trekker 500 liv i stedet for 250 (forventet antall av
+    de aktuelle opprinnelseslandene var 6, kravet var over 2).
+
+Runde 4 (tredje audit-fil)
+  - Bakgrunnsjusteringen av yrke satte tittelen til 4-sifret gruppenavn,
+    som er i flertall: innvandrere "jobbet som murere", "som frisoerer",
+    "som andre personlige tjenesteytere". Naa trekkes en detaljtittel som
+    i det vanlige trekket.
+  - Fagfelt-rester som ", annet, uoppgitt" fjernes helt.

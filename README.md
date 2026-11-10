@@ -123,18 +123,18 @@ fabricated number next to register figures.
 
 ## Data provenance
 
-60 CSV files ship in `inst/extdata/`. They are not equally well traced,
+62 CSV files ship in `inst/extdata/`. They are not equally well traced,
 and the package says which is which:
 
 ```r
-data_sources()             # all 60 files
+data_sources()             # all 62 files
 data_sources("untraced")   # those without a recorded origin
 table(data_sources()$status)
 ```
 
 | status | meaning | files |
 |---|---|---|
-| `ssb_api` | Fetched from Statistics Norway's API by a script in `data-raw/`. Reproducible. | 16 |
+| `ssb_api` | Fetched from Statistics Norway's API by a script in `data-raw/`. Reproducible. | 18 |
 | `ssb_cited` | An SSB table is cited in the R source; figures transcribed by hand. | 6 |
 | `untraced` | No script and no citation found in the package. | 33 |
 | `authored` | Deliberately written content, such as the humorous labels. | 4 |
@@ -188,7 +188,7 @@ audit_plausibility(N = 5000)   # combinations that are possible but too frequent
 
 `counterfact_me()` already rejects and redraws lives containing hard
 impossibilities, so `find_impossibilities()` is normally empty; it exists to
-catch regressions. The package's own test suite runs 152 tests, including property-based
+catch regressions. The package's own test suite runs 154 tests, including property-based
 invariants and regression guards for previously fixed bugs. A further
 set of repository checks -- version numbers agreeing across files,
 README counts matching the code, no undocumented export -- lives in
