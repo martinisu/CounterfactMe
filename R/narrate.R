@@ -244,6 +244,18 @@ print.counterfactme_narrative <- function(x, ...) {
 # Occupation label -> its parts. Recognises the forms .cond_occupation()
 # produces: "X (deltid)", "AAP (tidl. X)", "Dagpenger (tidl. X)",
 # "Sosialhjelp", "Uføretrygdet".
+# tolower() that keeps acronyms .titlecase_yrke() restored: the narrative
+# printed "driftsutvikler (it)" and "assistent (pu)".
+.lc_job <- function(s) {
+  if (is.null(s) || is.na(s)) return(s)
+  re <- "\\b[A-Z\u00c6\u00d8\u00c5]{2,}[0-9]?\\b|(?<=klasse )[A-E]\\b|B&B"
+  m <- gregexpr(re, s, perl = TRUE)
+  acr <- regmatches(s, m)[[1]]
+  out <- tolower(s)
+  if (length(acr)) regmatches(out, m) <- list(acr)
+  out
+}
+
 .occ_parse <- function(occ) {
   if (is.null(occ) || is.na(occ) || !nzchar(occ)) return(NULL)
   o <- trimws(as.character(occ))
@@ -254,14 +266,14 @@ print.counterfactme_narrative <- function(x, ...) {
                              ignore.case = TRUE))[[1]]
   if (length(m) == 3L) {
     return(list(kind = if (tolower(m[2]) == "aap") "aap" else "dagpenger",
-                prev = tolower(m[3])))
+                prev = .lc_job(m[3])))
   }
   if (grepl("^sosialhjelp$", o, ignore.case = TRUE))
     return(list(kind = "sosialhjelp"))
   if (o %in% .TEEN_OCCUPATIONS && !grepl("^l\u00e6rling$", tolower(o))) return(list(kind = "teen"))
   ms <- regmatches(o, regexec("^Student(?: \\(deltid: (.*)\\))?$", o, perl = TRUE))[[1]]
   if (length(ms) >= 1L && nzchar(ms[1])) {
-    pj <- if (length(ms) == 2L && nzchar(ms[2])) tolower(ms[2]) else NA_character_
+    pj <- if (length(ms) == 2L && nzchar(ms[2])) .lc_job(ms[2]) else NA_character_
     return(list(kind = "student", job = pj))
   }
   if (grepl("^hjemmev", o, ignore.case = TRUE)) return(list(kind = "home"))
@@ -270,7 +282,7 @@ print.counterfactme_narrative <- function(x, ...) {
   if (grepl("^uf\u00f8retrygd", o, ignore.case = TRUE))
     return(list(kind = "ufor"))
   part <- grepl(" \\(deltid\\)$", o)
-  job <- tolower(sub(" \\(deltid\\)$", "", o))
+  job <- .lc_job(sub(" \\(deltid\\)$", "", o))
   # Register residue in titles: "(offentlig administrasjon - uspesifisert)".
   job <- sub(" - uspesifisert\\)", ")", job)
   # Register size/sector qualifiers: "(over 9 ansatte)", "(jordbruk, ... -
@@ -368,8 +380,17 @@ print.counterfactme_narrative <- function(x, ...) {
     NA_character_)
 }
 
+# "paa deltid" alone left readers guessing: a renholder "paa deltid" at
+# 480 000 looked wrong when the position was 90 pct. Say the share.
+.deltid_phrase <- function(andel) {
+  if (is.null(andel) || is.na(andel)) return("p\u{00e5} deltid")
+  pct <- 5L * as.integer(round(andel * 100 / 5))
+  pct <- max(15L, min(95L, pct))
+  sprintf("i %d prosent stilling", pct)
+}
+
 # Diet label -> sentence.
-.diet_sentence <- function(diet, pron) {
+.diet_sentence <- function(diet, pron, immigrant = FALSE) {
   d <- tolower(diet)
   P <- .cap(pron)
   if (grepl("^fleksitarianer|^vegetarianer|^pescetarianer", d))
@@ -377,8 +398,11 @@ print.counterfactme_narrative <- function(x, ...) {
   if (grepl("^vegan", d)) return(sprintf("%s er veganer.", P))
   if (grepl("lavkarbo|keto", d)) return(sprintf("%s spiser lavkarbo.", P))
   if (grepl("glutenfri", d)) return(sprintf("%s spiser glutenfritt.", P))
+  # "tradisjonelt norsk" read oddly for a woman who came from Pakistan
+  # three years ago; the substance (meat-heavy, home cooking) is what matters.
   if (grepl("^tradisjonell norsk", d))
-    return("Kostholdet er tradisjonelt norsk og kj\u00f8ttrikt.")
+    return(if (isTRUE(immigrant)) "Kostholdet er tradisjonelt og kj\u00f8ttrikt."
+           else "Kostholdet er tradisjonelt norsk og kj\u00f8ttrikt.")
   sprintf("Kostholdet er %s.", d)
 }
 
@@ -408,7 +432,14 @@ print.counterfactme_narrative <- function(x, ...) {
          "frivillig: matsentral" = "frivillig arbeid p\u00e5 matsentralen",
          "frivillig: dyrebeskyttelsen" = "frivillig arbeid i Dyrebeskyttelsen")
   k <- tolower(h)
-  if (k %in% names(m)) unname(m[k]) else if (grepl("^magic", k)) h else k
+  out <- if (k %in% names(m)) unname(m[k]) else if (grepl("^magic", k)) h else k
+  # tolower() also flattened proper nouns: "pilegrim til nidaros",
+  # "tabletop rpg (d&d)".
+  out <- sub("^pilegrim til nidaros", "pilegrimsvandring til Nidaros", out)
+  out <- gsub("\\bd&d\\b", "D&D", out, perl = TRUE)
+  out <- gsub("\\brpg\\b", "RPG", out, perl = TRUE)
+  out <- gsub("\\byoutube", "YouTube", out, perl = TRUE)
+  out
 }
 
 # Disability type + severity -> phrase. "funksjonsnedsettelse (psykisk
@@ -445,7 +476,11 @@ print.counterfactme_narrative <- function(x, ...) {
   bg <- x$background %||% "majority"
 
   # 1) primary producer in a central municipality
+  # Not for retirees: "fjordfisker" is also a pensioner pastime label, and
+  # a 76-year-old was said to "livnaere seg" by it.
   if (grepl("bonde|g\u{00e5}rdbruk|gardbruk|jordbruk|fisker|skogbruk", occ) &&
+      !(x$occupation %||% "") %in% .PENSJONIST_LABELS &&
+      !is.null(x$age) && !is.na(x$age) && x$age < 67 &&
       !is.null(sent) && !is.na(sent) && sent <= 2) {
     return(.pick(c(
       sprintf("Det er ikke mange igjen som livn\u{00e6}rer seg slik %s gj\u{00f8}r \u{2014} som %s, midt i %s.",
@@ -474,7 +509,11 @@ print.counterfactme_narrative <- function(x, ...) {
   }
   # 5) strong upward educational mobility
   mob <- .mobility(x)
+  # Two levels up (videregaende -> bachelor) is the modal Norwegian life
+  # path, not a story; the lead fired on 3 of 14 live draws. Keep it for
+  # grunnskole -> higher education, or for reaching a doctorate.
   if (!is.null(mob) && identical(mob$dir, "sterk_opp") &&
+      ((mob$par <= 2L && mob$ego >= 6L) || mob$ego >= 8L) &&
       !is.na(mob$par_lbl) && !is.na(mob$ego_lbl)) {
     return(sprintf("%s klatret lenger enn de fleste: fra %s i barndomshjemmet til %s.",
                    name, mob$par_lbl, mob$ego_lbl))
@@ -761,6 +800,21 @@ print.counterfactme_narrative <- function(x, ...) {
   }
   field_str <- if (!is.null(field) && !is.na(field)) .clean_field(field) else NA
   fd_str   <- if (!is.null(field_d) && !is.na(field_d)) .clean_field(field_d) else NA
+  # The detailed field is drawn without regard to level, so
+  # "videregaaende med fordypning i sykepleie" and "fagskole med fordypning
+  # i fysikk" came out. Fields taught only at university or college fall
+  # back to the broad field below that level.
+  lvl_ego <- suppressWarnings(.edu_code_from_label(edu %||% NA))
+  if (!is.na(fd_str) && !is.na(lvl_ego) && lvl_ego <= 5L &&
+      grepl(paste0("^(sykepleie|psykologi|medisin|odontologi|farmasi|rettsvitenskap|jus|",
+                   "arkitektur|veterin|statsvitenskap|sosiologi|sosialantropologi|",
+                   "samfunns\u00f8konomi|filosofi|pedagogikk|teologi|historie|matematikk|",
+                   "fysikk|kjemi$|geologi|biologi|mikrobiologi|vernepleie|ergoterapi|",
+                   "fysioterapi|barnevern|allmenn|f\u00f8rskole|sivilingeni|",
+                   "videreutdanning for l\u00e6rere|lektor)"),
+            tolower(fd_str))) {
+    fd_str <- NA
+  }
   occ_str  <- if (!is.null(occ) && !is.na(occ)) occ else NA
 
   # combined education + first job arc
@@ -864,7 +918,7 @@ print.counterfactme_narrative <- function(x, ...) {
     return(paste(parts, collapse = " "))
   }
   occ_disp <- if (is.null(op)) NA_character_
-              else if (isTRUE(op$part)) paste(op$job, "p\u{00e5} deltid") else op$job
+              else if (isTRUE(op$part)) paste(op$job, .deltid_phrase(x$stillingsandel)) else op$job
 
   if (!is.na(edu_full) && !is.na(occ_str)) {
     inc <- if (!is.na(age_n) && age_n < 19) NA_character_
@@ -872,7 +926,11 @@ print.counterfactme_narrative <- function(x, ...) {
     if (!is.na(inc) && !grepl("utenfor", inc)) {
       parts <- c(parts, .pick(c(
         # "Med videregaende med fordypning i ..." doubles the "med".
-        sprintf("%s %s tok %s veien til jobben som %s, og har i dag %s.",
+        # "Med ingen fullfort utdanning tok hun veien ..." was live output.
+        if (grepl("^ingen fullf", edu_full))
+          sprintf("Uten fullf\u{00f8}rt utdanning tok %s veien til jobben som %s, og har i dag %s.",
+                  pron, occ_disp, inc)
+        else sprintf("%s %s tok %s veien til jobben som %s, og har i dag %s.",
                 if (grepl(" med ", edu_full)) "Etter" else "Med",
                 edu_full, pron, occ_disp, inc),
         if (grepl("^ingen fullf", edu_full))
@@ -884,7 +942,8 @@ print.counterfactme_narrative <- function(x, ...) {
                                 .cap(pron), edu_full, inc))
     } else {
       parts <- c(parts, .pick(c(
-        if (grepl(" med ", edu_full)) sprintf("Etter %s er %s %s.", edu_full, pron, occ_disp)
+        if (grepl("^ingen fullf", edu_full)) sprintf("Uten fullf\u{00f8}rt utdanning er %s %s.", pron, occ_disp)
+        else if (grepl(" med ", edu_full)) sprintf("Etter %s er %s %s.", edu_full, pron, occ_disp)
         else sprintf("Med %s i bagasjen er %s %s.", edu_full, pron, occ_disp),
         sprintf("%s har %s og jobber som %s.", .cap(pron), edu_full, occ_disp))))
     }
@@ -946,7 +1005,10 @@ print.counterfactme_narrative <- function(x, ...) {
               else sprintf("%s er %s.", .cap(pron), marital)
     } else if (marital == "ugift") {
       if (has_kids) {
-        part <- sprintf("%s er ugift, men har %s.", .cap(pron), kids_str)
+        # "Par med barn" + ugift is a cohabiting couple, not a lone parent.
+        part <- if (grepl("^par", tolower(x$household %||% "")))
+                  sprintf("%s bor med samboer, og de har %s.", .cap(pron), kids_str)
+                else sprintf("%s er ugift, men har %s.", .cap(pron), kids_str)
       } else if (!is.null(x$age) && !is.na(x$age) && x$age >= 30) {
         # Ugift is a legal status, not a living arrangement: "fortsatt ugift
         # og uten barn" was printed for someone in a couple household, and
@@ -1109,7 +1171,8 @@ print.counterfactme_narrative <- function(x, ...) {
   # diet only when distinctive
   if (!is.null(x$diet) && !is.na(x$diet) &&
       !grepl("blandet|vanlig|alminnel|servert hjemme|served at home", tolower(x$diet))) {
-    parts <- c(parts, .diet_sentence(x$diet, pron))
+    parts <- c(parts, .diet_sentence(x$diet, pron,
+                                      immigrant = identical(x$background, "first_gen")))
   }
 
   paste(parts, collapse = " ")

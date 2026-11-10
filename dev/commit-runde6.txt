@@ -1,0 +1,31 @@
+Runde 6-9: funn fra 1 800 liv i sandkassen og 26 på den publiserte siden
+
+- Innvandrerbarns foreldre er enten begge i utlandet eller begge her
+  ("Den ene forelderen bodde i India, den andre var bonde")
+- Andregenerasjon: foreldrene bodde i Norge; land uten startår får
+  regionsbasert standard (88-åring andregenerasjon fra Nepal)
+- "Uten fullført utdanning tok hun veien ..." i stedet for "Med ingen ..."
+- Mobilitetsinngangen bare for grunnskole -> høyere utdanning eller doktorgrad
+- Menn får ikke -vertinne/-pike/-dame-titler ("Vidar, som er solvertinne")
+- Majoritetsnavn: filtrerer tydelige innvandrernavn (Przemyslaw, Abdul)
+- Lønn: aldersspredning trekkes ut av kvartilspredningen, sd maks 0.25,
+  støy kuttet ved +-2 sd; stillingsandel minst 15 pct
+- Pensjon: tak etter utdanning; fra 72 år er inntekten alltid pensjon
+- Universitetsfag festes ikke til videregående/fagskole
+- Kosthold "tradisjonelt og kjøttrikt" for førstegenerasjon
+- Titler: " - " -> ", ", DP/HEMS/IT/EDB, INTERIØR-skrivefeil, mellomrom
+- Hobbyer: Nidaros, D&D, RPG, YouTube med stor forbokstav
+- "Ugift" i parhusholdning med barn -> "bor med samboer, og de har ..."
+- Seniortitler først fra 30 år
+- Deltid oppgis med stillingsandel ("i 70 prosent stilling"); aldersfaktoren
+  på lønn sentrert rundt 1; under 21 år lavere; unge får støy maks +1 sd
+- Under 20 pct stilling halvert for 25-66 år
+- Barn som kom før 16 år: foreldrene kom også (ikke "bodde i Kosovo")
+- Under 30: toppledere/folkevalgte (11-13) nedvektet; under 40 med
+  grunnskole: yrkesgruppe 1-3 (utenom 14) nedvektet
+- Foreldre som jobbet før 1990 får ikke moderne titler (logistiker,
+  account manager, booker, kundesenter ...)
+- "Livnærer seg som fjordfisker" ikke for pensjonister
+- Fortellingen beholder forkortelser (IT, PU, DP, klasse B, B&B)
+- Kildefeil: MEDARABEIDER, PEDRIATISK, GJENNVINN; mellomrom før parentes
+- tests/testthat/test-runde6.R: 15 nye tester

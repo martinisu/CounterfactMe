@@ -71,6 +71,23 @@ sample_first_name <- function(n = 1, gender = NULL, birth_year = NULL) {
       nms <- nms[!(nms$name %in% foreign_names), ]
     }
   }
+  # names_by_region holds 40 names per region, so common immigrant names
+  # outside that list still came through: the live site produced
+  # "Przemyslaw" and "Abdul" as children of Toril and Svein. Drop names
+  # with unmistakably non-Nordic spelling or roots. Names in shared use
+  # (Maria, Daniel, Sara, Ali as a Norwegian short form is rare) are kept
+  # unless listed.
+  foreign_re <- paste0(
+    "sz|cz|rz|\u0142|aw$|^(Piotr|Pawel|Marcin|Lukasz|Marek|Dariusz|Wojciech|",
+    "Jakub|Agnieszka|Beata|Malgorzata|Magdalena|Katarzyna|Aleksandra|",
+    "Svetlana|Thi|Van|Omar|Ali|Amir|Mariam|Maryam)$|",
+    "^(Abd|Moha|Muha|Mohd|Ahm|Ibrah|Musta|Huss|Hass|Ism[ae]|Yus|Khal|",
+    "Mahm|Hamz|Fatim|Amina|Aish|Zahr|Yasm|Mehm)|",
+    "^(Arturas|Darius|Mantas|Tadas|Deividas|Dovydas|Andrius|Mindaugas|",
+    "Vytautas|Aurimas|Rimantas|Gintaras|Paulius|Karolis|Edgaras|Ernestas|",
+    "Justinas|Vladimir|Sergei|Sergey|Dmitri|Dmitry|Aleksandr|Oleksandr|",
+    "Volodymyr|Tatiana|Tetiana|Nguyen|Huong|Linh)$")
+  nms <- nms[!grepl(foreign_re, nms$name, perl = TRUE), ]
   if (!is.null(gender)) {
     gender <- toupper(gender)
     nms <- nms[nms$gender == gender, ]

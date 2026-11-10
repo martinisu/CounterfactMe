@@ -334,6 +334,7 @@ counterfact_me <- function(dimensions = available_dimensions(),
     result$income_bracket <- inc$bracket
     result$income_nok <- inc$nok
     if (!is.null(inc$ukepenger)) result$ukepenger <- inc$ukepenger
+    if (!is.null(inc$stillingsandel)) result$stillingsandel <- round(inc$stillingsandel, 2)
   }
 
   # Inntektsgradienten i forventet levetid (Kinge et al., JAMA 2019).
