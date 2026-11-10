@@ -59,35 +59,41 @@ sample_municipality <- function(n = 1, weighted = TRUE) {
 #' sample_first_name(5, gender = "M", birth_year = 1996)
 sample_first_name <- function(n = 1, gender = NULL, birth_year = NULL) {
   .load_data()
-  nms <- .cfm_env$first_names
-  # Exclude clearly foreign-coded names that appear in names_by_region.csv —
-  # for narrative consistency, majority-Norwegian draws should not pull names
-  # like "Mohammed" or "Fatima" from the SSB cohort registry (which contains
-  # them because immigrants ARE registered in Norway).
-  nbr <- .cfm_env$names_by_region
-  if (!is.null(nbr)) {
-    foreign_names <- unique(nbr$name[nbr$region != "norden"])
-    if (length(foreign_names) > 0) {
-      nms <- nms[!(nms$name %in% foreign_names), ]
+  # The filtered table is cached: filtering on every call cost 28 ms a
+  # name, most of a life's draw time, and pushed CI past its time limit.
+  nms <- .cfm_env$first_names_filtered
+  if (is.null(nms)) {
+    nms <- .cfm_env$first_names
+    # Exclude clearly foreign-coded names that appear in names_by_region.csv —
+    # for narrative consistency, majority-Norwegian draws should not pull names
+    # like "Mohammed" or "Fatima" from the SSB cohort registry (which contains
+    # them because immigrants ARE registered in Norway).
+    nbr <- .cfm_env$names_by_region
+    if (!is.null(nbr)) {
+      foreign_names <- unique(nbr$name[nbr$region != "norden"])
+      if (length(foreign_names) > 0) {
+        nms <- nms[!(nms$name %in% foreign_names), ]
+      }
     }
+    # names_by_region holds 40 names per region, so common immigrant names
+    # outside that list still came through: the live site produced
+    # "Przemyslaw" and "Abdul" as children of Toril and Svein. Drop names
+    # with unmistakably non-Nordic spelling or roots. Names in shared use
+    # (Maria, Daniel, Sara, Ali as a Norwegian short form is rare) are kept
+    # unless listed.
+    foreign_re <- paste0(
+      "sz|cz|rz|\u0142|aw$|^(Piotr|Pawel|Marcin|Lukasz|Marek|Dariusz|Wojciech|",
+      "Jakub|Agnieszka|Beata|Malgorzata|Magdalena|Katarzyna|Aleksandra|",
+      "Svetlana|Thi|Van|Omar|Ali|Amir|Mariam|Maryam)$|",
+      "^(Abd|Moha|Muha|Mohd|Ahm|Ibrah|Musta|Huss|Hass|Ism[ae]|Yus|Khal|",
+      "Mahm|Hamz|Fatim|Amina|Aish|Zahr|Yasm|Mehm)|",
+      "^(Arturas|Darius|Mantas|Tadas|Deividas|Dovydas|Andrius|Mindaugas|",
+      "Vytautas|Aurimas|Rimantas|Gintaras|Paulius|Karolis|Edgaras|Ernestas|",
+      "Justinas|Vladimir|Sergei|Sergey|Dmitri|Dmitry|Aleksandr|Oleksandr|",
+      "Volodymyr|Tatiana|Tetiana|Nguyen|Huong|Linh)$")
+    nms <- nms[!grepl(foreign_re, nms$name, perl = TRUE), ]
+    .cfm_env$first_names_filtered <- nms
   }
-  # names_by_region holds 40 names per region, so common immigrant names
-  # outside that list still came through: the live site produced
-  # "Przemyslaw" and "Abdul" as children of Toril and Svein. Drop names
-  # with unmistakably non-Nordic spelling or roots. Names in shared use
-  # (Maria, Daniel, Sara, Ali as a Norwegian short form is rare) are kept
-  # unless listed.
-  foreign_re <- paste0(
-    "sz|cz|rz|\u0142|aw$|^(Piotr|Pawel|Marcin|Lukasz|Marek|Dariusz|Wojciech|",
-    "Jakub|Agnieszka|Beata|Malgorzata|Magdalena|Katarzyna|Aleksandra|",
-    "Svetlana|Thi|Van|Omar|Ali|Amir|Mariam|Maryam)$|",
-    "^(Abd|Moha|Muha|Mohd|Ahm|Ibrah|Musta|Huss|Hass|Ism[ae]|Yus|Khal|",
-    "Mahm|Hamz|Fatim|Amina|Aish|Zahr|Yasm|Mehm)|",
-    "^(Arturas|Darius|Mantas|Tadas|Deividas|Dovydas|Andrius|Mindaugas|",
-    "Vytautas|Aurimas|Rimantas|Gintaras|Paulius|Karolis|Edgaras|Ernestas|",
-    "Justinas|Vladimir|Sergei|Sergey|Dmitri|Dmitry|Aleksandr|Oleksandr|",
-    "Volodymyr|Tatiana|Tetiana|Nguyen|Huong|Linh)$")
-  nms <- nms[!grepl(foreign_re, nms$name, perl = TRUE), ]
   if (!is.null(gender)) {
     gender <- toupper(gender)
     nms <- nms[nms$gender == gender, ]

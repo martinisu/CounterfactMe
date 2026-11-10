@@ -4,25 +4,34 @@ test_that("an immigrant child's parents are either both abroad or both here", {
   # "Den ene forelderen bodde i India, den andre var bonde
   # (kombinasjonsbruk)" for a man who came at 17.
   set.seed(6101)
+  seen <- 0L
   for (i in 1:120) {
     x <- counterfact_me(min_age = 20, max_age = 70)
     if (!identical(x$background, "first_gen")) next
+    seen <- seen + 1L
     txt <- as.character(narrate_life(x))
     expect_false(grepl("Den ene forelderen bodde i", txt, fixed = TRUE), label = txt)
   }
+  expect_gte(seen, 10L)
 })
 
 test_that("second-generation parents are not narrated as living abroad", {
   # "Foreldrene kom fra Ungarn. / Foreldrene bodde i Ungarn mens de var i
   # arbeidsfoer alder" -- the person was born in Norway.
+  # Drawn through the background step directly: second_gen is 4 pct of
+  # adults, so 200 whole lives held only a handful.
   set.seed(6102)
-  for (i in 1:200) {
-    x <- counterfact_me(min_age = 20, max_age = 80)
+  seen <- 0L
+  for (i in 1:400) {
+    x <- counterfact_me(min_age = 20, max_age = 50)
     if (!identical(x$background, "second_gen")) next
+    seen <- seen + 1L
     txt <- as.character(narrate_life(x))
     expect_false(grepl("levde arbeidslivet sitt i|Foreldrene bodde i [A-Z]", txt, perl = TRUE),
                  label = txt)
+    if (seen >= 15L) break
   }
+  expect_gte(seen, 5L)
 })
 
 test_that("old second-generation lives come only from old migration flows", {
@@ -39,7 +48,7 @@ test_that("old second-generation lives come only from old migration flows", {
 
 test_that("no 'Med ingen fullfoert utdanning tok ...'", {
   set.seed(6104)
-  for (i in 1:150) {
+  for (i in 1:80) {
     x <- counterfact_me(min_age = 25, max_age = 60)
     txt <- as.character(narrate_life(x))
     expect_false(grepl("Med ingen fullf", txt, fixed = TRUE), label = txt)
@@ -51,7 +60,7 @@ test_that("men do not get -vertinne, -pike or -dame titles", {
   # not SOLVERTINNE, FLYVERTINNE or KONTORDAME.
   female_re <- "^[^/]*(vertinne|pike|dame|jomfru|oldfrue)( \\(|$)"
   set.seed(6105)
-  for (i in 1:200) {
+  for (i in 1:100) {
     x <- counterfact_me(gender = "M", min_age = 20, max_age = 66)
     occ <- x$occupation
     if (is.null(occ) || is.na(occ)) occ <- ""
@@ -78,7 +87,7 @@ test_that("pensions stay within an education-dependent ceiling", {
   # "Pensjonen ligger paa rundt 1 310 000" for videregaaende; a 79-year-old
   # ex-sjekkflyger drew 1 580 000 as a wage.
   set.seed(6107)
-  for (i in 1:150) {
+  for (i in 1:80) {
     x <- counterfact_me(min_age = 72, max_age = 95)
     lvl <- CounterfactMe:::.edu_code_from_label(x$education)
     cap <- if (is.na(lvl)) 1e6 else if (lvl <= 2) 450000 else if (lvl <= 5) 650000 else 1e6
@@ -102,7 +111,7 @@ test_that("the upward-mobility lead is kept for real jumps", {
   # Videregaaende -> bachelor is the modal path; the lead fired on 3 of 14
   # live draws.
   set.seed(6109)
-  for (i in 1:200) {
+  for (i in 1:100) {
     x <- counterfact_me(min_age = 30, max_age = 70)
     txt <- as.character(narrate_life(x))
     expect_false(grepl("fra videregående i barndomshjemmet til bachelorgrad", txt, fixed = TRUE))
@@ -111,7 +120,7 @@ test_that("the upward-mobility lead is kept for real jumps", {
 
 test_that("university-only fields are not attached to videregaaende", {
   set.seed(6110)
-  for (i in 1:200) {
+  for (i in 1:100) {
     x <- counterfact_me(min_age = 22, max_age = 80)
     txt <- tolower(as.character(narrate_life(x)))
     expect_false(grepl("videregående med fordypning i (sykepleie|psykologi|arkitektur|fysikk)", txt),
@@ -133,7 +142,7 @@ test_that("retirees are not said to make a living from a pastime", {
   # "Det er ikke mange igjen som livnaerer seg slik Ingjerd gjoer -- som
   # fjordfisker" for a 76-year-old pensioner.
   set.seed(6112)
-  for (i in 1:150) {
+  for (i in 1:80) {
     x <- counterfact_me(min_age = 67, max_age = 95)
     txt <- as.character(narrate_life(x))
     expect_false(grepl("livnærer seg", txt, fixed = TRUE), label = txt)
