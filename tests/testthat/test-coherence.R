@@ -40,7 +40,7 @@ test_that("narratives do not contradict the life they describe", {
         grepl(paste0("(jobber som|i bagasjen er \\w+) (",
                      paste(tolower(CounterfactMe:::.TEEN_OCCUPATIONS), collapse = "|"), ")"), tl))
       flag("ungdomsetikett som jobb", l)
-    if (grepl("jobber som student|som er student \\(", tl)) flag("student som jobbtittel", l)
+    if (grepl("jobber som student\\b|som er student \\(", tl)) flag("student som jobbtittel", l)
     if (grepl("tilhører (døpt|foreldrenes|navnefest)", tl)) flag("barnereligion som tilhoerighet", l)
     if (grepl("\\([^()]*\\([^()]*\\)[^()]*\\)", t)) flag("nestede parenteser", l)
     if (grepl("jobbet som hjemmev|jobber som hjemmev|uoppgitt / yrker", tl)) flag("ikke-yrke som yrke", l)
@@ -74,6 +74,29 @@ test_that("narratives do not contradict the life they describe", {
     if (!is.null(code) && !is.na(code) && code %in% CounterfactMe:::.LICENSED_STYRK &&
         !is.na(edu_cd) && edu_cd < 7L)
       flag("autorisert yrke uten lang utdanning", l)
+    if (!is.null(code) && !is.na(code) && code %in% CounterfactMe:::.FAGBREV_STYRK &&
+        !is.na(edu_cd) && edu_cd < 4L)
+      flag("elektrofag uten fagbrev", l)
+    if (grepl("gruppe [a-z] \\+", t)) flag("sertifikatklasse med liten bokstav", l)
+    # Runde 5 (egen lesing i sandkassen, 2026-11-10)
+    if (identical(x$background, "first_gen") && identical(code, "0310")) flag("innvandrer som menig", l)
+    if (!is.na(age) && age >= 18 && age < 25 && grepl(CounterfactMe:::.SENIOR_TITLE_RE, toupper(x$occupation %||% ""), perl = TRUE))
+      flag("sjefstittel under 25", l)
+    if (!is.na(edu_cd) && edu_cd < 6L &&
+        grepl(CounterfactMe:::.BACHELOR_TITLE_RE, toupper(x$occupation %||% ""), perl = TRUE))
+      flag("autorisert tittel uten bachelor", l)
+    if (grepl("^par", tolower(x$household %||% "")) && grepl("fortsatt ugift og uten barn|lever alene", tl))
+      flag("ugift/alene i parhusholdning", l)
+    if (!is.na(age) && age < 18 && isTRUE(x$n_children > 0)) flag("barn under 18 med egne barn", l)
+    if (grepl("foreldrene jobber som [^.]*\\)", tl) && !grepl("\\(", sub("^.*foreldrene jobber som", "", tl)))
+      flag("ubalansert parentes", l)
+    lic_f <- if (!is.null(code) && !is.na(code)) CounterfactMe:::.LICENSED_FIELD[[as.character(code)]] else NULL
+    fc <- x$field_of_study_code %||% NA
+    if (!is.null(lic_f) && !is.na(fc) && substr(fc, 1, 2) != lic_f) flag("feil fagfelt for autorisert yrke", l)
+    if (grepl("etter ingen fullf|endte det med ingen fullf", tl)) flag("'etter ingen fullfoert utdanning'", l)
+    if (!is.na(edu_cd) && edu_cd <= 2L && !is.null(code) && !is.na(code) &&
+        substr(code, 1, 2) %in% c("11", "12", "13") && !grepl("^(AAP|Dagpenger)", x$occupation %||% ""))
+      flag("toppleder med grunnskole", l)
     # Round 4: 4-digit group labels are plural and should never be a title.
     os_lab <- tolower(CounterfactMe:::.cfm_env$occupations_salary$label)
     if (tolower(x$occupation %||% "") %in% os_lab && !grepl("^(student|ufor)", tolower(x$occupation %||% "")))

@@ -20,7 +20,11 @@
 
   .cfm_env$municipalities <- read.csv(
     file.path(extdata, "municipalities.csv"),
-    stringsAsFactors = FALSE, encoding = "UTF-8"
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    # Codes have leading zeros ("0110", "0301"). Read as integers they
+    # became 110 and 301: officers were sorted as top managers, "0000"
+    # escaped the exclusion, and military codes found no titles.
+    colClasses = c(code = "character")
   )
 
   .cfm_env$first_names <- read.csv(
@@ -61,13 +65,21 @@
 
   .cfm_env$counties <- read.csv(
     file.path(extdata, "counties.csv"),
-    stringsAsFactors = FALSE, encoding = "UTF-8"
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    # Codes have leading zeros ("0110", "0301"). Read as integers they
+    # became 110 and 301: officers were sorted as top managers, "0000"
+    # escaped the exclusion, and military codes found no titles.
+    colClasses = c(code = "character")
   )
 
 
   .cfm_env$occupations_salary <- read.csv(
     file.path(extdata, "occupations_salary.csv"),
-    stringsAsFactors = FALSE, encoding = "UTF-8"
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    # Codes have leading zeros ("0110", "0301"). Read as integers they
+    # became 110 and 301: officers were sorted as top managers, "0000"
+    # escaped the exclusion, and military codes found no titles.
+    colClasses = c(code = "character")
   )
 
   .cfm_env$disability_by_age <- read.csv(
@@ -78,7 +90,11 @@
 
   .cfm_env$occupations_gender <- read.csv(
     file.path(extdata, "occupations_gender.csv"),
-    stringsAsFactors = FALSE, encoding = "UTF-8"
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    # Codes have leading zeros ("0110", "0301"). Read as integers they
+    # became 110 and 301: officers were sorted as top managers, "0000"
+    # escaped the exclusion, and military codes found no titles.
+    colClasses = c(code = "character")
   )
 
   .cfm_env$nus_fields <- read.csv(
@@ -157,6 +173,19 @@
     file.path(extdata, "occupation_by_age.csv"),
     stringsAsFactors = FALSE, encoding = "UTF-8",
     colClasses = c(styrk2 = "character", age_band = "character")
+  )
+
+  .cfm_env$field_by_occupation_edu <- read.csv(
+    file.path(extdata, "field_by_occupation_edu.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(styrk2 = "character", edu_level = "character",
+                   fagfelt2 = "character")
+  )
+
+  .cfm_env$occupation_wage_spread <- read.csv(
+    file.path(extdata, "occupation_wage_spread.csv"),
+    stringsAsFactors = FALSE, encoding = "UTF-8",
+    colClasses = c(code = "character")
   )
 
   .cfm_env$part_time_by_occupation <- read.csv(

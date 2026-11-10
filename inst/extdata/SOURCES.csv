@@ -61,3 +61,5 @@ mortality_income_gradient.csv,authored,,build_income_mortality.py,"Relativ innte
 part_time_by_occupation.csv,ssb_api,12542,fetch_part_time.py,"Stillingsandel for deltidsansatte per 4-sifret yrke og kjonn, 4. kvartal 2025. Erstatter handsatt runif(0.45, 0.80) med tak 85 pst i .cond_income(). Se data-raw/fetch_part_time.py"
 occupation_by_edu.csv,ssb_api,12849,fetch_occupation_edu_age.py,"Sysselsatte 20-66 etter utdanningsnivaa og 2-sifret yrke, 4. kvartal 2025. Erstatter haandsatte 1-sifrede vekter i .edu_to_styrk_majors()"
 occupation_by_age.csv,ssb_api,09793,fetch_occupation_edu_age.py,"Sysselsatte etter aldersgruppe og 2-sifret yrke, aarsgjennomsnitt 2024 (1000 personer). Alder paavirket ikke yrkestrekket foer dette"
+occupation_wage_spread.csv,ssb_api,11418,fetch_wage_spread.py,"Nedre kvartil, median og ovre kvartil for maanedslonn per 4-sifret yrke, heltid, 2025. Gir spredningen i inntektstrekket per yrke i stedet for en felles sd paa 0,25"
+field_by_occupation_edu.csv,ssb_api,12849,fetch_field_by_occupation.py,"Sysselsatte 20-66 etter 2-sifret fagfelt, 2-sifret yrke og utdanningsnivaa, 4. kvartal 2025. Gir fagfelt betinget paa yrke og nivaa"

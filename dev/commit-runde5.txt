@@ -1,0 +1,49 @@
+Fortellingene lest i bulk: yrkeskoder som tekst, data for fagfelt og lønnsspredning
+
+Fra nå kjøres pakken i webR i sandkassen (dev/sandkasse/), slik at
+fortellinger kan leses og kontrolleres i hundretall uten lokal R. Fire
+runder med 300 liv ga disse funnene:
+
+Datafeil
+  - occupations_salary.csv, occupations_gender.csv, municipalities.csv og
+    counties.csv ble lest med koder som tall: "0110" ble 110 og "0000"
+    ble 0. Offiserer havnet i toppledergruppa, menige blant
+    hoyskoleyrkene, "Uoppgitt / yrker som ikke kan identifiseres" kunne
+    trekkes som yrke, og militaere koder fant ingen detaljtitler.
+  - Fire titler i occupations.csv har ubalanserte parenteser ("daglig
+    leder)"); de rettes naa ved innlesing.
+
+Nye SSB-data
+  - 11418 kvartiler: lonnsspredning per yrke (0,10 for laerere og
+    renholdere, 0,51 for toppledere) i stedet for 0,25 for alle.
+  - 12849 fagfelt x yrke x utdanningsnivaa: fagfeltet trekkes betinget
+    paa yrke OG nivaa. Bachelorer i medisinske yrker faar pleie og
+    omsorg, ikke medisin. Autoriserte yrker faar det fagfeltet loven
+    krever.
+
+Modellrettelser
+  - Bakgrunnsjusteringen av yrke valgte jevnt innen en yrkesgruppe og
+    hoppet over alle regler (en 31-aaring fra Ukraina ble menig paa
+    550 000). Naa samme vekter som det vanlige trekket, og bare for folk i
+    arbeid.
+  - Barn etter alder: 22 pst av 17-18-aaringer hadde barn. Naa logistisk
+    kurve forankret i medianalder ved forste fodsel, og husholdningen
+    rettes etter barna, ikke omvendt.
+  - Pensjon fra SSB 06655 (67+) med utdanningsvekting i stedet for
+    utdaterte desiler uten utdanning.
+  - Uforetrygd mellom minsteytelse og 66 pst av 6G, ikke opp til 2 MNOK.
+  - Luksusbolig bare med inntekt eller foreldrekapital til det.
+  - Innvandrere som har kommet som voksne: foreldrene levde
+    arbeidslivet i hjemlandet.
+  - Sjefstitler ikke under 25, ingenioertitler ikke uten fagskole,
+    autoriserte titler ikke uten bachelor, elektrofag og ambulanse ikke
+    uten fagbrev, akademiske yrker og toppledere ikke med grunnskole.
+  - AAP- og dagpengestoey kan ikke loefte belopet over taket.
+
+Fortelling
+  - "Foreldrene jobber som X og Y" i stedet for "en X og en Y" (et bud).
+  - Ugift i parhusholdning: "bor med samboer", ikke "lever alene".
+  - "Uten fullfoert utdanning jobber han ..." og ingen "innen uoppgitt".
+  - Religion sies ikke to ganger naar innledningen alt har sagt det.
+
+test-coherence.R har faatt en ny sjekk for hvert funn.

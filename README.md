@@ -123,18 +123,18 @@ fabricated number next to register figures.
 
 ## Data provenance
 
-62 CSV files ship in `inst/extdata/`. They are not equally well traced,
+64 CSV files ship in `inst/extdata/`. They are not equally well traced,
 and the package says which is which:
 
 ```r
-data_sources()             # all 62 files
+data_sources()             # all 64 files
 data_sources("untraced")   # those without a recorded origin
 table(data_sources()$status)
 ```
 
 | status | meaning | files |
 |---|---|---|
-| `ssb_api` | Fetched from Statistics Norway's API by a script in `data-raw/`. Reproducible. | 18 |
+| `ssb_api` | Fetched from Statistics Norway's API by a script in `data-raw/`. Reproducible. | 20 |
 | `ssb_cited` | An SSB table is cited in the R source; figures transcribed by hand. | 6 |
 | `untraced` | No script and no citation found in the package. | 33 |
 | `authored` | Deliberately written content, such as the humorous labels. | 4 |

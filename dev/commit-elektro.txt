@@ -1,0 +1,13 @@
+Elektrofag krever fagbrev; "gruppe A + B" med store bokstaver
+
+Fra den publiserte sida etter forrige push: "Etter grunnskole jobber han
+som elverksmontoer gruppe a + b -- en aarsinntekt paa rundt 720 000".
+
+Elektrikere, automatikere og energimontoerer (7411-7413) er lovregulerte:
+forskrift om elektroforetak og kvalifikasjonskrav krever fagbrev, altsaa
+fullfoert videregaaende. SSB 12849 har likevel 1,3 pst av dem med bare
+grunnskole i gruppe 74, trolig uregistrerte fagbrev, saa vektingen alene
+slapp det gjennom. Naa samme type regel som for profesjonsyrkene.
+
+Sertifikatklasser beholder store bokstaver i fortellingen. Begge
+sjekkes i test-coherence.R.

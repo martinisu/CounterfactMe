@@ -305,6 +305,27 @@
                                 "2266", "2267", "3211", "3212", "3213",
                                 "3251", "3254")
 
+# Regulated electrical trades. Forskrift om elektroforetak og
+# kvalifikasjonskrav for arbeid knyttet til elektriske anlegg requires a
+# fagbrev (videregaaende fullfoert, code 4). 12849 still has 1.3 pct of
+# grunnskole holders in group 74, probably unregistered certificates, so
+# the ratio alone let "Etter grunnskole jobber han som elverksmontoer
+# gruppe A + B" through on the live site.
+.FAGBREV_STYRK <- c("7411", "7412", "7413",
+                    "3258")   # ambulansepersonell: autorisasjon krever fagbrev
+# Authorised titles at fagbrev level inside codes that also hold unskilled
+# work (5321 has both "hjelpepleier" and "pleieassistent").
+.FAGBREV_TITLE_RE <- "HJELPEPLEIER|HELSEFAGARBEIDER|OVERPLEIER|ELEKTRIKER|ELVERKSMONT|ENERGIMONT|AUTOMATIKER"
+# Authorised titles at bachelor level, wherever their code sits
+# ("arbeidsterapeut", the old name for ergoterapeut, is in 5311).
+.BACHELOR_TITLE_RE <- "SYKEPLEIER\\b|ERGOTERAPEUT|ARBEIDSTERAPEUT|FYSIOTERAPEUT|JORDMOR|RADIOGRAF|BIOINGENI|VERNEPLEIER\\b"
+# "Ingenioer" titles presuppose at least fagskole: "utviklingsingenioer" on
+# 1.16 MNOK with unfinished videregaaende was in the audit.
+.INGENIOR_TITLE_RE <- "INGENI\u00d8R"
+# Senior and leading titles are not for the very young: a 19-year-old
+# "overpleier" was on the live site.
+.SENIOR_TITLE_RE <- "^(OVER|LEDENDE|SENIOR|HOVED|SJEFS?)|SJEF\\b|DIREKT\u00d8R|\\bLEDER\\b"
+
 # Titles that require a profession degree even where the 4-digit code does
 # not: "Assisterende fylkeslege" sits in 1342 (ledere av helsetjenester).
 .LICENSED_TITLE_RE <- "(?<!KOL)LEGE\\b|PREST\\b|PSYKOLOG\\b|ADVOKAT\\b|DOMMER\\b"
@@ -336,9 +357,28 @@
 .edu_level_12849 <- function(edu_code) {
   if (is.null(edu_code) || is.na(edu_code)) return("0+9")
   e <- as.integer(edu_code)
-  if (e %in% 1:2) "1" else if (e %in% 3:5) "2" else if (e == 6L) "3"
+  # Code 0 is "ingen fullfoert utdanning", which is grunnskole-or-less, not
+  # unknown. Mapping it to 12849's "0+9" (mostly immigrants with
+  # unregistered degrees) made a man with no education a prosesstekniker.
+  if (e %in% 0:2) "1" else if (e %in% 3:5) "2" else if (e == 6L) "3"
   else if (e %in% 7:8) "4" else "0+9"
 }
+
+# Licensed professions require a specific field by law or authorisation.
+# 12849 only knows the 2-digit occupation, and group 22 holds both doctors
+# and nurses, so a "barnesykepleier" could draw "mastergrad i medisin".
+.LICENSED_FIELD <- list(
+  "2211" = "63", "2212" = "63",            # leger: medisin
+  "2261" = "64",                           # tannleger: tannhelsefag
+  "2262" = "66",                           # farmasoyter: apotekfag
+  "2250" = "67",                           # veterinaerer
+  "2634" = "36",                           # psykologer
+  "2611" = "37", "2612" = "37",            # jurister, dommere
+  "2636" = "14",                           # prester: religionsutdanninger
+  "2221" = "61", "2222" = "61", "2223" = "61",  # sykepleiere, jordmoedre
+  "2224" = "62",                           # vernepleiere
+  "2264" = "65", "2267" = "65"             # fysio-, ergoterapeuter
+)
 
 .age_band_09793 <- function(age) {
   if (is.null(age) || is.na(age)) return(NA_character_)
@@ -350,7 +390,7 @@
 # the same distribution the ordinary draw does: the resampling weight is
 # only correct if it is P(occupation | upstream) as the sampler sees it.
 .occupation_weights <- function(age, edu_code, mun_pop = NULL, gender = NULL,
-                                work_year = NA_integer_) {
+                                work_year = NA_integer_, exclude_codes = NULL) {
   os <- .cfm_env$occupations_salary
   tbl <- os[os$schedule == "all" & !is.na(os$code) & nzchar(os$code), ]
   tbl <- tbl[tbl$code != "0000" & tbl$headcount > 0, ]
@@ -382,15 +422,34 @@
   if (is.null(edu_code) || is.na(edu_code) || as.integer(edu_code) < 6L) {
     major_w[tbl$code %in% .AUTHORISED_BACHELOR_STYRK] <- 0
   }
+  if (is.null(edu_code) || is.na(edu_code) || as.integer(edu_code) < 4L) {
+    major_w[tbl$code %in% .FAGBREV_STYRK] <- 0
+  }
   # 12849 puts 2.7 pct of employed master's holders in STYRK 6-9, much of
   # it immigrants whose degrees are not recognised. That is modelled on its
   # own, after this draw, by .background_overqualified(). Taking it from
   # 12849 as well would count it twice and hand it to majority-background
   # egos too, so the earlier caps stay: bachelor not in 6-8, master and
   # doctorate not in 6-9 (test-regressions.R, "manual STYRK groups").
+  # Akademiske yrker (major 2) are ISCO skill level 4, which presupposes
+  # higher education. 12849 has a few grunnskole holders there (register
+  # gaps, unregistered foreign degrees); in prose "Med grunnskole tok hun
+  # veien til jobben som raadgiver" reads as an error.
+  if (!is.null(edu_code) && !is.na(edu_code) && as.integer(edu_code) <= 2L) {
+    major_w[first_digit == "2"] <- 0
+    # Top and administrative managers (11-13) likewise: "Etter grunnskole
+    # jobber hun som kommuneplansjef -- 980 000" was on the audit list.
+    # Shop and restaurant managers (14) stay.
+    major_w[two_digit %in% c("11", "12", "13")] <- 0
+  }
+  # Conscription requires Norwegian citizenship, which takes years of
+  # residence: a 20-year-old who came from Turkey a year earlier was drawn
+  # as "grenader". Immigrants are kept out of 0310 entirely (the weights do
+  # not know years in Norway).
   # Menige (0310) are conscripts. 09793 has no row for the military, so
   # age said nothing, and a 31-year-old with a master's became "menige".
   if (!is.na(age) && age > 25) major_w[tbl$code == "0310"] <- 0
+  if (length(exclude_codes)) major_w[tbl$code %in% exclude_codes] <- 0
   if (!is.null(edu_code) && !is.na(edu_code)) {
     ec <- as.integer(edu_code)
     if (ec == 6L) major_w[first_digit %in% c("6", "7", "8")] <- 0
@@ -467,7 +526,11 @@
   drop <- c(if (!part) "VIKAR",
             if (!young) c("L\u00c6RLING", "PRAKTIKANT", "ASPIRANT",
                           "TRAINEE", "\\bELEV\\b"),
-            if (is.na(edu_code) || as.integer(edu_code) < 7L) .LICENSED_TITLE_RE)
+            if (is.na(edu_code) || as.integer(edu_code) < 7L) .LICENSED_TITLE_RE,
+            if (is.na(edu_code) || as.integer(edu_code) < 4L) .FAGBREV_TITLE_RE,
+            if (is.na(edu_code) || as.integer(edu_code) < 6L) .BACHELOR_TITLE_RE,
+            if (is.na(edu_code) || as.integer(edu_code) < 5L) .INGENIOR_TITLE_RE,
+            if (!is.na(age) && age < 25) .SENIOR_TITLE_RE)
   detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender,
                                     drop_re = if (length(drop)) paste(drop, collapse = "|") else NULL)
 
@@ -483,7 +546,8 @@
 
 .cond_occupation <- function(age, edu_code, mun_pop = NULL, gender = NULL,
                              disabled = NULL, severity = NULL,
-                             work_year = NA_integer_, force_codes = NULL) {
+                             work_year = NA_integer_, force_codes = NULL,
+                             exclude_codes = NULL) {
   .load_data()
 
   # -- Forced occupation (counterfact_me_constrained with an occupation) --
@@ -501,7 +565,7 @@
   # unrelated life: Spearman rho between the label's wage level and the
   # life's income was 0.005, against 0.545 for ordinary draws.
   if (!is.null(force_codes) && length(force_codes) && age >= 18) {
-    ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
+    ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year, exclude_codes)
     inn <- ow$tbl$code %in% force_codes
     if (!any(inn)) stop("force_codes match no occupation in the table")
     w_in <- ow$w[inn]
@@ -561,7 +625,9 @@
           # part$label is the 4-digit group label, which is plural
           # ("butikkmedarbeidere"). Use a 7-digit title within the code.
           if (!is.null(part$styrk_code) && !is.na(part$styrk_code))
-            part$label <- .draw_detail_yrke(part$styrk_code, part$label, gender = gender)
+            part$label <- .draw_detail_yrke(part$styrk_code, part$label, gender = gender,
+                                            drop_re = paste(c(.SENIOR_TITLE_RE, .LICENSED_TITLE_RE,
+                                                              .BACHELOR_TITLE_RE), collapse = "|"))
           combined <- sprintf("Student (deltid: %s)", tolower(part$label))
           return(list(
             label = combined,
@@ -607,7 +673,7 @@
   }
 
   # -- Working-age adults: SSB-driven draw --
-  ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year)
+  ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year, exclude_codes)
   idx <- sample.int(nrow(ow$tbl), 1, prob = ow$w)
   worker <- .occupation_worker(ow$tbl, idx, gender, age, edu_code)
 
@@ -683,6 +749,15 @@
   w <- as.numeric(unlist(row[grp]))
   k <- sample.int(5L, 1L, prob = w)
   stats::runif(1, lo[k], hi[k])
+}
+
+# Within-occupation log-wage sd from SSB 11418 quartiles. Falls back to
+# 0.21, the median across occupations. See data-raw/fetch_wage_spread.py.
+.wage_sd <- function(code) {
+  ws <- .cfm_env$occupation_wage_spread
+  if (is.null(ws) || is.null(code) || is.na(code)) return(0.21)
+  s <- ws$sd_log[ws$code == code]
+  if (length(s) && is.finite(s[1]) && s[1] > 0) s[1] else 0.21
 }
 
 .cond_income <- function(age, edu_code, occupation, lang = "en", gender = NULL) {
@@ -815,14 +890,19 @@
     return(list(bracket = inc$label[idx], nok = nok))
   }
 
-  # Disabled on uforetrygd: lower-middle deciles, floor around minsteytelse
+  # Uforetrygd: 66 pct of earlier income capped at 6G, with a minimum
+  # (2.28G, or 2.91G for "ung ufor", here approximated as under 36). The
+  # old draw used income deciles up to 2 MNOK, so a 24-year-old had
+  # 484 000. G is 118 620 to match the 6G used for AAP and dagpenger above.
   if (identical(occ_kind, "disabled") || identical(occ_label, "Uf\u{00f8}retrygdet")) {
-    w <- c(1.0, 2.5, 3.0, 2.0, 1.0, 0.4, 0.1, 0.05, 0.02, 0.01)
-    w <- w / sum(w)
-    idx <- sample(seq_len(nrow(inc)), 1, prob = w)
-    upper <- min(inc$upper_nok[idx], 2000000)
-    nok <- as.integer(round(stats::runif(1, inc$lower_nok[idx], upper), -3))
-    return(list(bracket = inc$label[idx], nok = nok))
+    G <- 118620
+    lo <- if (!is.na(age) && age < 36) 2.91 * G else 2.28 * G
+    hi <- 0.66 * 6 * G
+    mode <- lo + 0.2 * (hi - lo)
+    u <- stats::runif(1); fc <- (mode - lo) / (hi - lo)
+    v <- if (u < fc) lo + sqrt(u * (hi - lo) * (mode - lo)) else hi - sqrt((1 - u) * (hi - lo) * (hi - mode))
+    nok <- as.integer(round(v, -3))
+    return(list(bracket = .bracket_of(nok), nok = nok))
   }
 
   # AAP: 66 % av tidligere lonn (basert pa yrkets median), cappet ved 6G
@@ -833,7 +913,7 @@
       # let AAP reach 6G itself: a 26-year-old on AAP had 846 000 a year.
       annual_basis <- 0.66 * min(occ_median_monthly * 12, 711720)  # 6G (2024)
       noise <- exp(stats::rnorm(1, 0, 0.15))
-      nok <- as.integer(round(annual_basis * noise, -3))
+      nok <- as.integer(round(min(annual_basis * noise, 0.66 * 711720), -3))  # noise never past the legal maximum
     } else {
       nok <- as.integer(round(stats::runif(1, 200000, 350000), -3))
     }
@@ -846,7 +926,7 @@
         occ_median_monthly > 0) {
       annual_basis <- 0.624 * min(occ_median_monthly * 12, 711720)  # 6G (2024)
       noise <- exp(stats::rnorm(1, 0, 0.15))
-      nok <- as.integer(round(annual_basis * noise, -3))
+      nok <- as.integer(round(min(annual_basis * noise, 0.624 * 711720), -3))
     } else {
       nok <- as.integer(round(stats::runif(1, 180000, 320000), -3))
     }
@@ -859,14 +939,23 @@
     return(list(bracket = .bracket_of(nok), nok = nok))
   }
 
-  # Pensioners: modest pension, independent of yrke
+  # Pensioners. Total income for 67+ from SSB 06655 (income_by_age), tilted
+  # by education with order statistics: grunnskole takes the lower of two
+  # draws, videregaaende/fagskole one draw, higher education the higher of
+  # two. (A first version gave master and doctorate the highest of three;
+  # their median pension came out at 843 000.) The old draw used the
+  # superseded 2022 deciles and ignored education entirely, so someone with
+  # barneskole had a 600 000 pension as often as someone with a master's.
+  # The order-statistic tilt is an assumption; the distribution is SSB's.
   if (identical(occ_kind, "pensioner") || occ_label %in% .PENSJONIST_LABELS) {
-    w <- c(0.5, 1.5, 2, 2.5, 2, 1.5, 0.5, 0.3, 0.1, 0.05)
-    w <- w / sum(w)
-    idx <- sample(seq_len(nrow(inc)), 1, prob = w)
-    upper <- min(inc$upper_nok[idx], 2000000)
-    nok <- as.integer(round(stats::runif(1, inc$lower_nok[idx], upper), -3))
-    return(list(bracket = inc$label[idx], nok = nok))
+    k <- if (is.null(edu_code) || is.na(edu_code)) 1L
+         else if (edu_code <= 2) -2L else if (edu_code <= 5) 1L else 2L
+    draws <- sample_income(abs(k), age = max(age, 67L))$nok
+    draws <- draws[!is.na(draws) & draws > 0]
+    if (!length(draws)) draws <- sample_income(1, age = max(age, 67L))$nok
+    nok <- as.integer(if (k < 0) min(draws) else max(draws))
+    if (is.na(nok)) nok <- 0L
+    return(list(bracket = .bracket_of(nok), nok = nok))
   }
 
   # Working adults with an SSB-matched occupation: anchor on median salary.
@@ -889,8 +978,11 @@
     occ_code <- if (is.list(occupation)) occupation$styrk_code else NA_character_
     schedule_mult <- if (identical(occ_schedule, "part"))
                        .draw_stillingsandel(occ_code, gender) else 1
-    # Smaler noise for deltid (mindre rom for over-betaling enn fast-tids)
-    noise_sd <- if (identical(occ_schedule, "part")) 0.15 else 0.25
+    # Spread from the occupation's own quartiles (SSB 11418). It was 0.25
+    # for every full-time job and 0.15 for part-time, which gave low-spread
+    # occupations (laerere 0.10, renholdere 0.11) a right tail they do not
+    # have.
+    noise_sd <- .wage_sd(occ_code)
     noise <- exp(stats::rnorm(1, 0, noise_sd))
     nok_raw <- annual_median * age_mult * schedule_mult * noise
     nok <- as.integer(round(nok_raw, -3))
@@ -1225,6 +1317,40 @@
     row <- mp[mp$styrk2 == "default", , drop = FALSE]
   }
 
+  # --- Stage 1 (data): 2-digit field from SSB 12849 ---
+  # P(fagfelt | 2-digit occupation, education level). Replaces the
+  # occupation-only table below, which gave bachelor nurses "medisin" and
+  # vgs-level people "videreutdanning for laerere". Falls through to the
+  # old table only if 12849 has nothing for this cell.
+  fb <- .cfm_env$field_by_occupation_edu
+  if (!is.null(fb) && nrow(fb)) {
+    lvl <- .edu_level_12849(edu_code)
+    sub <- fb[fb$edu_level == lvl & fb$styrk2 == sk2, , drop = FALSE]
+    lic <- if (!is.null(styrk_code) && !is.na(styrk_code)) .LICENSED_FIELD[[as.character(styrk_code)]] else NULL
+    if (!is.null(lic)) {
+      sub <- data.frame(fagfelt2 = lic, count = 1, stringsAsFactors = FALSE)
+    }
+    if (!nrow(sub) || sum(sub$count) <= 0) {
+      sub <- fb[fb$edu_level == lvl, , drop = FALSE]
+      if (nrow(sub)) sub <- stats::aggregate(count ~ fagfelt2, data = sub, FUN = sum)
+    }
+    if (nrow(sub) && sum(sub$count) > 0) {
+      f2 <- sub$fagfelt2[sample.int(nrow(sub), 1, prob = sub$count)]
+      broad_idx <- as.integer(substr(f2, 1, 1))
+      row_b <- nf[nf$code == broad_idx, , drop = FALSE]
+      broad_label <- if (identical(lang, "no")) row_b$label_no[1] else row_b$label_en[1]
+      if (is.null(broad_label) || !length(broad_label) || is.na(broad_label))
+        broad_label <- "Unspecified"
+      detail <- .cond_nus_detail(broad_idx, sk2, lang = lang, age = age, sub2 = f2)
+      if (!is.null(detail$label) && !is.na(detail$label) &&
+          identical(as.character(detail$label), as.character(broad_label))) {
+        detail$code <- NA_character_; detail$label <- NA_character_
+      }
+      return(list(code = broad_idx, label = broad_label,
+                  detail_code = detail$code, detail_label = detail$label))
+    }
+  }
+
   # --- Stage 1: broad field ---
   weights <- if (nrow(row) == 0) rep(1, 10) else as.numeric(row[1, paste0("w", 0:9)])
   weights[is.na(weights)] <- 0
@@ -1278,7 +1404,7 @@
   "541", "542", "549"           # informasjons- og datateknologi
 )
 
-.cond_nus_detail <- function(broad, sk2, lang = "en", age = NULL) {
+.cond_nus_detail <- function(broad, sk2, lang = "en", age = NULL, sub2 = NULL) {
   dm <- .cfm_env$nus_detail_by_styrk
   dl <- .cfm_env$nus_detailed
   broad_chr <- as.character(broad)
@@ -1290,6 +1416,17 @@
     return(list(code = "999", label = unspec))
   }
 
+  # 2-digit field already drawn (12849): stay inside it.
+  if (!is.null(sub2) && !is.na(sub2)) {
+    cand <- dm[dm$styrk2 == sk2 & substr(dm$nus_code, 1, 2) == sub2, , drop = FALSE]
+    if (!nrow(cand)) cand <- dm[dm$styrk2 == "default" & substr(dm$nus_code, 1, 2) == sub2, , drop = FALSE]
+    if (!nrow(cand)) {
+      pool <- dl[substr(dl$code, 1, 2) == sub2, , drop = FALSE]
+      if (!nrow(pool)) return(list(code = NA_character_, label = NA_character_))
+      idx <- sample.int(nrow(pool), 1)
+      return(list(code = pool$code[idx], label = pool[[lbl_col]][idx]))
+    }
+  } else {
   # First pass: STYRK-specific entries that nest in this broad field
   cand <- dm[dm$styrk2 == sk2, , drop = FALSE]
   if (nrow(cand) > 0) {
@@ -1300,6 +1437,7 @@
   if (nrow(cand) == 0) {
     dcand <- dm[dm$styrk2 == "default", , drop = FALSE]
     cand <- dcand[substr(dcand$nus_code, 1, 1) == broad_chr, , drop = FALSE]
+  }
   }
 
   if (nrow(cand) == 0) {
@@ -1496,7 +1634,8 @@
 
 .cond_parents <- function(age, edu_code, styrk_code, gender = NULL, lang = "en",
                           background = "majority", name_region = "norden",
-                          country_label = NULL) {
+                          country_label = NULL,
+                          years_in_norway = NULL) {
   .load_data()
 
   # --- 1. Fodealder distributions (piecewise triangular, calibrated to SSB
@@ -1663,12 +1802,18 @@
     } else {
       if (identical(lang, "no")) "Bodde i opprinnelseslandet" else "Lived in country of origin"
     }
-    if (!parent_in_norway(mother_birth_year)) {
+    # Someone who came to Norway as an adult grew up abroad, so the parents'
+    # working lives were there whatever their birth year. On the live site
+    # a 26-year-old who arrived from Germany a year earlier "vokste opp som
+    # datter av barnehagemedarbeider og koldkjokkenassistent".
+    arrived_adult <- identical(background, "first_gen") && !is.null(years_in_norway) &&
+                     !is.na(years_in_norway) && (age - years_in_norway) >= 18
+    if (arrived_adult || !parent_in_norway(mother_birth_year)) {
       mother_occ$label <- abroad_label
       mother_occ$styrk_code <- NA_character_
       mother_occ$median_monthly <- NA_integer_
     }
-    if (!parent_in_norway(father_birth_year)) {
+    if (arrived_adult || !parent_in_norway(father_birth_year)) {
       father_occ$label <- abroad_label
       father_occ$styrk_code <- NA_character_
       father_occ$median_monthly <- NA_integer_
@@ -2354,6 +2499,9 @@
   if (pc > 25e6) base <- base * 5
   else if (pc > 10e6) base <- base * 2.5
   if (age < 35) base <- base * 0.4  # rare to own luxury this young
+  # Luxury (3-8x the local price per m2) only with the means to have bought
+  # it: a pensioner on 364 000 was drawn into a 146 MNOK house.
+  if (inc < 1.0e6 && pc < 10e6) base <- 0
   base <- min(base, 0.10)
   stats::runif(1) < base
 }
@@ -3756,22 +3904,29 @@
     # bi: ingen justering
   }
 
-  # Age-based dampening: under 22 har sjelden barn
-  if (age < 22) probs <- probs * c(3.0, 1.2, 0.5, 0.2, 0.05)
-  else if (age < 26) probs <- probs * c(1.5, 1.3, 0.9, 0.4, 0.2)
-  probs <- probs / sum(probs)
-
-  # Menn under 28 også sjeldnere far
-  if (!is.null(gender) && identical(gender, "M") && age < 28) {
-    probs <- probs * c(2.5, 1.0, 0.6, 0.3, 0.1)
-    probs <- probs / sum(probs)
-  }
+  # Age. The cohort table gives LIFETIME shares; the old dampening (x3 on
+  # "no children" under 22) still left about 22 pct of 17-18-year-olds
+  # with a child, against well under 1 pct in reality. The share who have
+  # had a child by a given age now follows a logistic curve centred on the
+  # median age at first birth (about 30.5 for women, 32.5 for men in SSB's
+  # recent figures), scaled by the cohort's lifetime share with children.
+  # Slope 0.32 a year gives about 1 pct at 17, 12 pct at 25, 70 pct at 35
+  # for women. The midpoints are SSB-anchored; the slope is an assumption.
+  is_m <- !is.null(gender) && identical(toupper(gender), "M")
+  mid <- if (is_m) 32.5 else 30.5
+  p_by_age <- 1 / (1 + exp(-0.32 * (age - mid)))
+  p_ever <- 1 - probs[1] / sum(probs)
+  pos <- probs[-1] / sum(probs[-1])
+  # Young parents have had fewer children so far.
+  if (age < 30) { pos <- pos * c(1.6, 1.0, 0.5, 0.2); pos <- pos / sum(pos) }
+  p_any <- p_ever * p_by_age
+  probs <- c(1 - p_any, p_any * pos)
 
   pick <- sample(c(0L, 1L, 2L, 3L, 4L), 1, prob = probs)
   if (pick == 4L) pick <- sample(4:7, 1, prob = c(0.55, 0.25, 0.13, 0.07))
 
   # Hard cap by age — biologisk + sosialt umulig
-  if (age < 17) pick <- 0L  # under 17 = ingen barn
+  if (age < 18) pick <- 0L  # under 18: births are below 1 in 1000 a year
   else if (age < 19) pick <- min(pick, 1L)
   else if (age < 22) pick <- min(pick, 2L)
   else if (age < 25) pick <- min(pick, 3L)
@@ -4222,8 +4377,36 @@
 }
 
 # Convert ALL-CAPS Norwegian yrkesnavn til sentence case.
+# Four titles in occupations.csv have unbalanced brackets ("DAGLIG LEDER
+# (ENGROS - ... - PRIVAT VIRKSOMHET))", "REGIONLEDER (SKOGBRUK"), which
+# reached the prose as "daglig leder)". Drop unmatched ")" and close
+# unmatched "(".
+.balance_parens <- function(s) {
+  ch <- strsplit(s, "", fixed = TRUE)[[1]]
+  keep <- logical(length(ch)); depth <- 0L
+  for (i in seq_along(ch)) {
+    if (ch[i] == "(") { depth <- depth + 1L; keep[i] <- TRUE }
+    else if (ch[i] == ")") { if (depth > 0L) { depth <- depth - 1L; keep[i] <- TRUE } }
+    else keep[i] <- TRUE
+  }
+  paste0(paste(ch[keep], collapse = ""), strrep(")", depth))
+}
+
 .titlecase_yrke <- function(s) {
   if (is.null(s) || is.na(s) || !nzchar(s)) return(s)
+  s <- .balance_parens(s)
+  s <- sub("HELSEAREID", "HELSEARBEID", s, fixed = TRUE)   # typo in the source register
+  # Titles carrying both an old gendered form and the current neutral one
+  # ("SJEFSHELSESOESTER/SJEFSHELSESYKEPLEIER"): show the neutral form.
+  # Helsesoester became helsesykepleier in 2019; a man was narrated as
+  # "sjefshelsesoester" (test-invariants.R).
+  m <- regmatches(s, regexec("^(.*)HELSES\u00d8STER/(.*)$", s))[[1]]
+  if (length(m) == 3L) {
+    pre <- m[2]; rest <- m[3]
+    # "SJEFSHELSESOESTER/SJEFSHELSESYKEPLEIER" repeats the prefix after the
+    # slash; "LEDENDE HELSESOESTER/HELSESYKEPLEIER" does not.
+    s <- if (nzchar(pre) && startsWith(rest, trimws(pre))) rest else paste0(pre, rest)
+  }
   out <- tolower(s)
   # Cap first letter
   out <- sub("^([a-z\u{00e6}\u{00f8}\u{00e5}])", "\\U\\1", out, perl = TRUE)

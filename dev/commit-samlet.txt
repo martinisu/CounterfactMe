@@ -1,62 +1,66 @@
-Fortellingen: etiketter blir prosa, ikke limt inn i den
+Elektrofag krever fagbrev; "gruppe A + B" med store bokstaver
 
-En biografi fra den publiserte sida:
+Fra den publiserte sida etter forrige push: "Etter grunnskole jobber han
+som elverksmontoer gruppe a + b -- en aarsinntekt paa rundt 720 000".
 
-  Han er gift med Hege, som er dagpenger (tidl. lektor (universitet og
-  hoyskole)) ... Han eier en smahus verdt rundt 4.2 millioner. Eier en
-  Tesla og to leiligheter -- derfor H. Han tilhorer Annet kristent
-  trossamfunn. ... Kostholdet er fleksitarianer ... Mangler en fortrolig
-  a snakke med.
+Elektrikere, automatikere og energimontoerer (7411-7413) er lovregulerte:
+forskrift om elektroforetak og kvalifikasjonskrav krever fagbrev, altsaa
+fullfoert videregaaende. SSB 12849 har likevel 1,3 pst av dem med bare
+grunnskole i gruppe 74, trolig uregistrerte fagbrev, saa vektingen alene
+slapp det gjennom. Naa samme type regel som for profesjonsyrkene.
 
-Seks feil, samme aarsak: registeretiketter og humoretiketter satt rett
-inn i setninger. Etikettene er riktige paa kortet og er ikke roert; det
-er fortellerlaget (R/narrate.R) som naa oversetter dem.
+Sertifikatklasser beholder store bokstaver i fortellingen. Begge
+sjekkes i test-coherence.R.
+Fortellingene lest i bulk: yrkeskoder som tekst, data for fagfelt og lønnsspredning
 
-  - Stoenadsetiketter ("Dagpenger (tidl. X)", "AAP (tidl. X)",
-    "Sosialhjelp", "Ufoeretrygdet") og "(deltid)" blir egne
-    formuleringer, baade for ego og partner.
-  - Riktig kjoenn paa boligtype: et smaahus, en enebolig.
-  - Desimalkomma: 4,2 millioner.
-  - Humoretiketter for parti blir partinavnet. Humoren staar fortsatt
-    paa kortet, men i prosa kunne den motsi livet: Tesla og to
-    leiligheter hos en mann med ett smaahus og 270 000 i aaret.
-  - Religion blir verbfraser: er katolikk, er muslim, tilhoerer et
-    annet kristent trossamfunn. Ogsaa humoretikettene, som tidligere
-    ble skrevet ut som "tilhoerer Konfirmert i 1986, ...".
-  - Kosthold: "Han er fleksitarianer", ikke "Kostholdet er
-    fleksitarianer".
-  - Setningene om helse og ensomhet har faatt subjekt, og "Helsen er
-    god. Lever med psykisk lidelse." er blitt "Helsen oppleves som god,
-    selv om hun lever med en psykisk lidelse."
-  - "Med mastergrad med fordypning i filosofi" er blitt "Med mastergrad
-    i filosofi". For ikke-grader staar "med fordypning i" igjen, og
-    setningen begynner da med "Etter" i stedet for "Med".
-  - "Samlet sett: betydelig formue." er blitt "Hun har betydelig
-    formue."
+Fra nå kjøres pakken i webR i sandkassen (dev/sandkasse/), slik at
+fortellinger kan leses og kontrolleres i hundretall uten lokal R. Fire
+runder med 300 liv ga disse funnene:
 
-Barn som bor med levende foreldre beskrives i presens: "Moren jobber
-som sykepleier", "Han er enebarn", ikke "jobbet" og "var". Foreldre
-med stoenadsetikett faar egne formuleringer i stedet for "jobber som
-dagpenger (tidl. ...)".
+Datafeil
+  - occupations_salary.csv, occupations_gender.csv, municipalities.csv og
+    counties.csv ble lest med koder som tall: "0110" ble 110 og "0000"
+    ble 0. Offiserer havnet i toppledergruppa, menige blant
+    hoyskoleyrkene, "Uoppgitt / yrker som ikke kan identifiseres" kunne
+    trekkes som yrke, og militaere koder fant ingen detaljtitler.
+  - Fire titler i occupations.csv har ubalanserte parenteser ("daglig
+    leder)"); de rettes naa ved innlesing.
 
-Tre nye tester i test-regressions.R: hjelpefunksjonene gir riktig
-tekst for eksemplene over, og ingen av konstruksjonene dukker opp i 80
-trukne biografier, og barn med levende foreldre faar presens.
-Vikar- og laerlingtitler bare der loennen passer
+Nye SSB-data
+  - 11418 kvartiler: lonnsspredning per yrke (0,10 for laerere og
+    renholdere, 0,51 for toppledere) i stedet for 0,25 for alle.
+  - 12849 fagfelt x yrke x utdanningsnivaa: fagfeltet trekkes betinget
+    paa yrke OG nivaa. Bachelorer i medisinske yrker faar pleie og
+    omsorg, ikke medisin. Autoriserte yrker faar det fagfeltet loven
+    krever.
 
-En biografi fra sida: 52 aar, mastergrad, "laerervikar (grunnskole)",
-820 000 i aaret. Loennen var riktig for koden (2341 Grunnskolelaerere,
-median 58 750 i maaneden), men tittelen ble trukket jevnt blant kodens
-15 detaljtitler. Hver femtende grunnskolelaerer ble dermed vikar, med
-full laererloenn, uansett alder og utdanning. Det samme gjaldt alle
-koder med vikar-, laerling-, elev-, aspirant-, praktikant- og
-trainee-titler (457 titler totalt).
+Modellrettelser
+  - Bakgrunnsjusteringen av yrke valgte jevnt innen en yrkesgruppe og
+    hoppet over alle regler (en 31-aaring fra Ukraina ble menig paa
+    550 000). Naa samme vekter som det vanlige trekket, og bare for folk i
+    arbeid.
+  - Barn etter alder: 22 pst av 17-18-aaringer hadde barn. Naa logistisk
+    kurve forankret i medianalder ved forste fodsel, og husholdningen
+    rettes etter barna, ikke omvendt.
+  - Pensjon fra SSB 06655 (67+) med utdanningsvekting i stedet for
+    utdaterte desiler uten utdanning.
+  - Uforetrygd mellom minsteytelse og 66 pst av 6G, ikke opp til 2 MNOK.
+  - Luksusbolig bare med inntekt eller foreldrekapital til det.
+  - Innvandrere som har kommet som voksne: foreldrene levde
+    arbeidslivet i hjemlandet.
+  - Sjefstitler ikke under 25, ingenioertitler ikke uten fagskole,
+    autoriserte titler ikke uten bachelor, elektrofag og ambulanse ikke
+    uten fagbrev, akademiske yrker og toppledere ikke med grunnskole.
+  - AAP- og dagpengestoey kan ikke loefte belopet over taket.
 
-Naa gis slike titler bare der loennen og stillingsandelen passer:
-vikar bare ved deltid, laerling/elev/aspirant/praktikant/trainee bare
-ved deltid eller alder under 30. Ingen nye tall: deltidsandelen og
-deltidsloennen er SSBs (11418). Gjelder ogsaa foreldrenes yrker.
+Fortelling
+  - "Foreldrene jobber som X og Y" i stedet for "en X og en Y" (et bud).
+  - Ugift i parhusholdning: "bor med samboer", ikke "lever alene".
+  - "Uten fullfoert utdanning jobber han ..." og ingen "innen uoppgitt".
+  - Religion sies ikke to ganger naar innledningen alt har sagt det.
 
-Kjent begrensning: deltidsloennen er bred (45-80 pst av heltid, tak 85
-pst), saa en vikar paa deltid kan fortsatt havne hoeyt. Det hoerer til
-kalibreringen av inntekt, ikke titlene.
+test-coherence.R har faatt en ny sjekk for hvert funn.
+
+Titler med baade gammel kjoennet form og ny noeytral form
+("SJEFSHELSESOESTER/SJEFSHELSESYKEPLEIER") vises med den noeytrale. En
+mann ble ellers "sjefshelsesoester" (test-invariants.R).

@@ -198,10 +198,14 @@ counterfact_me <- function(dimensions = available_dimensions(),
   force_occ <- .cfm_env$force_occupation
   occ <- .cond_occupation(age, edu$code, mun_pop = mun_pop, gender = gender_draw,
                           disabled = dis$has, severity = dis$severity,
-                          force_codes = force_occ)
+                          force_codes = force_occ,
+                          exclude_codes = if (identical(bg$background, "first_gen")) "0310")
   # A forced occupation is not shifted by background: the shift would move
   # it off the code that was asked for.
-  if (is.null(force_occ) &&
+  # Only for someone in work: AAP and dagpenger also carry a styrk_code,
+  # and shifting them replaced the benefit label with a job title while the
+  # income stayed a benefit.
+  if (is.null(force_occ) && identical(occ$kind, "worker") &&
       !identical(bg$background, "majority") && !is.null(occ$styrk_code) &&
       !is.na(occ$styrk_code) && nzchar(occ$styrk_code)) {
     new_styrk <- .background_occupation_shift(occ$styrk_code, edu$code,
@@ -210,17 +214,22 @@ counterfact_me <- function(dimensions = available_dimensions(),
                                             bg$background, bg$name_region)
     if (!identical(new_styrk, occ$styrk_code)) {
       # Re-derive occupation label + median_monthly from new STYRK
-      .load_data()
-      os <- .cfm_env$occupations_salary
-      cand <- os[substr(os$code, 1, 2) == new_styrk, , drop = FALSE]
-      if (nrow(cand) > 0) {
-        pick <- cand[sample.int(nrow(cand), 1), ]
-        # A 7-digit title, as in the ordinary draw. pick$label is the
-        # 4-digit group label, which is plural: immigrants were narrated as
-        # "jobber som murere", "som andre personlige tjenesteytere".
-        occ$label <- .draw_detail_yrke(pick$code, pick$label, gender = gender_draw)
-        occ$styrk_code <- pick$code
-        occ$median_monthly <- pick$median_nok
+      # Within the new 2-digit group, draw with the same weights as the
+      # ordinary draw (headcount, education, age, licensing, gender). The
+      # old uniform pick over every row in the group ignored all of them:
+      # a 31-year-old who came from Ukraine two years earlier became
+      # "menig" on 550 000 a year.
+      ow <- .occupation_weights(age, edu$code, mun_pop = mun_pop, gender = gender_draw,
+                                exclude_codes = if (identical(bg$background, "first_gen")) "0310")
+      in_g <- substr(ow$tbl$code, 1, 2) == new_styrk & ow$w > 0
+      if (any(in_g)) {
+        rows <- which(in_g)
+        idx <- rows[sample.int(length(rows), 1L, prob = ow$w[in_g])]
+        wk <- .occupation_worker(ow$tbl, idx, gender_draw, age, edu$code)
+        occ$label <- wk$label
+        occ$styrk_code <- wk$styrk_code
+        occ$median_monthly <- wk$median_monthly
+        occ$schedule <- wk$schedule
       }
     }
   }
@@ -257,7 +266,8 @@ counterfact_me <- function(dimensions = available_dimensions(),
                          gender = gender_draw, lang = lang,
                          background = bg$background,
                          name_region = bg$name_region,
-                         country_label = bg$country_label)
+                         country_label = bg$country_label,
+                         years_in_norway = bg$years_in_norway)
     result$mother <- par$mother
     result$father <- par$father
     result$couple_type <- par$couple_type
@@ -501,22 +511,22 @@ counterfact_me <- function(dimensions = available_dimensions(),
       hh <- result$household
       has_kids_label <- grepl("med barn|with children", hh)
       no_kids_label  <- grepl("uten barn|without children|alene$|alone$", hh)
-      # Hvis husholdning sier "med barn" men n_children = 0, bump til 1-3 (alder-cap)
+      # Household says "med barn" but no children were drawn: change the
+      # HOUSEHOLD, not the children. The child count is age-calibrated
+      # (.cond_n_children); the household is drawn from age bands that are
+      # far wider. Bumping the children instead gave about 11 pct of women
+      # aged 16-19 a child.
       if (has_kids_label && result$n_children == 0L) {
-        max_kids <- if (age < 18) 0L
-                    else if (age < 22) 1L
-                    else if (age < 25) 2L
-                    else 3L
-        if (max_kids > 0) {
-          probs_pick <- c(0.45, 0.40, 0.15)[1:max_kids]
-          probs_pick <- probs_pick / sum(probs_pick)
-          result$n_children <- as.integer(sample(seq_len(max_kids), 1, prob = probs_pick))
-        }
-        # NB: hvis max_kids=0 (under 18), beholder vi n_children=0 selv om husholdning
-        # sier "med barn" — da er det husholdning-trekningen som er feil, ikke barna
+        hh_tab <- .cfm_env$households
+        lcol <- if (identical(lang, "no")) "type_no" else "type"
+        new_code <- if (grepl("^Par|^Couple", hh)) 2L else 1L
+        result$household <- hh_tab[[lcol]][hh_tab$code == new_code][1]
       }
-      # Hvis husholdning sier "uten barn" men n_children > 0, sett 0
-      if (no_kids_label && result$n_children > 0L) {
+      # "Uten barn" with children: under 36 the children would normally
+      # live at home, so the household wins. From 36 they may have moved
+      # out, and the household describes who lives there now -- zeroing the
+      # lifetime count made empty nesters childless.
+      if (no_kids_label && result$n_children > 0L && age < 36) {
         result$n_children <- 0L
       }
     }
