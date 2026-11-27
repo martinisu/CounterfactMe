@@ -329,7 +329,9 @@
   "LOGISTIKER|ACCOUNT|MANAGER|BOOKER|KUNDESENTER|CALL ?SENTER|",
   "CONTROLLER|BARISTA|INFLUENCER|E-HANDEL|SOSIALE MEDIER|",
   "PERSONLIG TRENER|SAFETY|SUPERVISOR|CONSULTANT")
-.SENIOR_TITLE_RE <- "^(OVER|LEDENDE|SENIOR|HOVED|SJEFS?)|SJEF\\b|DIREKT\u00d8R|\\bLEDER\\b"
+# OVER- but not OVERSETTER or OVERFLATEBEHANDLER, which are not senior.
+.SENIOR_TITLE_RE <- paste0("^(OVER(?!SETT|FLATE|V\u00c5K|GANG|BYGN|SIKT|NATT|HALING|F\u00d8RING)|",
+                           "LEDENDE|SENIOR|HOVED|SJEFS?)|SJEF\\b|DIREKT\u00d8R|\\bLEDER\\b")
 
 # Titles that require a profession degree even where the 4-digit code does
 # not: "Assisterende fylkeslege" sits in 1342 (ledere av helsetjenester).
@@ -567,9 +569,15 @@
             # had them.
             if (!is.na(work_year) && work_year < 1990) .MODERN_TITLE_RE)
   detail_label <- .draw_detail_yrke(code, styrk08_label, gender = gender,
-                                    drop_re = if (length(drop)) paste(drop, collapse = "|") else NULL)
+                                    drop_re = if (length(drop)) paste(drop, collapse = "|") else NULL,
+                                    age = age, edu_code = edu_code)
+  no_fit <- isTRUE(attr(detail_label, "no_fit"))
+  title_row <- attr(detail_label, "title_row")
+  detail_label <- as.vector(detail_label)
 
   list(
+    no_fit = no_fit,
+    title_row = if (is.null(title_row)) NA_integer_ else title_row,
     label = detail_label,
     styrk_code = code,
     styrk_label = styrk08_label,
@@ -709,8 +717,16 @@
 
   # -- Working-age adults: SSB-driven draw --
   ow <- .occupation_weights(age, edu_code, mun_pop, gender, work_year, exclude_codes)
-  idx <- sample.int(nrow(ow$tbl), 1, prob = ow$w)
-  worker <- .occupation_worker(ow$tbl, idx, gender, age, edu_code, work_year)
+  # Redraw the code when none of its titles fits the person (see
+  # .draw_detail_yrke). Eight tries; the weights of rejected codes go to 0.
+  w_try <- ow$w
+  for (try in 1:8) {
+    idx <- sample.int(nrow(ow$tbl), 1, prob = w_try)
+    worker <- .occupation_worker(ow$tbl, idx, gender, age, edu_code, work_year)
+    if (!isTRUE(worker$no_fit)) break
+    w_try[idx] <- 0
+    if (sum(w_try) <= 0) break
+  }
 
   # -- Roll for AAP / dagpenger / sosialhjelp (19-67, not students) --
   if (age >= 19 && age <= 67) {
@@ -1005,8 +1021,11 @@
     # "pensjon" of 1 310 000. Ceiling by education (folketrygd tops out
     # near 3.3 G; the rest is occupational pension, which tracks earlier
     # pay); redraw above it, clamp as a last resort.
+    # Bachelor 750 000: a nurse's pension of 850 000 was in the November
+    # sweep; occupational pensions are about two thirds of final pay.
     cap <- if (is.null(edu_code) || is.na(edu_code)) 700000
-           else if (edu_code <= 2) 450000 else if (edu_code <= 5) 650000 else 1000000
+           else if (edu_code <= 2) 450000 else if (edu_code <= 5) 650000
+           else if (edu_code == 6) 750000 else 1000000
     tries <- 0L
     while (nok > cap && tries < 5L) {
       nok <- as.integer(sample_income(1, age = max(age, 67L))$nok)
@@ -1917,13 +1936,8 @@
   draw_parent_name <- function(gender_str, birth_year, region) {
     if (!is.null(region) && !is.na(region) && !identical(region, "norden")) {
       .load_data()
-      nbr <- .cfm_env$names_by_region
-      if (!is.null(nbr)) {
-        pool <- nbr[nbr$region == region & nbr$gender == gender_str, , drop = FALSE]
-        if (nrow(pool) > 0) {
-          return(pool$name[sample.int(nrow(pool), 1)])
-        }
-      }
+      nm <- .region_name(region, gender_str)
+      if (!is.null(nm)) return(nm)
     }
     tryCatch(
       sample_first_name(gender = gender_str, birth_year = birth_year),
@@ -3159,9 +3173,7 @@
   if (is.null(nbr) || nrow(nbr) == 0) return(NULL)
   # For second_gen: 70% region, 30% Norwegian
   if (identical(background, "second_gen") && stats::runif(1) < 0.30) return(NULL)
-  pool <- nbr[nbr$region == name_region & nbr$gender == gender, , drop = FALSE]
-  if (nrow(pool) == 0) return(NULL)
-  pool$name[sample.int(nrow(pool), 1)]
+  .region_name(name_region, gender)
 }
 
 # Background-aware modifiers — applied to existing draws
@@ -3725,9 +3737,8 @@
       if (!identical(background, "majority") &&
           !is.null(name_region) && nzchar(name_region) &&
           !identical(name_region, "norden")) {
-        nbr <- .cfm_env$names_by_region
-        pool <- nbr[nbr$region == name_region & nbr$gender == sib_gender, , drop = FALSE]
-        if (nrow(pool) > 0) pool$name[sample.int(nrow(pool), 1)]
+        nm <- .region_name(name_region, sib_gender)
+        if (!is.null(nm)) nm
         else sample_first_name(gender = sib_gender, birth_year = sib_birth_year)
       } else {
         sample_first_name(gender = sib_gender, birth_year = sib_birth_year)
@@ -3784,9 +3795,8 @@
     # Name from origin region (grandparents of first/second_gen ego are origin)
     name <- tryCatch({
       if (!identical(region, "norden")) {
-        nbr <- .cfm_env$names_by_region
-        pool <- nbr[nbr$region == region & nbr$gender == gp_gender, , drop = FALSE]
-        if (nrow(pool) > 0) pool$name[sample.int(nrow(pool), 1)]
+        nm <- .region_name(region, gp_gender)
+        if (!is.null(nm)) nm
         else sample_first_name(gender = gp_gender, birth_year = gp_birth_year)
       } else {
         sample_first_name(gender = gp_gender, birth_year = gp_birth_year)
@@ -4437,7 +4447,7 @@
 }
 
 .draw_detail_yrke <- function(styrk4_code, fallback_label = NA, gender = NULL,
-                              drop_re = NULL) {
+                              drop_re = NULL, age = NA, edu_code = NA) {
   if (is.null(styrk4_code) || is.na(styrk4_code) || !nzchar(styrk4_code)) {
     return(fallback_label)
   }
@@ -4447,11 +4457,12 @@
   # Match via styrk08-kolonnen (STYRK-98 detail-koder → STYRK-08 4-sifret target)
   # Korrespondance hentet fra SSB Klass 145 → Klass 7
   if ("styrk08" %in% names(occ)) {
-    cand <- occ[!is.na(occ$styrk08) & occ$styrk08 == styrk4_code, , drop = FALSE]
+    rows_c <- which(!is.na(occ$styrk08) & occ$styrk08 == styrk4_code)
   } else {
     # Fallback: prefix-match (gammel STYRK-98 logikk)
-    cand <- occ[substr(occ$code, 1, 4) == styrk4_code, , drop = FALSE]
+    rows_c <- which(substr(occ$code, 1, 4) == styrk4_code)
   }
+  cand <- occ[rows_c, , drop = FALSE]
   if (nrow(cand) == 0) return(.singular_styrk(fallback_label))
 
   # Drop titler som motsier egos kjonn. Faller tilbake pa ufiltrert liste
@@ -4472,16 +4483,27 @@
     else "^[^/]*(VERTINNE|PIKE|DAME|JOMFRU|OLDFRUE|MESTERINNE|HUSMOR|FOSTERMOR)( \\(|$)"
     keep <- !(toupper(cand$name) %in% drop) &
             !grepl(drop_re_g, toupper(cand$name), perl = TRUE)
-    if (any(keep)) cand <- cand[keep, , drop = FALSE]
+    if (any(keep)) { cand <- cand[keep, , drop = FALSE]; rows_c <- rows_c[keep] }
   }
   # Titler som ikke passer loennen og stillingsandelen (se .occupation_worker).
   if (!is.null(drop_re)) {
     keep <- !grepl(drop_re, toupper(cand$name), perl = TRUE)
-    if (any(keep)) cand <- cand[keep, , drop = FALSE]
+    if (any(keep)) { cand <- cand[keep, , drop = FALSE]; rows_c <- rows_c[keep] }
   }
+  # The whole-register requirements (R/title_rules.R). When no title in
+  # the code fits, say so instead of quietly keeping one that does not:
+  # .cond_occupation() then draws another code. Every earlier filter here
+  # fell back to the unfiltered list, which is how "universitetslektor"
+  # reached a bachelor.
+  no_fit <- FALSE
+  fit <- .title_fits(rows_c, age = age, edu_code = edu_code, gender = gender)
+  if (any(fit)) { cand <- cand[fit, , drop = FALSE]; rows_c <- rows_c[fit] } else no_fit <- TRUE
 
-  pick <- cand$name[sample.int(nrow(cand), 1)]
-  .titlecase_yrke(pick)
+  k <- sample.int(nrow(cand), 1)
+  out <- .titlecase_yrke(cand$name[k])
+  attr(out, "title_row") <- rows_c[k]
+  if (no_fit) attr(out, "no_fit") <- TRUE
+  out
 }
 
 # Convert ALL-CAPS Norwegian yrkesnavn til sentence case.
@@ -4523,8 +4545,10 @@
   s <- gsub("MEDARABEIDER", "MEDARBEIDER", s, fixed = TRUE)   # source typo
   s <- gsub("PEDRIATISK", "PEDIATRISK", s, fixed = TRUE)      # source typo
   s <- gsub("GJENNVINN", "GJENVINN", s, fixed = TRUE)         # source typo
+  s <- gsub("HOTEL)", "HOTELL)", s, fixed = TRUE)            # "(EKSKL. HOTEL)"
   s <- gsub("([^ (/-])\\(", "\\1 (", s, perl = TRUE)          # "FAGARBEIDER(MURER)"   # "FAERRE ENN 10 ANSATTE- PRIVAT"
   s <- gsub("OFF\\.ADM\\.?", "OFFENTLIG ADMINISTRASJON", s)
+  s <- gsub("(OFF. ", "(OFFENTLIGE ", s, fixed = TRUE)          # "(OFF. SOSIALE YTELSER)"
   s <- gsub(",(?=\\S)", ", ", s, perl = TRUE)                 # "TEKNISK,NATURVIT."
   s <- gsub("\\s+", " ", trimws(s))                          # "ANSVARLIG  (ENGROSALG)"
   out <- tolower(s)
@@ -4931,7 +4955,8 @@
 # Partner — only for partnered marital codes (2 gift, 6 partnerskap, 7 samboer).
 # Gender follows orientation; age + education are assortative.
 .cond_partner <- function(age, gender, orientation_code = NULL,
-                          marital_code = NULL, edu_code = NULL, lang = "en") {
+                          marital_code = NULL, edu_code = NULL, lang = "en",
+                          ego_occupation = NULL) {
   no <- identical(lang, "no")
   if (is.null(age) || is.na(age) || age < 18) return(NULL)
   if (is.null(marital_code) || is.na(marital_code) ||
@@ -4961,6 +4986,14 @@
 
   p_occ <- tryCatch(.cond_occupation(pa, as.character(plvl), gender = pg),
                     error = function(e) NULL)
+  # Two retirees with the same pastime label read as a copy: "kjent som
+  # bridgeekspert ... gift med Erik, som er bridgeekspert".
+  tries <- 0L
+  while (!is.null(p_occ) && !is.null(ego_occupation) && identical(p_occ$label, ego_occupation) &&
+         p_occ$label %in% .PENSJONIST_LABELS && tries < 5L) {
+    p_occ <- tryCatch(.cond_occupation(pa, as.character(plvl), gender = pg), error = function(e) NULL)
+    tries <- tries + 1L
+  }
   p_occ_label <- if (!is.null(p_occ)) p_occ$label else NA_character_
 
   by <- .cfm_env$ref_year - pa

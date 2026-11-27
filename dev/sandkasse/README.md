@@ -16,3 +16,15 @@ sourcer pakkefilene. R-koden skriver resultatet til /out.txt.
 
 Begrensninger: testthat og devtools finnes ikke her, så hele testsuiten og
 R CMD check må fortsatt kjøres lokalt. 300 liv tar under ett minutt.
+
+## Sveip (fra 27. november 2026)
+
+    sed 's/SEED <- 1; N <- 500/SEED <- 7; N <- 750/' sweep.R > s7.R
+    node run.mjs <pakke> s7.R
+
+sweep.R teller hvor ofte sluttsjekken i counterfact_me() ville trukket
+livet på nytt (`.find_implausibilities()` på førstetrekket), flagger
+tekstmønstre i fortellingen og skriver hver tolvte fortelling til lesing.
+750 liv tar under tre minutter. Første sveip (5 390 liv): sluttsjekken
+slo til i 0,1 prosent av førstetrekkene for lønn og 2–3 prosent for
+nylig innvandrede boligeiere.

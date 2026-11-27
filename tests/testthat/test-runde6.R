@@ -76,8 +76,8 @@ test_that("men do not get -vertinne, -pike or -dame titles", {
 test_that("title cosmetics", {
   tc <- CounterfactMe:::.titlecase_yrke
   expect_equal(tc("LEDER - GJESTERELASJONER (HOTELL)"), "Leder, Gjesterelasjoner (Hotell)")
-  expect_equal(tc("DP-OPERATØR"), "DP-operatør")
-  expect_equal(tc("KJØKKENINTENIØRSELGER"), "Kjøkkeninteriørselger")
+  expect_equal(tc("DP-OPERAT\u00d8R"), "DP-operat\u00f8r")
+  expect_equal(tc("KJ\u00d8KKENINTENI\u00d8RSELGER"), "Kj\u00f8kkeninteri\u00f8rselger")
   expect_false(grepl("  ", tc("STORKUNDEANSVARLIG  (ENGROSALG)")))
   expect_false(grepl(",\\S", tc("SPESIALKONSULENT (TEKNISK,NATURVITENSKAPELIG UTREDNING)")))
   expect_false(grepl("Og ", tc("AKTIVITETSLEDER (BARNE- OG UNGDOMSARBEID)"), fixed = TRUE))
@@ -114,7 +114,7 @@ test_that("the upward-mobility lead is kept for real jumps", {
   for (i in 1:100) {
     x <- counterfact_me(min_age = 30, max_age = 70)
     txt <- as.character(narrate_life(x))
-    expect_false(grepl("fra videregående i barndomshjemmet til bachelorgrad", txt, fixed = TRUE))
+    expect_false(grepl("fra videreg\u00e5ende i barndomshjemmet til bachelorgrad", txt, fixed = TRUE))
   }
 })
 
@@ -123,7 +123,7 @@ test_that("university-only fields are not attached to videregaaende", {
   for (i in 1:100) {
     x <- counterfact_me(min_age = 22, max_age = 80)
     txt <- tolower(as.character(narrate_life(x)))
-    expect_false(grepl("videregående med fordypning i (sykepleie|psykologi|arkitektur|fysikk)", txt),
+    expect_false(grepl("videreg\u00e5ende med fordypning i (sykepleie|psykologi|arkitektur|fysikk)", txt),
                  label = txt)
   }
 })
@@ -132,8 +132,8 @@ test_that("the narrative keeps acronyms in job titles", {
   # "driftsutvikler (it)", "assistent (pu)", "sjaafoer klasse b".
   lc <- CounterfactMe:::.lc_job
   expect_equal(lc("Driftsutvikler (IT)"), "driftsutvikler (IT)")
-  expect_equal(lc("DP-operatør"), "DP-operatør")
-  expect_equal(CounterfactMe:::.titlecase_yrke("SJÅFØR KLASSE B"), "Sjåfør klasse B")
+  expect_equal(lc("DP-operat\u00f8r"), "DP-operat\u00f8r")
+  expect_equal(CounterfactMe:::.titlecase_yrke("SJ\u00c5F\u00d8R KLASSE B"), "Sj\u00e5f\u00f8r klasse B")
   expect_equal(CounterfactMe:::.titlecase_yrke("BUTIKKMEDARABEIDER (BENSINSTASJON)"),
                "Butikkmedarbeider (Bensinstasjon)")
 })
@@ -145,7 +145,7 @@ test_that("retirees are not said to make a living from a pastime", {
   for (i in 1:80) {
     x <- counterfact_me(min_age = 67, max_age = 95)
     txt <- as.character(narrate_life(x))
-    expect_false(grepl("livnærer seg", txt, fixed = TRUE), label = txt)
+    expect_false(grepl("livn\u00e6rer seg", txt, fixed = TRUE), label = txt)
   }
 })
 

@@ -60,6 +60,9 @@ narrate_life <- function(x, style = c("biography", "obituary", "compact"),
   text <- gsub("\\s*\\([^()]*(ansatte|medarbeidere)[^()]*\\)", "", text)
   text <- gsub("[ \t]{2,}", " ", text)
   text <- gsub(" +([.,])", "\\1", text)
+  # A title ending in an abbreviation ("akvakultur mv.") before the
+  # sentence's own full stop gave "mv.." in the November sweep.
+  text <- gsub("\\.\\.(?!\\.)", ".", text, perl = TRUE)
 
   class(text) <- c("counterfactme_narrative", "character")
   text
@@ -1061,7 +1064,12 @@ print.counterfactme_narrative <- function(x, ...) {
   if (grepl("^Eier|^Owns", ht, ignore.case = TRUE)) {
     type_np <- .housing_np(htype)
     val_str <- if (!is.null(hval) && !is.na(hval) && hval > 0)
-                 sprintf(" verdt rundt %s millioner", .mill_no(hval)) else ""
+                 (if (hval < 950000)
+                    # "verdt rundt 0,9 millioner" in the November sweep.
+                    sprintf(" verdt rundt %s kroner",
+                            formatC(round(hval, -4), format = "d", big.mark = " "))
+                  else if (hval < 1050000) " verdt rundt 1 million"
+                  else sprintf(" verdt rundt %s millioner", .mill_no(hval))) else ""
     part <- if (hytte)
       sprintf("%s eier %s%s, og har i tillegg hytte.", who, type_np, val_str)
     else

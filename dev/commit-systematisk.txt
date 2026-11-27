@@ -1,0 +1,34 @@
+Systematisk: krav for hele tittelregisteret, sluttsjekk per liv, navn etter opprinnelsesland
+
+Feil ble til nå rettet én og én etter at noen hadde sett dem. Denne
+committen angriper de tre årsakene samlet.
+
+- R/title_rules.R: alle 7 020 yrkestitler klassifiseres én gang etter
+  regler (14 regelklasser, 2 119 titler med krav): minste utdanning
+  (master: lege/jurist/prest/lektor/forsker/siviltitler; bachelor:
+  autoriserte helseprofesjoner, lærer/pedagog/sosionom, revisor, politi;
+  fagskole: ingeniør, mesterbrev; fagbrev: fagarbeider, elektriker,
+  helsefagarbeider), minste alder (ledelse 30, toppledelse 35), høyeste
+  alder (lærling/elev/trainee 29) og kjønnede titler. Unntak for falske
+  treff: meddommer, idrettsdommer, oversetter, språkkurslærer, jordmor.
+- .draw_detail_yrke() faller ikke lenger tilbake til en tittel som ikke
+  passer; .cond_occupation() trekker da en annen kode (inntil åtte
+  forsøk).
+- R/plausibility.R: .find_implausibilities() sjekker hele livet
+  (tittel, regulerte yrker, lønn mot yrkets median og stillingsandel,
+  unge eiere uten betalingsevne, nylig innvandrede eiere i boliger langt
+  over evne, barn med barn, foreldre delt mellom utland og Norge).
+  counterfact_me() trekker på nytt ved brudd, i samme løkke som
+  .find_impossibilities().
+- R/names_by_country.R: navnepuljer per opprinnelsesland (40 puljer, 82
+  land) i stedet for 40 navn per verdensregion. Ikke lenger "Sergei fra
+  Polen", "Tadas fra Serbia" eller hinduer fra India som heter Imran.
+- Pensjon: tak 750 000 for bachelor. Pensjonistpartner får ikke samme
+  hobbyetikett som ego. "verdt rundt 900 000 kroner"/"1 million" i
+  stedet for "0,9 millioner". "mv.." blir "mv.". OVERSETTER regnes ikke
+  som sjefstittel. Kildefeil: "(ekskl. hotel)", "(off. sosiale ytelser)".
+- dev/sandkasse/sweep.R: automatisk sveip. 5 390 liv: sluttsjekken slo
+  til i 0,1 % av førstetrekkene for lønn og 2-3 % for nylig innvandrede
+  boligeiere; ingen tekstflagg utover forkortelser.
+- Tester: test-title-rules.R (4), test-plausibility.R (2). README: 176.
+- docs/ publisert.

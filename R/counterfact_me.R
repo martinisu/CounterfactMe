@@ -67,14 +67,24 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   if (!isTRUE(reject_impossible)) return(draw_once())
 
+  # Two layers. .find_impossibilities() catches what cannot happen
+  # (married at 15). .find_implausibilities() (R/plausibility.R) catches
+  # combinations that each table allows but that do not belong in one
+  # life: a title the person is not qualified for, a wage far above the
+  # occupation's range for someone that young, a 22-year-old owning a
+  # house no bank would finance. Both redraw the whole life; an
+  # impossibility counts ten times an implausibility when no clean draw
+  # turns up.
   best <- NULL; best_n <- Inf
   for (i in seq_len(max_reject_attempts)) {
     x <- draw_once()
-    probs <- .find_impossibilities(x)
-    if (length(probs) == 0L) return(x)
-    if (length(probs) < best_n) { best <- x; best_n <- length(probs) }
+    n_imp <- length(.find_impossibilities(x))
+    n_pl  <- length(.find_implausibilities(x))
+    if (n_imp == 0L && n_pl == 0L) return(x)
+    score <- 10L * n_imp + n_pl
+    if (score < best_n) { best <- x; best_n <- score }
   }
-  # No clean draw — return the cleanest one with post-hoc fixes
+  # No clean draw -- return the cleanest one with post-hoc fixes
   probs <- .find_impossibilities(best)
   .fix_impossibilities(best, probs)
 }
@@ -103,6 +113,9 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   # 2c. Immigrant background (drawn early; affects name, geography, income)
   bg <- .cond_immigrant_background(age, lang = lang)
+  # Origin country for name pools (R/names_by_country.R), for this draw.
+  .cfm_env$name_country <- if (identical(bg$background, "majority")) NULL else bg$country_label
+  .cfm_env$name_country_region <- bg$name_region
   if ("background" %in% dimensions) {
     result$background <- bg$background
     result$country_background <- bg$country_label
@@ -224,9 +237,17 @@ counterfact_me <- function(dimensions = available_dimensions(),
       in_g <- substr(ow$tbl$code, 1, 2) == new_styrk & ow$w > 0
       if (any(in_g)) {
         rows <- which(in_g)
-        idx <- rows[sample.int(length(rows), 1L, prob = ow$w[in_g])]
-        wk <- .occupation_worker(ow$tbl, idx, gender_draw, age, edu$code)
+        w_g <- ow$w[in_g]
+        for (try in 1:8) {
+          k <- sample.int(length(rows), 1L, prob = w_g)
+          idx <- rows[k]
+          wk <- .occupation_worker(ow$tbl, idx, gender_draw, age, edu$code)
+          if (!isTRUE(wk$no_fit)) break
+          w_g[k] <- 0
+          if (sum(w_g) <= 0) break
+        }
         occ$label <- wk$label
+        occ$title_row <- wk$title_row
         occ$styrk_code <- wk$styrk_code
         occ$median_monthly <- wk$median_monthly
         occ$schedule <- wk$schedule
@@ -413,7 +434,8 @@ counterfact_me <- function(dimensions = available_dimensions(),
 
   # 9b2. Partner (conditional on marital status + orientation)
   ptn <- .cond_partner(age, gender_draw, orientation_code = ori$code,
-                       marital_code = ms$code, edu_code = edu$code, lang = lang)
+                       marital_code = ms$code, edu_code = edu$code, lang = lang,
+                       ego_occupation = result$occupation)
   if (!is.null(ptn)) result$partner <- ptn
 
   # 9c. Religion
@@ -721,6 +743,8 @@ counterfact_me <- function(dimensions = available_dimensions(),
   # are unaffected.
   attr(result, "occ_styrk") <- if (!is.null(occ$styrk_code)) occ$styrk_code else NA_character_
   attr(result, "occ_weight") <- if (!is.null(occ$weight)) occ$weight else NA_real_
+  # Row of the drawn title in .cfm_env$occupations, for the final check.
+  attr(result, "occ_title_row") <- if (!is.null(occ$title_row)) occ$title_row else NA_integer_
   class(result) <- "counterfactme"
   result
 }
