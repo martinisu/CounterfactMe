@@ -1,0 +1,4 @@
+Publiser runde 6-9 til docs/ (GitHub Pages)
+
+web/cfm-assets.js var bygget på nytt, men docs/ – som er det GitHub Pages
+serverer – lå igjen på koden fra før runde 6. Kjørt python3 web/publish.py.
