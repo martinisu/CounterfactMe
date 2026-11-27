@@ -1,0 +1,7 @@
+test-invariants: jordmor er kjønnsnøytral tittel
+
+R CMD check feilet på alle plattformer fordi en mannlig "kommunejordmor"
+ble flagget som kvinnetittel. Jordmor er den lovfestede tittelen for begge
+kjønn (som -mann-titlene), og .draw_detail_yrke() beholder den med vilje.
+Testen unntar nå jordmor. Feilen kom fram fordi lektor-endringen forskjøv
+tilfeldighetsstrømmen.

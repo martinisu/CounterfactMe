@@ -127,7 +127,13 @@ test_that("no output string carries a gender morpheme contradicting ego", {
         inspected <- inspected + 1L
         v <- as.character(v)
         for (p in forbidden) {
-          if (grepl(p, tolower(v))) hits <- c(hits, sprintf("%s=%s", f, v))
+          # JORDMOR is the legal title for midwives of either sex
+          # (helsepersonelloven), like the -MANN titles above, and
+          # .draw_detail_yrke() keeps it for men on purpose. CI flagged a
+          # male "kommunejordmor" on 27 November 2026 when the random
+          # stream shifted; that is correct Norwegian, not a leak.
+          if (grepl(p, tolower(v)) && !grepl("jordmor", tolower(v)))
+            hits <- c(hits, sprintf("%s=%s", f, v))
         }
       }
     }
