@@ -183,3 +183,16 @@ test_that("parents who worked before 1990 do not get modern titles", {
   # filter then falls back to the full list rather than to nothing.
   expect_lt(mean(hits), 0.02)
 })
+
+test_that("academic posts require at least a master's degree", {
+  # "Universitetslektor" on 1 180 000 for a 31-year-old with a bachelor in
+  # barnehagelaererutdanning (live site, 27 November 2026).
+  CounterfactMe:::.load_data()
+  set.seed(6115)
+  for (i in 1:200) {
+    t <- CounterfactMe:::.draw_detail_yrke("2310", NA, gender = if (i %% 2) "F" else "M",
+           drop_re = CounterfactMe:::.LICENSED_TITLE_RE)
+    expect_false(grepl("LEKTOR|AMANUENSIS|PROFESSOR|DOSENT|STIPENDIAT",
+                       toupper(t)), label = t)
+  }
+})

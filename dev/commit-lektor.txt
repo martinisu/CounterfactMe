@@ -1,0 +1,6 @@
+Lektor- og forskerstillinger krever mastergrad
+
+En 31-åring med bachelor i barnehagelærerutdanning ble "universitetslektor"
+på den publiserte siden. Lektor (også i skolen; adjunkt er bachelortittelen),
+amanuensis, professor, dosent, stipendiat, postdoktor og forsker legges til
+titlene som krever mastergrad. Ny test i test-runde6.R. docs/ publisert.

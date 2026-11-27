@@ -333,7 +333,14 @@
 
 # Titles that require a profession degree even where the 4-digit code does
 # not: "Assisterende fylkeslege" sits in 1342 (ledere av helsetjenester).
-.LICENSED_TITLE_RE <- "(?<!KOL)LEGE\\b|PREST\\b|PSYKOLOG\\b|ADVOKAT\\b|DOMMER\\b"
+# Academic posts sit with the master-level titles: a 31-year-old with a
+# bachelor in barnehagelaererutdanning was "universitetslektor" on the
+# live site. Lektor (in school too: lektor is the master-level title,
+# adjunkt the bachelor one), amanuensis, professor and the rest require
+# at least a master's degree.
+.LICENSED_TITLE_RE <- paste0("(?<!KOL)LEGE\\b|PREST\\b|PSYKOLOG\\b|ADVOKAT\\b|DOMMER\\b|",
+  "LEKTOR|AMANUENSIS|PROFESSOR|",
+  "DOSENT|STIPENDIAT|POSTDOK|FORSKER\\b")
 
 # Highest education code reachable at a given age (see .cond_education).
 .edu_max_code <- function(age) {
