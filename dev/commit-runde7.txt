@@ -1,0 +1,27 @@
+Sysselsetting 67+ fra SSB 06445, bolig etter botid, fagfelt etter yrke
+
+- Sysselsetting 67-71: 45 pst for alle er erstattet med en kurve per
+  alder og kjønn som i snitt treffer SSB 06445 (4. kvartal 2025, 67-74
+  år: menn 29,4, kvinner 15,4 pst). 67-årige menn ca. 49 pst, 71-årige
+  kvinner ca. 13 pst. Kurvens fall (15 pst per år) er en antakelse.
+- Uføretrygd, AAP og dagpenger slutter ved 67: en firedel av
+  67-åringene ble trukket som uføretrygdet.
+- Bolig for innvandrere: eiersannsynligheten skaleres med botid (35 pst
+  ved ankomst, på nivå med befolkningen etter 20 år for EU/EFTA o.l. og
+  28 år for Afrika/Asia o.l., etter SSBs artikkel om innvandreres
+  boforhold 2023). Ingen kjøper bolig før de kom til Norge, og
+  betalingsevnen sjekkes for alle som kom de siste 30 årene, ikke bare
+  under 50 år. Innvandrere eier nå i 48 pst mot 70 pst i majoriteten
+  (SSB: 60 mot 85). Sluttsjekken slo til hos 20 pst av innvandrede
+  boligeiere før, 0 av 54 nå.
+- Fagfelt: for yrker som defineres av utdanningen (barnehagelærer,
+  grunnskolelærer, spesialpedagog, bibliotekar, revisor, regnskapsfører,
+  politi, tannpleier, helsefagarbeider, elektriker, automatiker,
+  energimontør, rørlegger, tømrer, murer, bilmekaniker, frisør, kokk,
+  sivilingeniør bygg/maskin) begrenses fagfeltet til det utdanningen gir,
+  med riktig detaljfelt (R/field_rules.R). Ikke lenger barnehagelærere
+  med master i vokal og instrumentalmusikk eller elektrikere med
+  "fordypning i mekaniske fag".
+- Navn: egne puljer også for Storbritannia/USA, Tyskland, Frankrike,
+  Nederland og Italia (ikke lenger "Chiara" og "Giulia" fra Storbritannia).
+- Tester: test-runde7.R (4). README: 180. docs/ publisert.

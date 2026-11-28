@@ -18,7 +18,8 @@ test_that("the final check flags what it is meant to flag", {
   expect_true("toppleder_med_grunnskole" %in% CounterfactMe:::.find_implausibilities(x4))
 
   x6 <- x; x6$background <- "first_gen"; x6$years_in_norway <- 25L; x6$housing_tenure <- "Eier"
-  x6$housing_value_nok <- 10.9e6; x6$income_nok <- 370000
+  x6$housing_value_nok <- 10.9e6; x6$housing_purchase_price_nok <- 9e6
+  x6$income_nok <- 370000; x6$parents_capital <- 0
   expect_true("innvandrer_bolig_over_evne" %in% CounterfactMe:::.find_implausibilities(x6))
 
   CounterfactMe:::.load_data()

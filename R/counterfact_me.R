@@ -465,7 +465,9 @@ counterfact_me <- function(dimensions = available_dimensions(),
     h <- .cond_housing(age = age, income_nok = inc_nok,
                        county = county_int, municipality = mun_name_int,
                        parents_capital = pc,
-                       gender = gender_draw, lang = lang)
+                       gender = gender_draw, lang = lang,
+                       years_in_norway = if (identical(bg$background, "first_gen")) bg$years_in_norway else NULL,
+                       name_region = bg$name_region)
     result$housing_tenure   <- h$tenure
     result$housing_type     <- h$boligtype
     result$housing_area_m2  <- h$area_m2

@@ -93,16 +93,17 @@
       v <- c(v, "ung_eier_uten_betalingsevne")
   }
 
-  # 4b. Recent immigrants in homes far beyond their income. The housing
-  # draw checks affordability only under 50 and knows nothing of years in
-  # Norway, so a man who came from Somalia at 42, on 370 000, owned a
-  # 10.9 million house. Equity built over decades does not apply to
-  # someone who arrived within the last 30 years.
+  # 4b. Recent immigrants in homes beyond their means. A man who came
+  # from Somalia at 42, on 370 000, owned a 10.9 million house. The
+  # housing draw now applies the affordability test to everyone who came
+  # within the last 30 years (see .cond_housing); this is the same test
+  # on the finished life, on the purchase price.
   if (identical(x$background, "first_gen") && identical(x$housing_tenure, "Eier")) {
     yin <- x$years_in_norway %||% NA
-    val <- x$housing_value_nok %||% NA
-    if (!is.na(yin) && yin <= 30 && !is.na(val) &&
-        val > max(4e6, 8 * max(0, inc %||% 0)))
+    price <- x$housing_purchase_price_nok %||% NA
+    pc <- max(0, x$parents_capital %||% 0)
+    if (!is.na(yin) && yin <= 30 && !is.na(price) &&
+        price > 5.5 * max(0, inc %||% 0) + 0.1 * pc + 300000)
       v <- c(v, "innvandrer_bolig_over_evne")
   }
 

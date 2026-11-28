@@ -13,6 +13,25 @@
 #   - Under 6: no education at all
 #   - Household for children = living with parents (their parents' household)
 
+# Share employed at single ages 67-74, by sex.
+#
+# SSB 06445 (registerbased employment, 4th quarter 2025) gives the band
+# 67-74 only: 22.3 pct employed, 29.4 pct of men and 15.4 pct of women.
+# The sampler used 45 pct for every 67-71-year-old. Within the band the
+# share falls with age; SSB's single-year figure for employees ("En av
+# tre seniorer er i jobb", 2023) drops steeply at 67 and keeps falling.
+# The single-year curve here is an assumption: a decline of 15 pct per
+# year of age, scaled so that the mean over 67-74 matches 06445. That
+# puts 67-year-old men at 49 pct and 71-year-old women at 13 pct.
+.employment_share_old <- function(age, gender = NULL) {
+  band <- if (identical(toupper(gender %||% ""), "M")) 0.294
+          else if (identical(toupper(gender %||% ""), "F")) 0.154 else 0.223
+  r <- 0.85
+  e67 <- band * 8 / sum(r^(0:7))
+  k <- max(0, min(7, as.integer(age) - 67L))
+  e67 * r^k
+}
+
 # Pensioner hobby labels (used as "occupation" for retirees 67+)
 .PENSJONIST_LABELS <- c(
   "Hyttepusser", "Turlag-general", "Kaffeslabberas-koordinator",
@@ -689,7 +708,9 @@
 
   # Uforetrygd (SSB 11715). Driven by funksjonsnedsettelse when known,
   # so the causal arrow runs disability -> uføretrygd (not the reverse).
-  if (age >= 18 && age <= 67) {
+  # Not at 67: uforetrygd, AAP and dagpenger end at 67, when alderspensjon
+  # takes over. A quarter of 67-year-olds were drawn as uforetrygdet.
+  if (age >= 18 && age <= 66) {
     p_ufore <- if (!is.null(disabled)) {
       if (isTRUE(disabled))
         switch(severity %||% "moderat",
@@ -711,7 +732,7 @@
   if (age >= 72 && stats::runif(1) < 0.90) {
     return(.wrap(sample(pensioner_pool, 1), "pensioner"))
   }
-  if (age >= 67 && age < 72 && stats::runif(1) < 0.55) {
+  if (age >= 67 && age < 72 && stats::runif(1) >= .employment_share_old(age, gender)) {
     return(.wrap(sample(pensioner_pool, 1), "pensioner"))
   }
 
@@ -729,7 +750,7 @@
   }
 
   # -- Roll for AAP / dagpenger / sosialhjelp (19-67, not students) --
-  if (age >= 19 && age <= 67) {
+  if (age >= 19 && age <= 66) {
     r <- stats::runif(1)
     aap_p  <- .aap_prob(age)
     dag_p  <- .dagpenger_prob(age)
@@ -1427,6 +1448,13 @@
     if (!is.null(lic)) {
       sub <- data.frame(fagfelt2 = lic, count = 1, stringsAsFactors = FALSE)
     }
+    # Occupations whose training defines the field (R/field_rules.R).
+    frule <- if (is.null(lic)) .occ_field_rule(styrk_code, edu_code) else NULL
+    if (!is.null(frule)) {
+      s2 <- sub[sub$fagfelt2 %in% frule$f2, , drop = FALSE]
+      sub <- if (nrow(s2) && sum(s2$count) > 0) s2
+             else data.frame(fagfelt2 = frule$f2, count = 1, stringsAsFactors = FALSE)
+    }
     if (!nrow(sub) || sum(sub$count) <= 0) {
       sub <- fb[fb$edu_level == lvl, , drop = FALSE]
       if (nrow(sub)) sub <- stats::aggregate(count ~ fagfelt2, data = sub, FUN = sum)
@@ -1439,6 +1467,15 @@
       if (is.null(broad_label) || !length(broad_label) || is.na(broad_label))
         broad_label <- "Unspecified"
       detail <- .cond_nus_detail(broad_idx, sk2, lang = lang, age = age, sub2 = f2)
+      if (!is.null(frule) && !is.na(frule$detail[f2])) {
+        dl <- .cfm_env$nus_detailed
+        dcode <- unname(frule$detail[f2])
+        ix <- which(dl$code == dcode)
+        if (length(ix)) {
+          lc <- if (identical(lang, "no") && "label_no" %in% names(dl)) "label_no" else "label_en"
+          detail <- list(code = dcode, label = dl[[lc]][ix[1]])
+        }
+      }
       if (!is.null(detail$label) && !is.na(detail$label) &&
           identical(as.character(detail$label), as.character(broad_label))) {
         detail$code <- NA_character_; detail$label <- NA_character_
@@ -2184,7 +2221,9 @@
                           parents_capital = NULL,
                           gender = NULL,
                           lang = "en",
-                          ref_year = NULL) {
+                          ref_year = NULL,
+                          years_in_norway = NULL,
+                          name_region = NULL) {
   na_result <- list(
     owner = NA,
     tenure = NA_character_,
@@ -2208,8 +2247,11 @@
   if (is.null(hp)) return(na_result)
   if (is.null(ref_year)) ref_year <- .cfm_env$ref_year
 
-  p_own <- .housing_own_prob(age, income_nok, parents_capital)
+  p_own <- .housing_own_prob(age, income_nok, parents_capital) *
+           .immigrant_own_factor(years_in_norway, name_region)
   is_owner <- stats::runif(1) < p_own
+  yin <- suppressWarnings(as.numeric(years_in_norway %||% NA))
+  recent_immigrant <- length(yin) == 1L && !is.na(yin) && yin <= 30
 
   if (!is_owner) {
     return(list(
@@ -2271,6 +2313,8 @@
 
   # --- Purchase year: older owners likely bought longer ago ---
   purchase_year <- .draw_purchase_year(age, ref_year)
+  # Nobody bought a home in Norway before arriving.
+  if (recent_immigrant) purchase_year <- max(purchase_year, ref_year - floor(yin))
   years_held <- max(0, ref_year - purchase_year)
 
   # Historical price at purchase year
@@ -2288,7 +2332,10 @@
   # taken as 10 pct of parents' capital plus 300 000 in savings/BSU; both
   # are assumptions, not data. Not applied from 50 on: current income is
   # then a poor proxy for income at purchase (pensions, part-time).
-  if (age < 50) {
+  # Also from 50 for immigrants who came within the last 30 years: they
+  # bought recently, so today's income is the right test. A man who came
+  # from Somalia at 42, on 370 000, owned a 10.9 million house.
+  if (age < 50 || recent_immigrant) {
     inc_a <- if (is.null(income_nok) || is.na(income_nok)) 0 else max(0, income_nok)
     pc_a  <- if (is.null(parents_capital) || is.na(parents_capital)) 0 else max(0, parents_capital)
     if (purchase_price > 5.5 * inc_a + 0.10 * pc_a + 300000) {
@@ -2356,6 +2403,21 @@
   )
 }
 
+
+# Ownership among immigrants relative to the rest of the population, by
+# years in Norway. SSB ("Innvandrere og deres barn eier sjeldnere bolig og
+# bor trangere", 2023, from Boforhold, registerbasert, 1.1.2022): 60 pct
+# of immigrants own against 85 pct of others; about 3 in 10 labour and
+# Nordic immigrants live in an owned home on arrival; immigrants from
+# EU/EFTA etc. reach the population's level after about 20 years, those
+# from Africa, Asia etc. after about 28. The linear path between those
+# points is an assumption. Second generation and majority: factor 1.
+.immigrant_own_factor <- function(years_in_norway = NULL, name_region = NULL) {
+  yin <- suppressWarnings(as.numeric(years_in_norway %||% NA))
+  if (!length(yin) || is.na(yin)) return(1)
+  t_full <- if (!is.null(name_region) && name_region %in% c("norden", "vesteuropa", "ost_europa")) 20 else 28
+  0.35 + 0.65 * min(1, max(0, yin) / t_full)
+}
 
 .housing_own_prob <- function(age, income_nok = NULL, parents_capital = NULL) {
   base <- if (age < 25) 0.12
